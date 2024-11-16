@@ -9,6 +9,9 @@ struct ContentView: View {
     @State private var scannedCode: String? = nil
     @State private var isScanning = true
     
+    private var musicDBManager: MusicDBManager = MusicDBManager.shared
+    
+    
     var body: some View {
         VStack {
             // QR Code Scanner - placed inside a small rectangle in the center of the screen
@@ -33,6 +36,9 @@ struct ContentView: View {
                 if let scannedCode = scannedCode {
                     Text("Scanned code: \(scannedCode)")
                         .padding()
+                    let codeMetdata: CodeMetadata = CodeMetadata(from: scannedCode)
+                    let queriedDBSong: DBSong = musicDBManager.getSongById(codeMetdata.id)!
+                    Text("Title: \(queriedDBSong.title)")
                 } else {
                     Text("Scan a QR code")
                         .padding()

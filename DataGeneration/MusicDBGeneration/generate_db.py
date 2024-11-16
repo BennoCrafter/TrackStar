@@ -7,7 +7,7 @@ ALL_SONGS_DB_URL = "/Users/benno/Downloads/all_songs_data/all_song_data.json"
 SONGS_DB_URL = "/Users/benno/coding/swift/TrackStar/TrackStar/songs_table.json"
 
 # Initialize data containers
-cleaned_song_data = {}
+cleaned_song_data = []
 years = []
 
 # Function to load JSON data from a file
@@ -29,7 +29,7 @@ def process_song_data(song_data):
             "title": song.get("Song Title"),
             "album": song.get("Album"),
             "image": song.get("Album URL"),
-            "year": song.get("Year")
+            "year": int(song.get("Year"))
         }
         processed_data.append(u_song)
 
@@ -39,7 +39,8 @@ def process_song_data(song_data):
 def add_data(songs_list):
     start_id = len(cleaned_song_data) + 1
     for i, song in enumerate(songs_list, start=start_id):
-        cleaned_song_data[str(i)] = song
+        song["id"] = i
+        cleaned_song_data.append(song)
         years.append(song["year"])
 
 # Function to save data to a JSON file

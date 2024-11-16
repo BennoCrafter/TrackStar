@@ -11,17 +11,27 @@ import MusicKit
 
 @main
 struct TrackStarApp: App {
-    let isFirstLaunch = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+    @AppStorage("hasLaunchedBefore") private var hasLaunchedBefore: Bool = false
 
     init() {
-        if isFirstLaunch {
+        if !hasLaunchedBefore {
             print("First time launching. Initialize Music Database")
-            initMusicDB(filename: "/Users/benno/coding/swift/TrackStar/songs_table.json")
         }
+        
     }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if hasLaunchedBefore {
+                ContentView()
+            }
+            else {
+                OnboardingView(hasLaunchedBefore: hasLaunchedBefore, onFileSelected: {url in
+                    if JSONDataManager.copyFile(from: url, withName: "musicDB.json") {
+                        print("Copied!")
+                    }
+                    hasLaunchedBefore = true
+                })
+            }
         }
     }
 }

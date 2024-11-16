@@ -70,4 +70,35 @@ class JSONDataManager {
             return nil
         }
     }
+    
+    static func copyFile(from sourceURL: URL, to destinationURL: URL) -> Bool {
+        if sourceURL.startAccessingSecurityScopedResource() {
+            do {
+                // Copy the file from source to destination
+                try FileManager.default.copyItem(at: sourceURL, to: destinationURL)
+                print("File copied from \(sourceURL.path) to \(destinationURL.path)")
+                sourceURL.stopAccessingSecurityScopedResource()
+                return true
+            } catch {
+                print("Error copying file: \(error.localizedDescription)")
+                sourceURL.stopAccessingSecurityScopedResource()
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
+    static func copyFile(from sourceURL: URL, withName fileName: String) -> Bool {
+        // Ensure the destination directory exists
+        guard let directory = documentDirectory else {
+            print("Unable to access document directory.")
+            return false
+        }
+        
+        let destinationURL = directory.appendingPathComponent(fileName)
+        
+        return copyFile(from: sourceURL, to: destinationURL)
+    }
 }
