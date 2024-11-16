@@ -2,8 +2,10 @@ import SwiftUI
 import AVFoundation
 
 struct QRCodeScannerView: UIViewControllerRepresentable {
+    
     class Coordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         var parent: QRCodeScannerView
+        var isScanInProgress = false // Track whether a scan is already in progress
         
         init(parent: QRCodeScannerView) {
             self.parent = parent
@@ -12,17 +14,27 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
         func metadataOutput(_ output: AVCaptureMetadataOutput,
                             didOutput metadataObjects: [AVMetadataObject],
                             from connection: AVCaptureConnection) {
-            if let metadataObject = metadataObjects.first {
-                guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-                guard let stringValue = readableObject.stringValue else { return }
+            guard let metadataObject = metadataObjects.first else { return }
+            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            guard let stringValue = readableObject.stringValue else { return }
+            
+            // Prevent multiple scans from happening if scan is in progress
+            if !isScanInProgress {
+                isScanInProgress = true
                 AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                parent.didFindCode(stringValue)
+                print("FOUND QRCODE")
+                self.parent.didFindCode(stringValue)
+                
+                // Debounce the scan (reset after a short delay)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.isScanInProgress = false
+                }
             }
         }
     }
     
     var didFindCode: (String) -> Void
-    var isScanningEnabled: Bool
+    @Binding var isScanningEnabled: Bool
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
@@ -33,79 +45,67 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
         
         let captureSession = AVCaptureSession()
         
-        // Set up the camera input
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return viewController }
-        let videoDeviceInput: AVCaptureDeviceInput
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
+            return viewController
+        }
         
+        let videoDeviceInput: AVCaptureDeviceInput
         do {
             videoDeviceInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
         } catch {
             return viewController
         }
         
-        if (captureSession.canAddInput(videoDeviceInput)) {
+        if captureSession.canAddInput(videoDeviceInput) {
             captureSession.addInput(videoDeviceInput)
         } else {
             return viewController
         }
         
-        // Set up metadata output (QR code)
         let metadataOutput = AVCaptureMetadataOutput()
         
-        if (captureSession.canAddOutput(metadataOutput)) {
+        if captureSession.canAddOutput(metadataOutput) {
             captureSession.addOutput(metadataOutput)
-            
-            // Set the delegate to handle QR code scanning
             metadataOutput.setMetadataObjectsDelegate(context.coordinator, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.qr]
         } else {
             return viewController
         }
         
-        // Create a preview layer for the camera
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = viewController.view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         viewController.view.layer.addSublayer(previewLayer)
         
-        // Store the session for later control
-        context.coordinator.captureSession = captureSession
-        
-        // Start running the session on a background thread
+        // Start running the session on a background thread for performance
         DispatchQueue.global(qos: .userInitiated).async {
             captureSession.startRunning()
         }
         
+        // Watch the isScanningEnabled flag and stop the session if scanning is disabled
+        context.coordinator.isScanInProgress = !isScanningEnabled
         return viewController
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Enable/disable scanning based on the `isScanningEnabled` flag
-        if !isScanningEnabled {
-            // Stop scanning
-            DispatchQueue.global(qos: .userInitiated).async {
-                context.coordinator.captureSession?.stopRunning()
+        guard let previewLayer = uiViewController.view.layer.sublayers?.first as? AVCaptureVideoPreviewLayer else {
+            return
+        }
+        
+        if isScanningEnabled {
+            // Start the session if it's not running
+            if previewLayer.session?.isRunning == false {
+                DispatchQueue.global(qos: .userInitiated).async {
+                    previewLayer.session?.startRunning()
+                }
             }
         } else {
-            // Restart scanning
-            if !(context.coordinator.captureSession?.isRunning ?? false) {
+            // Stop the session when scanning is disabled
+            if previewLayer.session?.isRunning == true {
                 DispatchQueue.global(qos: .userInitiated).async {
-                    context.coordinator.captureSession?.startRunning()
+                    previewLayer.session?.stopRunning()
                 }
             }
         }
     }
 }
-
-extension QRCodeScannerView.Coordinator {
-    var captureSession: AVCaptureSession? {
-        get {
-            return objc_getAssociatedObject(self, &captureSessionKey) as? AVCaptureSession
-        }
-        set {
-            objc_setAssociatedObject(self, &captureSessionKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-}
-
-private var captureSessionKey: UInt8 = 0

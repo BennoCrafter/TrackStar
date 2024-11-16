@@ -16,11 +16,12 @@ struct ContentView: View {
                 QRCodeScannerView(didFindCode: { code in
                     // Avoid scanning multiple times if a song has already been played
                     if player.status == .playing {
+                        print("skipping")
                         return
                     }
                     
-                    self.scannedCode = code
                     self.isScanning = false
+                    self.scannedCode = code
                     
                     let codeMetadata = CodeMetadata(from: scannedCode!)
                     Task {
@@ -28,7 +29,7 @@ struct ContentView: View {
                             await player.play(fetchedSong)
                         }
                     }
-                }, isScanningEnabled: isScanning)
+                }, isScanningEnabled: $isScanning)
                 .frame(width: 300, height: 300)
                 .background(Color.white.opacity(0.5)) // Optional background for clarity
                 .cornerRadius(20)
