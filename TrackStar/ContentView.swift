@@ -2,43 +2,52 @@ import MusicKit
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isPlaying = false
-    @State private var player = MusicPlayer()  // The music player instance
-    @State private var song: Song?  // Reference to the song
-    
+    @State private var player = MusicPlayer() // The music player instance
+    @State private var song: Song? // Reference to the song
     @State private var scannedCode: String? = nil
     @State private var isScanning = true
     
-    private var musicDBManager: MusicDBManager = MusicDBManager.shared
-    
+    private var musicDBManager: MusicDBManager = .shared
     
     var body: some View {
         VStack {
             // QR Code Scanner - placed inside a small rectangle in the center of the screen
             VStack {
                 QRCodeScannerView(didFindCode: { code in
+                    // Avoid scanning multiple times if a song has already been played
+                    if player.status == .playing {
+                        return
+                    }
+                    
                     self.scannedCode = code
                     self.isScanning = false
+                    
+                    let codeMetadata = CodeMetadata(from: scannedCode!)
+                    Task {
+                        if let fetchedSong = await fetchSong(from: musicDBManager.getSongById(codeMetadata.id)) {
+                            await player.play(fetchedSong)
+                        }
+                    }
                 }, isScanningEnabled: isScanning)
                 .frame(width: 300, height: 300)
                 .background(Color.white.opacity(0.5)) // Optional background for clarity
-                .cornerRadius(20) 
+                .cornerRadius(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.blue, lineWidth: 2) // Optional border around the scanner
                 )
                 .padding(.top, 50)
                 .onTapGesture {
+                    // Reset everything if user taps on the screen
                     self.scannedCode = nil
                     self.isScanning = true
+                    player.stop()
                 }
+                
                 // Text display for scanned code
                 if let scannedCode = scannedCode {
                     Text("Scanned code: \(scannedCode)")
                         .padding()
-                    let codeMetdata: CodeMetadata = CodeMetadata(from: scannedCode)
-                    let queriedDBSong: DBSong = musicDBManager.getSongById(codeMetdata.id)!
-                    Text("Title: \(queriedDBSong.title)")
                 } else {
                     Text("Scan a QR code")
                         .padding()
@@ -56,18 +65,15 @@ struct ContentView: View {
                 
                 Button(action: {
                     Task {
-                        if isPlaying {
-                            // Pause the music if it's playing
+                        if player.status == .playing {
                             player.pause()
                         } else {
-                            await searchForSong()
-                            // Play "Shape of You" by Ed Sheeran
-                            playSong()
+                            await playSong()
                         }
-                        isPlaying.toggle()
+                        player.status = .paused
                     }
                 }) {
-                    Text(isPlaying ? "Pause" : "Play Shape of You")
+                    Text(player.status == .playing ? "Pause" : "Play")
                         .font(.title)
                         .padding()
                         .background(Color.blue)
@@ -79,33 +85,37 @@ struct ContentView: View {
             .onAppear {
                 // Request permission to access Apple Music
                 requestPermission()
-                print("Requested permission.")
+                print("Requested music permission.")
             }
         }
     }
     
-    private func playSong() {
+    private func playSong() async {
         guard let songToPlay = song else { return }
-        Task {
-            await player.play(songToPlay)
-        }
+        // Make sure to play the song asynchronously
+        await player.play(songToPlay)
     }
     
-    private func searchForSong() async {
-        // Search for "Shape of You" by Ed Sheeran
-        var request = MusicCatalogSearchRequest(term: "Shape of You Ed Sheeran", types: [Song.self])
+    private func fetchSong(from dbSong: DBSong?) async -> Song? {
+        guard let dbSong = dbSong else {
+            print("Invalid song data.")
+            return nil
+        }
+        var request = MusicCatalogSearchRequest(term: "\(dbSong.title) by \(dbSong.artist)", types: [Song.self])
         request.limit = 1
         
         do {
             let response = try await request.response()
             if let foundSong = response.songs.first {
-                song = foundSong
                 print("Found song: \(foundSong.title) by \(foundSong.artistName)")
+                return foundSong
             } else {
                 print("Song not found.")
+                return nil
             }
         } catch {
             print("Error searching for song: \(error)")
+            return nil
         }
     }
     

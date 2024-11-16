@@ -10,9 +10,6 @@ class MusicDBManager {
     // Method to load and decode the musicDB.json file
     private func loadData() {
         if let jsonData = JSONDataManager.load(fileName: "musicDB.json") {
-            if let jsonString = String(data: jsonData, encoding: .utf8) {
-                print("Loaded JSON: \(jsonString)")
-            }
             if let decodedSongs: [DBSong] = JSONDataManager.decode(jsonData: jsonData, toType: [DBSong].self) {
                 dbSongs = decodedSongs // Store the decoded songs
             } else {

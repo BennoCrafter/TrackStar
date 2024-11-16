@@ -10,9 +10,22 @@
 		D3B9F43A2CE8C9D000239E7C /* TrackStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D3B9F46D2CE911D400239E7C /* Exceptions for "TrackStar" folder in "TrackStar" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D3B9F4392CE8C9D000239E7C /* TrackStar */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D3B9F43C2CE8C9D000239E7C /* TrackStar */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D3B9F46D2CE911D400239E7C /* Exceptions for "TrackStar" folder in "TrackStar" target */,
+			);
 			path = TrackStar;
 			sourceTree = "<group>";
 		};
@@ -255,6 +268,7 @@
 				DEVELOPMENT_TEAM = FL9Y5AAB4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrackStar/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Access to Apple Music";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow Camera Acess for QR-Code scanning";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -286,6 +300,7 @@
 				DEVELOPMENT_TEAM = FL9Y5AAB4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrackStar/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Access to Apple Music";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow Camera Acess for QR-Code scanning";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
