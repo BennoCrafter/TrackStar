@@ -58,23 +58,11 @@ struct ContentView: View {
             
             Spacer()
             
-            // Music player controls
             VStack {
-                Text("Apple Music Player")
-                    .font(.largeTitle)
-                    .padding()
-                
                 Button(action: {
-                    Task {
-                        if player.status == .playing {
-                            player.pause()
-                        } else {
-                            await playSong()
-                        }
-                        player.status = .paused
-                    }
+                    
                 }) {
-                    Text(player.status == .playing ? "Pause" : "Play")
+                    Text("Reveal")
                         .font(.title)
                         .padding()
                         .background(Color.blue)
@@ -83,11 +71,11 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .onAppear {
-                // Request permission to access Apple Music
-                requestPermission()
-                print("Requested music permission.")
-            }
+        }
+        .onAppear {
+            // Request permission to access Apple Music
+            requestPermission()
+            print("Requested music permission.")
         }
     }
     

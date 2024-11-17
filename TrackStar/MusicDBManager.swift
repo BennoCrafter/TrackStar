@@ -2,6 +2,7 @@ class MusicDBManager {
     static var shared = MusicDBManager()
     
     private var dbSongs: [DBSong] = [] // Store the decoded songs
+    private var dbSongsCount: Int = 0
     
     private init() {
         loadData()
@@ -12,6 +13,7 @@ class MusicDBManager {
         if let jsonData = JSONDataManager.load(fileName: "musicDB.json") {
             if let decodedSongs: [DBSong] = JSONDataManager.decode(jsonData: jsonData, toType: [DBSong].self) {
                 dbSongs = decodedSongs // Store the decoded songs
+                dbSongsCount = dbSongs.count
             } else {
                 dbSongs = []
                 print("Failed to decode songs")
@@ -23,6 +25,7 @@ class MusicDBManager {
     }
     
     public func getSongById(_ id: Int) -> DBSong? {
-        return dbSongs.first(where: {$0.id == id})
+        let modId = id % dbSongsCount
+        return dbSongs.first(where: {$0.id == modId})
     }
 }

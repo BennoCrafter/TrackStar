@@ -1,7 +1,6 @@
 import argparse
 import os
 import pyqrcode
-import png
 from tqdm import tqdm
 
 def generate_qr_codes(prefix: str, id_range: range, output_dir: str, file_format, scale):

@@ -10,6 +10,15 @@ SONGS_DB_URL = "/Users/benno/coding/swift/TrackStar/TrackStar/songs_table.json"
 cleaned_song_data = []
 years = []
 
+release_year_dict = {(1956, 1971): 3, (1971, 2022): 20}
+
+def get_max_rank_for_year(year: int) -> int:
+    for (start, end), max_rank in release_year_dict.items():
+        if start <= year < end:
+            return max_rank
+
+    return 0
+
 # Function to load JSON data from a file
 def load_json_data(file_path):
     with open(file_path, 'r') as file:
@@ -20,7 +29,7 @@ def process_song_data(song_data):
     processed_data = []
     for song in song_data:
         # Filter out songs with Rank above 15
-        if int(song.get("Rank", 0)) > 15:
+        if int(song.get("Rank", 0)) > get_max_rank_for_year(int(song.get("Year"))):
             continue
 
         # Create a dictionary with selected fields

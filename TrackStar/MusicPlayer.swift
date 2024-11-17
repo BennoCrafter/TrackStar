@@ -6,7 +6,7 @@ enum MusicStatus {
 }
 
 class MusicPlayer: ObservableObject {
-    private var musicPlayer: ApplicationMusicPlayer = .shared
+    private var aMusicPlayer: ApplicationMusicPlayer = .shared
     @Published var status: MusicStatus = .idle
     
     init() {}
@@ -14,16 +14,15 @@ class MusicPlayer: ObservableObject {
     func play(_ song: Song) async {
         // Only stop if it's playing or paused (avoid unnecessary stop calls)
         if status == .playing || status == .paused {
-            musicPlayer.stop()
+            aMusicPlayer.stop()
         }
         
         do {
             // Set the queue to the new song
-            musicPlayer.queue = [song]
+            aMusicPlayer.queue = [song]
             status = .playing
             
-            // Play the song
-            try await musicPlayer.play()
+            try await aMusicPlayer.play()
         } catch {
             status = .idle
             print("Error playing the song: \(error)")
@@ -34,13 +33,13 @@ class MusicPlayer: ObservableObject {
         guard status == .playing else { return }
         
         status = .paused
-        musicPlayer.pause()
+        aMusicPlayer.pause()
     }
     
     func stop() {
         guard status != .stopped else { return }
         
         status = .stopped
-        musicPlayer.stop()
+        aMusicPlayer.stop()
     }
 }
