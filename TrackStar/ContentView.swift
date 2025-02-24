@@ -6,7 +6,7 @@ enum ActiveView {
 }
 
 struct ContentView: View {
-    @ObservedObject var viewModel: ViewModel = .shared
+    @EnvironmentObject private var viewModel: ViewModel
 
     var body: some View {
         VStack {
@@ -14,7 +14,7 @@ struct ContentView: View {
                 QRCodeScanningView()
                     .transition(.slide)
             } else if viewModel.activeView == .songCard {
-                SongCardView()
+                SongCard()
                     .transition(.slide)
             }
         }

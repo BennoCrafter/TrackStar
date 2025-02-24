@@ -1,8 +1,8 @@
-import SwiftUI
 import MusicKit
+import SwiftUI
 
 struct QRCodeScanningView: View {
-    @StateObject var viewModel: ViewModel = .shared
+    @EnvironmentObject private var viewModel: ViewModel
 
     var body: some View {
         VStack {
@@ -19,6 +19,7 @@ struct QRCodeScanningView: View {
                 let codeMetadata = CodeMetadata(from: viewModel.scannedCode!)
                 Task {
                     if let fetchedSong = await fetchSong(from: viewModel.musicDBManager.getSongById(codeMetadata.id)) {
+                        viewModel.song = fetchedSong
                         await viewModel.player.play(fetchedSong)
                     }
                 }
@@ -51,7 +52,9 @@ struct QRCodeScanningView: View {
         Spacer()
         
         VStack {
-            Button(action: {}) {
+            Button(action: {
+                viewModel.activeView = .songCard
+            }) {
                 Text("Reveal")
                     .font(.title)
                     .padding()
@@ -61,13 +64,6 @@ struct QRCodeScanningView: View {
             }
         }
         .padding()
-    }
-    
-    
-    private func playSong() async {
-        guard let songToPlay = viewModel.song else { return }
-        // Make sure to play the song asynchronously
-        await viewModel.player.play(songToPlay)
     }
     
     private func fetchSong(from dbSong: DBSong?) async -> Song? {

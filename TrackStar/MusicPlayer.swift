@@ -12,13 +12,12 @@ class MusicPlayer: ObservableObject {
     init() {}
     
     func play(_ song: Song) async {
-        // Only stop if it's playing or paused (avoid unnecessary stop calls)
         if status == .playing || status == .paused {
             aMusicPlayer.stop()
         }
         
         do {
-            // Set the queue to the new song
+            
             aMusicPlayer.queue = [song]
             status = .playing
             
