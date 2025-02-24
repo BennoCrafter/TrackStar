@@ -33,9 +33,7 @@ struct QRCodeScanningView: View {
                 )
                 .padding(.top, 50)
                 .onTapGesture {
-                    viewModel.scannedCode = nil
-                    viewModel.isScanning = true
-                    viewModel.player.stop()
+                    viewModel.resetQRCode()
                 }
             
             // Text display

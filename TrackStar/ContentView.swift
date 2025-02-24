@@ -6,23 +6,29 @@ enum ActiveView {
 }
 
 struct ContentView: View {
-    @EnvironmentObject private var viewModel: ViewModel
+    @EnvironmentObject private var musicManager: ViewModel
 
     var body: some View {
         VStack {
-            if viewModel.activeView == .qrCodeScanning {
+            if musicManager.activeView == .qrCodeScanning {
                 QRCodeScanningView()
                     .transition(.slide)
-            } else if viewModel.activeView == .songCard {
+            } else if musicManager.activeView == .songCard {
                 SongCard()
                     .transition(.slide)
             }
             Spacer()
 
             Button(action: {
-                viewModel.activeView = viewModel.activeView == .songCard ? ActiveView.qrCodeScanning : ActiveView.songCard
+                switch musicManager.activeView {
+                case .qrCodeScanning:
+                    musicManager.activeView = .songCard
+                case .songCard:
+                    musicManager.resetQRCode()
+                    musicManager.activeView = .qrCodeScanning
+                }
             }) {
-                Text(viewModel.activeView == .qrCodeScanning ? "Reveal" : "Back")
+                Text(musicManager.activeView == .qrCodeScanning ? "Reveal" : "Back")
                     .font(.title)
                     .padding()
                     .background(Color.blue)

@@ -1,10 +1,3 @@
-//
-//  TrackStarApp.swift
-//  TrackStar
-//
-//  Created by Ben Baumeister on 16.11.24.
-//
-
 import MusicKit
 import SwiftData
 import SwiftUI

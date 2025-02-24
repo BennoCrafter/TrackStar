@@ -20,4 +20,10 @@ class ViewModel: ObservableObject {
         self.activeView = activeView
         self.musicDBManager = musicDBManager
     }
+    
+    func resetQRCode() {
+        self.scannedCode = nil
+        self.isScanning = true
+        self.player.stop()
+    }
 }
