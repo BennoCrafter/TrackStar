@@ -1,0 +1,5 @@
+reportlab
+cairosvg
+pyqrcode
+pillow
+pydantic

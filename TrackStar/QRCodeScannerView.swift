@@ -21,7 +21,7 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
             // Prevent multiple scans from happening if scan is in progress
             if !isScanInProgress {
                 isScanInProgress = true
-                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                // AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                 print("FOUND QRCODE")
                 self.parent.didFindCode(stringValue)
                 

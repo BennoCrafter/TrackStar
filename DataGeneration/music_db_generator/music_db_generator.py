@@ -1,7 +1,6 @@
 from models.data_handler import DataHandler
 from parsers.json.taylor_swift_parser import TaylorSwiftParser
 from parsers.json.general_parser import GeneralJSONParser
-import random
 import os
 
 os.makedirs("out", exist_ok=True)

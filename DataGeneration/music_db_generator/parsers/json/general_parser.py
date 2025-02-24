@@ -1,7 +1,6 @@
 from parsers.json.base_parser import BaseJSONParser
 from resources.chatgpted_data import top_songs_2020_to_2022
 from models.song import Song
-import abc
 from typing import List
 
 class GeneralJSONParser(BaseJSONParser):
@@ -49,11 +48,11 @@ class GeneralJSONParser(BaseJSONParser):
         for s in top_songs_2020_to_2022:
             sngs.append(
                 Song(
-                    artist=s.get("artist"),
-                    title = s.get("title"),
-                    album = s.get("album"),
-                    image = s.get("image"),
-                    year = int(s.get("year")),
+                    artist= s.get("artist", ""),
+                    title = s.get("title", ""),
+                    album = s.get("album", ""),
+                    image = s.get("image", ""),
+                    year = int(s.get("year", "")),
                     id = i
                 )
             )

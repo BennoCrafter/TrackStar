@@ -1,6 +1,5 @@
 from parsers.json.base_parser import BaseJSONParser
 from models.song import Song
-import abc
 from typing import List
 
 class TaylorSwiftParser(BaseJSONParser):
