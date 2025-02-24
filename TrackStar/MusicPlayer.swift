@@ -17,7 +17,6 @@ class MusicPlayer: ObservableObject {
         }
         
         do {
-            
             aMusicPlayer.queue = [song]
             status = .playing
             

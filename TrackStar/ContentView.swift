@@ -10,12 +10,14 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
+            Spacer()
+
             if musicManager.activeView == .qrCodeScanning {
                 QRCodeScanningView()
                     .transition(.slide)
             } else if musicManager.activeView == .songCard {
                 SongCard()
-                    .transition(.slide)
+                    .transition(.opacity)
             }
             Spacer()
 
@@ -27,6 +29,7 @@ struct ContentView: View {
                     musicManager.resetQRCode()
                     musicManager.activeView = .qrCodeScanning
                 }
+
             }) {
                 Text(musicManager.activeView == .qrCodeScanning ? "Reveal" : "Back")
                     .font(.title)

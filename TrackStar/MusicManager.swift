@@ -26,4 +26,14 @@ class MusicManager: ObservableObject {
         self.isScanning = true
         self.player.stop()
     }
+    
+    func addCurrentSongToLibrary() async {
+        guard let song = song else { return }
+        
+        do {
+            try await MusicLibrary.shared.add(song)
+        } catch {
+            print("Failed to add song to library")
+        }
+    }
 }

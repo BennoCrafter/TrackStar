@@ -17,6 +17,7 @@ struct SongCard: View {
 }
 
 struct SongCardView: View {
+    @EnvironmentObject private var musicManager: MusicManager
     var title: String?
     var artistName: String?
     var artworkURL: URL?
@@ -49,6 +50,9 @@ struct SongCardView: View {
 
                 if let appleMusicURL = appleMusicURL {
                     Button(action: {
+                        Task {
+                            await musicManager.addCurrentSongToLibrary()
+                        }
                         UIApplication.shared.open(appleMusicURL)
                     }) {
                         HStack(spacing: 5) {
@@ -105,11 +109,20 @@ struct SongCardView: View {
 }
 
 #Preview {
-    SongCardView(
-        title: "Just in Time",
-        artistName: "Good Morning",
-        artworkURL: URL(string: "https://i.ytimg.com/vi/LBynShoj_yc/maxresdefault.jpg"),
-        releaseDate: Date(timeIntervalSince1970: 1709161200),
-        appleMusicURL: URL(string: "https://music.apple.com/us/album/example")
-    )
+    NavigationStack {
+        TabView {
+            SongCardView(
+                title: "Just in Time",
+                artistName: "Good Morning",
+                artworkURL: URL(string: "https://i.ytimg.com/vi/LBynShoj_yc/maxresdefault.jpg"),
+                releaseDate: Date(timeIntervalSince1970: 1709161200),
+                appleMusicURL: URL(string: "https://music.apple.com/us/album/example")
+            )
+            SongCardView(
+                title: "I can do it with a broken heart and now the text is too long",
+                appleMusicURL: URL(string: "https://music.apple.com/us/album/example")
+            )
+        }
+        .tabViewStyle(.page)
+    }
 }
