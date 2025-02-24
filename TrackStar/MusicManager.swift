@@ -1,8 +1,8 @@
 import Foundation
 import MusicKit
 
-class ViewModel: ObservableObject {
-    static let shared = ViewModel()
+class MusicManager: ObservableObject {
+    static let shared = MusicManager()
     
     @Published var player = MusicPlayer() // The music player instance
     @Published var song: Song? // Reference to the song

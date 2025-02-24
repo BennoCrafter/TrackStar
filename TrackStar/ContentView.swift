@@ -6,7 +6,7 @@ enum ActiveView {
 }
 
 struct ContentView: View {
-    @EnvironmentObject private var musicManager: ViewModel
+    @EnvironmentObject private var musicManager: MusicManager
 
     var body: some View {
         VStack {

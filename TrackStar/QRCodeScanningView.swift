@@ -2,28 +2,28 @@ import MusicKit
 import SwiftUI
 
 struct QRCodeScanningView: View {
-    @EnvironmentObject private var viewModel: ViewModel
+    @EnvironmentObject private var musicManager: MusicManager
 
     var body: some View {
         VStack {
             QRCodeScannerView(didFindCode: { code in
                 // Avoid scanning multiple times if song is already playing
-                if viewModel.player.status == .playing {
+                if musicManager.player.status == .playing {
                     print("skipping")
                     return
                 }
-                
-                viewModel.isScanning = false
-                viewModel.scannedCode = code
-                
-                let codeMetadata = CodeMetadata(from: viewModel.scannedCode!)
+
+                musicManager.isScanning = false
+                musicManager.scannedCode = code
+
+                let codeMetadata = CodeMetadata(from: musicManager.scannedCode!)
                 Task {
-                    if let fetchedSong = await fetchSong(from: viewModel.musicDBManager.getSongById(codeMetadata.id)) {
-                        viewModel.song = fetchedSong
-                        await viewModel.player.play(fetchedSong)
+                    if let fetchedSong = await fetchSong(from: musicManager.musicDBManager.getSongById(codeMetadata.id)) {
+                        musicManager.song = fetchedSong
+                        await musicManager.player.play(fetchedSong)
                     }
                 }
-            }, isScanningEnabled: $viewModel.isScanning)
+            }, isScanningEnabled: $musicManager.isScanning)
                 .frame(width: 300, height: 300)
                 .background(Color.white.opacity(0.5))
                 .cornerRadius(20)
@@ -33,11 +33,11 @@ struct QRCodeScanningView: View {
                 )
                 .padding(.top, 50)
                 .onTapGesture {
-                    viewModel.resetQRCode()
+                    musicManager.resetQRCode()
                 }
-            
+
             // Text display
-            if let scannedCode = viewModel.scannedCode {
+            if let scannedCode = musicManager.scannedCode {
                 Text("Scanned code: \(scannedCode)")
                     .padding()
             } else {
@@ -55,7 +55,7 @@ struct QRCodeScanningView: View {
         }
         var request = MusicCatalogSearchRequest(term: "\(dbSong.title) by \(dbSong.artist)", types: [Song.self])
         request.limit = 1
-        
+
         do {
             let response = try await request.response()
             if let foundSong = response.songs.first {
