@@ -48,24 +48,8 @@ struct QRCodeScanningView: View {
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
-        
-        Spacer()
-        
-        VStack {
-            Button(action: {
-                viewModel.activeView = .songCard
-            }) {
-                Text("Reveal")
-                    .font(.title)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-        }
-        .padding()
     }
-    
+
     private func fetchSong(from dbSong: DBSong?) async -> Song? {
         guard let dbSong = dbSong else {
             print("Invalid song data.")

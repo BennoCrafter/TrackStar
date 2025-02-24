@@ -17,6 +17,19 @@ struct ContentView: View {
                 SongCard()
                     .transition(.slide)
             }
+            Spacer()
+
+            Button(action: {
+                viewModel.activeView = viewModel.activeView == .songCard ? ActiveView.qrCodeScanning : ActiveView.songCard
+            }) {
+                Text(viewModel.activeView == .qrCodeScanning ? "Reveal" : "Back")
+                    .font(.title)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding()
         }
         .onAppear {
             // Request permission to access Apple Music
