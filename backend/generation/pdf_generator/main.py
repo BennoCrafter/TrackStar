@@ -85,9 +85,9 @@ def x_cord(i: int) -> float:
 # PDF generation
 def create_pdf(pdf_name: str):
     pdf_canvas = canvas.Canvas(pdf_name, pagesize=A4)
-    r = range(1, 230)
-    qr_codes_paths = get_all_qr_codes_paths("/Users/benno/coding/TrackStar/DataGeneration/qr_code_generator/out", r)
-    song_card_paths = get_all_song_cards("/Users/benno/coding/TrackStar/DataGeneration/card_generator/out", r)
+    r = range(1, 9)
+    qr_codes_paths = get_all_qr_codes_paths("/Users/benno/coding/TrackStar/backend/generation/qr_code_generator/out", r)
+    song_card_paths = get_all_song_cards("/Users/benno/coding/TrackStar/backend/generation/card_generator/out", r)
 
     image_chunks = [qr_codes_paths[i:i + chunk_size] for i in range(0, len(qr_codes_paths), chunk_size)]
     song_card_chunks = [song_card_paths[i:i + chunk_size] for i in range(0, len(song_card_paths), chunk_size)]

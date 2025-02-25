@@ -9,6 +9,8 @@ width, height = 700, 700
 max_chars_per_line = 20
 line_spacing = 60
 
+top_padding, bottom_padding = 50, 50
+
 def generate_song_card(song: Song, output_path: Path) -> Path:
     """
     Generates an SVG song card and converts it to PNG.
@@ -29,9 +31,9 @@ def generate_song_card(song: Song, output_path: Path) -> Path:
             text_elements.append(f'<text x="50%" y="{y_pos}" font-size="{font_size}" font-family="Arial" text-anchor="middle" fill="{color}">{escape(line)}</text>')
         return "\n".join(text_elements)
 
-    title_start_y = 200 - (len(wrapped_title) * line_spacing // 2)
-    author_start_y = title_start_y + (len(wrapped_title) * line_spacing) + 80
-    year_start_y = author_start_y + (len(wrapped_author) * line_spacing) + 50
+    title_start_y = (len(wrapped_title) * line_spacing // 2) + top_padding
+    year_start_y = (height / 2) + ((len(wrapped_year) * line_spacing) / 2) + (line_spacing / 4)
+    author_start_y = height - (len(wrapped_author) * line_spacing // 2) - bottom_padding
 
     # Construct SVG
     svg_content = f"""
@@ -39,14 +41,17 @@ def generate_song_card(song: Song, output_path: Path) -> Path:
         <!-- Background -->
         <rect width="100%" height="100%" fill="white"/>
 
-        <!-- Wrapped Title -->
-        {create_multiline_text(wrapped_title, title_start_y, 60, "black")}
-
         <!-- Wrapped Artist -->
         {create_multiline_text(wrapped_author, author_start_y, 40, "black")}
 
         <!-- Wrapped Year -->
-        {create_multiline_text(wrapped_year, year_start_y, 40, "black")}
+        {create_multiline_text(wrapped_year, year_start_y, 200, "black")}
+
+        <!-- Wrapped Title -->
+        {create_multiline_text(wrapped_title, title_start_y, 40, "black")}
+
+        <!-- Song ID (Bottom Right) -->
+        <text x="{width - 20}" y="{height - 20}" font-size="20" font-family="Arial" text-anchor="end" fill="gray">{escape(str(song.id))}</text>
     </svg>
     """
 
