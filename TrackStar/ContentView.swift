@@ -1,3 +1,4 @@
+import MediaPlayer
 import MusicKit
 import SwiftUI
 
@@ -7,9 +8,24 @@ enum ActiveView {
 
 struct ContentView: View {
     @EnvironmentObject private var musicManager: MusicManager
+    @State private var songs: [MPMediaItem] = []
+    @State private var isPickerPresented = false
 
     var body: some View {
         VStack {
+            VStack {
+                Button("Select Playlist") {
+                    isPickerPresented = true
+                }
+                .padding()
+
+                List(songs, id: \.persistentID) { song in
+                    Text(song.title ?? "Unknown Title")
+                }
+            }
+            .sheet(isPresented: $isPickerPresented) {
+                MediaPickerView(selectedSongs: $songs)
+            }
             Spacer()
 
             if musicManager.activeView == .qrCodeScanning {
