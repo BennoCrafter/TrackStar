@@ -4,7 +4,7 @@ import SwiftUI
 struct QRCodeScannerView: UIViewControllerRepresentable {
     class Coordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         var parent: QRCodeScannerView
-        var isScanInProgress = false
+        var isScanInProgress = false // Track whether a scan is already in progress
         
         init(parent: QRCodeScannerView) {
             self.parent = parent
@@ -44,7 +44,6 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
-        
         let captureSession = AVCaptureSession()
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
@@ -62,6 +61,15 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
             captureSession.addInput(videoDeviceInput)
         } else {
             return viewController
+        }
+        
+        do {
+            try videoCaptureDevice.lockForConfiguration()
+            videoCaptureDevice.activeVideoMinFrameDuration = CMTime(value: 1, timescale: 10) // 10 FPS
+            videoCaptureDevice.activeVideoMaxFrameDuration = CMTime(value: 1, timescale: 15) // 15 FPS
+            videoCaptureDevice.unlockForConfiguration()
+        } catch {
+            print("Failed to configure camera FPS: \(error)")
         }
         
         let metadataOutput = AVCaptureMetadataOutput()
