@@ -1,11 +1,10 @@
-import SwiftUI
 import AVFoundation
+import SwiftUI
 
 struct QRCodeScannerView: UIViewControllerRepresentable {
-    
     class Coordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         var parent: QRCodeScannerView
-        var isScanInProgress = false // Track whether a scan is already in progress
+        var isScanInProgress = false
         
         init(parent: QRCodeScannerView) {
             self.parent = parent
@@ -13,7 +12,8 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
         
         func metadataOutput(_ output: AVCaptureMetadataOutput,
                             didOutput metadataObjects: [AVMetadataObject],
-                            from connection: AVCaptureConnection) {
+                            from connection: AVCaptureConnection)
+        {
             guard let metadataObject = metadataObjects.first else { return }
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
@@ -21,13 +21,15 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
             // Prevent multiple scans from happening if scan is in progress
             if !isScanInProgress {
                 isScanInProgress = true
-                // AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                print("FOUND QRCODE")
-                self.parent.didFindCode(stringValue)
                 
-                // Debounce the scan (reset after a short delay)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    self.isScanInProgress = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    print("FOUND QRCODE")
+                    self.parent.didFindCode(stringValue)
+                    
+                    // Debounce scan
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        self.isScanInProgress = false
+                    }
                 }
             }
         }
