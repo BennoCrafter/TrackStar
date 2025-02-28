@@ -2,17 +2,19 @@ import SwiftUI
 
 struct PlayMenu: View {
     @EnvironmentObject private var trackStarManager: TrackStarManager
+    @State private var isPlaying: Bool = true
 
     var body: some View {
         NavigationStack {
             Spacer()
 
             Button(action: {
-                if trackStarManager.musicPlayer.status == .playing {
-                    trackStarManager.musicPlayer.pause()
-                } else {}
+                Task {
+                    await trackStarManager.togglePlayState()
+                    isPlaying = trackStarManager.musicPlayer.status == .playing
+                }
             }) {
-                Image(systemName: trackStarManager.musicPlayer.status == .playing ? "pause.circle.fill" : "play.circle.fill")
+                Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                     .resizable()
                     .frame(width: 100, height: 100)
                     .foregroundStyle(.blue)

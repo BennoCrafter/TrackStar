@@ -8,7 +8,7 @@ class TrackStarManager: ObservableObject {
     static let shared = TrackStarManager()
     @AppStorage("musicDBName") var musicDBName: String = ""
 
-    @Published var musicPlayer = MusicPlayer()
+    @ObservedObject var musicPlayer = MusicPlayer()
     @Published var song: Song? = nil
     @Published var scannedCode: String? = nil
     @Published var isScanning = true
@@ -98,5 +98,9 @@ class TrackStarManager: ObservableObject {
         } else {
             await self.musicPlayer.play()
         }
+    }
+    
+    func isPlaying() -> Bool {
+        return self.musicPlayer.status == .playing
     }
 }

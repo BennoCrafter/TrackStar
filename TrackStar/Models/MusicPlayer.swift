@@ -1,12 +1,13 @@
 import Foundation
 import MusicKit
+import SwiftUI
 
 enum MusicStatus {
     case playing, paused, stopped, idle
 }
 
 class MusicPlayer: ObservableObject {
-    private var aMusicPlayer: ApplicationMusicPlayer = .shared
+    var aMusicPlayer: ApplicationMusicPlayer = .shared
     @Published var status: MusicStatus = .idle
     
     init() {}
