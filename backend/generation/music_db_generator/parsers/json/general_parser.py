@@ -2,9 +2,10 @@ from parsers.json.base_parser import BaseJSONParser
 from resources.chatgpted_data import top_songs_2020_to_2022
 from models.song import Song
 from typing import List
+from pathlib import Path
 
 class GeneralJSONParser(BaseJSONParser):
-    def __init__(self, file_path: str):
+    def __init__(self, file_path: Path):
         super().__init__(file_path)
         self.release_year_dict = {(1956, 1971): 2, (1971, 2019): 15, (2019, 2024): 18}
 

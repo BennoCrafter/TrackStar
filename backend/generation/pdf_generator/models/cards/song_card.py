@@ -12,3 +12,4 @@ class SongCard(Card):
 
         # Draw the image with the scaled dimensions, centered
         canvas.drawImage(self.image_path, self.x, self.y, self.width, self.height)
+        canvas.rect(self.x, self.y, self.width, self.height)

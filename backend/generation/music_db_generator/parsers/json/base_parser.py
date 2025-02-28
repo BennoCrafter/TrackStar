@@ -1,12 +1,13 @@
 from abc import ABC, abstractmethod
 import json
 from typing import List
+from parsers.base_parser import BaseParser
 from models.song import Song
+from pathlib import Path
 
-class BaseJSONParser(ABC):
-    def __init__(self, file_path: str):
-        """Initialize the parser and automatically load the JSON data."""
-        self.file_path = file_path
+class BaseJSONParser(BaseParser):
+    def __init__(self, file_path: Path):
+        super().__init__(file_path)
         self.data = self._load_json()
 
     def _load_json(self):

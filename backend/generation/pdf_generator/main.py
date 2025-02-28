@@ -57,10 +57,12 @@ def get_all_song_cards(base_path: str, song_range: range) -> list[str]:
 def add_grid(canvas: canvas.Canvas):
     canvas.setStrokeColor(colors.black)
 
+    # draw vertical grid lines
     for i in range(-1, 4):
         canvas.line(x_cord(i), vertical_margin, x_cord(i), 0)
         canvas.line(x_cord(i), height - vertical_margin, x_cord(i), height)
 
+    # draw horizontal grid lines
     for i in range(-1, 4):
         canvas.line(0, y_cord(i), card_width - horizontal_margin - puffer, y_cord(i))
         canvas.line(width, y_cord(i), width - card_width + horizontal_margin + puffer, y_cord(i))
