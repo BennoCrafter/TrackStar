@@ -1,10 +1,11 @@
 import SwiftUI
 
-struct OnboardingView: View {
-    @State var hasLaunchedBefore: Bool // Tracks if it's the first launch
+struct MusicDatabaseSelector: View {
     @State var selectedFile: URL? = nil
+    @State private var showFilePicker: Bool = false
+    @Environment(\.dismiss) private var dismiss
     
-    var onFileSelected: (URL) -> Void // Callback function to handle the selected file
+    var onFileSelected: (URL) -> Void
     
     var body: some View {
         VStack {
@@ -13,8 +14,7 @@ struct OnboardingView: View {
                 .padding()
             
             Button("Import JSON File") {
-                // Trigger the file importer
-                hasLaunchedBefore = true
+                showFilePicker = true
             }
             .padding()
             .background(Color.blue)
@@ -27,18 +27,23 @@ struct OnboardingView: View {
             }
         }
         .fileImporter(
-            isPresented: $hasLaunchedBefore,
+            isPresented: $showFilePicker,
             allowedContentTypes: [.json]
         ) { result in
             switch result {
             case .success(let url):
                 print("Selected file: \(url.absoluteString)")
                 selectedFile = url
-                onFileSelected(url) 
+                onFileSelected(url)
+                dismiss()
             case .failure(let error):
                 print("File selection error: \(error.localizedDescription)")
             }
         }
         .padding()
     }
+}
+
+#Preview {
+    MusicDatabaseSelector(onFileSelected: { url in print(url) })
 }

@@ -1,35 +1,6 @@
 import MediaPlayer
 import SwiftUI
 
-struct Okay: View {
-    @State private var songs: [MPMediaItem] = []
-    @State private var isPickerPresented = false
-    @State private var isPlaylistPicker = true // Toggle between Playlist and Album selection
-
-    var body: some View {
-        VStack {
-            Picker("Select Mode", selection: $isPlaylistPicker) {
-                Text("Playlist").tag(true)
-                Text("Album").tag(false)
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding()
-
-            Button("Select \(isPlaylistPicker ? "Playlist" : "Album")") {
-                isPickerPresented = true
-            }
-            .padding()
-
-            List(songs, id: \.persistentID) { song in
-                Text(song.title ?? "Unknown Title")
-            }
-        }
-        .sheet(isPresented: $isPickerPresented) {
-            MediaPickerView(selectedSongs: $songs)
-        }
-    }
-}
-
 struct MediaPickerView: UIViewControllerRepresentable {
     @Binding var selectedSongs: [MPMediaItem]
 
@@ -68,7 +39,7 @@ struct MediaPickerView: UIViewControllerRepresentable {
 
             mediaPicker.dismiss(animated: true)
         }
-        
+
         func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
             mediaPicker.dismiss(animated: true)
         }
@@ -79,8 +50,4 @@ enum MPMediaType {
     case playlists
     case albums
     case music
-}
-
-#Preview {
-    Okay()
 }

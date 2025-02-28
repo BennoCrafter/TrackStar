@@ -123,4 +123,5 @@ def create_songs_page(canvas, image_paths: list[str]):
         c.draw(canvas)
 
 
-create_pdf("cards.pdf")
+if __name__ == "__main__":
+    create_pdf("cards.pdf")

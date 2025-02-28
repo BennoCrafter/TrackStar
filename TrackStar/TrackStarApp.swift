@@ -5,7 +5,7 @@ import SwiftUI
 @main
 struct TrackStarApp: App {
     @AppStorage("hasLaunchedBefore") private var hasLaunchedBefore: Bool = false
-    @StateObject var musicManager: MusicManager = .shared
+    @StateObject var musicManager: TrackStarManager = .shared
 
     init() {
         if !hasLaunchedBefore {
@@ -20,13 +20,20 @@ struct TrackStarApp: App {
                     .environmentObject(musicManager)
             }
             else {
-                OnboardingView(hasLaunchedBefore: hasLaunchedBefore, onFileSelected: { url in
-                    if JSONDataManager.copyFile(from: url, withName: "musicDB.json") {
-                        print("Copied!")
-                    }
+                OnboardingView {
                     hasLaunchedBefore = true
-                })
+                }
+                .environmentObject(musicManager)
             }
+        }.modelContainer(for: [DBSong.self], onSetup: handleSetup)
+    }
+
+    func handleSetup(result: Result<ModelContainer, Error>) {
+        switch result {
+        case .success(let modelContainer):
+            musicManager.configure(with: modelContainer)
+        case .failure(let error):
+            print("Model Container setup: \(error.localizedDescription)")
         }
     }
 }

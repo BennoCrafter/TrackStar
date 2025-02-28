@@ -9,7 +9,7 @@ private let displayDateFormatter: DateFormatter = {
 }()
 
 struct SongCard: View {
-    @EnvironmentObject private var musicManager: MusicManager
+    @EnvironmentObject private var musicManager: TrackStarManager
 
     var body: some View {
         SongCardView(title: musicManager.song?.title, artistName: musicManager.song?.artistName, artworkURL: musicManager.song?.artwork?.url(width: 200, height: 200), releaseDate: musicManager.song?.releaseDate, appleMusicURL: musicManager.song?.url)
@@ -17,7 +17,7 @@ struct SongCard: View {
 }
 
 struct SongCardView: View {
-    @EnvironmentObject private var musicManager: MusicManager
+    @EnvironmentObject private var musicManager: TrackStarManager
     var title: String?
     var artistName: String?
     var artworkURL: URL?

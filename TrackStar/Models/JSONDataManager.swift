@@ -1,8 +1,6 @@
 import Foundation
 
 class JSONDataManager {
-
-    // Path to the directory where the data will be stored
     static var documentDirectory: URL? {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     }
@@ -84,8 +82,7 @@ class JSONDataManager {
                 sourceURL.stopAccessingSecurityScopedResource()
                 return false
             }
-        }
-        else {
+        } else {
             return false
         }
     }
