@@ -83,6 +83,8 @@ class TrackStarManager: ObservableObject {
             
             url.stopAccessingSecurityScopedResource()
             
+            self.swiftDataManager.saveDatabase(songs)
+            
             return (true, url.lastPathComponent)
         } catch {
             print("Error fetching or decoding data: \(error.localizedDescription)")

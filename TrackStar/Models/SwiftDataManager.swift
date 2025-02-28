@@ -22,4 +22,8 @@ final class SwiftDataManager {
             return []
         }
     }
+
+    func saveDatabase(_ songs: [DBSong]) {
+        _ = songs.map { self.modelContainer.mainContext.insert($0) }
+    }
 }
