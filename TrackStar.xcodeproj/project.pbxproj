@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D346EC652D7225950094DC20 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D346EC642D7225950094DC20 /* CodeScanner */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D3B9F43A2CE8C9D000239E7C /* TrackStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D346EC652D7225950094DC20 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = TrackStar;
 			packageProductDependencies = (
+				D346EC642D7225950094DC20 /* CodeScanner */,
 			);
 			productName = TrackStar;
 			productReference = D3B9F43A2CE8C9D000239E7C /* TrackStar.app */;
@@ -108,6 +114,7 @@
 			mainGroup = D3B9F4312CE8C9D000239E7C;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				D346EC632D7225950094DC20 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D3B9F43B2CE8C9D000239E7C /* Products */;
@@ -345,6 +352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D346EC632D7225950094DC20 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D346EC642D7225950094DC20 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D346EC632D7225950094DC20 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D3B9F4322CE8C9D000239E7C /* Project object */;
 }
