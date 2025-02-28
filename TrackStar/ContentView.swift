@@ -4,40 +4,6 @@ import MusicKit
 import SwiftUI
 import VisionKit
 
-// MARK: - Settings View
-
-struct SettingsView: View {
-    @EnvironmentObject private var musicManager: TrackStarManager
-    @Environment(\.dismiss) private var dismiss
-
-    var body: some View {
-        NavigationStack {
-            Form {
-                Section("Music Database") {
-                    NavigationLink(destination: MusicDatabaseSelector(onFileSelected: { url in
-                        _ = musicManager.initNewMusicDatabase(url: url)
-                    })) {
-                        HStack {
-                            Text("Current: ")
-                            Text(musicManager.musicDBName.isEmpty ? "None" : musicManager.musicDBName)
-                                .foregroundStyle(.blue)
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
-            }
-        }
-    }
-}
-
 // MARK: - Active View Enum
 
 enum ActiveView {
