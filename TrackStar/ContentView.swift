@@ -153,7 +153,7 @@ struct ContentView: View {
             Task {
                 if let fetchedSong = await musicManager.fetchSong(from: musicManager.musicDBManager.getSongById(codeMetadata.id)) {
                     musicManager.song = fetchedSong
-                    await musicManager.player.play(fetchedSong)
+                    await musicManager.musicPlayer.play(fetchedSong)
                 }
             }
             toggleActiveView()

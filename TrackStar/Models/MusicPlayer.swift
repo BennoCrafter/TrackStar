@@ -34,6 +34,12 @@ class MusicPlayer: ObservableObject {
         aMusicPlayer.pause()
     }
     
+    func play() async {
+        guard status == .paused else { return }
+        status = .playing
+        try? await aMusicPlayer.play()
+    }
+    
     func stop() {
         guard status != .stopped else { return }
         

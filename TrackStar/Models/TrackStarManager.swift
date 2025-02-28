@@ -8,7 +8,7 @@ class TrackStarManager: ObservableObject {
     static let shared = TrackStarManager()
     @AppStorage("musicDBName") var musicDBName: String = ""
 
-    @Published var player = MusicPlayer()
+    @Published var musicPlayer = MusicPlayer()
     @Published var song: Song? = nil
     @Published var scannedCode: String? = nil
     @Published var isScanning = true
@@ -27,7 +27,7 @@ class TrackStarManager: ObservableObject {
     func resetQRCode() {
         self.scannedCode = nil
         self.isScanning = true
-        self.player.stop()
+        self.musicPlayer.stop()
         self.song = nil
     }
     
@@ -87,6 +87,14 @@ class TrackStarManager: ObservableObject {
         } catch {
             print("Error fetching or decoding data: \(error.localizedDescription)")
             return (false, nil)
+        }
+    }
+    
+    func togglePlayState() async {
+        if self.musicPlayer.status == .playing {
+            self.musicPlayer.pause()
+        } else {
+            await self.musicPlayer.play()
         }
     }
 }
