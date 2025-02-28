@@ -83,6 +83,8 @@ class TrackStarManager: ObservableObject {
             
             url.stopAccessingSecurityScopedResource()
             
+            self.swiftDataManager.clearDatabase()
+            
             self.swiftDataManager.saveDatabase(songs)
             
             return (true, url.lastPathComponent)

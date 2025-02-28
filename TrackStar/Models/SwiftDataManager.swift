@@ -26,4 +26,12 @@ final class SwiftDataManager {
     func saveDatabase(_ songs: [DBSong]) {
         _ = songs.map { self.modelContainer.mainContext.insert($0) }
     }
+
+    func clearDatabase() {
+        do {
+            try self.modelContainer.erase()
+        } catch {
+            print("Failed to erase database")
+        }
+    }
 }
