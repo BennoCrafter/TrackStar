@@ -1,3 +1,4 @@
+from PIL.Image import merge
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
 from reportlab.pdfgen import canvas
@@ -53,17 +54,6 @@ def get_all_song_cards(base_path: str, song_range: range) -> list[str]:
 
     return sorted(w, key=lambda x: int(x.split('-')[-1].split('.')[0]))
 
-def get_all_texts(file_path) -> list[str]:
-    txts = []
-
-    with open(file_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-
-    for song in data:
-        txts.append(song.get("title"))
-
-    return txts
-
 def add_grid(canvas: canvas.Canvas):
     canvas.setStrokeColor(colors.black)
 
@@ -109,6 +99,9 @@ def create_pdf(pdf_name: str):
     pdf_canvas.save()
 
 def create_qr_codes_page(canvas, image_paths: list[str]):
+    mirror_qr_codes = True
+    if mirror_qr_codes:
+        image_paths = image_paths[4:] + image_paths[:4]
     for i, cf in enumerate(card_config):
         if i >= len(image_paths):
             return
