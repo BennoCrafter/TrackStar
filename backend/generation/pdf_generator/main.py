@@ -80,7 +80,6 @@ class PDFCreator:
         return sorted(w, key=lambda x: int(x.split('-')[-1].split('.')[0]))
 
     def add_grid(self):
-        self.pdf_canvas.setStrokeColor(colors.blue)
         self.pdf_canvas.setLineWidth(self.line_width)
 
         for card in self.card_config:
