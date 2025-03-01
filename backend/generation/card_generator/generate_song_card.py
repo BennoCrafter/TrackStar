@@ -6,10 +6,10 @@ from xml.sax.saxutils import escape
 from song import Song
 
 width, height = 700, 700
-max_chars_per_line = 20
+max_chars_per_line = 30
 line_spacing = 60
 
-top_padding, bottom_padding = 50, 50
+top_padding, bottom_padding = 40, 40
 
 def generate_song_card(song: Song, output_path: Path) -> Path:
     """
