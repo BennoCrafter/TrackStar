@@ -22,7 +22,9 @@ struct ContentView: View {
                 Spacer()
                 activeViewContent
                 Spacer()
-                controlButton
+                if musicManager.activeView != .qrCodeScanning {
+                    controlButton
+                }
             }
             .onAppear {
                 requestPermission()

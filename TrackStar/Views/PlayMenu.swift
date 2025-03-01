@@ -21,6 +21,7 @@ struct PlayMenu: View {
                             .resizable()
                             .scaledToFit()
                             .foregroundStyle(.blue)
+                            .animation(.smooth, value: trackStarManager.musicPlayer.status)
                     }
                 }
             }
