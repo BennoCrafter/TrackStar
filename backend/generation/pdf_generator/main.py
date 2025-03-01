@@ -8,6 +8,7 @@ from models.cards.song_card import SongCard
 from models.cards.card import Card
 import json
 from pathlib import Path
+import argparse
 
 class CardConfig:
     def __init__(self, width, height, card_width, card_height, column_gap, row_gap):
@@ -33,21 +34,27 @@ class CardConfig:
         ]
 
 class PDFCreator:
-    def __init__(self, pdf_name: str | Path):
+    def __init__(self, pdf_name: str | Path, qr_code_path: str, song_card_path: str, start_index: int, end_index: int, card_width: float, card_height: float, column_gap:float, row_gap:float, mirror_qr_codes:bool):
         # Dimensions
         self.width, self.height = A4
         self.pdf_name = pdf_name
 
         # Card and margin dimensions
-        self.card_width = 7 * cm
-        self.card_height = 7 * cm
+        self.card_width = card_width * cm
+        self.card_height = card_height * cm
 
-        self.column_gap = 1 * cm
-        self.row_gap = 0.5 * cm
+        self.column_gap = column_gap * cm
+        self.row_gap = row_gap * cm
         self.chunk_size = 8
         self.puffer = 0.5 * cm
 
         self.line_width = 1
+
+        self.qr_code_path = qr_code_path
+        self.song_card_path = song_card_path
+        self.start_index = start_index
+        self.end_index = end_index
+        self.mirror_qr_codes = mirror_qr_codes
 
         self.card_config_obj = CardConfig(self.width, self.height, self.card_width, self.card_height, self.column_gap, self.row_gap)
         self.card_config = self.card_config_obj.get_config()
@@ -93,9 +100,9 @@ class PDFCreator:
 
     # PDF generation
     def create_pdf(self):
-        r = range(1, 9)
-        qr_codes_paths = self.get_all_qr_codes_paths("/Users/benno/coding/TrackStar/backend/out/qr-codes", r)
-        song_card_paths = self.get_all_song_cards("/Users/benno/coding/TrackStar/backend/generation/card_generator/out", r)
+        r = range(self.start_index, self.end_index + 1)
+        qr_codes_paths = self.get_all_qr_codes_paths(self.qr_code_path, r)
+        song_card_paths = self.get_all_song_cards(self.song_card_path, r)
 
         image_chunks = [qr_codes_paths[i:i + self.chunk_size] for i in range(0, len(qr_codes_paths), self.chunk_size)]
         song_card_chunks = [song_card_paths[i:i + self.chunk_size] for i in range(0, len(song_card_paths), self.chunk_size)]
@@ -118,8 +125,8 @@ class PDFCreator:
         self.pdf_canvas.save()
 
     def create_qr_codes_page(self, canvas, image_paths: list[str]):
-        mirror_qr_codes = True
-        if mirror_qr_codes:
+
+        if self.mirror_qr_codes:
             image_paths = image_paths[self.chunk_size//2:] + image_paths[:self.chunk_size//2]
         for i, card in enumerate(self.card_config):
             if i >= len(image_paths):
@@ -136,5 +143,19 @@ class PDFCreator:
 
 
 if __name__ == "__main__":
-    creator = PDFCreator("cards.pdf")
+    parser = argparse.ArgumentParser(description="Create a PDF of cards.")
+    parser.add_argument("pdf_name", type=str, help="Name of the output PDF file.")
+    parser.add_argument("qr_code_path", type=str, help="Base path for QR code images.")
+    parser.add_argument("song_card_path", type=str, help="Base path for song card images.")
+    parser.add_argument("start_index", type=int, help="Starting index for cards.")
+    parser.add_argument("end_index", type=int, help="Ending index for cards.")
+    parser.add_argument("--card_width", type=float, default=7, help="Width of each card in cm. Default is 7cm.")
+    parser.add_argument("--card_height", type=float, default=7, help="Height of each card in cm. Default is 7cm.")
+    parser.add_argument("--column_gap", type=float, default=1, help="Gap between columns in cm. Default is 1cm.")
+    parser.add_argument("--row_gap", type=float, default=0.5, help="Gap between rows in cm. Default is 0.5cm.")
+    parser.add_argument("--mirror_qr_codes", type=bool, default=True, help="Whether to mirror the QR codes. Default is True")
+
+    args = parser.parse_args()
+
+    creator = PDFCreator(args.pdf_name, args.qr_code_path, args.song_card_path, args.start_index, args.end_index, args.card_width, args.card_height, args.column_gap, args.row_gap, args.mirror_qr_codes)
     creator.create_pdf()
