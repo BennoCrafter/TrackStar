@@ -49,7 +49,7 @@ struct ContentView: View {
             if showSettingsView {
                 EmptyView()
             } else {
-                CodeScannerView(codeTypes: [.qr], scanMode: .continuous, showViewfinder: true, videoCaptureDevice: AVCaptureDevice.systemPreferredCamera, completion: handleScan)
+                CodeScannerView(codeTypes: [.qr], scanMode: .continuous, showViewfinder: true, completion: handleScan)
                     .frame(width: 300, height: 300)
             }
 
