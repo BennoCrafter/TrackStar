@@ -121,7 +121,7 @@ class PDFCreator:
     def create_qr_codes_page(self, canvas, image_paths: list[str]):
         mirror_qr_codes = True
         if mirror_qr_codes:
-            image_paths = image_paths[4:] + image_paths[:4]
+            image_paths = image_paths[self.chunk_size//2:] + image_paths[:self.chunk_size//2]
         for i, cf in enumerate(self.card_config):
             if i >= len(image_paths):
                 return
