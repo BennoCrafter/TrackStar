@@ -144,16 +144,16 @@ class PDFCreator:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a PDF of cards.")
-    parser.add_argument("pdf_name", type=str, help="Name of the output PDF file.")
-    parser.add_argument("qr_code_path", type=str, help="Base path for QR code images.")
-    parser.add_argument("song_card_path", type=str, help="Base path for song card images.")
-    parser.add_argument("start_index", type=int, help="Starting index for cards.")
-    parser.add_argument("end_index", type=int, help="Ending index for cards.")
-    parser.add_argument("--card_width", type=float, default=7, help="Width of each card in cm. Default is 7cm.")
-    parser.add_argument("--card_height", type=float, default=7, help="Height of each card in cm. Default is 7cm.")
-    parser.add_argument("--column_gap", type=float, default=1, help="Gap between columns in cm. Default is 1cm.")
-    parser.add_argument("--row_gap", type=float, default=0.5, help="Gap between rows in cm. Default is 0.5cm.")
-    parser.add_argument("--mirror_qr_codes", type=bool, default=True, help="Whether to mirror the QR codes. Default is True")
+    parser.add_argument("-o", "--pdf_name", type=str, help="Name of the output PDF file.", default="out/cards.pdf")
+    parser.add_argument("-q", "--qr_code_path", type=Path, help="Base path for QR code images.", default="out/qr_codes")
+    parser.add_argument("-s", "--song_card_path", type=Path, help="Base path for song card images.", default="out/song_cards")
+    parser.add_argument("-i", "--start_index", type=int, help="Starting index for cards.", default=0)
+    parser.add_argument("-e", "--end_index", type=int, help="Ending index for cards.")
+    parser.add_argument("-cw", "--card_width", type=float, default=7, help="Width of each card in cm. Default is 7cm.")
+    parser.add_argument("-ch", "--card_height", type=float, default=7, help="Height of each card in cm. Default is 7cm.")
+    parser.add_argument("-c", "--column_gap", type=float, default=1, help="Gap between columns in cm. Default is 1cm.")
+    parser.add_argument("-r", "--row_gap", type=float, default=0.5, help="Gap between rows in cm. Default is 0.5cm.")
+    parser.add_argument("-m", "--mirror_qr_codes", type=bool, default=True, help="Whether to mirror the QR codes. Default is True")
 
     args = parser.parse_args()
 

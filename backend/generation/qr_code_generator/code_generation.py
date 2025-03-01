@@ -63,7 +63,7 @@ def main():
     parser.add_argument('--prefix', type=str, default="id=", help="Prefix for the QR code data.")
     parser.add_argument('--start', type=int, default=1, help="Start of the ID range.")
     parser.add_argument('--end', type=int, default=700, help="End of the ID range.")
-    parser.add_argument('--output', type=str, default="out/qr-codes", help="Directory to save the QR code images.")
+    parser.add_argument('--output', type=str, default="out/qr_codes", help="Directory to save the QR code images.")
     parser.add_argument('--format', choices=['png', 'svg'], default='png', help="Format of the QR code image (png or svg).")
     parser.add_argument('--scale', type=int, default=6, help="Scale for the generated QR codes.")
 
