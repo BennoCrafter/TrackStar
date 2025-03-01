@@ -95,7 +95,7 @@ class PDFCreator:
     # PDF generation
     def create_pdf(self):
         r = range(1, 9)
-        qr_codes_paths = self.get_all_qr_codes_paths("/Users/benno/coding/TrackStar/backend/generation/qr_code_generator/out", r)
+        qr_codes_paths = self.get_all_qr_codes_paths("/Users/benno/coding/TrackStar/backend/out/qr-codes", r)
         song_card_paths = self.get_all_song_cards("/Users/benno/coding/TrackStar/backend/generation/card_generator/out", r)
 
         image_chunks = [qr_codes_paths[i:i + self.chunk_size] for i in range(0, len(qr_codes_paths), self.chunk_size)]
@@ -122,18 +122,18 @@ class PDFCreator:
         mirror_qr_codes = True
         if mirror_qr_codes:
             image_paths = image_paths[self.chunk_size//2:] + image_paths[:self.chunk_size//2]
-        for i, cf in enumerate(self.card_config):
+        for i, card in enumerate(self.card_config):
             if i >= len(image_paths):
                 return
-            c = ImageCard(cf.x - 0.5, cf.y - 0.5, cf.width + 1, cf.height + 1, image_paths[i])
-            c.draw(canvas)
+            image_card = ImageCard.from_card(card, image_paths[i], self.line_width)
+            image_card.draw(canvas)
 
     def create_songs_page(self, canvas, image_paths: list[str]):
-        for i, cf in enumerate(self.card_config):
+        for i, card in enumerate(self.card_config):
             if i >= len(image_paths):
                 return
-            c = SongCard(cf.x - self.line_width, cf.y - self.line_width, cf.width + self.line_width * 2, cf.height + self.line_width * 2, image_paths[i])
-            c.draw(canvas)
+            image_card = ImageCard.from_card(card, image_paths[i], self.line_width)
+            image_card.draw(canvas)
 
 
 if __name__ == "__main__":

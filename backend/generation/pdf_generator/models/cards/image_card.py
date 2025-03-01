@@ -10,17 +10,9 @@ class ImageCard(Card):
 
     def draw(self, canvas: Canvas):
         super().draw(canvas)
-        # Open the image to get its original size
-        with Image.open(self.image_path) as img:
-            original_width, original_height = img.size
 
-        # Calculate the new dimensions (70% of the original size)
-        new_width = original_width * 0.7
-        new_height = original_height * 0.7
+        canvas.drawImage(self.image_path, self.x, self.y, self.width, self.height)
 
-        # Calculate centered x and y coordinates
-        centered_x = self.x + (self.width - new_width) / 2
-        centered_y = self.y + (self.height - new_height) / 2
-
-        # Draw the image with the scaled dimensions, centered
-        canvas.drawImage(self.image_path, centered_x, centered_y, new_width, new_height)
+    @classmethod
+    def from_card(cls, card: Card, image_path: str | Path, line_width: float | int):
+        return cls(card.x - line_width, card.y - line_width, card.width + line_width * 2, card.height + line_width * 2, image_path)

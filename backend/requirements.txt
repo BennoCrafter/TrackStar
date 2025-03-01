@@ -3,3 +3,4 @@ cairosvg
 pyqrcode
 pillow
 pydantic
+pypng
