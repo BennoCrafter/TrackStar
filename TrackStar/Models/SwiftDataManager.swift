@@ -15,7 +15,7 @@ final class SwiftDataManager {
 
     func loadDatabase() -> [DBSong] {
         do {
-            let results = try self.modelContainer.mainContext.fetch(FetchDescriptor<DBSong>())
+            let results = try modelContainer.mainContext.fetch(FetchDescriptor<DBSong>())
             return results
         } catch {
             print("Failed to fetch DBSong entities: \(error.localizedDescription)")
@@ -29,7 +29,7 @@ final class SwiftDataManager {
 
     func clearDatabase() {
         do {
-            try self.modelContainer.erase()
+            try modelContainer.mainContext.delete(model: DBSong.self)
         } catch {
             print("Failed to erase database")
         }
