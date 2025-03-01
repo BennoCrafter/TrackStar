@@ -23,15 +23,27 @@ final class SwiftDataManager {
         }
     }
 
-    func saveDatabase(_ songs: [DBSong]) {
+    func saveMusicDatabase(_ songs: [DBSong]) {
         _ = songs.map { self.modelContainer.mainContext.insert($0) }
     }
 
-    func clearDatabase() {
+    func clearMusicDatabase() {
         do {
             try modelContainer.mainContext.delete(model: DBSong.self)
         } catch {
             print("Failed to erase database")
+        }
+    }
+
+    func loadAppConfig() -> AppConfig {
+        if let result = try! modelContainer.mainContext.fetch(FetchDescriptor<AppConfig>())
+            .first
+        {
+            return result
+        } else {
+            let instance = AppConfig()
+            modelContainer.mainContext.insert(instance)
+            return instance
         }
     }
 }

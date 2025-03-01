@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import MusicKit
 import SwiftData
@@ -6,22 +7,31 @@ import SwiftUI
 @MainActor
 class TrackStarManager: ObservableObject {
     static let shared = TrackStarManager()
-    @AppStorage("musicDBName") var musicDBName: String = ""
 
-    @ObservedObject var musicPlayer = MusicPlayer()
+    @Published var musicPlayer = MusicPlayer()
     @Published var song: Song? = nil
     @Published var scannedCodeMetadata: CodeMetadata? = nil
     @Published var isScanning = true
     @Published var activeView: ActiveView = .qrCodeScanning
+    @Published var appConfig: AppConfig!
     
     var musicDBManager: MusicDBManager = .shared
     var swiftDataManager: SwiftDataManager = .shared
     
-    private init() {}
+    private var cancellable: AnyCancellable?
+
+    private init() {
+        // https://rhonabwy.com/2021/02/13/nested-observable-objects-in-swiftui/
+        self.cancellable = self.objectWillChange
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.objectWillChange.send()
+            }
+    }
     
     func configure(with modelContainer: ModelContainer) {
         self.swiftDataManager.configure(with: modelContainer)
         self.musicDBManager.configure(with: self.loadDatabase())
+        self.appConfig = self.swiftDataManager.loadAppConfig()
     }
     
     func resetQRCode() {
@@ -79,13 +89,13 @@ class TrackStarManager: ObservableObject {
             let decoder = JSONDecoder()
             let songs = try decoder.decode([DBSong].self, from: data)
             self.musicDBManager.configure(with: songs)
-            self.musicDBName = url.lastPathComponent
+            self.appConfig.musicDBName = url.lastPathComponent
             
             url.stopAccessingSecurityScopedResource()
             
-            self.swiftDataManager.clearDatabase()
+            self.swiftDataManager.clearMusicDatabase()
             
-            self.swiftDataManager.saveDatabase(songs)
+            self.swiftDataManager.saveMusicDatabase(songs)
             
             return (true, url.lastPathComponent)
         } catch {
@@ -95,14 +105,37 @@ class TrackStarManager: ObservableObject {
     }
     
     func togglePlayState() async {
-        if self.musicPlayer.status == .playing {
+        switch self.musicPlayer.status {
+        case .idle:
+            return
+        case .playing:
             self.musicPlayer.pause()
-        } else {
-            await self.musicPlayer.play()
+        case .paused:
+            await self.playSong()
+        case .stopped:
+            if let song = self.song {
+                await self.playSong(song)
+            }
         }
     }
     
     func isPlaying() -> Bool {
         return self.musicPlayer.status == .playing
+    }
+    
+    func playSong(_ song: Song) async {
+        await self.musicPlayer.play(song)
+        
+        let playbackTime = self.appConfig.playbackTimeInterval
+
+        if self.appConfig.useRandomPlaybackInterval {
+            self.musicPlayer.setPlaybackTime(for: song, playbackTimeInterval: playbackTime)
+        }
+        self.musicPlayer.startTimer()
+    }
+    
+    func playSong() async {
+        self.musicPlayer.startTimer()
+        await self.musicPlayer.play()
     }
 }

@@ -25,7 +25,7 @@ struct TrackStarApp: App {
                 }
                 .environmentObject(musicManager)
             }
-        }.modelContainer(for: [DBSong.self], onSetup: handleSetup)
+        }.modelContainer(for: [DBSong.self, AppConfig.self], onSetup: handleSetup)
     }
 
     func handleSetup(result: Result<ModelContainer, Error>) {

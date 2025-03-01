@@ -2,31 +2,58 @@ import SwiftUI
 
 struct PlayMenu: View {
     @EnvironmentObject private var trackStarManager: TrackStarManager
-    @State private var isPlaying: Bool = true
-
+    
     var body: some View {
         NavigationStack {
             Spacer()
-
+            
             Button(action: {
                 Task {
                     await trackStarManager.togglePlayState()
-                    isPlaying = trackStarManager.musicPlayer.status == .playing
                 }
             }) {
-                Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .foregroundStyle(.blue)
+                ZStack {
+                    if trackStarManager.musicPlayer.status == .idle {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .scaleEffect(2)
+                    } else {
+                        Image(systemName: trackStarManager.musicPlayer.status == .playing ? "pause.circle.fill" : trackStarManager.musicPlayer.status == .paused ? "play.circle.fill" : "arrow.clockwise")
+                            .resizable()
+                            .frame(width: 80, height: 80)
+                            .foregroundStyle(.blue)
+                            .transition(.scale)
+                    }
+                }
             }
-
-            if trackStarManager.scannedCodeMetadata?.id != nil {
-                Text("\(trackStarManager.scannedCodeMetadata?.id ?? -1)")
+            .frame(width: 100, height: 100)
+            
+            ProgressView(value: Double(trackStarManager.musicPlayer.timeElapsed), total: Double(trackStarManager.appConfig.playbackTimeInterval))
+                .progressViewStyle(LinearProgressViewStyle())
+                .padding()
+                
+            Text(formatTime(TimeInterval(trackStarManager.musicPlayer.timeElapsed)))
+                .font(.headline)
+                .padding(.top, 5)
+            
+            if let songID = trackStarManager.scannedCodeMetadata?.id {
+                Text("Song ID: \(songID)")
+                    .font(.headline)
+                    .padding(.top, 10)
             } else {
-                Text("Unknown song id")
+                Text("Unknown song ID")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
             }
+            
             Spacer()
         }
+    }
+    
+    private func formatTime(_ time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 

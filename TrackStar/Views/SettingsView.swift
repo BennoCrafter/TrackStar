@@ -21,13 +21,17 @@ struct SettingsView: View {
                     })) {
                         HStack {
                             Text("Current: ")
-                            Text(musicManager.musicDBName.isEmpty ? "None" : musicManager.musicDBName)
+                            Text(musicManager.appConfig.musicDBName ?? "None")
                                 .foregroundStyle(.blue)
                         }
                     }
 
                     Toggle(isOn: $settingsViewModel.hitsterMode) {
                         Text("Hitster Mode")
+                    }
+
+                    Toggle(isOn: $musicManager.appConfig.useRandomPlaybackInterval) {
+                        Text("Use random playback interval")
                     }
                 }
             }
