@@ -115,7 +115,7 @@ struct ContentView: View {
         case .success(let result):
             print("Found code: \(result.string)")
             musicManager.scannedCode = result.string
-            let codeMetadata = CodeMetadata(from: musicManager.scannedCode!)
+            let codeMetadata = MetadataFactory.shared.createMetadata(from: musicManager.scannedCode!)
             Task {
                 if let fetchedSong = await musicManager.fetchSong(from: musicManager.musicDBManager.getSongById(codeMetadata.id)) {
                     musicManager.song = fetchedSong
