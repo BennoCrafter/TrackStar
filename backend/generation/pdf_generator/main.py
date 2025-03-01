@@ -31,10 +31,12 @@ class CardConfig:
             Card(x=self.horizontal_margin + 1 * (self.card_width + self.column_gap), y=self.height - self.vertical_margin - (2 + 1) * self.card_height - 2 * self.row_gap, width=self.card_width, height=self.card_height),
             Card(x=self.horizontal_margin + 1 * (self.card_width + self.column_gap), y=self.height - self.vertical_margin - (3 + 1) * self.card_height - 3 * self.row_gap, width=self.card_width, height=self.card_height)
         ]
+
 class PDFCreator:
-    def __init__(self):
+    def __init__(self, pdf_name: str | Path):
         # Dimensions
         self.width, self.height = A4
+        self.pdf_name = pdf_name
 
         # Card and margin dimensions
         self.card_width = 7 * cm
@@ -51,6 +53,18 @@ class PDFCreator:
         self.card_config = self.card_config_obj.get_config()
 
 
+        self.pdf_canvas = self.setup_canvas()
+
+    def setup_canvas(self):
+        if isinstance(self.pdf_name, Path):
+            pdf_canvas = canvas.Canvas(str(self.pdf_name.absolute()), pagesize=A4)
+        else:
+            pdf_canvas = canvas.Canvas(self.pdf_name, pagesize=A4)
+
+        pdf_canvas.setStrokeColor(colors.black)
+        pdf_canvas.setLineWidth(self.line_width)
+        return pdf_canvas
+
     def get_all_qr_codes_paths(self, base_path: str, qr_range: range) -> list[str]:
         w = []
         for i in qr_range:
@@ -65,23 +79,21 @@ class PDFCreator:
 
         return sorted(w, key=lambda x: int(x.split('-')[-1].split('.')[0]))
 
-    def add_grid(self, canvas: canvas.Canvas):
-        canvas.setStrokeColor(colors.blue)
-        canvas.setLineWidth(self.line_width)
+    def add_grid(self):
+        self.pdf_canvas.setStrokeColor(colors.blue)
+        self.pdf_canvas.setLineWidth(self.line_width)
 
         for card in self.card_config:
             # vertical lines
-            canvas.line(card.x, 0, card.x, self.height)
-            canvas.line(card.x + self.card_width, 0, card.x + self.card_width, self.height)
+            self.pdf_canvas.line(card.x, 0, card.x, self.height)
+            self.pdf_canvas.line(card.x + self.card_width, 0, card.x + self.card_width, self.height)
 
             # horizontal lines
-            canvas.line(0, card.y, self.width, card.y)
-            canvas.line(0, card.y + self.card_height, self.width, card.y + self.card_height)
+            self.pdf_canvas.line(0, card.y, self.width, card.y)
+            self.pdf_canvas.line(0, card.y + self.card_height, self.width, card.y + self.card_height)
 
     # PDF generation
-    def create_pdf(self, pdf_name: str):
-        pdf_canvas = canvas.Canvas(pdf_name, pagesize=A4)
-        pdf_canvas.setLineWidth(self.line_width)
+    def create_pdf(self):
         r = range(1, 9)
         qr_codes_paths = self.get_all_qr_codes_paths("/Users/benno/coding/TrackStar/backend/generation/qr_code_generator/out", r)
         song_card_paths = self.get_all_song_cards("/Users/benno/coding/TrackStar/backend/generation/card_generator/out", r)
@@ -92,19 +104,19 @@ class PDFCreator:
 
         for i in range(len(song_card_chunks)):
             # QR code page
-            self.add_grid(pdf_canvas)
+            self.add_grid()
 
-            self.create_qr_codes_page(pdf_canvas, image_chunks[i])
+            self.create_qr_codes_page(self.pdf_canvas, image_chunks[i])
 
-            pdf_canvas.showPage()
+            self.pdf_canvas.showPage()
 
             # Text page
-            self.add_grid(pdf_canvas)
-            self.create_songs_page(pdf_canvas, song_card_chunks[i])
+            self.add_grid()
+            self.create_songs_page(self.pdf_canvas, song_card_chunks[i])
 
-            pdf_canvas.showPage()
+            self.pdf_canvas.showPage()
 
-        pdf_canvas.save()
+        self.pdf_canvas.save()
 
     def create_qr_codes_page(self, canvas, image_paths: list[str]):
         mirror_qr_codes = True
@@ -125,5 +137,5 @@ class PDFCreator:
 
 
 if __name__ == "__main__":
-    creator = PDFCreator()
-    creator.create_pdf("cards.pdf")
+    creator = PDFCreator("cards.pdf")
+    creator.create_pdf()
