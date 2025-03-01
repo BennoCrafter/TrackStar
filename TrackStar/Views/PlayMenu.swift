@@ -4,9 +4,7 @@ struct PlayMenu: View {
     @EnvironmentObject private var trackStarManager: TrackStarManager
     
     var body: some View {
-        NavigationStack {
-            Spacer()
-            
+        VStack {
             Button(action: {
                 Task {
                     await trackStarManager.togglePlayState()
@@ -18,11 +16,11 @@ struct PlayMenu: View {
                             .progressViewStyle(CircularProgressViewStyle())
                             .scaleEffect(2)
                     } else {
-                        Image(systemName: trackStarManager.musicPlayer.status == .playing ? "pause.circle.fill" : trackStarManager.musicPlayer.status == .paused ? "play.circle.fill" : "arrow.clockwise")
+                        Image(systemName: trackStarManager.musicPlayer.status == .playing ? "pause.circle.fill" :
+                            trackStarManager.musicPlayer.status == .paused ? "play.circle.fill" : "arrow.clockwise")
                             .resizable()
-                            .frame(width: 80, height: 80)
+                            .scaledToFit()
                             .foregroundStyle(.blue)
-                            .transition(.scale)
                     }
                 }
             }
@@ -45,9 +43,8 @@ struct PlayMenu: View {
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
-            
-            Spacer()
         }
+        .padding()
     }
     
     private func formatTime(_ time: TimeInterval) -> String {
