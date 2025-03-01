@@ -10,7 +10,7 @@ class TrackStarManager: ObservableObject {
 
     @ObservedObject var musicPlayer = MusicPlayer()
     @Published var song: Song? = nil
-    @Published var scannedCode: String? = nil
+    @Published var scannedCodeMetadata: CodeMetadata? = nil
     @Published var isScanning = true
     @Published var activeView: ActiveView = .qrCodeScanning
     
@@ -25,7 +25,7 @@ class TrackStarManager: ObservableObject {
     }
     
     func resetQRCode() {
-        self.scannedCode = nil
+        self.scannedCodeMetadata = nil
         self.isScanning = true
         self.musicPlayer.stop()
         self.song = nil

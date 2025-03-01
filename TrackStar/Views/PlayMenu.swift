@@ -20,6 +20,11 @@ struct PlayMenu: View {
                     .foregroundStyle(.blue)
             }
 
+            if trackStarManager.scannedCodeMetadata?.id != nil {
+                Text("\(trackStarManager.scannedCodeMetadata?.id ?? -1)")
+            } else {
+                Text("Unknown song id")
+            }
             Spacer()
         }
     }
