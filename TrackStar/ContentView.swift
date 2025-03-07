@@ -13,7 +13,7 @@ enum ActiveView {
 // MARK: - Content View
 
 struct ContentView: View {
-    @EnvironmentObject private var musicManager: TrackStarManager
+    @EnvironmentObject private var trackStarManager: TrackStarManager
     @State private var showSettingsView: Bool = false
 
     var body: some View {
@@ -22,7 +22,7 @@ struct ContentView: View {
                 Spacer()
                 activeViewContent
                 Spacer()
-                if musicManager.activeView != .qrCodeScanning {
+                if trackStarManager.activeView != .qrCodeScanning {
                     controlButton
                 }
             }
@@ -46,7 +46,7 @@ struct ContentView: View {
 
     @ViewBuilder
     private var activeViewContent: some View {
-        switch musicManager.activeView {
+        switch trackStarManager.activeView {
         case .qrCodeScanning:
             if showSettingsView {
                 EmptyView()
@@ -67,7 +67,7 @@ struct ContentView: View {
 
     private var controlButton: some View {
         Button(action: toggleActiveView) {
-            Text(musicManager.activeView == .playMenu ? "Reveal" : "Back")
+            Text(trackStarManager.activeView == .playMenu ? "Reveal" : "Back")
                 .font(.title)
                 .padding()
                 .background(Color.blue)
@@ -80,17 +80,17 @@ struct ContentView: View {
     // MARK: - Button Action to Toggle Views
 
     private func toggleActiveView() {
-        switch musicManager.activeView {
+        switch trackStarManager.activeView {
         case .qrCodeScanning:
-            musicManager.activeView = .playMenu
+            trackStarManager.activeView = .playMenu
 
         case .playMenu:
-            musicManager.activeView = .songCard
-            musicManager.musicPlayer.stop()
+            trackStarManager.activeView = .songCard
+            trackStarManager.resetSongState()
 
         case .songCard:
-            musicManager.activeView = .qrCodeScanning
-            musicManager.resetQRCode()
+            trackStarManager.activeView = .qrCodeScanning
+            trackStarManager.resetQRCode()
         }
     }
 
@@ -119,12 +119,12 @@ struct ContentView: View {
         switch result {
         case .success(let result):
             print("Found code: \(result.string)")
-            let codeMetadata = MetadataFactory.shared.createMetadata(from: result.string)
-            musicManager.scannedCodeMetadata = codeMetadata
+            let codeMetadata = MetadataFactory.shared.createMetadata(from: result.string, hitsterMode: trackStarManager.appConfig.useHitsterQRCodes)
+            trackStarManager.scannedCodeMetadata = codeMetadata
             Task {
-                if let fetchedSong = await musicManager.fetchSong(from: musicManager.musicDBManager.getSongById(codeMetadata.id)) {
-                    musicManager.song = fetchedSong
-                    await musicManager.playSong(fetchedSong)
+                if let fetchedSong = await trackStarManager.fetchSong(from: trackStarManager.musicDBManager.getSongById(codeMetadata.id)) {
+                    trackStarManager.song = fetchedSong
+                    await trackStarManager.playSong(fetchedSong)
                 }
             }
             toggleActiveView()

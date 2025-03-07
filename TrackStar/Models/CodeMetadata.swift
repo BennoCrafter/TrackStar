@@ -38,10 +38,9 @@ class HitsterMetadata: CodeMetadata {
 }
 
 class MetadataFactory {
-    @AppStorage("hitsterMode") private var hitsterMode: Bool = false
     static let shared: MetadataFactory = .init()
 
-    func createMetadata(from s: String) -> CodeMetadata {
+    func createMetadata(from s: String, hitsterMode: Bool = false) -> CodeMetadata {
         return hitsterMode ? HitsterMetadata(from: s) : TrackStarMetadata(from: s)
     }
 }

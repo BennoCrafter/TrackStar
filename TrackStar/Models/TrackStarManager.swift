@@ -38,8 +38,6 @@ class TrackStarManager: ObservableObject {
     func resetQRCode() {
         self.scannedCodeMetadata = nil
         self.isScanning = true
-        self.song = nil
-        self.musicPlayer.status = .idle
     }
     
     func addCurrentSongToLibrary() async {
@@ -143,6 +141,11 @@ class TrackStarManager: ObservableObject {
     func playSong() async {
         self.musicPlayer.startTimer()
         await self.musicPlayer.play()
+    }
+    
+    func resetSongState() {
+        self.musicPlayer.status = .idle
+        self.musicPlayer.cleanTimer()
     }
 }
 

@@ -69,7 +69,7 @@ class MusicPlayerBase: ObservableObject {
         }
     }
 
-    private func cleanTimer() {
+    func cleanTimer() {
         stopTimer()
         stop()
         timeElapsed = 0
