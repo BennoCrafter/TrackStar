@@ -8,7 +8,7 @@ import SwiftUI
 class TrackStarManager: ObservableObject {
     static let shared = TrackStarManager()
 
-    @Published var musicPlayer = MusicPlayer()
+    @Published var musicPlayer: MusicPlayerBase = AppleMusicPlayer()
     @Published var song: Song? = nil
     @Published var scannedCodeMetadata: CodeMetadata? = nil
     @Published var isScanning = true
@@ -110,12 +110,14 @@ class TrackStarManager: ObservableObject {
         case .idle:
             return
         case .playing:
+            self.musicPlayer.pauseTimer()
             self.musicPlayer.pause()
         case .paused:
             await self.playSong()
         case .stopped:
             if let song = self.song {
                 await self.playSong(song)
+                self.musicPlayer.startTimer()
             }
         }
     }
@@ -130,13 +132,23 @@ class TrackStarManager: ObservableObject {
         let playbackTime = self.appConfig.playbackTimeInterval
 
         if self.appConfig.useRandomPlaybackInterval {
-            self.musicPlayer.setPlaybackTime(for: song, playbackTimeInterval: playbackTime)
+            await self.musicPlayer.play(song: song, at: song.getRandomPlaybackTime(playbackTimeInterval: playbackTime))
+        } else {
+            await self.musicPlayer.play(song)
         }
+        
         self.musicPlayer.startTimer()
     }
     
     func playSong() async {
         self.musicPlayer.startTimer()
         await self.musicPlayer.play()
+    }
+}
+
+extension Song {
+    func getRandomPlaybackTime(playbackTimeInterval: TimeInterval) -> TimeInterval {
+        guard let songDuration = self.duration else { return 0 }
+        return TimeInterval.random(in: timeIntervalPadding ... songDuration - playbackTimeInterval - timeIntervalPadding)
     }
 }
