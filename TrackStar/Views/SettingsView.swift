@@ -70,9 +70,9 @@ struct SettingsView: View {
 struct SettingsViewAttributions: View {
     var body: some View {
         ScrollView {
-            VStack(spacing: 5) {
+            VStack(spacing: 10) {
                 LicenseCardView(title: "CodeScanner", license: "Mit license", url: URL(string: "https://github.com/twostraws/CodeScanner/blob/main/LICENSE")!)
-                LicenseCardView(title: "MarqueeText", license: "", url: URL(string: "https://github.com/joekndy/MarqueeText")!)
+                LicenseCardView(title: "MarqueeText", license: nil, url: URL(string: "https://github.com/joekndy/MarqueeText")!)
             }
         }
     }
@@ -80,7 +80,7 @@ struct SettingsViewAttributions: View {
 
 struct LicenseCardView: View {
     var title: String
-    var license: String
+    var license: String?
     var url: URL
 
     var body: some View {
@@ -97,9 +97,11 @@ struct LicenseCardView: View {
                     Text(title)
                         .font(.headline)
                         .foregroundColor(.primary)
-                    Text(license)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                    if let license = license {
+                        Text(license)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
                 Spacer()
             }
@@ -116,7 +118,7 @@ struct LicenseCardView: View {
 }
 
 #Preview {
-    LicenseCardView(title: "CodeScanner", license: "MIT license", url: URL(string: "https://github.com/twostraws/CodeScanner/blob/main/LICENSE")!)
+    SettingsViewAttributions()
 }
 
 #Preview {
