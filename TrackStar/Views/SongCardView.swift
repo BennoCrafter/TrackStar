@@ -41,10 +41,7 @@ struct SongCardView: View {
             }
 
             HStack {
-                Text(title ?? "Unknown Title")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                    .lineLimit(1)
+                MarqueeText(text: title ?? "Unknown Title", font: UIFont.preferredFont(forTextStyle: .headline), leftFade: 16, rightFade: 16, startDelay: 0)
 
                 Spacer()
 
