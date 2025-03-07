@@ -4,7 +4,5 @@
 <dict>
 	<key>AudioMode</key>
 	<string></string>
-	<key>NSAppleMusicUsageDescription</key>
-    <string>We need access to your music library</string>
 </dict>
 </plist>

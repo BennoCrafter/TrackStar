@@ -39,6 +39,7 @@ class TrackStarManager: ObservableObject {
         self.isScanning = true
         self.musicPlayer.stop()
         self.song = nil
+        self.musicPlayer.status = .idle
     }
     
     func addCurrentSongToLibrary() async {

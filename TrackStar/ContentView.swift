@@ -83,11 +83,14 @@ struct ContentView: View {
         switch musicManager.activeView {
         case .qrCodeScanning:
             musicManager.activeView = .playMenu
+
         case .playMenu:
             musicManager.activeView = .songCard
+            musicManager.musicPlayer.stop()
+
         case .songCard:
-            musicManager.resetQRCode()
             musicManager.activeView = .qrCodeScanning
+            musicManager.resetQRCode()
         }
     }
 

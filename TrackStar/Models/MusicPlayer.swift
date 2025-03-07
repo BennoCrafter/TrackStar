@@ -56,6 +56,7 @@ class MusicPlayer: ObservableObject {
         
         status = .stopped
         aMusicPlayer.stop()
+        cleanTimer()
     }
     
     func setPlaybackTime(for song: Song, playbackTimeInterval: TimeInterval) {
