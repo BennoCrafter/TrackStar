@@ -1,15 +1,16 @@
 import SwiftUI
 
+@MainActor
 class SettingsViewModel: ObservableObject {
-    @AppStorage("hitsterMode") var hitsterMode: Bool = false
+    var playbackTimeInterval: String = "0.0"
 }
 
 // MARK: - Settings View
 
 struct SettingsView: View {
-    @EnvironmentObject private var musicManager: TrackStarManager
     @Environment(\.dismiss) private var dismiss
 
+    @EnvironmentObject private var trackStarManager: TrackStarManager
     @StateObject private var settingsViewModel: SettingsViewModel = .init()
 
     var body: some View {
@@ -17,22 +18,29 @@ struct SettingsView: View {
             Form {
                 Section("Music Database") {
                     NavigationLink(destination: MusicDatabaseSelector(onFileSelected: { url in
-                        _ = musicManager.initNewMusicDatabase(url: url)
+                        _ = trackStarManager.initNewMusicDatabase(url: url)
                     })) {
                         HStack {
                             Text("Current: ")
-                            Text(musicManager.appConfig.musicDBName ?? "None")
+                            Text(trackStarManager.appConfig.musicDBName ?? "None")
                                 .foregroundStyle(.blue)
                         }
                     }
 
-                    Toggle(isOn: $settingsViewModel.hitsterMode) {
+                    Toggle(isOn: $trackStarManager.appConfig.useHitsterQRCodes) {
                         Text("Hitster Mode")
                     }
 
-                    Toggle(isOn: $musicManager.appConfig.useRandomPlaybackInterval) {
+                    Toggle(isOn: $trackStarManager.appConfig.useRandomPlaybackInterval) {
                         Text("Use random playback interval")
                     }
+                    TextField("Enter length (in seconds) of playback interval", text: $settingsViewModel.playbackTimeInterval)
+                        .keyboardType(.numberPad)
+                        .onChange(of: settingsViewModel.playbackTimeInterval) { _, newValue in
+                            if let newTimeInterval = TimeInterval(newValue) {
+                                trackStarManager.appConfig.playbackTimeInterval = newTimeInterval
+                            }
+                        }
                 }
             }
             .navigationTitle("Settings")
@@ -43,6 +51,9 @@ struct SettingsView: View {
                         dismiss()
                     }
                 }
+            }
+            .task {
+                settingsViewModel.playbackTimeInterval = String(trackStarManager.appConfig.playbackTimeInterval)
             }
         }
     }

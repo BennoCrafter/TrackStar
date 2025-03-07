@@ -32,12 +32,12 @@ class TrackStarManager: ObservableObject {
         self.swiftDataManager.configure(with: modelContainer)
         self.musicDBManager.configure(with: self.loadDatabase())
         self.appConfig = self.swiftDataManager.loadAppConfig()
+        self.musicPlayer.configureAppConfig(self.appConfig)
     }
     
     func resetQRCode() {
         self.scannedCodeMetadata = nil
         self.isScanning = true
-        self.musicPlayer.stop()
         self.song = nil
         self.musicPlayer.status = .idle
     }

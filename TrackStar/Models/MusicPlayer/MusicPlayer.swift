@@ -10,6 +10,9 @@ enum MusicStatus {
 class MusicPlayerBase: ObservableObject {
     @Published var status: MusicStatus = .idle
     @Published var timeElapsed: Int = 0
+    private lazy var appConfig: AppConfig = {
+        fatalError("MusicPlayer: AppConfig not set! Tried accessing AppConfig in MusicPlayer before configuring wiht `configureAppConfig`.")
+    }()
 
     private var isTimerRunning: Bool = false
     private var cancellable: AnyCancellable?
@@ -38,6 +41,10 @@ class MusicPlayerBase: ObservableObject {
         status = .stopped
     }
 
+    func configureAppConfig(_ appConfig: AppConfig) {
+        self.appConfig = appConfig
+    }
+
     func startTimer() {
         guard !isTimerRunning else { return }
 
@@ -55,7 +62,7 @@ class MusicPlayerBase: ObservableObject {
     }
 
     private func updateTime() {
-        if timeElapsed < 20 {
+        if timeElapsed < appConfig.playbackTimeInterval {
             timeElapsed += 1
         } else {
             cleanTimer()
