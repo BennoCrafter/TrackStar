@@ -72,7 +72,7 @@ struct SettingsViewAttributions: View {
         ScrollView {
             VStack(spacing: 10) {
                 LicenseCardView(title: "CodeScanner", license: "Mit license", url: URL(string: "https://github.com/twostraws/CodeScanner/blob/main/LICENSE")!)
-                LicenseCardView(title: "MarqueeText", license: nil, url: URL(string: "https://github.com/joekndy/MarqueeText")!)
+                LicenseCardView(title: "MarqueeText", license: "Mit license", url: URL(string: "https://github.com/joekndy/MarqueeText")!)
             }
         }
     }
