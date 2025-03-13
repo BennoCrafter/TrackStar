@@ -3,7 +3,7 @@ import textwrap
 from pathlib import Path
 from typing import Optional
 from xml.sax.saxutils import escape
-from song import Song
+from generation.models.song import Song
 
 width, height = 700, 700
 max_chars_per_line = 30

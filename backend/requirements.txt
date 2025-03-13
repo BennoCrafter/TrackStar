@@ -1,6 +1,6 @@
-reportlab
-cairosvg
-pyqrcode
-pillow
-pydantic
-pypng
+reportlab # used for generating PDF documents
+cairosvg # used for generating SVG images
+pypng # used for generating QR codes
+pyqrcode # used for generating QR codes
+pillow # used for image processing and manipulation
+click # used for command-line interface

@@ -1,5 +1,5 @@
 from reportlab.pdfgen.canvas import Canvas
-from models.cards.card import Card
+from generation.pdf_generator.models.cards.card import Card
 from PIL import Image
 from pathlib import Path
 

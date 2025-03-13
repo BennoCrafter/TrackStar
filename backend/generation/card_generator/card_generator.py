@@ -1,10 +1,10 @@
 import argparse
 import json
 from pathlib import Path
-from song import Song
-from generate_song_card import generate_song_card
+from generation.models.song import Song
 import time
 from tqdm import tqdm
+from generation.card_generator.generate_song_card import generate_song_card
 
 def convert_songs_to_image_cards(songs: list[Song], output_path: Path):
     for song in tqdm(songs, desc="Generating song cards", unit="card"):

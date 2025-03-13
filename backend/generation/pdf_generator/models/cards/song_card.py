@@ -1,6 +1,6 @@
 from reportlab.lib import colors
 from reportlab.pdfgen.canvas import Canvas
-from models.cards.card import Card
+from generation.pdf_generator.models.cards.card import Card
 from pathlib import Path
 
 class SongCard(Card):

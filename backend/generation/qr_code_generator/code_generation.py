@@ -40,20 +40,17 @@ def generate_qr_code(data: str, output_file: Path, scale: int, id: int):
     return output_file
 
 
-def generate_qr_codes(prefix: str, id_range: range, output_dir: str, file_format, scale):
+def generate_qr_codes(prefix: str, id_range: range, output_dir: Path, file_format, scale):
     """Generate QR codes for a range of IDs and save them as images."""
 
     # Create the output directory if it doesn't exist
-    os.makedirs(output_dir, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-    for i in tqdm(id_range, unit="qr-code"):
+    for i in tqdm(id_range, unit="qr-code", desc=f"Generating QR codes"):
         data = f"{prefix}{i}"
         filename = Path(os.path.join(output_dir, f"code-{i}.{file_format}"))
 
         generate_qr_code(data, filename, scale, i)
-
-    print(f"Successfully generated {id_range.stop - id_range.start} QR codes and saved in '{output_dir}'")
-
 
 def main():
     # Create the argument parser
