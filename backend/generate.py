@@ -46,15 +46,18 @@ def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str]):
     qr_codes_path = dataset_output / "raw" / "qr_codes"
     song_cards_path = dataset_output / "raw" / "song_cards"
 
+    shutil.copy(dataset, dataset_output)
+    click.echo(f"Copied dataset '{dataset}' to '{dataset_output}'")
+
     convert_songs_to_image_cards(songs, song_cards_path)
     click.echo(f"Successfully generated {len(songs)} song cards and saved in '{song_cards_path}'")
 
     generate_qr_codes(prefix=f"{name};id=", id_range=range(1, len(songs)+1), output_dir=qr_codes_path, file_format="png", scale=6)
     click.echo(f"Successfully generated {len(songs)} QR codes and saved in '{qr_codes_path}'")
+    click.echo(f"Creating PDF '{name}.pdf' and saving to '{dataset_output}'")
     pdf_creator = PDFCreator(Path(dataset_output / f"{name}.pdf"), qr_codes_path, song_cards_path, 1, len(songs))
     pdf_creator.create_pdf()
     click.echo(f"Successfully created PDF '{name}.pdf' and saved in '{dataset_output}'")
-
 
 def replace_tokens(dataset_path: Path, name: str):
     readme_path = dataset_path / "README.md"
