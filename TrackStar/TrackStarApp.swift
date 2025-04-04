@@ -4,7 +4,7 @@ import SwiftUI
 
 @main
 struct TrackStarApp: App {
-    @AppStorage("hasLaunchedBefore") private var hasLaunchedBefore: Bool = false
+    @AppStorage(AppStorageKeys.hasLaunchedBefore.keyName()) private var hasLaunchedBefore: Bool = false
     @StateObject var musicManager: TrackStarManager = .shared
 
     init() {
