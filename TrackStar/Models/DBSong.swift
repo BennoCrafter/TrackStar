@@ -10,6 +10,8 @@ class DBSong: Codable {
     var year: Int
     var id: Int
     
+    var musicDatabase: MusicDatabase?
+    
     init(artist: String, title: String, album: String? = nil, image: String? = nil, year: Int, id: Int) {
         self.artist = artist
         self.title = title

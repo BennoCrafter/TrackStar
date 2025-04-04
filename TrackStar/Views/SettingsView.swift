@@ -17,12 +17,11 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section("Music Database") {
-                    NavigationLink(destination: MusicDatabaseSelector(onFileSelected: { url in
-                        _ = trackStarManager.initNewMusicDatabase(url: url)
+                    NavigationLink(destination: MusicDatabaseSelector(onDatabaseSelected: { db in
                     })) {
                         HStack {
                             Text("Current: ")
-                            Text(trackStarManager.appConfig.musicDBName ?? "None")
+                            Text(trackStarManager.musicDatabase.musicDBName ?? "None")
                                 .foregroundStyle(.blue)
                         }
                     }
@@ -73,6 +72,7 @@ struct SettingsViewAttributions: View {
             VStack(spacing: 10) {
                 LicenseCardView(title: "CodeScanner", license: "Mit license", url: URL(string: "https://github.com/twostraws/CodeScanner/blob/main/LICENSE")!)
                 LicenseCardView(title: "MarqueeText", license: "Mit license", url: URL(string: "https://github.com/joekndy/MarqueeText")!)
+                LicenseCardView(title: "swift-markdown-ui", license: "Mit license", url: URL(string: "https://github.com/gonzalezreal/swift-markdown-ui")!)
             }
         }
     }
@@ -123,5 +123,5 @@ struct LicenseCardView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(TrackStarManager.shared)
+        .environmentObject(TrackStarManager.preview)
 }

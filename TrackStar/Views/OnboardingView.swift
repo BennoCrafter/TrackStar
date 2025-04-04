@@ -15,11 +15,11 @@ struct OnboardingView: View {
                 .font(.body)
                 .padding()
 
-            NavigationLink(destination: MusicDatabaseSelector(onFileSelected: { url in
-                _ = musicManager.initNewMusicDatabase(url: url)
-            })) {
-                Text("Select a database")
-            }
+//            NavigationLink(destination: MusicDatabaseSelector(onFileSelected: { url in
+//                _ = musicManager.initNewMusicDatabase(url: url)
+//            })) {
+//                Text("Select a database")
+//            }
             Spacer()
 
             Button(action: {

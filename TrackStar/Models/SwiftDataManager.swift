@@ -13,25 +13,15 @@ final class SwiftDataManager {
         self.modelContainer = modelContainer
     }
 
-    func loadDatabase() -> [DBSong] {
-        do {
-            let results = try modelContainer.mainContext.fetch(FetchDescriptor<DBSong>())
-            return results
-        } catch {
-            print("Failed to fetch DBSong entities: \(error.localizedDescription)")
-            return []
-        }
-    }
-
-    func saveMusicDatabase(_ songs: [DBSong]) {
-        _ = songs.map { self.modelContainer.mainContext.insert($0) }
-    }
-
-    func clearMusicDatabase() {
-        do {
-            try modelContainer.mainContext.delete(model: DBSong.self)
-        } catch {
-            print("Failed to erase database")
+    func loadDatabase() -> MusicDatabase {
+        if let result = try! modelContainer.mainContext.fetch(FetchDescriptor<MusicDatabase>())
+            .first
+        {
+            return result
+        } else {
+            let instance = MusicDatabase()
+            modelContainer.mainContext.insert(instance)
+            return instance
         }
     }
 
@@ -45,5 +35,9 @@ final class SwiftDataManager {
             modelContainer.mainContext.insert(instance)
             return instance
         }
+    }
+
+    func save() {
+        try? modelContainer.mainContext.save()
     }
 }

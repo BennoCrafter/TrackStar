@@ -122,7 +122,7 @@ struct ContentView: View {
             let codeMetadata = MetadataFactory.shared.createMetadata(from: result.string, hitsterMode: trackStarManager.appConfig.useHitsterQRCodes)
             trackStarManager.scannedCodeMetadata = codeMetadata
             Task {
-                if let fetchedSong = await trackStarManager.fetchSong(from: trackStarManager.musicDBManager.getSongById(codeMetadata.id)) {
+                if let fetchedSong = await trackStarManager.fetchSong(from: trackStarManager.musicDatabase.getSongById(codeMetadata.id)) {
                     trackStarManager.song = fetchedSong
                     await trackStarManager.playSong(fetchedSong)
                 }

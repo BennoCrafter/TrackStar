@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D346EC652D7225950094DC20 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D346EC642D7225950094DC20 /* CodeScanner */; };
+		D3C472552D87080F0042974C /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = D3C472542D87080F0042974C /* MarkdownUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D346EC652D7225950094DC20 /* CodeScanner in Frameworks */,
+				D3C472552D87080F0042974C /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			name = TrackStar;
 			packageProductDependencies = (
 				D346EC642D7225950094DC20 /* CodeScanner */,
+				D3C472542D87080F0042974C /* MarkdownUI */,
 			);
 			productName = TrackStar;
 			productReference = D3B9F43A2CE8C9D000239E7C /* TrackStar.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D346EC632D7225950094DC20 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				D3C472532D87080F0042974C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D3B9F43B2CE8C9D000239E7C /* Products */;
@@ -362,6 +366,14 @@
 				minimumVersion = 2.5.2;
 			};
 		};
+		D3C472532D87080F0042974C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -369,6 +381,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D346EC632D7225950094DC20 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		D3C472542D87080F0042974C /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3C472532D87080F0042974C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

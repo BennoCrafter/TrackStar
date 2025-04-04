@@ -7,6 +7,7 @@ import SwiftUI
 @MainActor
 class TrackStarManager: ObservableObject {
     static let shared = TrackStarManager()
+    static let preview = TrackStarManager().preview()
 
     @Published var musicPlayer: MusicPlayerBase = AppleMusicPlayer()
     @Published var song: Song? = nil
@@ -14,8 +15,8 @@ class TrackStarManager: ObservableObject {
     @Published var isScanning = true
     @Published var activeView: ActiveView = .qrCodeScanning
     @Published var appConfig: AppConfig!
+    @Published var musicDatabase: MusicDatabase!
     
-    var musicDBManager: MusicDBManager = .shared
     var swiftDataManager: SwiftDataManager = .shared
     
     private var cancellable: AnyCancellable?
@@ -28,11 +29,16 @@ class TrackStarManager: ObservableObject {
             }
     }
     
-    func configure(with modelContainer: ModelContainer) {
+    private func preview() -> TrackStarManager {
+        self.appConfig = AppConfig()
+        return TrackStarManager()
+    }
+    
+    func configure(with modelContainer: ModelContainer) {   
         self.swiftDataManager.configure(with: modelContainer)
-        self.musicDBManager.configure(with: self.loadDatabase())
         self.appConfig = self.swiftDataManager.loadAppConfig()
         self.musicPlayer.configureAppConfig(self.appConfig)
+        self.musicDatabase = self.swiftDataManager.loadDatabase()
     }
     
     func resetQRCode() {
@@ -70,36 +76,6 @@ class TrackStarManager: ObservableObject {
         } catch {
             print("Error searching for song: \(error)")
             return nil
-        }
-    }
-    
-    func loadDatabase() -> [DBSong] {
-        self.swiftDataManager.loadDatabase()
-    }
-    
-    func initNewMusicDatabase(url: URL) -> (Bool, String?) {
-        do {
-            guard url.startAccessingSecurityScopedResource() else {
-                print("Unable to access file securely.")
-                return (false, nil)
-            }
-            
-            let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            let songs = try decoder.decode([DBSong].self, from: data)
-            self.musicDBManager.configure(with: songs)
-            self.appConfig.musicDBName = url.lastPathComponent
-            
-            url.stopAccessingSecurityScopedResource()
-            
-            self.swiftDataManager.clearMusicDatabase()
-            
-            self.swiftDataManager.saveMusicDatabase(songs)
-            
-            return (true, url.lastPathComponent)
-        } catch {
-            print("Error fetching or decoding data: \(error.localizedDescription)")
-            return (false, nil)
         }
     }
     
