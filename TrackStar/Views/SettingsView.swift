@@ -83,6 +83,7 @@ struct SettingsView: View {
         Section {
             SettingsToggleRow(
                 title: "Hitster Mode",
+                subtitle: "Scan the QR codes from the Hitster game",
                 icon: "qrcode",
                 iconColor: .orange,
                 isOn: $trackStarManager.appConfig.useHitsterQRCodes
