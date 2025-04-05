@@ -412,7 +412,9 @@ struct ReadmeView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button(action: {
-                    downloadDatabase()
+                    Task {
+                        await downloadDatabase()
+                    }
                 }) {
                     Label("Download", systemImage: "arrow.down.circle")
                 }
@@ -464,18 +466,14 @@ struct ReadmeView: View {
         }.resume()
     }
     
-    private func downloadDatabase() {
-        performDatabaseDownload { destinationUrl, description in
-            // Add to downloads list without applying
-            let newDownload = DownloadedDatabase(
-                name: folderName,
-                dateDownloaded: Date(),
-                filePath: destinationUrl.path,
-                description: description
-            )
-            
-            downloadedDatabases.append(newDownload)
-            DownloadedDatabase.saveDownloadedDatabases(downloadedDatabases)
+    private func downloadDatabase() async {
+        print(folderName)
+        let url = URL(string: "https://api.github.com/repos/BennoCrafter/TrackStar/contents/datasets/\(folderName)")!
+        // https: // api.github.com/repos/BennoCrafter/TrackStar/contents/datasets/hitster_songDB
+        if let db = await MusicDatabase(fromGlobal: url) {
+            trackStarManager.applyMusicDatabase(db)
+        } else {
+            print("Oh no didnt save")
         }
     }
 

@@ -91,9 +91,13 @@ class MusicDatabase {
     init?(fromGlobal sourceURL: URL) async {
         let githubFiles = GithubAPIFiles(fromURL: sourceURL)
 
-        guard let infoGithubFile = githubFiles.find(with: "info.json") else { return nil }
+        guard let infoGithubFile = githubFiles.find(with: "info.json") else {
+            print("Could not find info.json")
+            return nil
+        }
 
         guard let musicInfo = MusicDatabaseInfo.fromURL(infoGithubFile.download_url) else {
+            print("Could not parse info")
             return nil
         }
 
