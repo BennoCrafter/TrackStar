@@ -1,1 +1,1 @@
-# {$name}
+# ${display_name}

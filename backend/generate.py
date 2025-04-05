@@ -27,8 +27,9 @@ def cli():
 @cli.command()
 @click.option('--dataset', type=Path, help='Path to the JSON dataset file', required=True)
 @click.option('--output', type=Path, help='Path to the output directory', required=False)
-@click.option("--name", type=str, help='Name of the dataset', required=False)
-def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str]):
+@click.option("--name", type=str, help='Identifier for the dataset', required=False)
+@click.option("--display-name", type=str, help='Display name of the dataset', required=True)
+def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str], display_name: str):
     if not dataset.exists():
         print(f"\033[91m✗ Dataset file {dataset} does not exist\033[0m")
         return
@@ -38,6 +39,8 @@ def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str]):
         output = Path.cwd().parent / "datasets"
         if not output.exists():
             output.mkdir()
+
+    tokens = {"name": name, "display_name": display_name}
 
     dataset_output = output / name
     pdf_output = dataset_output / "cards.pdf"
@@ -58,7 +61,8 @@ def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str]):
 
     # copy template files
     shutil.copytree(dataset_template, dataset_output)
-    replace_tokens(dataset_output, name)
+    replace_tokens(dataset_output / "README.md", tokens)
+    replace_tokens(dataset_output / "info.json", tokens)
     qr_codes_path = dataset_output / "raw" / "qr_codes"
     song_cards_path = dataset_output / "raw" / "song_cards"
 
@@ -85,12 +89,14 @@ def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str]):
     print_success(f"Created archive: {raw_path}.zip")
 
 
-def replace_tokens(dataset_path: Path, name: str):
-    readme_path = dataset_path / "README.md"
-    with open(readme_path, "r+") as f:
-        readme_content = f.read()
+def replace_tokens(file_path: Path, tokens: dict[str, str]):
+    with open(file_path, "r+") as f:
+        content = f.read()
+        for token, value in tokens.items():
+            v = value if value is not None else "null"
+            content = content.replace("${" + token + "}", v)
         f.seek(0)
-        f.write(readme_content.replace("{$name}", name))
+        f.write(content)
         f.truncate()
 
 if __name__ == '__main__':
