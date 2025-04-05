@@ -15,7 +15,8 @@ class TrackStarManager: ObservableObject {
     @Published var isScanning = true
     @Published var activeView: ActiveView = .qrCodeScanning
     @Published var appConfig: AppConfig!
-    @Published var musicDatabase: MusicDatabase?
+    @Published var musicDatabases: [MusicDatabase] = []
+    @Published var activeMusicDatabase: MusicDatabase?
     
     var swiftDataManager: SwiftDataManager = .shared
     
@@ -38,7 +39,7 @@ class TrackStarManager: ObservableObject {
         self.swiftDataManager.configure(with: modelContainer)
         self.appConfig = self.swiftDataManager.loadAppConfig()
         self.musicPlayer.configureAppConfig(self.appConfig)
-        self.musicDatabase = self.swiftDataManager.loadDatabase()
+        self.loadMusicDatabasesStates()
     }
     
     func resetQRCode() {
@@ -124,11 +125,20 @@ class TrackStarManager: ObservableObject {
         self.musicPlayer.cleanTimer()
     }
     
+    func loadMusicDatabasesStates() {
+        self.musicDatabases = self.swiftDataManager.loadMusicDatabases()
+        self.activeMusicDatabase = self.musicDatabases.first(where: { $0.isActive })
+    }
+    
     func applyMusicDatabase(_ musicDatabase: MusicDatabase) {
-        if self.musicDatabase == nil {
-            self.swiftDataManager.saveDatabase(musicDatabase)
-        }
-        self.musicDatabase = musicDatabase
+        self.activeMusicDatabase?.isActive = false
+        musicDatabase.isActive = true
+        self.activeMusicDatabase = musicDatabase
+    }
+    
+    func addNewMusicDatabase(_ musicDatabase: MusicDatabase) {
+        self.swiftDataManager.addMusicDatabse(musicDatabase)
+        self.musicDatabases.append(musicDatabase)
     }
 }
 

@@ -8,14 +8,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "88811995-7027-43DD-825F-8A2574BE0B18"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TrackStar/Models/MusicDatabase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "init?(fromGlobal:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -24,39 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3F0E4537-24F5-40FD-AF84-7D73E714CCE6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TrackStar/Models/MusicDatabase.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "init?(fromGlobal:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CE1B651C-C5A5-47BF-897D-B3D714532521"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TrackStar/Models/MusicDatabase.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "init?(fromGlobal:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2AE03C8E-FD42-49CE-AAA6-6D18325BEE48"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TrackStar/Models/MusicDatabase.swift"
@@ -64,7 +32,81 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
             endingLineNumber = "94"
-            landmarkName = "init?(fromGlobal:)"
+            landmarkName = "init?(fromGlobal:activate:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3F0E4537-24F5-40FD-AF84-7D73E714CCE6 - 8ffdc35f8479c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 1 of TrackStar.MusicDatabase.init(fromGlobal: Foundation.URL, activate: Swift.Bool) async -&gt; Swift.Optional&lt;TrackStar.MusicDatabase&gt;"
+                  moduleName = "TrackStar.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benno/coding/TrackStar/TrackStar/Models/MusicDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94">
+               </Location>
+               <Location
+                  uuid = "3F0E4537-24F5-40FD-AF84-7D73E714CCE6 - 19a86fbfd77887eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TrackStar.MusicDatabase.__allocating_init(fromGlobal: Foundation.URL, activate: Swift.Bool) async -&gt; Swift.Optional&lt;TrackStar.MusicDatabase&gt;"
+                  moduleName = "TrackStar.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benno/coding/TrackStar/TrackStar/Models/MusicDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "3F0E4537-24F5-40FD-AF84-7D73E714CCE6 - c91a6888f7f91261"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TrackStar.MusicDatabase.init(fromGlobal: Foundation.URL, activate: Swift.Bool) async -&gt; Swift.Optional&lt;TrackStar.MusicDatabase&gt;"
+                  moduleName = "TrackStar.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/benno/coding/TrackStar/TrackStar/Models/MusicDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94">
+               </Location>
+               <Location
+                  uuid = "3F0E4537-24F5-40FD-AF84-7D73E714CCE6 - 1f0b7c28faab6c3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for TrackStar.MusicDatabase.init(fromGlobal: Foundation.URL, activate: Swift.Bool) async -&gt; Swift.Optional&lt;TrackStar.MusicDatabase&gt;"
+                  moduleName = "TrackStar.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///var/folders/cq/3dtgcg914pq5r6f2py_vz3dw0000gn/T/-429b68.@__swiftmacro_9TrackStar13MusicDatabase5ModelfMm_.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2"
+                  endingLineNumber = "2">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE1B651C-C5A5-47BF-897D-B3D714532521"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TrackStar/Models/MusicDatabase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "init?(fromGlobal:activate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -77,14 +77,17 @@ class MusicDatabase {
     var songs: [DBSong] = []
     var info: MusicDatabaseInfo?
 
+    var isActive: Bool = false
+
     // Initialize stored properties first before calling methods
-    init(link: DatabaseItemReference, readmeLink: DatabaseItemReference? = nil, songsLink: DatabaseItemReference, cardsLink: DatabaseItemReference? = nil, infoLink: DatabaseItemReference? = nil, songs: [DBSong] = []) {
+    init(link: DatabaseItemReference, readmeLink: DatabaseItemReference? = nil, songsLink: DatabaseItemReference, cardsLink: DatabaseItemReference? = nil, infoLink: DatabaseItemReference? = nil, songs: [DBSong] = [], isActive: Bool = true) {
         self.link = link
         self.readmeLink = readmeLink
         self.songsLink = songsLink
         self.cardsLink = cardsLink
         self.infoLink = infoLink
         self.songs = songs
+        self.isActive = isActive
     }
 
     /// init from url like https://api.github.com/repos/BennoCrafter/TrackStar/contents/datasets/hitster_songDB

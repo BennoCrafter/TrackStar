@@ -62,7 +62,7 @@ struct SettingsView: View {
                         Text("Current:")
                             .foregroundStyle(.secondary)
                             .font(.subheadline)
-                        Text(trackStarManager.musicDatabase?.info?.displayName ?? "None")
+                        Text(trackStarManager.activeMusicDatabase?.info?.displayName ?? "None")
                             .foregroundStyle(.blue)
                             .font(.subheadline.bold())
                     }

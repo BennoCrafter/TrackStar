@@ -23,7 +23,7 @@ final class SwiftDataManager {
         }
     }
 
-    func saveDatabase(_ db: MusicDatabase) {
+    func addMusicDatabse(_ db: MusicDatabase) {
         modelContainer.mainContext.insert(db)
     }
 
@@ -39,7 +39,26 @@ final class SwiftDataManager {
         }
     }
 
+    func loadMusicDatabases() -> [MusicDatabase] {
+        fetchItems(ofType: MusicDatabase.self)
+    }
+
     func save() {
         try? modelContainer.mainContext.save()
+    }
+
+    private func fetchItems<T: PersistentModel>(
+        ofType type: T.Type, using descriptor: FetchDescriptor<T>
+    ) -> [T] {
+        do {
+            return try modelContainer.mainContext.fetch(descriptor)
+        } catch {
+            print("Error fetching \(type): \(error)")
+            return []
+        }
+    }
+
+    private func fetchItems<T: PersistentModel>(ofType type: T.Type) -> [T] {
+        return fetchItems(ofType: type, using: FetchDescriptor<T>())
     }
 }

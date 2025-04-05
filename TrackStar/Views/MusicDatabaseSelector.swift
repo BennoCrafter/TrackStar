@@ -238,6 +238,7 @@ struct LocalSource: View {
                             print("uff. failed..")
                             return
                         }
+                        self.trackStarManager.addNewMusicDatabase(db)
                         self.trackStarManager.applyMusicDatabase(db)
                         self.onDatabaseSelected(db)
                     }) {
@@ -471,6 +472,7 @@ struct ReadmeView: View {
         let url = URL(string: "https://api.github.com/repos/BennoCrafter/TrackStar/contents/datasets/\(folderName)")!
         // https: // api.github.com/repos/BennoCrafter/TrackStar/contents/datasets/hitster_songDB
         if let db = await MusicDatabase(fromGlobal: url) {
+            trackStarManager.addNewMusicDatabase(db)
             trackStarManager.applyMusicDatabase(db)
         } else {
             print("Oh no didnt save")
