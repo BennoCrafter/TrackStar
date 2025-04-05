@@ -13,16 +13,18 @@ final class SwiftDataManager {
         self.modelContainer = modelContainer
     }
 
-    func loadDatabase() -> MusicDatabase {
+    func loadDatabase() -> MusicDatabase? {
         if let result = try! modelContainer.mainContext.fetch(FetchDescriptor<MusicDatabase>())
             .first
         {
             return result
         } else {
-            let instance = MusicDatabase()
-            modelContainer.mainContext.insert(instance)
-            return instance
+            return nil
         }
+    }
+
+    func saveDatabase(_ db: MusicDatabase) {
+        modelContainer.mainContext.insert(db)
     }
 
     func loadAppConfig() -> AppConfig {

@@ -1,13 +1,11 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @EnvironmentObject private var musicManager: TrackStarManager
-
     var onComplete: () -> Void
 
     var body: some View {
         NavigationStack {
-            Text("Welcome to the App!")
+            Text("Welcome TrackStar!")
                 .font(.largeTitle)
                 .padding()
 
@@ -18,8 +16,7 @@ struct OnboardingView: View {
 //            NavigationLink(destination: MusicDatabaseSelector(onFileSelected: { url in
 //                _ = musicManager.initNewMusicDatabase(url: url)
 //            })) {
-//                Text("Select a database")
-//            }
+            //            }
             Spacer()
 
             Button(action: {

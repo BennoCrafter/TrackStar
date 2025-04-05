@@ -129,21 +129,7 @@ struct DownloadsTab: View {
         }
     }
     
-    private func applyDatabase(_ database: DownloadedDatabase) {
-        let fileURL = URL(fileURLWithPath: database.filePath)
-        
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            trackStarManager.musicDatabase.loadLocalDB(musicDB: fileURL)
-            onDatabaseSelected(trackStarManager.musicDatabase)
-        } else {
-            // Handle case where file no longer exists
-            // We could show an alert here, but for simplicity just removing it
-            if let index = downloadedDatabases.firstIndex(where: { $0.id == database.id }) {
-                downloadedDatabases.remove(at: index)
-                DownloadedDatabase.saveDownloadedDatabases(downloadedDatabases)
-            }
-        }
-    }
+    private func applyDatabase(_ database: DownloadedDatabase) {}
     
     private func deleteDatabase(at offsets: IndexSet) {
         for index in offsets {
@@ -248,9 +234,12 @@ struct LocalSource: View {
                         .font(.subheadline)
                     
                     Button(action: {
-                        // Load database and pass it back
-                        self.trackStarManager.musicDatabase.loadLocalDB(musicDB: file)
-                        self.onDatabaseSelected(self.trackStarManager.musicDatabase)
+                        guard let db = MusicDatabase(fromLocal: file, name: nil) else {
+                            print("uff. failed..")
+                            return
+                        }
+                        self.trackStarManager.applyMusicDatabase(db)
+                        self.onDatabaseSelected(db)
                     }) {
                         HStack {
                             Image(systemName: "checkmark.circle")
@@ -490,24 +479,7 @@ struct ReadmeView: View {
         }
     }
 
-    private func downloadAndApplyDatabase() {
-        performDatabaseDownload { destinationUrl, description in
-            // Add to downloads list
-            let newDownload = DownloadedDatabase(
-                name: folderName,
-                dateDownloaded: Date(),
-                filePath: destinationUrl.path,
-                description: description
-            )
-            
-            downloadedDatabases.append(newDownload)
-            DownloadedDatabase.saveDownloadedDatabases(downloadedDatabases)
-            
-            // Load and apply the database
-            self.trackStarManager.musicDatabase.loadLocalDB(musicDB: destinationUrl)
-            self.onDatabaseSelected(self.trackStarManager.musicDatabase)
-        }
-    }
+    private func downloadAndApplyDatabase() {}
     
     private func performDatabaseDownload(completion: @escaping (URL, String) -> Void) {
         let dbUrlString = "https://raw.githubusercontent.com/BennoCrafter/TrackStar/main/\(folderPath)/database.json"
@@ -637,6 +609,6 @@ struct GitHubFile: Codable {
 
 #Preview {
     MusicDatabaseSelector(onDatabaseSelected: { db in
-        print(db.source)
+        print(db.link.sourceURL)
     })
 }
