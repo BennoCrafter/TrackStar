@@ -40,6 +40,8 @@ def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str]):
             output.mkdir()
 
     dataset_output = output / name
+    pdf_output = dataset_output / "cards.pdf"
+    songs_json_path = dataset_output / "songs.json"
 
     print_separator()
     print_info("Initializing Dataset Generation")
@@ -60,8 +62,8 @@ def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str]):
     qr_codes_path = dataset_output / "raw" / "qr_codes"
     song_cards_path = dataset_output / "raw" / "song_cards"
 
-    shutil.copy(dataset, dataset_output)
-    print_success(f"Dataset copied: {dataset} → {dataset_output}")
+    shutil.copy(dataset, songs_json_path)
+    print_success(f"Dataset copied: {dataset} → {songs_json_path}")
 
     convert_songs_to_image_cards(songs, song_cards_path)
     print_success(f"Generated {len(songs)} song cards: {song_cards_path}")
@@ -71,9 +73,9 @@ def quick_dataset_generator(dataset: Path, output: Path, name: Optional[str]):
 
     print_separator()
     print_info(f"Generating PDF: {name}.pdf")
-    pdf_creator = PDFCreator(Path(dataset_output / f"{name}.pdf"), qr_codes_path, song_cards_path, 1, len(songs))
+    pdf_creator = PDFCreator(pdf_output, qr_codes_path, song_cards_path, 1, len(songs))
     pdf_creator.create_pdf()
-    print_success(f"PDF created: {dataset_output}/{name}.pdf")
+    print_success(f"PDF created at: {pdf_output.absolute()}")
     print_separator()
 
     # Zip raw directory
