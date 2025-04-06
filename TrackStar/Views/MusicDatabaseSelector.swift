@@ -22,14 +22,14 @@ struct MusicDatabaseSelector: View {
                         self.onDatabaseSelected(database)
                     })
                 }
-                
+
                 Tab("Global", systemImage: "globe.americas.fill", value: .global) {
                     GlobalSource(onDatabaseSelected: { database in
                         self.dismiss()
                         self.onDatabaseSelected(database)
                     })
                 }
-                
+
                 Tab("Local", systemImage: "archivebox.fill", value: .local) {
                     LocalSource(onDatabaseSelected: { database in
                         self.dismiss()
@@ -42,46 +42,22 @@ struct MusicDatabaseSelector: View {
     }
 }
 
-// Model for downloaded database
-struct DownloadedDatabase: Identifiable, Codable {
-    let id = UUID()
-    let name: String
-    let dateDownloaded: Date
-    let filePath: String
-    var description: String
-    
-    static func saveDownloadedDatabases(_ databases: [DownloadedDatabase]) {
-        if let encoded = try? JSONEncoder().encode(databases) {
-            UserDefaults.standard.set(encoded, forKey: "downloadedDatabases")
-        }
-    }
-    
-    static func loadDownloadedDatabases() -> [DownloadedDatabase] {
-        if let data = UserDefaults.standard.data(forKey: "downloadedDatabases"),
-           let databases = try? JSONDecoder().decode([DownloadedDatabase].self, from: data)
-        {
-            return databases
-        }
-        return []
-    }
-}
-
 struct DownloadsTab: View {
-    @State private var downloadedDatabases: [DownloadedDatabase] = []
+    @EnvironmentObject private var trackStarManager: TrackStarManager
     @State private var isRefreshing: Bool = false
     @Binding var activeTab: ActiveTab
+
     var onDatabaseSelected: (MusicDatabase) -> Void
-    @EnvironmentObject private var trackStarManager: TrackStarManager
-    
+
     var body: some View {
         Group {
-            if downloadedDatabases.isEmpty {
+            if trackStarManager.musicDatabases.isEmpty {
                 VStack(spacing: 12) {
                     Image(systemName: "arrow.down.doc")
                         .font(.system(size: 40))
                         .foregroundColor(.gray)
                         .padding(.top, 40)
-                
+
                     Text("No Downloaded Databases")
                         .font(.headline)
 
@@ -94,109 +70,136 @@ struct DownloadsTab: View {
                 .background(Color.clear)
                 .padding()
             } else {
-                List {
-                    ForEach(downloadedDatabases) { database in
-                        DownloadedDatabaseRow(database: database, onApply: { db in
-                            applyDatabase(db)
-                        })
+                ScrollView {
+                    VStack(spacing: 12) {
+                        ForEach(trackStarManager.musicDatabases) { database in
+                            DownloadedDatabaseRow(
+                                database: database,
+                                onApply: { db in withAnimation { applyDatabase(db) } }
+                            )
+                        }
                     }
-                    .onDelete(perform: deleteDatabase)
+                    .padding()
                 }
             }
         }
-
         .navigationBarTitle("Downloaded Databases", displayMode: .inline)
-        .onAppear {
-            loadDatabases()
-        }
-        .refreshable {
-            loadDatabases()
-        }
+        .refreshable {}
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
-                    .disabled(downloadedDatabases.isEmpty)
+                    .disabled(trackStarManager.musicDatabases.isEmpty)
             }
         }
     }
-    
-    private func loadDatabases() {
-        isRefreshing = true
-        // Simulate some loading time to show refresh animation
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            downloadedDatabases = DownloadedDatabase.loadDownloadedDatabases()
-            isRefreshing = false
-        }
+
+    private func applyDatabase(_ database: MusicDatabase) {
+        trackStarManager.applyMusicDatabase(database)
     }
-    
-    private func applyDatabase(_ database: DownloadedDatabase) {}
-    
+
     private func deleteDatabase(at offsets: IndexSet) {
-        for index in offsets {
-            let database = downloadedDatabases[index]
-            let fileURL = URL(fileURLWithPath: database.filePath)
-            
-            // Try to delete the file
-            try? FileManager.default.removeItem(at: fileURL)
-        }
-        
-        downloadedDatabases.remove(atOffsets: offsets)
-        DownloadedDatabase.saveDownloadedDatabases(downloadedDatabases)
+        // Delete logic here
     }
 }
 
 struct DownloadedDatabaseRow: View {
-    let database: DownloadedDatabase
-    let onApply: (DownloadedDatabase) -> Void
+    let database: MusicDatabase
+    let onApply: (MusicDatabase) -> Void
+    var isApplied: Bool { database.isActive }
+
     @State private var showDetails: Bool = false
-    
+
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .center) {
+                // Database icon
+                Image(systemName: "music.note.list")
+                    .font(.title2)
+                    .foregroundColor(isApplied ? .blue : .gray)
+                    .frame(width: 40, height: 40)
+                    .background(Color.white.opacity(0.6))
+                    .clipShape(Circle())
+
+                // Database info
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(database.name)
+                    Text(database.info?.displayName ?? database.info?.name ?? "Unknown")
                         .font(.headline)
-                    
-                    Text("Downloaded: \(formattedDate(database.dateDownloaded))")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundColor(isApplied ? .primary : .primary.opacity(0.9))
+
+                    HStack(spacing: 6) {
+                        Label("\(database.songs.count) songs", systemImage: "music.note")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
-                
+
                 Spacer()
-                
-                Button(action: {
-                    onApply(database)
-                }) {
-                    Text("Apply")
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(6)
-                }
-                
-                Button(action: {
-                    showDetails.toggle()
-                }) {
-                    Image(systemName: showDetails ? "chevron.up" : "chevron.down")
-                        .padding(8)
+
+                // Buttons
+                HStack(spacing: 10) {
+                    Button(action: { onApply(database) }) {
+                        Text(isApplied ? "Applied" : "Apply")
+                            .fontWeight(.medium)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 8)
+                            .background(isApplied ? Color.blue.opacity(0.2) : Color.blue)
+                            .foregroundColor(isApplied ? .blue : .white)
+                            .cornerRadius(8)
+                    }
+                    .disabled(isApplied)
+                    .opacity(isApplied ? 0.8 : 1)
+
+                    Button(action: { showDetails.toggle() }) {
+                        Image(systemName: showDetails ? "chevron.up" : "chevron.down")
+                            .foregroundColor(.gray)
+                            .frame(width: 32, height: 32)
+                            .background(Color(UIColor.systemBackground).opacity(0.6))
+                            .clipShape(Circle())
+                    }
                 }
             }
-            
+
             if showDetails {
-                Text(database.description)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .padding(.top, 4)
+                VStack(alignment: .leading, spacing: 8) {
+                    Divider()
+                        .padding(.vertical, 4)
+
+                    HStack {
+                        Spacer()
+
+//                        if let date = database.info?.downloadDate {
+//                            Label(formattedDate(date), systemImage: "calendar")
+//                                .font(.subheadline)
+//                                .foregroundColor(.secondary)
+//                        }
+                    }
+                }
+                .padding(.top, 4)
             }
         }
-        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
+        .background(
+            Group {
+                if isApplied {
+                    LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.05), Color(UIColor.secondarySystemBackground)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                } else {
+                    Color(UIColor.secondarySystemBackground)
+                }
+            }
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(isApplied ? Color.blue.opacity(0.3) : Color.clear, lineWidth: 1)
+        )
+        .cornerRadius(12)
+        .shadow(color: Color.black.opacity(0.07), radius: 5, x: 0, y: 2)
     }
-    
+
     private func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        formatter.timeStyle = .short
+        formatter.timeStyle = .none
         return formatter.string(from: date)
     }
 }
@@ -232,7 +235,7 @@ struct LocalSource: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Selected File: \(file.lastPathComponent)")
                         .font(.subheadline)
-                    
+
                     Button(action: {
                         guard let db = MusicDatabase(fromLocal: file, name: nil) else {
                             print("uff. failed..")
@@ -257,7 +260,7 @@ struct LocalSource: View {
                 .background(Color.gray.opacity(0.1))
                 .cornerRadius(8)
             }
-            
+
             Spacer()
         }
         .fileImporter(
@@ -267,8 +270,6 @@ struct LocalSource: View {
             switch result {
             case .success(let url):
                 print("Selected file: \(url.absoluteString)")
-                // Start loading file access
-                url.startAccessingSecurityScopedResource()
                 self.selectedFile = url
             case .failure(let error):
                 print("File selection error: \(error.localizedDescription)")
@@ -279,15 +280,28 @@ struct LocalSource: View {
     }
 }
 
-struct Folder: Identifiable, Codable {
-    let id = UUID()
+class GithubAPIDataset: Identifiable, Decodable {
+    let id: String // is comparable to the sha
     let name: String
-    let path: String
+    let url: URL
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        url = try container.decode(URL.self, forKey: .url)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id = "sha"
+        case name
+        case url
+    }
 }
 
 struct GlobalSource: View {
     @EnvironmentObject private var trackStarManager: TrackStarManager
-    @State private var folders: [Folder] = []
+    @State private var datasetsDatabases: [MusicDatabase] = []
     @State private var isLoading: Bool = false
     var onDatabaseSelected: (MusicDatabase) -> Void
 
@@ -299,23 +313,19 @@ struct GlobalSource: View {
                     ProgressView("Loading folders...")
                     Spacer()
                 }
-            } else if folders.isEmpty {
-                Text("No folders found")
-                    .foregroundColor(.gray)
+            } else if datasetsDatabases.isEmpty {
+                Text("No datasets found")
+                    .foregroundStyle(.gray)
                     .padding()
             } else {
-                ForEach(folders) { folder in
+                ForEach(datasetsDatabases) { dataset in
                     NavigationLink(destination:
-                        ReadmeView(
-                            folderPath: folder.path,
-                            folderName: folder.name,
-                            onDatabaseSelected: onDatabaseSelected
-                        )
+                        ReadmeView(dataset: dataset)
                     ) {
                         HStack {
-                            Image(systemName: "folder.fill")
+                            Image(systemName: "list.bullet.clipboard.fill")
                                 .foregroundColor(.blue)
-                            Text(folder.name)
+                            Text(dataset.info?.displayName ?? "Unknown")
                                 .font(.headline)
                         }
                         .padding(.vertical, 8)
@@ -325,48 +335,56 @@ struct GlobalSource: View {
         }
         .navigationBarTitle("TrackStar Datasets", displayMode: .inline)
         .onAppear {
-            isLoading = true
-            fetchFolders()
+            if SessionState.shared.isFirstTimeDatasetsLoadingGlobalSource {
+                SessionState.shared.isFirstTimeDatasetsLoadingGlobalSource = false
+                isLoading = true
+                Task {
+                    await fetchDatasets()
+                }
+            }
         }
         .refreshable {
-            fetchFolders()
+            Task {
+                await fetchDatasets()
+            }
         }
     }
-    
-    private func fetchFolders() {
+
+    private func fetchDatasets() async {
+        print("Fetching datasets...")
+        datasetsDatabases.removeAll()
         guard let url = URL(string: "https://api.github.com/repos/BennoCrafter/TrackStar/contents/datasets") else {
             isLoading = false
             return
         }
 
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            DispatchQueue.main.async {
-                isLoading = false
-                
-                guard let data = data, error == nil else { return }
-                
-                if let jsonObjects = try? JSONDecoder().decode([GitHubItem].self, from: data) {
-                    self.folders = jsonObjects.filter { $0.type == "dir" }.map {
-                        Folder(name: $0.name, path: $0.path)
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            isLoading = false
+
+            if let jsonObjects = try? JSONDecoder().decode([GithubAPIDataset].self, from: data) {
+                for a in jsonObjects {
+                    if let db = await MusicDatabase(fromGlobal: a.url) {
+                        datasetsDatabases.append(db)
                     }
                 }
             }
-        }.resume()
+        } catch {
+            isLoading = false
+        }
     }
 }
 
 struct ReadmeView: View {
-    let folderPath: String
-    let folderName: String
-    var onDatabaseSelected: (MusicDatabase) -> Void
-    
+    @EnvironmentObject private var trackStarManager: TrackStarManager
+
+    var dataset: MusicDatabase
+
     @State private var readmeContent: String = "Loading..."
     @State private var errorMessage: String? = nil
     @State private var isDownloading: Bool = false
-    @State private var downloadProgress: Float = 0.0
+    @State private var downloaded: Bool = false
     @State private var showOptions: Bool = false
-    @State private var downloadedDatabases: [DownloadedDatabase] = []
-    @EnvironmentObject private var trackStarManager: TrackStarManager
 
     var body: some View {
         VStack {
@@ -376,12 +394,12 @@ struct ReadmeView: View {
                         .font(.largeTitle)
                         .foregroundColor(.red)
                         .padding()
-                    
+
                     Text("Error: \(errorMessage)")
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
                         .padding()
-                    
+
                     Button("Try Again") {
                         fetchReadme()
                     }
@@ -396,12 +414,10 @@ struct ReadmeView: View {
                     Markdown(self.readmeContent)
                         .padding()
                 }
-                
+
                 if isDownloading {
                     VStack {
-                        ProgressView(value: downloadProgress)
-                            .padding()
-                        Text("Downloading database... \(Int(downloadProgress * 100))%")
+                        Text("Downloading database...")
                     }
                     .padding()
                     .background(Color.gray.opacity(0.1))
@@ -409,32 +425,34 @@ struct ReadmeView: View {
                 }
             }
         }
-        .navigationBarTitle(folderName, displayMode: .inline)
+        .navigationBarTitle(dataset.info?.displayName ?? "Unknown", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button(action: {
-                    Task {
-                        await downloadDatabase()
+                if !downloaded {
+                    Button(action: {
+                        Task {
+                            await downloadDatabase()
+                        }
+                    }) {
+                        Label("Download", systemImage: "arrow.down.circle")
                     }
-                }) {
-                    Label("Download", systemImage: "arrow.down.circle")
+                } else {
+                    Button(action: {}) {
+                        Label("Success", systemImage: "checkmark.circle")
+                    }
                 }
             }
         }
         .onAppear {
             fetchReadme()
-            downloadedDatabases = DownloadedDatabase.loadDownloadedDatabases()
         }
     }
 
     private func fetchReadme() {
         errorMessage = nil
         readmeContent = "Loading..."
-        
-        let readmeUrlString = "https://raw.githubusercontent.com/BennoCrafter/TrackStar/main/\(folderPath)/README.md"
 
-        guard let encodedUrlString = readmeUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedUrlString)
+        guard let url = dataset.readmeLink?.sourceURL
         else {
             errorMessage = "Invalid URL for README file."
             return
@@ -446,125 +464,50 @@ struct ReadmeView: View {
                     self.errorMessage = "Network error: \(error.localizedDescription)"
                     return
                 }
-                
+
                 guard let httpResponse = response as? HTTPURLResponse else {
                     self.errorMessage = "Invalid response from server."
                     return
                 }
-                
+
                 if httpResponse.statusCode != 200 {
                     self.errorMessage = "Could not fetch README (Status code: \(httpResponse.statusCode))"
                     return
                 }
-                
+
                 guard let data = data else {
                     self.errorMessage = "No data received."
                     return
                 }
-                
+
                 self.readmeContent = String(decoding: data, as: UTF8.self)
             }
         }.resume()
     }
-    
+
     private func downloadDatabase() async {
-        print(folderName)
-        let url = URL(string: "https://api.github.com/repos/BennoCrafter/TrackStar/contents/datasets/\(folderName)")!
-        // https: // api.github.com/repos/BennoCrafter/TrackStar/contents/datasets/hitster_songDB
-        if let db = await MusicDatabase(fromGlobal: url) {
-            trackStarManager.addNewMusicDatabase(db)
-            trackStarManager.applyMusicDatabase(db)
+        isDownloading = true
+        if await dataset.downloadAll() {
+            trackStarManager.addNewMusicDatabase(dataset)
+            trackStarManager.applyMusicDatabase(dataset)
+            downloaded = true
         } else {
-            print("Oh no didnt save")
+            errorMessage = "Failed to download"
         }
+        isDownloading = false
     }
 
-    private func downloadAndApplyDatabase() {}
-    
-    private func performDatabaseDownload(completion: @escaping (URL, String) -> Void) {
-        let dbUrlString = "https://raw.githubusercontent.com/BennoCrafter/TrackStar/main/\(folderPath)/database.json"
-        
-        guard let encodedUrlString = dbUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedUrlString)
-        else {
-            errorMessage = "Invalid URL for database file."
-            return
-        }
-        
-        isDownloading = true
-        downloadProgress = 0.0
-        
-        let downloadTask = URLSession.shared.downloadTask(with: url) { tempLocalUrl, response, error in
-            DispatchQueue.main.async {
-                self.isDownloading = false
-                
-                if let error = error {
-                    self.errorMessage = "Download failed: \(error.localizedDescription)"
-                    return
-                }
-                
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    self.errorMessage = "Invalid response from server."
-                    return
-                }
-                
-                if httpResponse.statusCode != 200 {
-                    self.errorMessage = "Could not download database (Status code: \(httpResponse.statusCode))"
-                    return
-                }
-                
-                guard let tempLocalUrl = tempLocalUrl else {
-                    self.errorMessage = "Download failed: No local file available."
-                    return
-                }
-                
-                // Create a permanent location for the file
-                let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                let timestamp = Int(Date().timeIntervalSince1970)
-                let destinationUrl = documentsDirectory.appendingPathComponent("\(folderName)_\(timestamp).json")
-                
-                do {
-                    try FileManager.default.copyItem(at: tempLocalUrl, to: destinationUrl)
-                    
-                    // Extract description from readme for metadata
-                    let description = extractDescription(from: self.readmeContent)
-                    
-                    // Call completion handler
-                    completion(destinationUrl, description)
-                } catch {
-                    self.errorMessage = "Failed to save database: \(error.localizedDescription)"
-                }
-            }
-        }
-        
-        // Set up progress observation
-        downloadTask.resume()
-        
-        // This would be better with a proper progress observer, but for simplicity:
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-            if !isDownloading {
-                timer.invalidate()
-                return
-            }
-            
-            // Simulate progress (in a real app, use URLSession's progress tracking)
-            if self.downloadProgress < 0.95 {
-                self.downloadProgress += 0.05
-            }
-        }
-    }
-    
     private func extractDescription(from readme: String) -> String {
         // Extract first paragraph or a reasonable summary from readme
         let lines = readme.split(separator: "\n")
-        
+
         // Skip headers and find first paragraph
         var description = ""
         var inParagraph = false
-        
+
         for line in lines {
             let trimmed = line.trimmingCharacters(in: .whitespacesAndNewlines)
-            
+
             // Skip headers and empty lines when looking for content
             if trimmed.isEmpty {
                 if inParagraph {
@@ -572,12 +515,12 @@ struct ReadmeView: View {
                 }
                 continue
             }
-            
+
             // Skip markdown headers
             if trimmed.hasPrefix("#") {
                 continue
             }
-            
+
             // Found content
             if description.isEmpty {
                 description = trimmed
@@ -585,26 +528,16 @@ struct ReadmeView: View {
             } else {
                 description += " " + trimmed
             }
-            
+
             // Limit description length
             if description.count > 150 {
                 description = String(description.prefix(150)) + "..."
                 break
             }
         }
-        
+
         return description.isEmpty ? "No description available" : description
     }
-}
-
-struct GitHubItem: Codable {
-    let name: String
-    let path: String
-    let type: String
-}
-
-struct GitHubFile: Codable {
-    let content: String
 }
 
 #Preview {

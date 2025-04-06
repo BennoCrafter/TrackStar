@@ -79,7 +79,6 @@ class MusicDatabase {
 
     var isActive: Bool = false
 
-    // Initialize stored properties first before calling methods
     init(link: DatabaseItemReference, readmeLink: DatabaseItemReference? = nil, songsLink: DatabaseItemReference, cardsLink: DatabaseItemReference? = nil, infoLink: DatabaseItemReference? = nil, songs: [DBSong] = [], isActive: Bool = true) {
         self.link = link
         self.readmeLink = readmeLink
@@ -90,50 +89,38 @@ class MusicDatabase {
         self.isActive = isActive
     }
 
-    /// init from url like https://api.github.com/repos/BennoCrafter/TrackStar/contents/datasets/hitster_songDB
     init?(fromGlobal sourceURL: URL) async {
         let githubFiles = GithubAPIFiles(fromURL: sourceURL)
 
-        guard let infoGithubFile = githubFiles.find(with: "info.json") else {
-            print("Could not find info.json")
-            return nil
-        }
-
-        guard let musicInfo = MusicDatabaseInfo.fromURL(infoGithubFile.download_url) else {
-            print("Could not parse info")
+        guard let infoGithubFile = githubFiles.find(with: "info.json"),
+              let musicInfo = MusicDatabaseInfo.fromURL(infoGithubFile.download_url)
+        else {
+            print("Missing info.json or failed to parse it")
             return nil
         }
 
         info = musicInfo
-        infoLink = await DatabaseItemReference(from: infoGithubFile.download_url, datasetName: musicInfo.name)
-
+        infoLink = DatabaseItemReference(sourceURL: infoGithubFile.download_url)
         link = DatabaseItemReference(sourceURL: sourceURL, localURL: getDatasetDirectory(for: musicInfo.name))
 
         if let readmeGithubFile = githubFiles.find(with: "README.md") {
-            readmeLink = await DatabaseItemReference(from: readmeGithubFile.download_url, datasetName: musicInfo.name)
+            readmeLink = DatabaseItemReference(sourceURL: readmeGithubFile.download_url)
         }
 
         if let cardsGithubFile = githubFiles.find(with: "cards.pdf") {
-            cardsLink = await DatabaseItemReference(from: cardsGithubFile.download_url, datasetName: musicInfo.name)
+            cardsLink = DatabaseItemReference(sourceURL: cardsGithubFile.download_url)
         }
 
-        if let songsGithubFile = githubFiles.find(with: "songs.json") {
-            if let songsRef = await DatabaseItemReference(from: songsGithubFile.download_url, datasetName: musicInfo.name) {
-                songsLink = songsRef
-            } else {
-                print("Failed to find songs. Sorry.")
-                return nil
-            }
-        } else {
+        guard let songsGithubFile = githubFiles.find(with: "songs.json") else {
+            print("Missing songs.json")
             return nil
         }
 
-        refreshSongs()
+        songsLink = DatabaseItemReference(sourceURL: songsGithubFile.download_url)
     }
 
     init?(fromLocal localURL: URL, name: String?) {
         let datasetName = name ?? localURL.extractFileNameWithoutExtension()
-
         link = DatabaseItemReference(localURL: getDatasetDirectory(for: datasetName))
 
         guard let localSongsLink = DatabaseItemReference(fromUser: localURL, datasetName: datasetName) else {
@@ -142,20 +129,29 @@ class MusicDatabase {
         }
 
         songsLink = localSongsLink
-
         refreshSongs()
     }
 
     func refreshSongs() {
-        guard let data = try? Data(contentsOf: songsLink.localURL) else {
+        guard let localURL = songsLink.localURL else { return }
+        guard let data = try? Data(contentsOf: localURL) else { return }
+
+        do {
+            songs = try JSONDecoder().decode([DBSong].self, from: data)
+        } catch {
+            print("Failed to decode songs")
+        }
+    }
+
+    func refreshInfo() {
+        guard let infoURL = infoLink?.sourceURL else {
+            print("Missing infoLink")
             return
         }
-
-        let decoder = JSONDecoder()
-        do {
-            songs = try decoder.decode([DBSong].self, from: data)
-        } catch {
-            return
+        if let newInfo = MusicDatabaseInfo.fromURL(infoURL) {
+            info = newInfo
+        } else {
+            print("Failed to parse info from URL")
         }
     }
 
@@ -164,62 +160,80 @@ class MusicDatabase {
         refreshSongs()
     }
 
-    func refreshInfo() {
-        guard let infoURL = infoLink?.sourceURL else {
-            print("Failed to refresh info for music database \(self)")
-            return
-        }
-        if let newInfo = MusicDatabaseInfo.fromURL(infoURL) {
-            info = newInfo
-        } else {
-            print("Failed to refresh info for music database. (Decoding failed) \(self)")
-        }
-    }
-
     public func getSongById(_ id: Int) -> DBSong? {
-        guard songs.count != 0 else { return nil }
+        guard !songs.isEmpty else { return nil }
         let modId = id % songs.count
         return songs.first(where: { $0.id == modId })
+    }
+
+    /// Manually trigger download of all remote files
+    func downloadAll() async -> Bool {
+        guard let datasetName = info?.name else { return false }
+
+        async let downloadedInfo = infoLink?.download(datasetName: datasetName)
+        async let downloadedSongs = songsLink.download(datasetName: datasetName)
+        async let downloadedReadme = readmeLink?.download(datasetName: datasetName)
+        async let downloadedCards = cardsLink?.download(datasetName: datasetName)
+
+        let results = await [downloadedInfo, downloadedSongs, downloadedReadme, downloadedCards]
+
+        // Only proceed if all required downloads succeed
+        guard results[1] != nil else {
+            print("Failed to download songs")
+            return false
+        }
+
+        refreshSongs()
+        return true
     }
 }
 
 @Model
 class DatabaseItemReference {
-    /// local sandboxed url
-    var localURL: URL
-    /// url from provider like github (raw)
+    var localURL: URL?
     var sourceURL: URL?
 
-    init(sourceURL: URL? = nil, localURL: URL) {
+    init(sourceURL: URL? = nil, localURL: URL? = nil) {
         self.sourceURL = sourceURL
         self.localURL = localURL
     }
 
-    init?(from sourceURL: URL, datasetName: String) async {
+    init(sourceURL: URL) {
         self.sourceURL = sourceURL
-        guard let downloadedURL = await sourceURL.download(datasetName: datasetName) else {
-            return nil
-        }
-        localURL = downloadedURL
     }
 
     init?(fromUser userFile: URL, datasetName: String) {
         do {
             let directory = getDatasetDirectory(for: datasetName)
-            localURL = directory.appendingPathComponent(userFile.lastPathComponent)
+            let sandboxedLocalURL = directory.appendingPathComponent(userFile.lastPathComponent)
+            localURL = sandboxedLocalURL
 
             guard userFile.startAccessingSecurityScopedResource() else {
                 return nil
             }
 
-            let dataFromMusicDb = try Data(contentsOf: userFile)
-            try dataFromMusicDb.write(to: localURL)
+            let data = try Data(contentsOf: userFile)
+            try data.write(to: sandboxedLocalURL)
             userFile.stopAccessingSecurityScopedResource()
 
         } catch {
             print("Error copying file: \(error.localizedDescription)")
             return nil
         }
+    }
+
+    /// Manually download from source URL
+    func download(datasetName: String) async -> URL? {
+        guard let source = sourceURL else {
+            print("Missing source URL")
+            return nil
+        }
+        guard let downloadedURL = await source.download(datasetName: datasetName) else {
+            print("Download failed for \(source)")
+            return nil
+        }
+        localURL = downloadedURL
+        return localURL
     }
 }
 

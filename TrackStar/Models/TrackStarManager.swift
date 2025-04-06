@@ -17,6 +17,7 @@ class TrackStarManager: ObservableObject {
     @Published var appConfig: AppConfig!
     @Published var musicDatabases: [MusicDatabase] = []
     @Published var activeMusicDatabase: MusicDatabase?
+    @Published var globalDatasets: [MusicDatabase] = [] // list of the global datasets
     
     var swiftDataManager: SwiftDataManager = .shared
     
