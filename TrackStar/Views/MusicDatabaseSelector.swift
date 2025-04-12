@@ -175,7 +175,7 @@ struct GlobalSource: View {
         isLoading = true
         datasetsDatabases.removeAll()
 
-        guard let url = URL(string: "https://api.github.com/repos/BennoCrafter/TrackStar/contents/datasets") else {
+        guard let url = trackStarManager.datasetProvider?.url else {
             isLoading = false
             return
         }

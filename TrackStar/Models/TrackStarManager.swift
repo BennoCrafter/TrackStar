@@ -18,6 +18,7 @@ class TrackStarManager: ObservableObject {
     @Published var musicDatabases: [MusicDatabase] = []
     @Published var activeMusicDatabase: MusicDatabase?
     @Published var globalDatasets: [MusicDatabase] = [] // list of the global datasets
+    @Published var datasetProvider: DatasetProvider?
     
     var swiftDataManager: SwiftDataManager = .shared
     
@@ -29,6 +30,9 @@ class TrackStarManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.objectWillChange.send()
             }
+        
+        guard let url = URL(string: "https://api.github.com/repos/BennoCrafter/TrackStar/contents/datasets") else { return }
+        self.datasetProvider = DatasetProvider(url: url)
     }
     
     private func preview() -> TrackStarManager {
