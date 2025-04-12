@@ -31,12 +31,17 @@ struct GithubAPIFiles: Codable {
 
 @Model
 class MusicDatabaseInfo: Codable {
-    var displayName: String
+    var displayName: String?
     var name: String
+
+    init(name: String, displayName: String?) {
+        self.name = name
+        self.displayName = name
+    }
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        displayName = try container.decode(String.self, forKey: .displayName)
+        displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
         name = try container.decode(String.self, forKey: .name)
     }
 
@@ -121,6 +126,7 @@ class MusicDatabase {
 
     init?(fromLocal localURL: URL, name: String?) {
         let datasetName = name ?? localURL.extractFileNameWithoutExtension()
+        info = MusicDatabaseInfo(name: datasetName, displayName: nil)
         link = DatabaseItemReference(localURL: getDatasetDirectory(for: datasetName))
 
         guard let localSongsLink = DatabaseItemReference(fromUser: localURL, datasetName: datasetName) else {
@@ -129,17 +135,21 @@ class MusicDatabase {
         }
 
         songsLink = localSongsLink
-        refreshSongs()
+        if !refreshSongs() {
+            return nil
+        }
     }
 
-    func refreshSongs() {
-        guard let localURL = songsLink.localURL else { return }
-        guard let data = try? Data(contentsOf: localURL) else { return }
+    func refreshSongs() -> Bool {
+        guard let localURL = songsLink.localURL else { return false }
+        guard let data = try? Data(contentsOf: localURL) else { return false }
 
         do {
             songs = try JSONDecoder().decode([DBSong].self, from: data)
+            return true
         } catch {
             print("Failed to decode songs")
+            return false
         }
     }
 
@@ -155,9 +165,24 @@ class MusicDatabase {
         }
     }
 
+    func deleteFileReferences() {
+        link.delete()
+        songsLink.delete()
+
+        if let readmeLink = readmeLink {
+            readmeLink.delete()
+        }
+        if let cardsLink = cardsLink {
+            cardsLink.delete()
+        }
+        if let infoLink = infoLink {
+            infoLink.delete()
+        }
+    }
+
     func update() {
         refreshInfo()
-        refreshSongs()
+        _ = refreshSongs()
     }
 
     public func getSongById(_ id: Int) -> DBSong? {
@@ -183,13 +208,13 @@ class MusicDatabase {
             return false
         }
 
-        refreshSongs()
+        _ = refreshSongs()
         return true
     }
 }
 
 @Model
-class DatabaseItemReference {
+class DatabaseItemReference: Equatable {
     var localURL: URL?
     var sourceURL: URL?
 
@@ -234,6 +259,20 @@ class DatabaseItemReference {
         }
         localURL = downloadedURL
         return localURL
+    }
+
+    func delete() {
+        guard let localURL = localURL else { return }
+        do {
+            if FileManager.default.fileExists(atPath: localURL.path()) {
+                try FileManager.default.removeItem(at: localURL)
+                print("File deleted successfully.")
+            } else {
+                print("File not found at path: \(localURL.path)")
+            }
+        } catch {
+            print("Error deleting file: \(error)")
+        }
     }
 }
 
