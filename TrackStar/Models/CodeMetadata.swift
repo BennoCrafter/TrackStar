@@ -1,46 +1,38 @@
-import SwiftUI
+import Foundation
 
 class CodeMetadata {
     var id: Int
 
-    init(from s: String) {
-        self.id = -1
-        parseMetadata(from: s)
-    }
-
-    func parseMetadata(from s: String) {
-        fatalError("Subclasses must override this method")
+    init(id: Int) {
+        self.id = id
     }
 }
 
-class TrackStarMetadata: CodeMetadata {
-    override func parseMetadata(from s: String) {
-        let components = s.split(separator: "=")
+enum CodeMetadataPattern: String, CaseIterable {
+    case trackStar = #"^id=(\d+)$"#
+    case hitster = #"www.hitstergame.com/de/(\d+)"#
+}
 
-        guard components.count == 2, let value = Int(components[1]) else {
-            print("Invalid format for TrackStarString: \(s)")
-            id = -1
-            return
+func parseMetadata(from s: String, with pattern: CodeMetadataPattern) -> CodeMetadata? {
+    if let metadata = parseWithRegex(from: s, regex: pattern.rawValue) {
+        return metadata
+    }
+
+    print("No matching metadata format found for: \(s)")
+    return nil
+}
+
+private func parseWithRegex(from s: String, regex: String) -> CodeMetadata? {
+    let regex = try! NSRegularExpression(pattern: regex)
+    let range = NSRange(location: 0, length: s.utf16.count)
+
+    if let match = regex.firstMatch(in: s, options: [], range: range) {
+        if let idRange = Range(match.range(at: 1), in: s) {
+            if let id = Int(s[idRange]) {
+                return CodeMetadata(id: id)
+            }
         }
-        id = value
     }
-}
 
-class HitsterMetadata: CodeMetadata {
-    override func parseMetadata(from s: String) {
-        guard let url = URL(string: s), let lastComponent = url.pathComponents.last, let parsedId = Int(lastComponent) else {
-            print("Invalid format for HitsterString: \(s)")
-            id = -1
-            return
-        }
-        id = parsedId
-    }
-}
-
-class MetadataFactory {
-    static let shared: MetadataFactory = .init()
-
-    func createMetadata(from s: String, hitsterMode: Bool = false) -> CodeMetadata {
-        return hitsterMode ? HitsterMetadata(from: s) : TrackStarMetadata(from: s)
-    }
+    return nil
 }
