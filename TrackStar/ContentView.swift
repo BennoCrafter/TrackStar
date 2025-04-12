@@ -15,15 +15,27 @@ enum ActiveView {
 struct ContentView: View {
     @EnvironmentObject private var trackStarManager: TrackStarManager
     @State private var showSettingsView: Bool = false
+    @State private var showToast: Bool = false
 
     var body: some View {
         NavigationStack {
             VStack {
                 Spacer()
-                activeViewContent
+                ZStack {
+                    activeViewContent
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
                 Spacer()
                 if trackStarManager.activeView != .qrCodeScanning {
                     controlButton
+                }
+            }
+            .overlay {
+                if showToast {
+                    toastMessage
+                        .transition(.opacity)
+                        .animation(.easeInOut(duration: 0.5), value: showToast)
+                        .zIndex(1)
                 }
             }
             .onAppear {
@@ -53,6 +65,8 @@ struct ContentView: View {
             } else {
                 CodeScannerView(codeTypes: [.qr], scanMode: .continuous, showViewfinder: true, completion: handleScan)
                     .frame(width: 300, height: 300)
+                    .background(Color.white.opacity(0.8))
+                    .cornerRadius(20)
             }
 
         case .songCard:
@@ -115,21 +129,46 @@ struct ContentView: View {
         showSettingsView = true
     }
 
+    // MARK: - Handle Scan
+
     func handleScan(result: Result<ScanResult, ScanError>) {
         switch result {
         case .success(let result):
             print("Found code: \(result.string)")
-            let codeMetadata = MetadataFactory.shared.createMetadata(from: result.string, hitsterMode: trackStarManager.appConfig.useHitsterQRCodes)
-            trackStarManager.scannedCodeMetadata = codeMetadata
-            Task {
-                if let fetchedSong = await trackStarManager.fetchSong(from: trackStarManager.activeMusicDatabase?.getSongById(codeMetadata.id)) {
-                    trackStarManager.song = fetchedSong
-                    await trackStarManager.playSong(fetchedSong)
+            let codeMetadata = parseMetadata(from: result.string, with: trackStarManager.appConfig.useHitsterQRCodes ? .hitster : .trackStar)
+
+            if let codeMetadata = codeMetadata {
+                trackStarManager.scannedCodeMetadata = codeMetadata
+                Task {
+                    if let fetchedSong = await trackStarManager.fetchSong(from: trackStarManager.activeMusicDatabase?.getSongById(codeMetadata.id)) {
+                        trackStarManager.song = fetchedSong
+                        await trackStarManager.playSong(fetchedSong)
+                    }
+                }
+                toggleActiveView()
+            } else {
+                showToast = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    showToast = false
                 }
             }
-            toggleActiveView()
+
         case .failure(let error):
             print(error.localizedDescription)
         }
+    }
+
+    // MARK: - Toast View
+
+    private var toastMessage: some View {
+        Text("Invalid QR Code")
+            .font(.subheadline)
+            .foregroundColor(.white)
+            .padding()
+            .background(Color.red)
+            .cornerRadius(8)
+            .shadow(radius: 5)
+            .padding()
+            .frame(maxWidth: .infinity)
     }
 }
