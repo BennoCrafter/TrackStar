@@ -8,6 +8,13 @@
 
 TrackStar is an open-source game inspired by Hitster, where players guess the release year of songs to build a chronological timeline. 🎶
 
+
+## Preview ⭐️
+
+| Front cards | Back cards | Gameplay |
+|------------|------------|----------|
+| <img src="assets/screenshots/dataset/qr_codes.png" width="250"> | <img src="assets/screenshots/dataset/song_cards.png" width="250"> | <img src="assets/screenshots/gameplay.png" width="250"> |
+
 ## Key Features 🚀
 
 *   **Gameplay:** Guess the release year of songs and create a chronological timeline.
