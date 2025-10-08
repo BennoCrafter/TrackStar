@@ -4,8 +4,10 @@
 
 <div align="center">
     <h1>TrackStar ✨</h1>
-    **an open-source game inspired by Hitster, where players guess the release year of songs to build a chronological timeline. 🎶**
+  
+  **An open-source game inspired by Hitster, where players guess the release year of songs to build a chronological timeline. 🎶**
 
+  
    [![Stars](https://img.shields.io/github/stars/BennoCrafter/TrackStar?style=social)](https://github.com/BennoCrafter/TrackStar)
    [![Forks](https://img.shields.io/github/forks/BennoCrafter/TrackStar?style=social)](https://github.com/BennoCrafter/TrackStar)
    [![Open Issues](https://img.shields.io/github/issues/BennoCrafter/TrackStar)](https://github.com/BennoCrafter/TrackStar/issues)
