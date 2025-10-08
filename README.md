@@ -1,16 +1,20 @@
-# TrackStar ✨
+<p align="center">
+  <img src="assets/RoundedIcon.png" width="150" height="150" alt="Posterfy Logo">
+</p>
 
-[![Stars](https://img.shields.io/github/stars/BennoCrafter/TrackStar?style=social)](https://github.com/BennoCrafter/TrackStar)
-[![Forks](https://img.shields.io/github/forks/BennoCrafter/TrackStar?style=social)](https://github.com/BennoCrafter/TrackStar)
-[![Open Issues](https://img.shields.io/github/issues/BennoCrafter/TrackStar)](https://github.com/BennoCrafter/TrackStar/issues)
-[![Last Updated](https://img.shields.io/github/last-commit/BennoCrafter/TrackStar)](https://github.com/BennoCrafter/TrackStar/commits/main)
-[![Discord](https://img.shields.io/discord/1363885525991165984)](https://discord.gg/JNu7qXGpzV)
+<div align="center">
+    <h1>TrackStar ✨</h1>
+    **an open-source game inspired by Hitster, where players guess the release year of songs to build a chronological timeline. 🎶**
 
-TrackStar is an open-source game inspired by Hitster, where players guess the release year of songs to build a chronological timeline. 🎶
+   [![Stars](https://img.shields.io/github/stars/BennoCrafter/TrackStar?style=social)](https://github.com/BennoCrafter/TrackStar)
+   [![Forks](https://img.shields.io/github/forks/BennoCrafter/TrackStar?style=social)](https://github.com/BennoCrafter/TrackStar)
+   [![Open Issues](https://img.shields.io/github/issues/BennoCrafter/TrackStar)](https://github.com/BennoCrafter/TrackStar/issues)
+   [![Last Updated](https://img.shields.io/github/last-commit/BennoCrafter/TrackStar)](https://github.com/BennoCrafter/TrackStar/commits/main)
+   [![Discord](https://img.shields.io/discord/1363885525991165984)](https://discord.gg/JNu7qXGpzV)
+</div>
 
 
 ## Preview ⭐️
-
 | Front cards | Back cards | Gameplay |
 |------------|------------|----------|
 | <img src="assets/screenshots/dataset/qr_codes.png" width="250"> | <img src="assets/screenshots/dataset/song_cards.png" width="250"> | <img src="assets/screenshots/gameplay.png" width="250"> |
