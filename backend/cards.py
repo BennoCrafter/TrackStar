@@ -1,181 +1,253 @@
-"""Renders printable, duplex-ready card sheets: QR code fronts and song info backs."""
+"""Renders card-design.json into a printable, duplex-ready cards.pdf.
 
+The design file is shared with the app (TrackStar/Datasets/CardPrinter.swift), which renders the same
+PDF from it. Format and rendering rules: see README.md, "Card design format". Change both renderers together.
+"""
+
+import json
 import unicodedata
 from pathlib import Path
 
-from reportlab.graphics import renderPDF
-from reportlab.graphics.barcode.qr import QrCodeWidget
-from reportlab.graphics.shapes import Drawing
-from reportlab.lib.colors import HexColor, white
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.units import cm
-from reportlab.lib.utils import simpleSplit
+from reportlab.graphics.barcode import qrencoder
+from reportlab.lib.colors import Color, HexColor
+from reportlab.lib.units import mm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen.canvas import Canvas
 from songs import Song
 
-PAGE_W, PAGE_H = A4
-CARD = 6.5 * cm
-COLS, ROWS = 3, 4
-MARGIN_X = (PAGE_W - COLS * CARD) / 2
-MARGIN_Y = (PAGE_H - ROWS * CARD) / 2
-PAD = 0.5 * cm
+DESIGN_DIR = Path(__file__).resolve().parent.parent / "TrackStar" / "Resources" / "CardDesign"
+DESIGN = json.loads((DESIGN_DIR / "card-design.json").read_text())
+for _key, _file in DESIGN["fonts"].items():
+    pdfmetrics.registerFont(TTFont(f"card-{_key}", str(DESIGN_DIR / _file)))
 
-INK = HexColor("#1F1B2E")
-MUTED = HexColor("#8A8799")
-GUIDE = HexColor("#D9D7E0")
 
-# back side gradient per 5-year period, dark enough for white text;
-PERIOD_COLORS = {
-    None: ("#334155", "#64748B"),  # no year: neutral slate
-    1950: ("#3B0764", "#7E22CE"),
-    1955: ("#1E3A8A", "#4338CA"),
-    1960: ("#9F1239", "#EA580C"),
-    1965: ("#0E7490", "#0D9488"),
-    1970: ("#9A3412", "#CA8A04"),
-    1975: ("#4D7C0F", "#15803D"),
-    1980: ("#BE185D", "#6D28D9"),
-    1985: ("#0369A1", "#7C3AED"),
-    1990: ("#0F766E", "#0369A1"),
-    1995: ("#A21CAF", "#DB2777"),
-    2000: ("#1E40AF", "#7C3AED"),
-    2005: ("#B45309", "#DC2626"),
-    2010: ("#065F46", "#4D7C0F"),
-    2015: ("#4338CA", "#0891B2"),
-    2020: ("#B91C1C", "#C026D3"),
-    2025: ("#7C2D12", "#BE123C"),
-}
+def _color(name: str) -> Color:
+    return HexColor(DESIGN["colors"].get(name, name))
+
+
+def period_colors(year: int | None) -> list[str]:
+    periods = DESIGN["periods"]
+    if year is None:
+        return periods["none"]
+    keys = sorted(int(k) for k in periods["colors"])
+    return periods["colors"][str(min(max(year // periods["step"] * periods["step"], keys[0]), keys[-1]))]
+
+
+# MARK: text
 
 
 def _clean(text: str) -> str:
-    # drop invisible format chars (e.g. U+200E) the base-14 fonts can't render
-    return "".join(ch for ch in text if unicodedata.category(ch) != "Cf").strip()
+    text = "".join(" " if ch in "\t\n\r" else ch for ch in text)
+    return "".join(ch for ch in text if unicodedata.category(ch) != "Cf").strip(" ")
 
 
-def _fit(text: str, font: str, size: float, min_size: float, width: float, max_lines: int) -> tuple[float, list[str]]:
-    """Shrink `text` until it wraps into `max_lines`; ellipsize if even `min_size` is too big."""
+def _width(text: str, font: str, size: float) -> float:
+    return pdfmetrics.stringWidth(text, font, size)
+
+
+def _wrap(text: str, font: str, size: float, width: float) -> list[str]:
+    lines: list[str] = []
+    for word in [w for w in text.split(" ") if w]:
+        if lines and _width(lines[-1] + " " + word, font, size) <= width:
+            lines[-1] += " " + word
+        else:
+            lines.append(word)
+    return lines
+
+
+def fit(text: str, font: str, size: float, min_size: float, width: float, max_lines: int) -> tuple[float, list[str]]:
+    """Shrink by 0.5 pt until the text wraps into `max_lines`; ellipsize if even `min_size` is too big."""
     while True:
-        lines = simpleSplit(text, font, size, width)
-        if len(lines) <= max_lines or size <= min_size:
+        lines = _wrap(text, font, size, width)
+        if len(lines) <= max_lines or size - 0.5 < min_size:
             break
         size -= 0.5
     if len(lines) > max_lines:
         lines = lines[:max_lines]
         last = lines[-1]
-        while last and simpleSplit(last + "…", font, size, width) != [last + "…"]:
+        while last and _width(last + "…", font, size) > width:
             last = last[:-1]
-        lines[-1] = last.rstrip() + "…"
+        lines[-1] = last.rstrip(" ") + "…"
     return size, lines
 
 
-def _text_block(
-    c: Canvas, text: str, font: str, size: float, min_size: float, max_lines: int, cx: float, cy: float, width: float
-):
-    """Draws wrapped text centered horizontally on cx and vertically on cy."""
-    size, lines = _fit(_clean(text), font, size, min_size, width, max_lines)
-    leading = size * 1.15
-    top = cy + (len(lines) - 1) * leading / 2 - size * 0.35
-    c.setFont(font, size)
-    for i, line in enumerate(lines):
-        c.drawCentredString(cx, top - i * leading, line)
+# MARK: QR code
 
 
-def _clip_card(c: Canvas, x: float, y: float):
-    p = c.beginPath()
-    p.rect(x, y, CARD, CARD)
-    c.clipPath(p, stroke=0, fill=0)
+def _penalty(m: list[list[bool]]) -> int:
+    n, score = len(m), 0
+    for grid in (m, [list(col) for col in zip(*m)]):
+        for row in grid:
+            run = 1
+            for i in range(1, n + 1):
+                if i < n and row[i] == row[i - 1]:
+                    run += 1
+                    continue
+                if run >= 5:
+                    score += run - 2
+                run = 1
+            bits = "".join("1" if b else "0" for b in row)
+            for pattern in ("10111010000", "00001011101"):
+                score += 40 * sum(bits.startswith(pattern, i) for i in range(n))
+    score += 3 * sum(m[r][c] == m[r][c + 1] == m[r + 1][c] == m[r + 1][c + 1] for r in range(n - 1) for c in range(n - 1))
+    dark, total = sum(map(sum, m)), n * n
+    score += ((abs(dark * 20 - total * 10) + total - 1) // total - 1) * 10
+    return score
 
 
-def draw_front(c: Canvas, x: float, y: float, song: Song, qr_data: str):
-    cx = x + CARD / 2
+def qr_modules(text: str) -> list[list[bool]]:
+    """Byte mode, level M, smallest version, the mask with the lowest penalty (first on ties); no quiet zone."""
+    best = None
+    for mask in range(8):
+        qr = qrencoder.QRCode(None, qrencoder.QRErrorCorrectLevel.M)
+        qr.addData(qrencoder.QR8bitByte(text))
+        qr.version = qr.calculate_version()
+        qr.makeImpl(False, mask)
+        m = [[bool(qr.isDark(r, c)) for c in range(qr.getModuleCount())] for r in range(qr.getModuleCount())]
+        score = _penalty(m)
+        if best is None or score < best[0]:
+            best = (score, m)
+    return best[1]
+
+
+# MARK: drawing
+
+
+def _fields(song: Song, dataset: str) -> dict[str, str]:
+    values = {"dataset": dataset, "id": song.id, "title": song.title, "artist": song.artist, "year": song.year, "album": song.album}
+    return {k: "" if v is None else str(v) for k, v in values.items()}
+
+
+def _holds(condition: str, f: dict[str, str]) -> bool:
+    if "!=" in condition:
+        a, b = (s.strip() for s in condition.split("!="))
+        return f[a] != f[b]
+    if condition.startswith("!"):
+        return not f[condition[1:]]
+    return bool(f[condition])
+
+
+def _draw_card(c: Canvas, elements: list[dict], x0: float, top: float, f: dict[str, str], year: int | None):
+    """Card coordinates are mm from the card's top-left corner, y down; the PDF is pt, y up."""
+
+    def px(x):
+        return x0 + x * mm
+
+    def py(y):
+        return top - y * mm
+
+    card = DESIGN["sheet"]["card"] * mm
     c.saveState()
-    c.setStrokeColor(GUIDE)
-    c.setLineWidth(0.6)
-    c.roundRect(x + 0.25 * cm, y + 0.25 * cm, CARD - 0.5 * cm, CARD - 0.5 * cm, 0.35 * cm)
-
-    qr = QrCodeWidget(qr_data, barFillColor=INK, barBorder=0)
-    x0, y0, x1, y1 = qr.getBounds()
-    size = 4.2 * cm
-    d = Drawing(size, size, transform=[size / (x1 - x0), 0, 0, size / (y1 - y0), 0, 0])
-    d.add(qr)
-    renderPDF.draw(d, c, cx - size / 2, y + (CARD - size) / 2)
-
-    c.setFillColor(MUTED)
-    c.setFont("Helvetica", 5.5)
-    c.drawRightString(x + CARD - 0.5 * cm, y + 0.5 * cm, f"#{song.id}")
+    clip = c.beginPath()
+    clip.rect(x0, top - card, card, card)
+    c.clipPath(clip, stroke=0, fill=0)
+    for e in elements:
+        if not all(_holds(cond, f) for cond in e.get("if", [])):
+            continue
+        c.saveState()
+        if "rect" in e and "qr" not in e:
+            x, y, w, h = e["rect"]
+            c.setStrokeColor(_color(e["stroke"]))
+            c.setLineWidth(e["lineWidth"])
+            # circular corners (Canvas.roundRect isn't: its control points use 0.4472 instead of 0.5523)
+            r, left, bottom, right, top_ = e.get("radius", 0) * mm, px(x), py(y + h), px(x + w), py(y)
+            p = c.beginPath()
+            p.arc(right - 2 * r, bottom, right, bottom + 2 * r, -90, 90)
+            p.arcTo(right - 2 * r, top_ - 2 * r, right, top_, 0, 90)
+            p.arcTo(left, top_ - 2 * r, left + 2 * r, top_, 90, 90)
+            p.arcTo(left, bottom, left + 2 * r, bottom + 2 * r, 180, 90)
+            p.close()
+            c.drawPath(p, stroke=1, fill=0)
+        elif "gradient" in e:
+            start, end = period_colors(year)
+            c.linearGradient(px(e["from"][0]), py(e["from"][1]), px(e["to"][0]), py(e["to"][1]), (HexColor(start), HexColor(end)), extend=True)
+        elif "rings" in e:
+            c.setStrokeColor(_color(e["stroke"]))
+            c.setStrokeAlpha(e.get("opacity", 1))
+            c.setLineWidth(e["lineWidth"])
+            for i in range(e["count"]):
+                c.circle(px(e["rings"][0]), py(e["rings"][1]), (e["radius"] + i * e["step"]) * mm, stroke=1, fill=0)
+        elif "qr" in e:
+            x, y, w, _ = e["rect"]
+            m = qr_modules(e["qr"].format(**f))
+            s = w * mm / len(m)
+            c.setFillColor(_color(e["color"]))
+            path = c.beginPath()
+            for r, row in enumerate(m):
+                for col, dark in enumerate(row):
+                    if dark:
+                        path.rect(px(x) + col * s, py(y) - (r + 1) * s, s, s)
+            c.drawPath(path, stroke=0, fill=1)
+        elif "text" in e:
+            font = f"card-{e['font']}"
+            x, cy, w = e["box"]
+            size, lines = fit(_clean(e["text"].format(**f)), font, e["size"], e.get("minSize", e["size"]), w * mm, e.get("maxLines", 1))
+            leading = size * 1.15
+            baseline = py(cy) + (len(lines) - 1) * leading / 2 - size * 0.35
+            c.setFillColor(_color(e["color"]))
+            c.setFillAlpha(e.get("opacity", 1))
+            c.setFont(font, size)
+            align = e.get("align", "center")
+            for i, line in enumerate(lines):
+                lw = _width(line, font, size)
+                lx = {"left": px(x), "center": px(x) + (w * mm - lw) / 2, "right": px(x) + w * mm - lw}[align]
+                c.drawString(lx, baseline - i * leading, line)
+        c.restoreState()
     c.restoreState()
 
 
-def draw_back(c: Canvas, x: float, y: float, song: Song):
-    cx, inner = x + CARD / 2, CARD - 2 * PAD
-    period = None if song.year is None else min(max(song.year // 5 * 5, 1950), 2025)
-    start, end = PERIOD_COLORS[period]
-
-    c.saveState()
-    _clip_card(c, x, y)
-    c.linearGradient(x, y + CARD, x + CARD, y, (HexColor(start), HexColor(end)), extend=True)
-
-    # vinyl grooves in the corner
-    c.setStrokeColor(white)
-    c.setStrokeAlpha(0.08)
-    c.setLineWidth(0.8)
-    for r in range(8, 100, 7):
-        c.circle(x + CARD, y, r * 1.6)
-
-    c.setFillColor(white)
-    _text_block(c, song.artist, "Helvetica-Bold", 12, 7, 3, cx, y + CARD * 0.79, inner)
-    if song.year is None:
-        # no year to show: the title takes its place in the middle
-        _text_block(c, song.title, "Helvetica-Bold", 18, 9, 3, cx, y + CARD * 0.45, inner)
-    else:
-        c.setFont("Helvetica-Bold", 46)
-        c.drawCentredString(cx, y + CARD / 2 - 46 * 0.35, str(song.year))
-        _text_block(c, song.title, "Helvetica-Oblique", 11, 7, 3, cx, y + CARD * 0.23, inner)
-    if song.album and song.album != song.title:
-        c.setFillAlpha(0.7)
-        _text_block(c, song.album, "Helvetica", 6.5, 5, 1, cx, y + PAD * 0.75, inner)
-    c.restoreState()
+def _sheet_lines(c: Canvas, fronts: bool):
+    s = DESIGN["sheet"]
+    page_w, page_h, card = s["page"][0] * mm, s["page"][1] * mm, s["card"] * mm
+    mx, my = (page_w - s["cols"] * card) / 2, (page_h - s["rows"] * card) / 2
+    xs = [mx + i * card for i in range(s["cols"] + 1)]
+    ys = [my + i * card for i in range(s["rows"] + 1)]
+    lines = []
+    if fronts:
+        lines += [(x, ys[0], x, ys[-1]) for x in xs] + [(xs[0], y, xs[-1], y) for y in ys]
+        c.setStrokeColor(_color(s["grid"]["color"]))
+        c.setLineWidth(s["grid"]["lineWidth"])
+        c.lines(lines)
+    m = s["cutMarks"]
+    ex, ey, gap = m["edge"][0] * mm, m["edge"][1] * mm, m["gap"] * mm
+    marks = [(x, ey, x, my - gap) for x in xs] + [(x, page_h - my + gap, x, page_h - ey) for x in xs]
+    marks += [(ex, y, mx - gap, y) for y in ys] + [(page_w - mx + gap, y, page_w - ex, y) for y in ys]
+    c.setStrokeColor(_color(m["color"]))
+    c.setLineWidth(m["lineWidth"])
+    c.lines(marks)
 
 
-def _cut_marks(c: Canvas):
-    c.saveState()
-    c.setStrokeColor(MUTED)
-    c.setLineWidth(0.4)
-    xs = [MARGIN_X + i * CARD for i in range(COLS + 1)]
-    ys = [MARGIN_Y + i * CARD for i in range(ROWS + 1)]
-    for x in xs:
-        c.line(x, 0.3 * cm, x, MARGIN_Y - 0.15 * cm)
-        c.line(x, PAGE_H - MARGIN_Y + 0.15 * cm, x, PAGE_H - 0.3 * cm)
-    for y in ys:
-        c.line(0.15 * cm, y, MARGIN_X - 0.15 * cm, y)
-        c.line(PAGE_W - MARGIN_X + 0.15 * cm, y, PAGE_W - 0.15 * cm, y)
-    c.restoreState()
-
-
-def _cell(i: int, mirrored: bool) -> tuple[float, float]:
-    col, row = i % COLS, i // COLS
-    if mirrored:  # backs are flipped on the long edge when printed duplex
-        col = COLS - 1 - col
-    return MARGIN_X + col * CARD, PAGE_H - MARGIN_Y - (row + 1) * CARD
-
-
-def create_pdf(songs: list[Song], path: Path, qr_prefix: str, label: str):
-    c = Canvas(str(path), pagesize=A4)
-    c.setTitle(f"{label} – TrackStar cards")
-    c.setAuthor("TrackStar")
-    per_page = COLS * ROWS
+def create_pdf(songs: list[Song], path: Path, dataset: str, label: str):
+    s = DESIGN["sheet"]
+    page_w, page_h, card = s["page"][0] * mm, s["page"][1] * mm, s["card"] * mm
+    mx, my = (page_w - s["cols"] * card) / 2, (page_h - s["rows"] * card) / 2
+    c = Canvas(str(path), pagesize=(page_w, page_h), invariant=True)
+    c.setTitle(DESIGN["title"].format(label=label))
+    c.setCreator("TrackStar")
+    per_page = s["cols"] * s["rows"]
     for start in range(0, len(songs), per_page):
-        page = songs[start : start + per_page]
-
-        c.setStrokeColor(GUIDE)
-        c.setLineWidth(0.5)
-        c.grid([MARGIN_X + i * CARD for i in range(COLS + 1)], [MARGIN_Y + i * CARD for i in range(ROWS + 1)])
-        for i, song in enumerate(page):
-            draw_front(c, *_cell(i, False), song, f"{qr_prefix}{song.id}")
-        _cut_marks(c)
-        c.showPage()
-
-        for i, song in enumerate(page):
-            draw_back(c, *_cell(i, True), song)
-        _cut_marks(c)
-        c.showPage()
+        sheet = songs[start : start + per_page]
+        for backs in (False, True):
+            c.saveState()
+            _sheet_lines(c, fronts=not backs)
+            c.restoreState()
+            for i, song in enumerate(sheet):
+                col, row = i % s["cols"], i // s["cols"]
+                if backs:  # flipped on the long edge when printed duplex
+                    col = s["cols"] - 1 - col
+                elements = DESIGN["back" if backs else "front"]
+                _draw_card(c, elements, mx + col * card, page_h - my - row * card, _fields(song, dataset), song.year)
+            c.showPage()
     c.save()
+
+
+if __name__ == "__main__":
+    # self-check: wrapping, ellipsis, period lookup, QR shape
+    assert fit("a b c", "card-regular", 10, 10, 1000, 1) == (10, ["a b c"])
+    size, lines = fit("word " * 40, "card-bold", 12, 7, 100, 3)
+    assert size == 7 and len(lines) == 3 and lines[-1].endswith("…")
+    assert period_colors(1949) == DESIGN["periods"]["colors"]["1950"] and period_colors(2099) == DESIGN["periods"]["colors"]["2025"]
+    assert period_colors(1987) == DESIGN["periods"]["colors"]["1985"] and period_colors(None) == DESIGN["periods"]["none"]
+    assert len(qr_modules("trackstar://hitster/?id=12")) == 25
+    print("ok")

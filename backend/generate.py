@@ -69,7 +69,7 @@ def rebuild(datasets: Path):
 
 
 def write_cards(out: Path, songs, name: str, display_name: str):
-    create_pdf(songs, out / "cards.pdf", qr_prefix=f"trackstar://{name}/?id=", label=display_name)
+    create_pdf(songs, out / "cards.pdf", dataset=name, label=display_name)
 
 
 if __name__ == "__main__":
