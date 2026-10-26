@@ -64,33 +64,18 @@ struct SongCard: View {
     }
 }
 
-/// Same colors as `PERIOD_COLORS` in backend/cards.py, so the app matches the printed cards.
+/// The period colors of the printed cards.
 enum PeriodGradient {
     static func gradient(for year: Int?) -> LinearGradient {
         let (start, end) = colors(for: year)
         return LinearGradient(colors: [start, end], startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 
+    /// From card-design.json, so the app's cards match the printed ones.
     static func colors(for year: Int?) -> (Color, Color) {
-        guard let year else { return (Color(hex: 0x334155), Color(hex: 0x64748B)) }
-        return switch min(max(year / 5 * 5, 1950), 2025) {
-        case 1950: (Color(hex: 0x3B0764), Color(hex: 0x7E22CE))
-        case 1955: (Color(hex: 0x1E3A8A), Color(hex: 0x4338CA))
-        case 1960: (Color(hex: 0x9F1239), Color(hex: 0xEA580C))
-        case 1965: (Color(hex: 0x0E7490), Color(hex: 0x0D9488))
-        case 1970: (Color(hex: 0x9A3412), Color(hex: 0xCA8A04))
-        case 1975: (Color(hex: 0x4D7C0F), Color(hex: 0x15803D))
-        case 1980: (Color(hex: 0xBE185D), Color(hex: 0x6D28D9))
-        case 1985: (Color(hex: 0x0369A1), Color(hex: 0x7C3AED))
-        case 1990: (Color(hex: 0x0F766E), Color(hex: 0x0369A1))
-        case 1995: (Color(hex: 0xA21CAF), Color(hex: 0xDB2777))
-        case 2000: (Color(hex: 0x1E40AF), Color(hex: 0x7C3AED))
-        case 2005: (Color(hex: 0xB45309), Color(hex: 0xDC2626))
-        case 2010: (Color(hex: 0x065F46), Color(hex: 0x4D7C0F))
-        case 2015: (Color(hex: 0x4338CA), Color(hex: 0x0891B2))
-        case 2020: (Color(hex: 0xB91C1C), Color(hex: 0xC026D3))
-        default: (Color(hex: 0x7C2D12), Color(hex: 0xBE123C))
-        }
+        let design = CardDesign.shared
+        let hex = design.periodColors(for: year).map(design.hex)
+        return (Color(hex: hex[0]), Color(hex: hex[1]))
     }
 }
 
