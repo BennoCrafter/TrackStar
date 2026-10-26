@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icons/RoundedIcon.png" width="150" height="150" alt="Posterfy Logo">
+  <img src="assets/icons/RoundedIcon.png" width="150" height="150" alt="TrackStar icon">
 </p>
 
 <div align="center">
