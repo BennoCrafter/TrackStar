@@ -1,39 +1,37 @@
-import MusicKit
-import SwiftData
+import SQLiteData
 import SwiftUI
 
 @main
 struct TrackStarApp: App {
-    @AppStorage(AppStorageKeys.hasLaunchedBefore.keyName()) private var hasLaunchedBefore: Bool = false
-    @StateObject var musicManager: TrackStarManager = .shared
+    @AppStorage(SettingsKey.hasSeenOnboarding) private var hasSeenOnboarding = false
+    @State private var databaseError: String?
 
     init() {
-        if !hasLaunchedBefore {
-            print("First time launching. Initialize Music Database")
+        #if DEBUG
+            checkCardCodes()
+        #endif
+        do {
+            try prepareDependencies {
+                $0.defaultDatabase = try Schema.appDatabase()
+            }
+        } catch {
+            logger.error("Failed to open the database: \(error)")
+            _databaseError = State(initialValue: error.localizedDescription)
         }
     }
 
     var body: some Scene {
         WindowGroup {
-            if hasLaunchedBefore {
+            if let databaseError {
+                ContentUnavailableView(
+                    "TrackStar Couldn't Start",
+                    systemImage: "exclamationmark.triangle",
+                    description: Text(databaseError))
+            } else if hasSeenOnboarding {
                 ContentView()
-                    .environmentObject(musicManager)
+            } else {
+                OnboardingView(hasSeenOnboarding: $hasSeenOnboarding)
             }
-            else {
-                OnboardingView {
-                    hasLaunchedBefore = true
-                }
-                .environmentObject(musicManager)
-            }
-        }.modelContainer(for: [AppConfig.self, MusicDatabase.self], onSetup: handleSetup)
-    }
-
-    func handleSetup(result: Result<ModelContainer, Error>) {
-        switch result {
-        case .success(let modelContainer):
-            musicManager.configure(with: modelContainer)
-        case .failure(let error):
-            print("Model Container setup: \(error.localizedDescription)")
         }
     }
 }

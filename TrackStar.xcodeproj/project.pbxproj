@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D346EC652D7225950094DC20 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D346EC642D7225950094DC20 /* CodeScanner */; };
+		D3A1F0012F00000000000003 /* SQLiteData in Frameworks */ = {isa = PBXBuildFile; productRef = D3A1F0012F00000000000002 /* SQLiteData */; };
 		D3C472552D87080F0042974C /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = D3C472542D87080F0042974C /* MarkdownUI */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 			files = (
 				D346EC652D7225950094DC20 /* CodeScanner in Frameworks */,
 				D3C472552D87080F0042974C /* MarkdownUI in Frameworks */,
+				D3A1F0012F00000000000003 /* SQLiteData in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +89,7 @@
 			packageProductDependencies = (
 				D346EC642D7225950094DC20 /* CodeScanner */,
 				D3C472542D87080F0042974C /* MarkdownUI */,
+				D3A1F0012F00000000000002 /* SQLiteData */,
 			);
 			productName = TrackStar;
 			productReference = D3B9F43A2CE8C9D000239E7C /* TrackStar.app */;
@@ -119,6 +122,7 @@
 			packageReferences = (
 				D346EC632D7225950094DC20 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				D3C472532D87080F0042974C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				D3A1F0012F00000000000001 /* XCRemoteSwiftPackageReference "sqlite-data" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D3B9F43B2CE8C9D000239E7C /* Products */;
@@ -276,14 +280,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TrackStar/Preview Content\"";
 				DEVELOPMENT_TEAM = FL9Y5AAB4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TrackStar/Info.plist;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your music library";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Allow Camera Acess for QR-Code scanning";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "TrackStar plays the songs on the cards through Apple Music.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "TrackStar scans the QR codes on the cards.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -293,7 +297,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bennowo.trackstar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -308,14 +312,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TrackStar/Preview Content\"";
 				DEVELOPMENT_TEAM = FL9Y5AAB4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TrackStar/Info.plist;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your music library";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Allow Camera Acess for QR-Code scanning";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "TrackStar plays the songs on the cards through Apple Music.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "TrackStar scans the QR codes on the cards.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -325,7 +329,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bennowo.trackstar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -366,6 +370,14 @@
 				minimumVersion = 2.5.2;
 			};
 		};
+		D3A1F0012F00000000000001 /* XCRemoteSwiftPackageReference "sqlite-data" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/sqlite-data";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.12.0;
+			};
+		};
 		D3C472532D87080F0042974C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
@@ -381,6 +393,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D346EC632D7225950094DC20 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		D3A1F0012F00000000000002 /* SQLiteData */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3A1F0012F00000000000001 /* XCRemoteSwiftPackageReference "sqlite-data" */;
+			productName = SQLiteData;
 		};
 		D3C472542D87080F0042974C /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;

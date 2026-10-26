@@ -4,5 +4,16 @@
 <dict>
 	<key>AudioMode</key>
 	<string></string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.bennowo.trackstar</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>trackstar</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
