@@ -1,19 +1,34 @@
 import argparse
 import json
-from pathlib import Path
-from generation.models.song import Song
 import time
-from tqdm import tqdm
+from pathlib import Path
+
 from generation.card_generator.generate_song_card import generate_song_card
+from generation.models.song import Song
+from tqdm import tqdm
+
 
 def convert_songs_to_image_cards(songs: list[Song], output_path: Path):
     for song in tqdm(songs, desc="Generating song cards", unit="card"):
-        generate_song_card(song, output_path=output_path)
+        generate_song_card(
+            song,
+            output_path=output_path,
+            gradient_start_color="linear-gradient(90deg, hsla(335,91%,70%,1) 0%, hsla(49,89%,61%,1) 100%)",
+        )
+
 
 def main():
     parser = argparse.ArgumentParser(description="Process a file.")
-    parser.add_argument("music_db_path", help="Path to the music database file", type=Path)
-    parser.add_argument("-o", "--output", help="Output directory", type=Path, default=Path("out/song_cards"))
+    parser.add_argument(
+        "music_db_path", help="Path to the music database file", type=Path
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        help="Output directory",
+        type=Path,
+        default=Path("out/song_cards"),
+    )
 
     args = parser.parse_args()
 
@@ -32,7 +47,7 @@ def main():
     print(f"Music database path provided: {music_db_path}")
 
     try:
-        with open(music_db_path, 'r') as file:
+        with open(music_db_path, "r") as file:
             data = json.load(file)
 
             songs = [Song(**item) for item in data]
@@ -41,7 +56,9 @@ def main():
             end_time = time.time()
             print(f"Generated {len(songs)} cards")
             print(f"Time taken: {end_time - start_time:.2f} seconds")
-            print(f"Time taken per card: {(end_time - start_time) / len(songs):.4f} seconds")
+            print(
+                f"Time taken per card: {(end_time - start_time) / len(songs):.4f} seconds"
+            )
 
     except Exception as e:
         print(f"Error reading or parsing the file: {e}")

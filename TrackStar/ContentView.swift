@@ -63,7 +63,9 @@ struct ContentView: View {
             if showSettingsView {
                 EmptyView()
             } else {
-                CodeScannerView(codeTypes: [.qr], scanMode: .continuous, showViewfinder: true, completion: handleScan)
+                CodeScannerView(
+                    codeTypes: [.qr], scanMode: .continuous, showViewfinder: true,
+                    completion: handleScan)
                     .frame(width: 300, height: 300)
                     .background(Color.white.opacity(0.8))
                     .cornerRadius(20)
@@ -135,12 +137,16 @@ struct ContentView: View {
         switch result {
         case .success(let result):
             print("Found code: \(result.string)")
-            let codeMetadata = parseMetadata(from: result.string, with: trackStarManager.appConfig.useHitsterQRCodes ? .hitster : .trackStar)
+            let codeMetadata = parseMetadata(
+                from: result.string,
+                with: trackStarManager.appConfig.useHitsterQRCodes ? .hitster : .trackStar)
 
             if let codeMetadata = codeMetadata {
                 trackStarManager.scannedCodeMetadata = codeMetadata
                 Task {
-                    if let fetchedSong = await trackStarManager.fetchSong(from: trackStarManager.activeMusicDatabase?.getSongById(codeMetadata.id)) {
+                    if let fetchedSong = await trackStarManager.fetchSong(
+                        from: trackStarManager.activeMusicDatabase?.getSongById(codeMetadata.id))
+                    {
                         trackStarManager.song = fetchedSong
                         await trackStarManager.playSong(fetchedSong)
                     }
