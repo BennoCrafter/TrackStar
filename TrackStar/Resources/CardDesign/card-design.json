@@ -1,0 +1,59 @@
+{
+  "format": 1,
+  "title": "{label} – TrackStar cards",
+  "fonts": {
+    "regular": "LiberationSans-Regular.ttf",
+    "bold": "LiberationSans-Bold.ttf",
+    "italic": "LiberationSans-Italic.ttf"
+  },
+  "colors": {
+    "ink": "#1F1B2E",
+    "muted": "#8A8799",
+    "guide": "#D9D7E0",
+    "white": "#FFFFFF"
+  },
+  "periods": {
+    "step": 5,
+    "none": ["#334155", "#64748B"],
+    "colors": {
+      "1950": ["#3B0764", "#7E22CE"],
+      "1955": ["#1E3A8A", "#4338CA"],
+      "1960": ["#9F1239", "#EA580C"],
+      "1965": ["#0E7490", "#0D9488"],
+      "1970": ["#9A3412", "#CA8A04"],
+      "1975": ["#4D7C0F", "#15803D"],
+      "1980": ["#BE185D", "#6D28D9"],
+      "1985": ["#0369A1", "#7C3AED"],
+      "1990": ["#0F766E", "#0369A1"],
+      "1995": ["#A21CAF", "#DB2777"],
+      "2000": ["#1E40AF", "#7C3AED"],
+      "2005": ["#B45309", "#DC2626"],
+      "2010": ["#065F46", "#4D7C0F"],
+      "2015": ["#4338CA", "#0891B2"],
+      "2020": ["#B91C1C", "#C026D3"],
+      "2025": ["#7C2D12", "#BE123C"]
+    }
+  },
+  "sheet": {
+    "page": [210, 297],
+    "card": 65,
+    "cols": 3,
+    "rows": 4,
+    "grid": { "color": "guide", "lineWidth": 0.5 },
+    "cutMarks": { "color": "muted", "lineWidth": 0.4, "edge": [1.5, 3], "gap": 1.5 }
+  },
+  "front": [
+    { "rect": [2.5, 2.5, 60, 60], "radius": 3.5, "stroke": "guide", "lineWidth": 0.6 },
+    { "qr": "trackstar://{dataset}/?id={id}", "rect": [11.5, 11.5, 42, 42], "color": "ink" },
+    { "text": "#{id}", "font": "regular", "size": 5.5, "box": [5, 59.3, 55], "align": "right", "color": "muted" }
+  ],
+  "back": [
+    { "gradient": "period", "from": [0, 0], "to": [65, 65] },
+    { "rings": [65, 65], "radius": 4.5, "step": 4, "count": 14, "stroke": "white", "opacity": 0.08, "lineWidth": 0.8 },
+    { "text": "{artist}", "font": "bold", "size": 12, "minSize": 7, "maxLines": 3, "box": [5, 13.65, 55], "color": "white" },
+    { "if": ["year"], "text": "{year}", "font": "bold", "size": 46, "box": [5, 32.5, 55], "color": "white" },
+    { "if": ["year"], "text": "{title}", "font": "italic", "size": 11, "minSize": 7, "maxLines": 3, "box": [5, 50.05, 55], "color": "white" },
+    { "if": ["!year"], "text": "{title}", "font": "bold", "size": 18, "minSize": 9, "maxLines": 3, "box": [5, 35.75, 55], "color": "white" },
+    { "if": ["album", "album != title"], "text": "{album}", "font": "regular", "size": 6.5, "minSize": 5, "box": [5, 61.25, 55], "color": "white", "opacity": 0.7 }
+  ]
+}

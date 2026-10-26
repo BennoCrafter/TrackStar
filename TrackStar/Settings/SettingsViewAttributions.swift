@@ -78,6 +78,13 @@ extension LicenseInfo {
             copyrightHolder: "2020 Guillermo Gonzalez",
             repositoryURL: URL(string: "https://github.com/gonzalezreal/swift-markdown-ui")!,
             bundledLicenseFile: "LICENSE-swift-markdown-ui.txt"),
+        LicenseInfo(
+            name: "Liberation Fonts",
+            author: "liberationfonts",
+            licenseType: "OFL-1.1",
+            copyrightHolder: "2012 Red Hat, Inc.",
+            repositoryURL: URL(string: "https://github.com/liberationfonts/liberation-fonts")!,
+            bundledLicenseFile: "LICENSE-liberation-fonts.txt"),
     ].sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
 }
 
