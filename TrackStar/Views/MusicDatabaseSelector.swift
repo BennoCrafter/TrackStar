@@ -187,6 +187,7 @@ struct GlobalSource: View {
                 for a in jsonObjects {
                     if let db = await MusicDatabase(fromGlobal: a.url) {
                         if let downloadedDB = trackStarManager.musicDatabases.first(where: { $0.link.sourceURL == db.link.sourceURL }) {
+                            _ = await downloadedDB.updateIfNeeded()
                             datasetsDatabases.append(downloadedDB)
                         } else {
                             datasetsDatabases.append(db)
@@ -774,7 +775,7 @@ struct DownloadsTab: View {
             }
         }
         .navigationBarTitle("Downloaded Databases", displayMode: .inline)
-        .refreshable {}
+        .refreshable { await trackStarManager.updateMusicDatabases() }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
@@ -855,6 +856,11 @@ struct DownloadedDatabaseRow: View {
                         .padding(.vertical, 4)
 
                     HStack {
+                        if let version = database.info?.version, version > 0 {
+                            Label("Version \(version)", systemImage: "number")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                         Spacer()
                         Label(database.link.sourceURL != nil ? "Global" : "Local", systemImage: database.link.sourceURL != nil ? "globe.americas.fill" : "archivebox")
                             .font(.subheadline)

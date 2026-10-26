@@ -9,7 +9,7 @@ class CodeMetadata {
 }
 
 enum CodeMetadataPattern: String, CaseIterable {
-    case trackStar = #"^id=(\d+)$"#
+    case trackStar = #"(?:^|[;?&])id=(\d+)$"#
     case hitster = #"www.hitstergame.com/de/(\d+)"#
 }
 

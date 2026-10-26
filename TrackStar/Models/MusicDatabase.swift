@@ -33,6 +33,8 @@ struct GithubAPIFiles: Codable {
 class MusicDatabaseInfo: Codable {
     var displayName: String?
     var name: String
+    /// Bumped by the generator whenever the dataset changes; 0 = unversioned
+    var version: Int = 0
 
     init(name: String, displayName: String?) {
         self.name = name
@@ -43,17 +45,20 @@ class MusicDatabaseInfo: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
         name = try container.decode(String.self, forKey: .name)
+        version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 0
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(displayName, forKey: .displayName)
         try container.encode(name, forKey: .name)
+        try container.encode(version, forKey: .version)
     }
 
     enum CodingKeys: String, CodingKey {
         case displayName = "display_name"
         case name
+        case version
     }
 
     static func fromURL(_ url: URL) -> MusicDatabaseInfo? {
@@ -183,6 +188,19 @@ class MusicDatabase {
     func update() {
         refreshInfo()
         _ = refreshSongs()
+    }
+
+    /// Re-downloads the dataset if the remote info.json has a newer version. Returns true if it was updated.
+    func updateIfNeeded() async -> Bool {
+        guard let infoURL = infoLink?.sourceURL,
+              let remote = MusicDatabaseInfo.fromURL(infoURL),
+              remote.version > (info?.version ?? 0),
+              await downloadAll()
+        else { return false }
+
+        info?.displayName = remote.displayName
+        info?.version = remote.version
+        return true
     }
 
     public func getSongById(_ id: Int) -> DBSong? {

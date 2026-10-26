@@ -1,31 +1,19 @@
 import json
-import shutil
+import re
 from pathlib import Path
-from typing import Optional
 
 import click
-from generation.card_generator.card_generator import convert_songs_to_image_cards
-from generation.card_generator.generate_song_card import generate_song_card
-from generation.models.song import Song
-from generation.pdf_generator.generate_pdf import PDFCreator
-from generation.qr_code_generator.code_generation import (
-    generate_qr_code,
-    generate_qr_codes,
-)
 
-dataset_template = Path("dataset_template")
+from cards import create_pdf
+from songs import load_songs, save_songs
 
+DATASETS_DIR = Path(__file__).resolve().parent.parent / "datasets"
 
-def print_separator():
-    print("\n" + "=" * 50 + "\n")
+README = """# {display_name}
 
-
-def print_success(message: str):
-    print(f"\033[92m✓ {message}\033[0m")
-
-
-def print_info(message: str):
-    print(f"\033[94mℹ {message}\033[0m")
+The song data from the game is copyrighted by the respective rights holders of each song.
+This repository contains only the reference data, not the actual song audio.
+"""
 
 
 @click.group()
@@ -34,93 +22,54 @@ def cli():
 
 
 @cli.command()
-@click.option(
-    "--dataset", type=Path, help="Path to the JSON dataset file", required=True
-)
-@click.option(
-    "--output", type=Path, help="Path to the output directory", required=False
-)
-@click.option("--name", type=str, help="Identifier for the dataset", required=False)
-@click.option(
-    "--display-name", type=str, help="Display name of the dataset", required=True
-)
-def quick_dataset_generator(
-    dataset: Path, output: Path, name: Optional[str], display_name: str
-):
-    if not dataset.exists():
-        print(f"\033[91m✗ Dataset file {dataset} does not exist\033[0m")
-        return
-    if name is None:
-        name = dataset.stem
-    if output is None:
-        output = Path.cwd().parent / "datasets"
-        if not output.exists():
-            output.mkdir()
+@click.argument("songs_json", type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.option("--display-name", required=True, help="Human readable dataset name.")
+@click.option("--name", required=True, help="Dataset identifier in kebab-case (e.g. taylor-swift), also encoded in the QR codes.")
+@click.option("--output", type=Path, default=DATASETS_DIR, show_default=True, help="Parent directory of the dataset.")
+@click.option("--increase", is_flag=True, help="Raise the version even if songs and display name are unchanged.")
+def build(songs_json: Path, display_name: str, name: str, output: Path, increase: bool):
+    """Build a dataset folder (info.json, songs.json, README.md, cards.pdf) from SONGS_JSON."""
+    if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", name):
+        raise click.BadParameter("use lowercase kebab-case, e.g. taylor-swift", param_hint="--name")
+    out = output / name
+    out.mkdir(parents=True, exist_ok=True)
 
-    tokens = {"name": name, "display_name": display_name}
+    songs = load_songs(songs_json)
+    click.secho(f"ℹ {len(songs)} songs → {out}", fg="blue")
 
-    dataset_output = output / name
-    pdf_output = dataset_output / "cards.pdf"
-    songs_json_path = dataset_output / "songs.json"
+    songs_path, info_path = out / "songs.json", out / "info.json"
+    old_songs = songs_path.read_text() if songs_path.exists() else None
+    old_info = json.loads(info_path.read_text()) if info_path.exists() else {}
+    save_songs(songs, songs_path)
 
-    print_separator()
-    print_info("Initializing Dataset Generation")
-    print_separator()
+    # the app re-downloads a dataset when its version goes up
+    version = old_info.get("version", 0)
+    if increase or "version" not in old_info or songs_path.read_text() != old_songs or old_info.get("display_name") != display_name:
+        version += 1
+        click.secho(f"ℹ version {version}", fg="blue")
+    info = {"name": name, "display_name": display_name, "version": version}
+    info_path.write_text(json.dumps(info, indent=2) + "\n")
+    readme = out / "README.md"
+    if not readme.exists():
+        readme.write_text(README.format(display_name=display_name))
 
-    # parse json to dataclass
-    with open(dataset, "r") as f:
-        json_data = json.load(f)
-        songs = [Song(**song) for song in json_data]
-
-    print_info(f"Found {len(songs)} songs in '{name}'")
-    print_info(f"Dataset will be created at: {dataset_output.absolute()}")
-    print_separator()
-
-    # copy template files
-    shutil.copytree(dataset_template, dataset_output)
-    replace_tokens(dataset_output / "README.md", tokens)
-    replace_tokens(dataset_output / "metadata.json", tokens)
-    qr_codes_path = dataset_output / "raw" / "qr_codes"
-    song_cards_path = dataset_output / "raw" / "song_cards"
-
-    shutil.copy(dataset, songs_json_path)
-    print_success(f"Dataset copied: {dataset} → {songs_json_path}")
-
-    convert_songs_to_image_cards(songs, song_cards_path)
-    print_success(f"Generated {len(songs)} song cards: {song_cards_path}")
-
-    generate_qr_codes(
-        prefix=f"{name};id=",
-        id_range=range(1, len(songs) + 1),
-        output_dir=qr_codes_path,
-        file_format="png",
-        scale=6,
-    )
-    print_success(f"Generated {len(songs)} QR codes: {qr_codes_path}")
-
-    print_separator()
-    print_info(f"Generating PDF: {name}.pdf")
-    pdf_creator = PDFCreator(pdf_output, qr_codes_path, song_cards_path, 1, len(songs))
-    pdf_creator.create_pdf()
-    print_success(f"PDF created at: {pdf_output.absolute()}")
-    print_separator()
-
-    # Zip raw directory
-    raw_path = dataset_output / "raw"
-    shutil.make_archive(str(raw_path), "zip", raw_path)
-    shutil.rmtree(raw_path)
-    print_success(f"Created archive: {raw_path}.zip")
+    write_cards(out, songs, name, display_name)
+    click.secho(f"✓ Dataset ready: {out}", fg="green")
 
 
-def replace_tokens(file_path: Path, tokens: dict[str, str]):
-    with open(file_path, "r+") as f:
-        content = f.read()
-        for token, value in tokens.items():
-            v = value if value is not None else "null"
-            content = content.replace("${" + token + "}", v)
-        f.seek(0)
-        f.write(content)
-        f.truncate()
+@cli.command()
+@click.option("--datasets", type=Path, default=DATASETS_DIR, show_default=True, help="Directory containing the datasets.")
+def rebuild(datasets: Path):
+    """Regenerate cards.pdf of every dataset (e.g. after a card design change). Versions stay the same."""
+    for out in sorted(d for d in datasets.iterdir() if (d / "info.json").exists() and (d / "songs.json").exists()):
+        info = json.loads((out / "info.json").read_text())
+        songs = load_songs(out / "songs.json")
+        write_cards(out, songs, info["name"], info.get("display_name") or info["name"])
+        click.secho(f"✓ {out.name}: {len(songs)} cards", fg="green")
+
+
+def write_cards(out: Path, songs, name: str, display_name: str):
+    create_pdf(songs, out / "cards.pdf", qr_prefix=f"trackstar://{name}/?id=", label=display_name)
 
 
 if __name__ == "__main__":

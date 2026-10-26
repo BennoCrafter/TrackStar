@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-    <h1>TrackStar ✨</h1>
+    <h1>TrackStar</h1>
   
   **An open-source game inspired by Hitster, where players guess the release year of songs to build a chronological timeline. 🎶**
 
@@ -32,6 +32,19 @@
 ## Creating Custom Datasets
 
 TrackStar allows you to use custom song datasets. A Python script, `generate.py` in the `backend` directory, is provided to help you generate these datasets.
+
+```bash
+cd backend
+pip install -r requirements.txt
+
+# optional: turn a raw source into a songs.json with a parser script (see parsers/)
+python parsers/hitster_csv.py -o songs.json
+
+# build datasets/<name>/ with info.json, songs.json, README.md and a printable cards.pdf
+python generate.py build songs.json --name my-songs --display-name "My Songs"
+```
+
+`songs.json` is a list of `{"id", "title", "artist", "year"?, "album"?}` objects. `cards.pdf` prints duplex (flip on long edge): QR fronts, song backs colored per 5-year period. See [backend/README.md](backend/README.md) for how it works.
 
 If you've created a custom dataset that you think would be valuable for other players, consider contributing it to the official repository:
 

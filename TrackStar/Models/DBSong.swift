@@ -7,10 +7,10 @@ class DBSong: Codable {
     var title: String
     var album: String?
     var image: String?
-    var year: Int
+    var year: Int?
     var id: Int
     
-    init(artist: String, title: String, album: String? = nil, image: String? = nil, year: Int, id: Int) {
+    init(artist: String, title: String, album: String? = nil, image: String? = nil, year: Int? = nil, id: Int) {
         self.artist = artist
         self.title = title
         self.album = album
@@ -25,7 +25,7 @@ class DBSong: Codable {
         title = try container.decode(String.self, forKey: .title)
         album = try container.decodeIfPresent(String.self, forKey: .album)
         image = try container.decodeIfPresent(String.self, forKey: .image)
-        year = try container.decode(Int.self, forKey: .year)
+        year = try container.decodeIfPresent(Int.self, forKey: .year)
         id = try container.decode(Int.self, forKey: .id)
     }
     
@@ -35,7 +35,7 @@ class DBSong: Codable {
         try container.encode(title, forKey: .title)
         try container.encodeIfPresent(album, forKey: .album)
         try container.encodeIfPresent(image, forKey: .image)
-        try container.encode(year, forKey: .year)
+        try container.encodeIfPresent(year, forKey: .year)
         try container.encode(id, forKey: .id)
     }
     

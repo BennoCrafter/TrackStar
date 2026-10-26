@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 def pdf_to_png(pdf_path: Path, output_folder: Path, song_card_page: int):
-    names: list[str] = ["song_cards", "qr_codes"]
+    names: list[str] = ["qr_codes", "song_cards"]
     doc = fitz.open(pdf_path)
 
     for i, page_num in enumerate([song_card_page, song_card_page + 1]):
@@ -14,8 +14,8 @@ def pdf_to_png(pdf_path: Path, output_folder: Path, song_card_page: int):
             pix.save(output_path)
 
 if __name__ == "__main__":
-    song_card_page: int = 2
-    pdf_path = Path("../../datasets/hitster_songDB/songs.pdf")
+    song_card_page: int = 0
+    pdf_path = Path("../../datasets/hitster/cards.pdf")
     output_folder = Path("../screenshots/dataset")
 
     pdf_to_png(pdf_path, output_folder, song_card_page)

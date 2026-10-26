@@ -45,6 +45,7 @@ class TrackStarManager: ObservableObject {
         self.appConfig = self.swiftDataManager.loadAppConfig()
         self.musicPlayer.configureAppConfig(self.appConfig)
         self.loadMusicDatabasesStates()
+        Task { await self.updateMusicDatabases() }
     }
     
     func resetQRCode() {
@@ -133,6 +134,12 @@ class TrackStarManager: ObservableObject {
     func loadMusicDatabasesStates() {
         self.musicDatabases = self.swiftDataManager.loadMusicDatabases()
         self.activeMusicDatabase = self.musicDatabases.first(where: { $0.isActive })
+    }
+
+    func updateMusicDatabases() async {
+        for database in self.musicDatabases {
+            _ = await database.updateIfNeeded()
+        }
     }
     
     func applyMusicDatabase(_ musicDatabase: MusicDatabase) {
