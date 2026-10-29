@@ -64,6 +64,26 @@ struct SongCard: View {
     }
 }
 
+/// Dark, tinted with a card's period color; the accent color without a card.
+struct TintedBackground: View {
+    var year: Int?
+
+    var body: some View {
+        let (start, end) = PeriodGradient.colors(for: year)
+        ZStack {
+            Color.black
+            RadialGradient(
+                colors: [(year == nil ? Color.accentColor : start).opacity(0.45), .clear],
+                center: .top, startRadius: 0, endRadius: 600)
+            RadialGradient(
+                colors: [(year == nil ? Color.accentColor : end).opacity(0.25), .clear],
+                center: .bottomTrailing, startRadius: 0, endRadius: 500)
+        }
+        .ignoresSafeArea()
+        .animation(.easeInOut(duration: 0.8), value: year)
+    }
+}
+
 /// The period colors of the printed cards.
 enum PeriodGradient {
     static func gradient(for year: Int?) -> LinearGradient {

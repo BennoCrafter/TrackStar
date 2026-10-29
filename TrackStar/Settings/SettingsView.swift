@@ -7,6 +7,7 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.hasSeenOnboarding) private var hasSeenOnboarding = false
     @AppStorage(SettingsKey.playbackDuration) private var playbackDuration: Double = 30
     @AppStorage(SettingsKey.randomStart) private var randomStart = false
+    @AppStorage(SettingsKey.devMode) private var devMode = false
 
     @FetchOne(Dataset.where(\.isActive)) private var activeDataset: Dataset?
     @State private var showingReleaseNotes = false
@@ -15,6 +16,7 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 gameSection
+                developerSection
                 datasetSection
                 helpSection
                 aboutSection
@@ -50,6 +52,16 @@ struct SettingsView: View {
             Text("Game")
         } footer: {
             Text("How long a song plays before it pauses, and whether it starts somewhere in the middle instead of the beginning.")
+        }
+    }
+
+    private var developerSection: some View {
+        Section {
+            Toggle(isOn: $devMode) {
+                Label("Developer Mode", systemImage: "hammer")
+            }
+        } footer: {
+            Text("Songs don't play, and the question mark card shows the song it hides.")
         }
     }
 

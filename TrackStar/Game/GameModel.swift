@@ -6,6 +6,8 @@ enum SettingsKey {
     static let hasSeenOnboarding = "hasLaunchedBefore" // name from 1.x, so updaters skip onboarding
     static let playbackDuration = "playbackDuration"
     static let randomStart = "randomStart"
+    /// No playback, and the hidden card shows its song.
+    static let devMode = "devMode"
 }
 
 /// One round: scan a card → listen → reveal → next card.
@@ -85,9 +87,21 @@ final class GameModel {
             problem = .missingCard(code.number)
             return
         }
+        await start(track)
+    }
 
+    /// Plays a card without scanning it (the no-cards mode).
+    func play(_ track: Track) {
+        Task { await start(track) }
+    }
+
+    private func start(_ track: Track) async {
         phase = .loading
         self.track = track
+        if UserDefaults.standard.bool(forKey: SettingsKey.devMode) {
+            phase = .listening
+            return
+        }
         guard await MusicAuthorization.request() == .authorized else {
             reset()
             problem = .message("TrackStar needs access to Apple Music to play songs. Allow it in the Settings app.")

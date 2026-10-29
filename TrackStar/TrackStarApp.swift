@@ -3,12 +3,14 @@ import SwiftUI
 
 @main
 struct TrackStarApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @AppStorage(SettingsKey.hasSeenOnboarding) private var hasSeenOnboarding = false
     @State private var databaseError: String?
 
     init() {
         #if DEBUG
             checkCardCodes()
+            checkPlacement()
         #endif
         do {
             try prepareDependencies {
@@ -28,7 +30,7 @@ struct TrackStarApp: App {
                     systemImage: "exclamationmark.triangle",
                     description: Text(databaseError))
             } else if hasSeenOnboarding {
-                ContentView()
+                RootView()
             } else {
                 OnboardingView(hasSeenOnboarding: $hasSeenOnboarding)
             }

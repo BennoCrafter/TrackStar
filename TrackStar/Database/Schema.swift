@@ -21,7 +21,7 @@ struct Dataset: Identifiable, Hashable, Sendable {
 
 /// One card of a dataset. `number` is the id printed on the card and encoded in its QR code.
 @Table("tracks")
-struct Track: Identifiable, Hashable, Sendable {
+struct Track: Identifiable, Hashable, Sendable, Codable {
     let id: Int
     var datasetID: String
     var number: Int
@@ -29,6 +29,13 @@ struct Track: Identifiable, Hashable, Sendable {
     var artist: String
     var year: Int?
     var album: String?
+}
+
+/// Someone who played a game without cards; remembered for the next one.
+@Table("players")
+struct Player: Identifiable, Hashable, Sendable {
+    let id: Int
+    var name: String
 }
 
 enum Schema {
@@ -66,6 +73,16 @@ enum Schema {
                   "year" INTEGER,
                   "album" TEXT,
                   UNIQUE("datasetID", "number")
+                ) STRICT
+                """
+            ).execute(db)
+        }
+        migrator.registerMigration("Create players") { db in
+            try #sql(
+                """
+                CREATE TABLE "players" (
+                  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+                  "name" TEXT NOT NULL UNIQUE COLLATE NOCASE
                 ) STRICT
                 """
             ).execute(db)

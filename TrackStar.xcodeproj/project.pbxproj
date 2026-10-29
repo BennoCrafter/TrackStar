@@ -286,6 +286,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TrackStar/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TrackStar;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "TrackStar plays the songs on the cards through Apple Music.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "TrackStar scans the QR codes on the cards.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -297,7 +299,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bennowo.trackstar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -318,6 +320,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TrackStar/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TrackStar;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "TrackStar plays the songs on the cards through Apple Music.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "TrackStar scans the QR codes on the cards.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -329,7 +333,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bennowo.trackstar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -2,14 +2,15 @@ import CodeScanner
 import SQLiteData
 import SwiftUI
 
+/// The game with printed cards: scan → listen → reveal.
 struct ContentView: View {
+    /// A card scanned with the Camera app.
+    @Binding var openedURL: URL?
+    let close: () -> Void
+
     @State private var game = GameModel()
     @State private var showingLibrary = false
     @State private var showingSettings = false
-    @State private var showingReleaseNotes = false
-    @State private var newDatasets: [RemoteDataset] = []
-    @State private var showingNewDatasets = false
-    @AppStorage(seenReleaseNotesVersionKey) private var seenReleaseNotesVersion = ""
 
     @FetchOne(Dataset.where(\.isActive)) private var activeDataset: Dataset?
 
@@ -29,8 +30,6 @@ struct ContentView: View {
             .toolbarBackground(.hidden, for: .navigationBar)
             .sheet(isPresented: $showingLibrary) { DatasetLibrarySheet() }
             .sheet(isPresented: $showingSettings) { SettingsView() }
-            .sheet(isPresented: $showingReleaseNotes, onDismiss: showNewDatasetsIfNeeded) { ReleaseNotesSheet() }
-            .sheet(isPresented: $showingNewDatasets) { NewDatasetsSheet(datasets: newDatasets) }
             .alert(problemTitle, isPresented: problemBinding, presenting: game.problem) { problem in
                 problemActions(problem)
             } message: { problem in
@@ -38,14 +37,12 @@ struct ContentView: View {
             }
         }
         .environment(game)
-        .onOpenURL { game.open($0) }
-        .preferredColorScheme(.dark)
-        .task {
-            showReleaseNotesIfNeeded()
-            newDatasets = await NewDatasetsSheet.check()
-            showNewDatasetsIfNeeded()
-            await Library.updateAll()
+        .onChange(of: openedURL, initial: true) {
+            guard let openedURL else { return }
+            game.open(openedURL)
+            self.openedURL = nil
         }
+        .preferredColorScheme(.dark)
     }
 
     // MARK: - Content
@@ -141,21 +138,8 @@ struct ContentView: View {
         .sensoryFeedback(.impact(weight: .medium), trigger: game.phase)
     }
 
-    /// Dark, tinted with the revealed card's period color.
     private var background: some View {
-        let year = game.phase == .revealed ? game.track?.year : nil
-        let (start, end) = PeriodGradient.colors(for: year)
-        return ZStack {
-            Color.black
-            RadialGradient(
-                colors: [(year == nil ? Color.accentColor : start).opacity(0.45), .clear],
-                center: .top, startRadius: 0, endRadius: 600)
-            RadialGradient(
-                colors: [(year == nil ? Color.accentColor : end).opacity(0.25), .clear],
-                center: .bottomTrailing, startRadius: 0, endRadius: 500)
-        }
-        .ignoresSafeArea()
-        .animation(.easeInOut(duration: 0.8), value: year)
+        TintedBackground(year: game.phase == .revealed ? game.track?.year : nil)
     }
 
     @ViewBuilder
@@ -174,11 +158,21 @@ struct ContentView: View {
     @ToolbarContentBuilder
     private var toolbar: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
+            Button {
+                game.next()
+                close()
+            } label: {
+                Label("Home", systemImage: "house.fill")
+            }
+        }
+
+        ToolbarItem(placement: .topBarLeading) {
             Button { showingSettings = true } label: {
                 Label("Settings", systemImage: "gearshape.fill")
             }
         }
-        
+
+
         ToolbarItem(placement: .topBarTrailing) {
             Button { showingLibrary = true } label: {
                 HStack(spacing: 6) {
@@ -230,17 +224,5 @@ struct ContentView: View {
         } else {
             Button("OK", role: .cancel) {}
         }
-    }
-
-    /// Waits for the release notes: one sheet at a time.
-    private func showNewDatasetsIfNeeded() {
-        guard !newDatasets.isEmpty, !showingReleaseNotes else { return }
-        showingNewDatasets = true
-    }
-
-    private func showReleaseNotesIfNeeded() {
-        guard seenReleaseNotesVersion != ReleaseNotes.version, ReleaseNotes.hasNotesForCurrentVersion else { return }
-        seenReleaseNotesVersion = ReleaseNotes.version
-        showingReleaseNotes = true
     }
 }
