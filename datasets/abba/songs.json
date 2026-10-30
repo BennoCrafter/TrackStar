@@ -1,0 +1,345 @@
+[
+  {
+    "id": 1,
+    "title": "Ring Ring",
+    "artist": "ABBA",
+    "year": 1973,
+    "album": "Ring Ring"
+  },
+  {
+    "id": 2,
+    "title": "People Need Love",
+    "artist": "ABBA",
+    "year": 1973,
+    "album": "Ring Ring"
+  },
+  {
+    "id": 3,
+    "title": "Nina, Pretty Ballerina",
+    "artist": "ABBA",
+    "year": 1973,
+    "album": "Ring Ring"
+  },
+  {
+    "id": 4,
+    "title": "He Is Your Brother",
+    "artist": "ABBA",
+    "year": 1973,
+    "album": "Ring Ring"
+  },
+  {
+    "id": 5,
+    "title": "Waterloo",
+    "artist": "ABBA",
+    "year": 1974,
+    "album": "Waterloo"
+  },
+  {
+    "id": 6,
+    "title": "King Kong Song",
+    "artist": "ABBA",
+    "year": 1974,
+    "album": "Waterloo"
+  },
+  {
+    "id": 7,
+    "title": "Hasta Mañana",
+    "artist": "ABBA",
+    "year": 1974,
+    "album": "Waterloo"
+  },
+  {
+    "id": 8,
+    "title": "Dance (While the Music Still Goes On)",
+    "artist": "ABBA",
+    "year": 1974,
+    "album": "Waterloo"
+  },
+  {
+    "id": 9,
+    "title": "Honey, Honey",
+    "artist": "ABBA",
+    "year": 1974,
+    "album": "Waterloo"
+  },
+  {
+    "id": 10,
+    "title": "Mamma Mia",
+    "artist": "ABBA",
+    "year": 1975,
+    "album": "ABBA"
+  },
+  {
+    "id": 11,
+    "title": "SOS",
+    "artist": "ABBA",
+    "year": 1975,
+    "album": "ABBA"
+  },
+  {
+    "id": 12,
+    "title": "Bang-A-Boomerang",
+    "artist": "ABBA",
+    "year": 1975,
+    "album": "ABBA"
+  },
+  {
+    "id": 13,
+    "title": "I Do, I Do, I Do, I Do, I Do",
+    "artist": "ABBA",
+    "year": 1975,
+    "album": "ABBA"
+  },
+  {
+    "id": 14,
+    "title": "Rock Me",
+    "artist": "ABBA",
+    "year": 1975,
+    "album": "ABBA"
+  },
+  {
+    "id": 15,
+    "title": "So Long",
+    "artist": "ABBA",
+    "year": 1975,
+    "album": "ABBA"
+  },
+  {
+    "id": 16,
+    "title": "When I Kissed the Teacher",
+    "artist": "ABBA",
+    "year": 1976,
+    "album": "Arrival"
+  },
+  {
+    "id": 17,
+    "title": "Dancing Queen",
+    "artist": "ABBA",
+    "year": 1976,
+    "album": "Arrival"
+  },
+  {
+    "id": 18,
+    "title": "My Love, My Life",
+    "artist": "ABBA",
+    "year": 1976,
+    "album": "Arrival"
+  },
+  {
+    "id": 19,
+    "title": "Knowing Me, Knowing You",
+    "artist": "ABBA",
+    "year": 1976,
+    "album": "Arrival"
+  },
+  {
+    "id": 20,
+    "title": "Money, Money, Money",
+    "artist": "ABBA",
+    "year": 1976,
+    "album": "Arrival"
+  },
+  {
+    "id": 21,
+    "title": "That's Me",
+    "artist": "ABBA",
+    "year": 1976,
+    "album": "Arrival"
+  },
+  {
+    "id": 22,
+    "title": "Eagle",
+    "artist": "ABBA",
+    "year": 1977,
+    "album": "The Album"
+  },
+  {
+    "id": 23,
+    "title": "Take a Chance on Me",
+    "artist": "ABBA",
+    "year": 1977,
+    "album": "The Album"
+  },
+  {
+    "id": 24,
+    "title": "One Man, One Woman",
+    "artist": "ABBA",
+    "year": 1977,
+    "album": "The Album"
+  },
+  {
+    "id": 25,
+    "title": "The Name of the Game",
+    "artist": "ABBA",
+    "year": 1977,
+    "album": "The Album"
+  },
+  {
+    "id": 26,
+    "title": "Thank You for the Music",
+    "artist": "ABBA",
+    "year": 1977,
+    "album": "The Album"
+  },
+  {
+    "id": 27,
+    "title": "Voulez-Vous",
+    "artist": "ABBA",
+    "year": 1979,
+    "album": "Voulez-Vous"
+  },
+  {
+    "id": 28,
+    "title": "I Have a Dream",
+    "artist": "ABBA",
+    "year": 1979,
+    "album": "Voulez-Vous"
+  },
+  {
+    "id": 29,
+    "title": "Angeleyes",
+    "artist": "ABBA",
+    "year": 1979,
+    "album": "Voulez-Vous"
+  },
+  {
+    "id": 30,
+    "title": "Does Your Mother Know",
+    "artist": "ABBA",
+    "year": 1979,
+    "album": "Voulez-Vous"
+  },
+  {
+    "id": 31,
+    "title": "Chiquitita",
+    "artist": "ABBA",
+    "year": 1979,
+    "album": "Voulez-Vous"
+  },
+  {
+    "id": 32,
+    "title": "Super Trouper",
+    "artist": "ABBA",
+    "year": 1980,
+    "album": "Super Trouper"
+  },
+  {
+    "id": 33,
+    "title": "The Winner Takes It All",
+    "artist": "ABBA",
+    "year": 1980,
+    "album": "Super Trouper"
+  },
+  {
+    "id": 34,
+    "title": "On and On and On",
+    "artist": "ABBA",
+    "year": 1980,
+    "album": "Super Trouper"
+  },
+  {
+    "id": 35,
+    "title": "Andante, Andante",
+    "artist": "ABBA",
+    "year": 1980,
+    "album": "Super Trouper"
+  },
+  {
+    "id": 36,
+    "title": "Happy New Year",
+    "artist": "ABBA",
+    "year": 1980,
+    "album": "Super Trouper"
+  },
+  {
+    "id": 37,
+    "title": "Our Last Summer",
+    "artist": "ABBA",
+    "year": 1980,
+    "album": "Super Trouper"
+  },
+  {
+    "id": 38,
+    "title": "Lay All Your Love on Me",
+    "artist": "ABBA",
+    "year": 1980,
+    "album": "Super Trouper"
+  },
+  {
+    "id": 39,
+    "title": "The Visitors",
+    "artist": "ABBA",
+    "year": 1981,
+    "album": "The Visitors"
+  },
+  {
+    "id": 40,
+    "title": "Head over Heels",
+    "artist": "ABBA",
+    "year": 1981,
+    "album": "The Visitors"
+  },
+  {
+    "id": 41,
+    "title": "When All Is Said and Done",
+    "artist": "ABBA",
+    "year": 1981,
+    "album": "The Visitors"
+  },
+  {
+    "id": 42,
+    "title": "One of Us",
+    "artist": "ABBA",
+    "year": 1981,
+    "album": "The Visitors"
+  },
+  {
+    "id": 43,
+    "title": "Slipping Through My Fingers",
+    "artist": "ABBA",
+    "year": 1981,
+    "album": "The Visitors"
+  },
+  {
+    "id": 44,
+    "title": "I Still Have Faith in You",
+    "artist": "ABBA",
+    "year": 2021,
+    "album": "Voyage"
+  },
+  {
+    "id": 45,
+    "title": "When You Danced with Me",
+    "artist": "ABBA",
+    "year": 2021,
+    "album": "Voyage"
+  },
+  {
+    "id": 46,
+    "title": "Little Things",
+    "artist": "ABBA",
+    "year": 2021,
+    "album": "Voyage"
+  },
+  {
+    "id": 47,
+    "title": "Don't Shut Me Down",
+    "artist": "ABBA",
+    "year": 2021,
+    "album": "Voyage"
+  },
+  {
+    "id": 48,
+    "title": "Just a Notion",
+    "artist": "ABBA",
+    "year": 2021,
+    "album": "Voyage"
+  },
+  {
+    "id": 49,
+    "title": "No Doubt About It",
+    "artist": "ABBA",
+    "year": 2021,
+    "album": "Voyage"
+  }
+]

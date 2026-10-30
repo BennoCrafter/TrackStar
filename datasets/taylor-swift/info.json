@@ -2,5 +2,6 @@
   "name": "taylor-swift",
   "display_name": "Taylor Swift",
   "version": 1,
-  "icon": "sparkles"
+  "icon": "sparkles",
+  "type": "artist"
 }

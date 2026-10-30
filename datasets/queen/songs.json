@@ -1,0 +1,492 @@
+[
+  {
+    "id": 1,
+    "title": "Keep Yourself Alive",
+    "artist": "Queen",
+    "year": 1973,
+    "album": "Queen"
+  },
+  {
+    "id": 2,
+    "title": "Doing All Right",
+    "artist": "Queen",
+    "year": 1973,
+    "album": "Queen"
+  },
+  {
+    "id": 3,
+    "title": "Liar",
+    "artist": "Queen",
+    "year": 1973,
+    "album": "Queen"
+  },
+  {
+    "id": 4,
+    "title": "Son and Daughter",
+    "artist": "Queen",
+    "year": 1973,
+    "album": "Queen"
+  },
+  {
+    "id": 5,
+    "title": "Father to Son",
+    "artist": "Queen",
+    "year": 1974,
+    "album": "Queen II"
+  },
+  {
+    "id": 6,
+    "title": "Ogre Battle",
+    "artist": "Queen",
+    "year": 1974,
+    "album": "Queen II"
+  },
+  {
+    "id": 7,
+    "title": "The March of the Black Queen",
+    "artist": "Queen",
+    "year": 1974,
+    "album": "Queen II"
+  },
+  {
+    "id": 8,
+    "title": "Seven Seas of Rhye",
+    "artist": "Queen",
+    "year": 1974,
+    "album": "Queen II"
+  },
+  {
+    "id": 9,
+    "title": "Brighton Rock",
+    "artist": "Queen",
+    "year": 1974,
+    "album": "Sheer Heart Attack"
+  },
+  {
+    "id": 10,
+    "title": "Killer Queen",
+    "artist": "Queen",
+    "year": 1974,
+    "album": "Sheer Heart Attack"
+  },
+  {
+    "id": 11,
+    "title": "Now I'm Here",
+    "artist": "Queen",
+    "year": 1974,
+    "album": "Sheer Heart Attack"
+  },
+  {
+    "id": 12,
+    "title": "Stone Cold Crazy",
+    "artist": "Queen",
+    "year": 1974,
+    "album": "Sheer Heart Attack"
+  },
+  {
+    "id": 13,
+    "title": "I'm in Love with My Car",
+    "artist": "Queen",
+    "year": 1975,
+    "album": "A Night at the Opera"
+  },
+  {
+    "id": 14,
+    "title": "You're My Best Friend",
+    "artist": "Queen",
+    "year": 1975,
+    "album": "A Night at the Opera"
+  },
+  {
+    "id": 15,
+    "title": "'39",
+    "artist": "Queen",
+    "year": 1975,
+    "album": "A Night at the Opera"
+  },
+  {
+    "id": 16,
+    "title": "Love of My Life",
+    "artist": "Queen",
+    "year": 1975,
+    "album": "A Night at the Opera"
+  },
+  {
+    "id": 17,
+    "title": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "year": 1975,
+    "album": "A Night at the Opera"
+  },
+  {
+    "id": 18,
+    "title": "Tie Your Mother Down",
+    "artist": "Queen",
+    "year": 1976,
+    "album": "A Day at the Races"
+  },
+  {
+    "id": 19,
+    "title": "Long Away",
+    "artist": "Queen",
+    "year": 1976,
+    "album": "A Day at the Races"
+  },
+  {
+    "id": 20,
+    "title": "Somebody to Love",
+    "artist": "Queen",
+    "year": 1976,
+    "album": "A Day at the Races"
+  },
+  {
+    "id": 21,
+    "title": "Good Old-Fashioned Lover Boy",
+    "artist": "Queen",
+    "year": 1976,
+    "album": "A Day at the Races"
+  },
+  {
+    "id": 22,
+    "title": "We Will Rock You",
+    "artist": "Queen",
+    "year": 1977,
+    "album": "News of the World"
+  },
+  {
+    "id": 23,
+    "title": "We Are the Champions",
+    "artist": "Queen",
+    "year": 1977,
+    "album": "News of the World"
+  },
+  {
+    "id": 24,
+    "title": "Sheer Heart Attack",
+    "artist": "Queen",
+    "year": 1977,
+    "album": "News of the World"
+  },
+  {
+    "id": 25,
+    "title": "Spread Your Wings",
+    "artist": "Queen",
+    "year": 1977,
+    "album": "News of the World"
+  },
+  {
+    "id": 26,
+    "title": "It's Late",
+    "artist": "Queen",
+    "year": 1977,
+    "album": "News of the World"
+  },
+  {
+    "id": 27,
+    "title": "Mustapha",
+    "artist": "Queen",
+    "year": 1978,
+    "album": "Jazz"
+  },
+  {
+    "id": 28,
+    "title": "Fat Bottomed Girls",
+    "artist": "Queen",
+    "year": 1978,
+    "album": "Jazz"
+  },
+  {
+    "id": 29,
+    "title": "Jealousy",
+    "artist": "Queen",
+    "year": 1978,
+    "album": "Jazz"
+  },
+  {
+    "id": 30,
+    "title": "Bicycle Race",
+    "artist": "Queen",
+    "year": 1978,
+    "album": "Jazz"
+  },
+  {
+    "id": 31,
+    "title": "Don't Stop Me Now",
+    "artist": "Queen",
+    "year": 1978,
+    "album": "Jazz"
+  },
+  {
+    "id": 32,
+    "title": "Play the Game",
+    "artist": "Queen",
+    "year": 1980,
+    "album": "The Game"
+  },
+  {
+    "id": 33,
+    "title": "Dragon Attack",
+    "artist": "Queen",
+    "year": 1980,
+    "album": "The Game"
+  },
+  {
+    "id": 34,
+    "title": "Another One Bites the Dust",
+    "artist": "Queen",
+    "year": 1980,
+    "album": "The Game"
+  },
+  {
+    "id": 35,
+    "title": "Need Your Loving Tonight",
+    "artist": "Queen",
+    "year": 1980,
+    "album": "The Game"
+  },
+  {
+    "id": 36,
+    "title": "Crazy Little Thing Called Love",
+    "artist": "Queen",
+    "year": 1980,
+    "album": "The Game"
+  },
+  {
+    "id": 37,
+    "title": "Save Me",
+    "artist": "Queen",
+    "year": 1980,
+    "album": "The Game"
+  },
+  {
+    "id": 38,
+    "title": "Staying Power",
+    "artist": "Queen",
+    "year": 1982,
+    "album": "Hot Space"
+  },
+  {
+    "id": 39,
+    "title": "Back Chat",
+    "artist": "Queen",
+    "year": 1982,
+    "album": "Hot Space"
+  },
+  {
+    "id": 40,
+    "title": "Body Language",
+    "artist": "Queen",
+    "year": 1982,
+    "album": "Hot Space"
+  },
+  {
+    "id": 41,
+    "title": "Calling All Girls",
+    "artist": "Queen",
+    "year": 1982,
+    "album": "Hot Space"
+  },
+  {
+    "id": 42,
+    "title": "Under Pressure",
+    "artist": "Queen",
+    "year": 1982,
+    "album": "Hot Space"
+  },
+  {
+    "id": 43,
+    "title": "Radio Ga Ga",
+    "artist": "Queen",
+    "year": 1984,
+    "album": "The Works"
+  },
+  {
+    "id": 44,
+    "title": "It's a Hard Life",
+    "artist": "Queen",
+    "year": 1984,
+    "album": "The Works"
+  },
+  {
+    "id": 45,
+    "title": "I Want to Break Free",
+    "artist": "Queen",
+    "year": 1984,
+    "album": "The Works"
+  },
+  {
+    "id": 46,
+    "title": "Hammer to Fall",
+    "artist": "Queen",
+    "year": 1984,
+    "album": "The Works"
+  },
+  {
+    "id": 47,
+    "title": "Is This the World We Created...?",
+    "artist": "Queen",
+    "year": 1984,
+    "album": "The Works"
+  },
+  {
+    "id": 48,
+    "title": "One Vision",
+    "artist": "Queen",
+    "year": 1986,
+    "album": "A Kind of Magic"
+  },
+  {
+    "id": 49,
+    "title": "A Kind of Magic",
+    "artist": "Queen",
+    "year": 1986,
+    "album": "A Kind of Magic"
+  },
+  {
+    "id": 50,
+    "title": "Pain Is So Close to Pleasure",
+    "artist": "Queen",
+    "year": 1986,
+    "album": "A Kind of Magic"
+  },
+  {
+    "id": 51,
+    "title": "Friends Will Be Friends",
+    "artist": "Queen",
+    "year": 1986,
+    "album": "A Kind of Magic"
+  },
+  {
+    "id": 52,
+    "title": "Who Wants to Live Forever",
+    "artist": "Queen",
+    "year": 1986,
+    "album": "A Kind of Magic"
+  },
+  {
+    "id": 53,
+    "title": "Princes of the Universe",
+    "artist": "Queen",
+    "year": 1986,
+    "album": "A Kind of Magic"
+  },
+  {
+    "id": 54,
+    "title": "The Miracle",
+    "artist": "Queen",
+    "year": 1989,
+    "album": "The Miracle"
+  },
+  {
+    "id": 55,
+    "title": "I Want It All",
+    "artist": "Queen",
+    "year": 1989,
+    "album": "The Miracle"
+  },
+  {
+    "id": 56,
+    "title": "The Invisible Man",
+    "artist": "Queen",
+    "year": 1989,
+    "album": "The Miracle"
+  },
+  {
+    "id": 57,
+    "title": "Breakthru",
+    "artist": "Queen",
+    "year": 1989,
+    "album": "The Miracle"
+  },
+  {
+    "id": 58,
+    "title": "Scandal",
+    "artist": "Queen",
+    "year": 1989,
+    "album": "The Miracle"
+  },
+  {
+    "id": 59,
+    "title": "Innuendo",
+    "artist": "Queen",
+    "year": 1991,
+    "album": "Innuendo"
+  },
+  {
+    "id": 60,
+    "title": "I'm Going Slightly Mad",
+    "artist": "Queen",
+    "year": 1991,
+    "album": "Innuendo"
+  },
+  {
+    "id": 61,
+    "title": "Headlong",
+    "artist": "Queen",
+    "year": 1991,
+    "album": "Innuendo"
+  },
+  {
+    "id": 62,
+    "title": "These Are the Days of Our Lives",
+    "artist": "Queen",
+    "year": 1991,
+    "album": "Innuendo"
+  },
+  {
+    "id": 63,
+    "title": "The Show Must Go On",
+    "artist": "Queen",
+    "year": 1991,
+    "album": "Innuendo"
+  },
+  {
+    "id": 64,
+    "title": "Made in Heaven",
+    "artist": "Queen",
+    "year": 1995,
+    "album": "Made in Heaven"
+  },
+  {
+    "id": 65,
+    "title": "Let Me Live",
+    "artist": "Queen",
+    "year": 1995,
+    "album": "Made in Heaven"
+  },
+  {
+    "id": 66,
+    "title": "I Was Born to Love You",
+    "artist": "Queen",
+    "year": 1995,
+    "album": "Made in Heaven"
+  },
+  {
+    "id": 67,
+    "title": "Heaven for Everyone",
+    "artist": "Queen",
+    "year": 1995,
+    "album": "Made in Heaven"
+  },
+  {
+    "id": 68,
+    "title": "Too Much Love Will Kill You",
+    "artist": "Queen",
+    "year": 1995,
+    "album": "Made in Heaven"
+  },
+  {
+    "id": 69,
+    "title": "You Don't Fool Me",
+    "artist": "Queen",
+    "year": 1995,
+    "album": "Made in Heaven"
+  },
+  {
+    "id": 70,
+    "title": "A Winter's Tale",
+    "artist": "Queen",
+    "year": 1995,
+    "album": "Made in Heaven"
+  }
+]

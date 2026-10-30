@@ -1,0 +1,429 @@
+[
+  {
+    "id": 1,
+    "title": "Lucky Star",
+    "artist": "Madonna",
+    "year": 1983,
+    "album": "Madonna"
+  },
+  {
+    "id": 2,
+    "title": "Borderline",
+    "artist": "Madonna",
+    "year": 1983,
+    "album": "Madonna"
+  },
+  {
+    "id": 3,
+    "title": "Burning Up",
+    "artist": "Madonna",
+    "year": 1983,
+    "album": "Madonna"
+  },
+  {
+    "id": 4,
+    "title": "Holiday",
+    "artist": "Madonna",
+    "year": 1983,
+    "album": "Madonna"
+  },
+  {
+    "id": 5,
+    "title": "Everybody",
+    "artist": "Madonna",
+    "year": 1983,
+    "album": "Madonna"
+  },
+  {
+    "id": 6,
+    "title": "Material Girl",
+    "artist": "Madonna",
+    "year": 1984,
+    "album": "Like a Virgin"
+  },
+  {
+    "id": 7,
+    "title": "Angel",
+    "artist": "Madonna",
+    "year": 1984,
+    "album": "Like a Virgin"
+  },
+  {
+    "id": 8,
+    "title": "Like a Virgin",
+    "artist": "Madonna",
+    "year": 1984,
+    "album": "Like a Virgin"
+  },
+  {
+    "id": 9,
+    "title": "Dress You Up",
+    "artist": "Madonna",
+    "year": 1984,
+    "album": "Like a Virgin"
+  },
+  {
+    "id": 10,
+    "title": "Papa Don't Preach",
+    "artist": "Madonna",
+    "year": 1986,
+    "album": "True Blue"
+  },
+  {
+    "id": 11,
+    "title": "Open Your Heart",
+    "artist": "Madonna",
+    "year": 1986,
+    "album": "True Blue"
+  },
+  {
+    "id": 12,
+    "title": "Live to Tell",
+    "artist": "Madonna",
+    "year": 1986,
+    "album": "True Blue"
+  },
+  {
+    "id": 13,
+    "title": "True Blue",
+    "artist": "Madonna",
+    "year": 1986,
+    "album": "True Blue"
+  },
+  {
+    "id": 14,
+    "title": "La Isla Bonita",
+    "artist": "Madonna",
+    "year": 1986,
+    "album": "True Blue"
+  },
+  {
+    "id": 15,
+    "title": "Like a Prayer",
+    "artist": "Madonna",
+    "year": 1989,
+    "album": "Like a Prayer"
+  },
+  {
+    "id": 16,
+    "title": "Express Yourself",
+    "artist": "Madonna",
+    "year": 1989,
+    "album": "Like a Prayer"
+  },
+  {
+    "id": 17,
+    "title": "Cherish",
+    "artist": "Madonna",
+    "year": 1989,
+    "album": "Like a Prayer"
+  },
+  {
+    "id": 18,
+    "title": "Dear Jessie",
+    "artist": "Madonna",
+    "year": 1989,
+    "album": "Like a Prayer"
+  },
+  {
+    "id": 19,
+    "title": "Oh Father",
+    "artist": "Madonna",
+    "year": 1989,
+    "album": "Like a Prayer"
+  },
+  {
+    "id": 20,
+    "title": "Keep It Together",
+    "artist": "Madonna",
+    "year": 1989,
+    "album": "Like a Prayer"
+  },
+  {
+    "id": 21,
+    "title": "Erotica",
+    "artist": "Madonna",
+    "year": 1992,
+    "album": "Erotica"
+  },
+  {
+    "id": 22,
+    "title": "Fever",
+    "artist": "Madonna",
+    "year": 1992,
+    "album": "Erotica"
+  },
+  {
+    "id": 23,
+    "title": "Bye Bye Baby",
+    "artist": "Madonna",
+    "year": 1992,
+    "album": "Erotica"
+  },
+  {
+    "id": 24,
+    "title": "Deeper and Deeper",
+    "artist": "Madonna",
+    "year": 1992,
+    "album": "Erotica"
+  },
+  {
+    "id": 25,
+    "title": "Bad Girl",
+    "artist": "Madonna",
+    "year": 1992,
+    "album": "Erotica"
+  },
+  {
+    "id": 26,
+    "title": "Rain",
+    "artist": "Madonna",
+    "year": 1992,
+    "album": "Erotica"
+  },
+  {
+    "id": 27,
+    "title": "Secret",
+    "artist": "Madonna",
+    "year": 1994,
+    "album": "Bedtime Stories"
+  },
+  {
+    "id": 28,
+    "title": "Human Nature",
+    "artist": "Madonna",
+    "year": 1994,
+    "album": "Bedtime Stories"
+  },
+  {
+    "id": 29,
+    "title": "Bedtime Story",
+    "artist": "Madonna",
+    "year": 1994,
+    "album": "Bedtime Stories"
+  },
+  {
+    "id": 30,
+    "title": "Take a Bow",
+    "artist": "Madonna",
+    "year": 1994,
+    "album": "Bedtime Stories"
+  },
+  {
+    "id": 31,
+    "title": "Drowned World/Substitute for Love",
+    "artist": "Madonna",
+    "year": 1998,
+    "album": "Ray of Light"
+  },
+  {
+    "id": 32,
+    "title": "Ray of Light",
+    "artist": "Madonna",
+    "year": 1998,
+    "album": "Ray of Light"
+  },
+  {
+    "id": 33,
+    "title": "Nothing Really Matters",
+    "artist": "Madonna",
+    "year": 1998,
+    "album": "Ray of Light"
+  },
+  {
+    "id": 34,
+    "title": "Frozen",
+    "artist": "Madonna",
+    "year": 1998,
+    "album": "Ray of Light"
+  },
+  {
+    "id": 35,
+    "title": "The Power of Good-Bye",
+    "artist": "Madonna",
+    "year": 1998,
+    "album": "Ray of Light"
+  },
+  {
+    "id": 36,
+    "title": "Music",
+    "artist": "Madonna",
+    "year": 2000,
+    "album": "Music"
+  },
+  {
+    "id": 37,
+    "title": "Amazing",
+    "artist": "Madonna",
+    "year": 2000,
+    "album": "Music"
+  },
+  {
+    "id": 38,
+    "title": "Don't Tell Me",
+    "artist": "Madonna",
+    "year": 2000,
+    "album": "Music"
+  },
+  {
+    "id": 39,
+    "title": "What It Feels Like for a Girl",
+    "artist": "Madonna",
+    "year": 2000,
+    "album": "Music"
+  },
+  {
+    "id": 40,
+    "title": "American Life",
+    "artist": "Madonna",
+    "year": 2003,
+    "album": "American Life"
+  },
+  {
+    "id": 41,
+    "title": "Hollywood",
+    "artist": "Madonna",
+    "year": 2003,
+    "album": "American Life"
+  },
+  {
+    "id": 42,
+    "title": "Love Profusion",
+    "artist": "Madonna",
+    "year": 2003,
+    "album": "American Life"
+  },
+  {
+    "id": 43,
+    "title": "Nothing Fails",
+    "artist": "Madonna",
+    "year": 2003,
+    "album": "American Life"
+  },
+  {
+    "id": 44,
+    "title": "Die Another Day",
+    "artist": "Madonna",
+    "year": 2003,
+    "album": "American Life"
+  },
+  {
+    "id": 45,
+    "title": "Hung Up",
+    "artist": "Madonna",
+    "year": 2005,
+    "album": "Confessions on a Dance Floor"
+  },
+  {
+    "id": 46,
+    "title": "Get Together",
+    "artist": "Madonna",
+    "year": 2005,
+    "album": "Confessions on a Dance Floor"
+  },
+  {
+    "id": 47,
+    "title": "Sorry",
+    "artist": "Madonna",
+    "year": 2005,
+    "album": "Confessions on a Dance Floor"
+  },
+  {
+    "id": 48,
+    "title": "Jump",
+    "artist": "Madonna",
+    "year": 2005,
+    "album": "Confessions on a Dance Floor"
+  },
+  {
+    "id": 49,
+    "title": "Candy Shop",
+    "artist": "Madonna",
+    "year": 2008,
+    "album": "Hard Candy"
+  },
+  {
+    "id": 50,
+    "title": "4 Minutes",
+    "artist": "Madonna",
+    "year": 2008,
+    "album": "Hard Candy"
+  },
+  {
+    "id": 51,
+    "title": "Give It 2 Me",
+    "artist": "Madonna",
+    "year": 2008,
+    "album": "Hard Candy"
+  },
+  {
+    "id": 52,
+    "title": "Miles Away",
+    "artist": "Madonna",
+    "year": 2008,
+    "album": "Hard Candy"
+  },
+  {
+    "id": 53,
+    "title": "Girl Gone Wild",
+    "artist": "Madonna",
+    "year": 2012,
+    "album": "MDNA"
+  },
+  {
+    "id": 54,
+    "title": "Turn Up the Radio",
+    "artist": "Madonna",
+    "year": 2012,
+    "album": "MDNA"
+  },
+  {
+    "id": 55,
+    "title": "Give Me All Your Luvin'",
+    "artist": "Madonna",
+    "year": 2012,
+    "album": "MDNA"
+  },
+  {
+    "id": 56,
+    "title": "Living for Love",
+    "artist": "Madonna",
+    "year": 2015,
+    "album": "Rebel Heart"
+  },
+  {
+    "id": 57,
+    "title": "Ghosttown",
+    "artist": "Madonna",
+    "year": 2015,
+    "album": "Rebel Heart"
+  },
+  {
+    "id": 58,
+    "title": "Bitch I'm Madonna",
+    "artist": "Madonna",
+    "year": 2015,
+    "album": "Rebel Heart"
+  },
+  {
+    "id": 59,
+    "title": "Medellín",
+    "artist": "Madonna",
+    "year": 2019,
+    "album": "Madame X"
+  },
+  {
+    "id": 60,
+    "title": "Crave",
+    "artist": "Madonna",
+    "year": 2019,
+    "album": "Madame X"
+  },
+  {
+    "id": 61,
+    "title": "I Rise",
+    "artist": "Madonna",
+    "year": 2019,
+    "album": "Madame X"
+  }
+]

@@ -1,0 +1,373 @@
+[
+  {
+    "id": 1,
+    "title": "We've Got It Goin' On",
+    "artist": "Backstreet Boys",
+    "year": 1996,
+    "album": "Backstreet Boys"
+  },
+  {
+    "id": 2,
+    "title": "Anywhere for You",
+    "artist": "Backstreet Boys",
+    "year": 1996,
+    "album": "Backstreet Boys"
+  },
+  {
+    "id": 3,
+    "title": "Get Down (You're the One for Me)",
+    "artist": "Backstreet Boys",
+    "year": 1996,
+    "album": "Backstreet Boys"
+  },
+  {
+    "id": 4,
+    "title": "I'll Never Break Your Heart",
+    "artist": "Backstreet Boys",
+    "year": 1996,
+    "album": "Backstreet Boys"
+  },
+  {
+    "id": 5,
+    "title": "Quit Playing Games (With My Heart)",
+    "artist": "Backstreet Boys",
+    "year": 1996,
+    "album": "Backstreet Boys"
+  },
+  {
+    "id": 6,
+    "title": "Darlin'",
+    "artist": "Backstreet Boys",
+    "year": 1996,
+    "album": "Backstreet Boys"
+  },
+  {
+    "id": 7,
+    "title": "Everybody (Backstreet's Back)",
+    "artist": "Backstreet Boys",
+    "year": 1997,
+    "album": "Backstreet's Back"
+  },
+  {
+    "id": 8,
+    "title": "As Long as You Love Me",
+    "artist": "Backstreet Boys",
+    "year": 1997,
+    "album": "Backstreet's Back"
+  },
+  {
+    "id": 9,
+    "title": "All I Have to Give",
+    "artist": "Backstreet Boys",
+    "year": 1997,
+    "album": "Backstreet's Back"
+  },
+  {
+    "id": 10,
+    "title": "That's the Way I Like It",
+    "artist": "Backstreet Boys",
+    "year": 1997,
+    "album": "Backstreet's Back"
+  },
+  {
+    "id": 11,
+    "title": "10,000 Promises",
+    "artist": "Backstreet Boys",
+    "year": 1997,
+    "album": "Backstreet's Back"
+  },
+  {
+    "id": 12,
+    "title": "Hey, Mr. DJ (Keep Playin' This Song)",
+    "artist": "Backstreet Boys",
+    "year": 1997,
+    "album": "Backstreet's Back"
+  },
+  {
+    "id": 13,
+    "title": "Larger Than Life",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": "Millennium"
+  },
+  {
+    "id": 14,
+    "title": "I Want It That Way",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": "Millennium"
+  },
+  {
+    "id": 15,
+    "title": "Show Me the Meaning of Being Lonely",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": "Millennium"
+  },
+  {
+    "id": 16,
+    "title": "It's Gotta Be You",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": "Millennium"
+  },
+  {
+    "id": 17,
+    "title": "Don't Want You Back",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": "Millennium"
+  },
+  {
+    "id": 18,
+    "title": "The One",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": "Millennium"
+  },
+  {
+    "id": 19,
+    "title": "Back to Your Heart",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": "Millennium"
+  },
+  {
+    "id": 20,
+    "title": "Spanish Eyes",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": "Millennium"
+  },
+  {
+    "id": 21,
+    "title": "The Call",
+    "artist": "Backstreet Boys",
+    "year": 2000,
+    "album": "Black & Blue"
+  },
+  {
+    "id": 22,
+    "title": "Shape of My Heart",
+    "artist": "Backstreet Boys",
+    "year": 2000,
+    "album": "Black & Blue"
+  },
+  {
+    "id": 23,
+    "title": "Get Another Boyfriend",
+    "artist": "Backstreet Boys",
+    "year": 2000,
+    "album": "Black & Blue"
+  },
+  {
+    "id": 24,
+    "title": "Everyone",
+    "artist": "Backstreet Boys",
+    "year": 2000,
+    "album": "Black & Blue"
+  },
+  {
+    "id": 25,
+    "title": "More Than That",
+    "artist": "Backstreet Boys",
+    "year": 2000,
+    "album": "Black & Blue"
+  },
+  {
+    "id": 26,
+    "title": "How Did I Fall in Love with You",
+    "artist": "Backstreet Boys",
+    "year": 2000,
+    "album": "Black & Blue"
+  },
+  {
+    "id": 27,
+    "title": "Incomplete",
+    "artist": "Backstreet Boys",
+    "year": 2005,
+    "album": "Never Gone"
+  },
+  {
+    "id": 28,
+    "title": "Just Want You to Know",
+    "artist": "Backstreet Boys",
+    "year": 2005,
+    "album": "Never Gone"
+  },
+  {
+    "id": 29,
+    "title": "Crawling Back to You",
+    "artist": "Backstreet Boys",
+    "year": 2005,
+    "album": "Never Gone"
+  },
+  {
+    "id": 30,
+    "title": "Climbing the Walls",
+    "artist": "Backstreet Boys",
+    "year": 2005,
+    "album": "Never Gone"
+  },
+  {
+    "id": 31,
+    "title": "I Still...",
+    "artist": "Backstreet Boys",
+    "year": 2005,
+    "album": "Never Gone"
+  },
+  {
+    "id": 32,
+    "title": "Never Gone",
+    "artist": "Backstreet Boys",
+    "year": 2005,
+    "album": "Never Gone"
+  },
+  {
+    "id": 33,
+    "title": "Everything but Mine",
+    "artist": "Backstreet Boys",
+    "year": 2007,
+    "album": "Unbreakable"
+  },
+  {
+    "id": 34,
+    "title": "Inconsolable",
+    "artist": "Backstreet Boys",
+    "year": 2007,
+    "album": "Unbreakable"
+  },
+  {
+    "id": 35,
+    "title": "Helpless When She Smiles",
+    "artist": "Backstreet Boys",
+    "year": 2007,
+    "album": "Unbreakable"
+  },
+  {
+    "id": 36,
+    "title": "Love Will Keep You Up All Night",
+    "artist": "Backstreet Boys",
+    "year": 2007,
+    "album": "Unbreakable"
+  },
+  {
+    "id": 37,
+    "title": "Unbreakable",
+    "artist": "Backstreet Boys",
+    "year": 2007,
+    "album": "Unbreakable"
+  },
+  {
+    "id": 38,
+    "title": "Straight Through My Heart",
+    "artist": "Backstreet Boys",
+    "year": 2009,
+    "album": "This Is Us"
+  },
+  {
+    "id": 39,
+    "title": "Bigger",
+    "artist": "Backstreet Boys",
+    "year": 2009,
+    "album": "This Is Us"
+  },
+  {
+    "id": 40,
+    "title": "Bye Bye Love",
+    "artist": "Backstreet Boys",
+    "year": 2009,
+    "album": "This Is Us"
+  },
+  {
+    "id": 41,
+    "title": "Undone",
+    "artist": "Backstreet Boys",
+    "year": 2009,
+    "album": "This Is Us"
+  },
+  {
+    "id": 42,
+    "title": "This Is Us",
+    "artist": "Backstreet Boys",
+    "year": 2009,
+    "album": "This Is Us"
+  },
+  {
+    "id": 43,
+    "title": "In a World Like This",
+    "artist": "Backstreet Boys",
+    "year": 2013,
+    "album": "In a World Like This"
+  },
+  {
+    "id": 44,
+    "title": "Permanent Stain",
+    "artist": "Backstreet Boys",
+    "year": 2013,
+    "album": "In a World Like This"
+  },
+  {
+    "id": 45,
+    "title": "Show 'Em (What You're Made Of)",
+    "artist": "Backstreet Boys",
+    "year": 2013,
+    "album": "In a World Like This"
+  },
+  {
+    "id": 46,
+    "title": "Madeleine",
+    "artist": "Backstreet Boys",
+    "year": 2013,
+    "album": "In a World Like This"
+  },
+  {
+    "id": 47,
+    "title": "Love Somebody",
+    "artist": "Backstreet Boys",
+    "year": 2013,
+    "album": "In a World Like This"
+  },
+  {
+    "id": 48,
+    "title": "Don't Go Breaking My Heart",
+    "artist": "Backstreet Boys",
+    "year": 2019,
+    "album": "DNA"
+  },
+  {
+    "id": 49,
+    "title": "Nobody Else",
+    "artist": "Backstreet Boys",
+    "year": 2019,
+    "album": "DNA"
+  },
+  {
+    "id": 50,
+    "title": "New Love",
+    "artist": "Backstreet Boys",
+    "year": 2019,
+    "album": "DNA"
+  },
+  {
+    "id": 51,
+    "title": "Chances",
+    "artist": "Backstreet Boys",
+    "year": 2019,
+    "album": "DNA"
+  },
+  {
+    "id": 52,
+    "title": "No Place",
+    "artist": "Backstreet Boys",
+    "year": 2019,
+    "album": "DNA"
+  },
+  {
+    "id": 53,
+    "title": "Chateau",
+    "artist": "Backstreet Boys",
+    "year": 2019,
+    "album": "DNA"
+  }
+]

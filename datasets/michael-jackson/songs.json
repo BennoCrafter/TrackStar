@@ -1,0 +1,338 @@
+[
+  {
+    "id": 1,
+    "title": "Don't Stop 'Til You Get Enough",
+    "artist": "Michael Jackson",
+    "year": 1979,
+    "album": "Off the Wall"
+  },
+  {
+    "id": 2,
+    "title": "Rock with You",
+    "artist": "Michael Jackson",
+    "year": 1979,
+    "album": "Off the Wall"
+  },
+  {
+    "id": 3,
+    "title": "Workin' Day and Night",
+    "artist": "Michael Jackson",
+    "year": 1979,
+    "album": "Off the Wall"
+  },
+  {
+    "id": 4,
+    "title": "Off the Wall",
+    "artist": "Michael Jackson",
+    "year": 1979,
+    "album": "Off the Wall"
+  },
+  {
+    "id": 5,
+    "title": "Girlfriend",
+    "artist": "Michael Jackson",
+    "year": 1979,
+    "album": "Off the Wall"
+  },
+  {
+    "id": 6,
+    "title": "She's Out of My Life",
+    "artist": "Michael Jackson",
+    "year": 1979,
+    "album": "Off the Wall"
+  },
+  {
+    "id": 7,
+    "title": "I Can't Help It",
+    "artist": "Michael Jackson",
+    "year": 1979,
+    "album": "Off the Wall"
+  },
+  {
+    "id": 8,
+    "title": "Wanna Be Startin' Somethin'",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 9,
+    "title": "Baby Be Mine",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 10,
+    "title": "The Girl Is Mine",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 11,
+    "title": "Thriller",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 12,
+    "title": "Beat It",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 13,
+    "title": "Billie Jean",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 14,
+    "title": "Human Nature",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 15,
+    "title": "P.Y.T. (Pretty Young Thing)",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 16,
+    "title": "The Lady in My Life",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "album": "Thriller"
+  },
+  {
+    "id": 17,
+    "title": "Bad",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 18,
+    "title": "The Way You Make Me Feel",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 19,
+    "title": "Speed Demon",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 20,
+    "title": "Liberian Girl",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 21,
+    "title": "Another Part of Me",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 22,
+    "title": "Man in the Mirror",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 23,
+    "title": "I Just Can't Stop Loving You",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 24,
+    "title": "Dirty Diana",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 25,
+    "title": "Smooth Criminal",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": "Bad"
+  },
+  {
+    "id": 26,
+    "title": "Jam",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 27,
+    "title": "In the Closet",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 28,
+    "title": "Remember the Time",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 29,
+    "title": "Heal the World",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 30,
+    "title": "Black or White",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 31,
+    "title": "Who Is It",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 32,
+    "title": "Give In to Me",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 33,
+    "title": "Will You Be There",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 34,
+    "title": "Gone Too Soon",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 35,
+    "title": "Dangerous",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": "Dangerous"
+  },
+  {
+    "id": 36,
+    "title": "Scream",
+    "artist": "Michael Jackson",
+    "year": 1995,
+    "album": "HIStory: Past, Present and Future, Book I"
+  },
+  {
+    "id": 37,
+    "title": "They Don't Care About Us",
+    "artist": "Michael Jackson",
+    "year": 1995,
+    "album": "HIStory: Past, Present and Future, Book I"
+  },
+  {
+    "id": 38,
+    "title": "Stranger in Moscow",
+    "artist": "Michael Jackson",
+    "year": 1995,
+    "album": "HIStory: Past, Present and Future, Book I"
+  },
+  {
+    "id": 39,
+    "title": "Earth Song",
+    "artist": "Michael Jackson",
+    "year": 1995,
+    "album": "HIStory: Past, Present and Future, Book I"
+  },
+  {
+    "id": 40,
+    "title": "You Are Not Alone",
+    "artist": "Michael Jackson",
+    "year": 1995,
+    "album": "HIStory: Past, Present and Future, Book I"
+  },
+  {
+    "id": 41,
+    "title": "HIStory",
+    "artist": "Michael Jackson",
+    "year": 1995,
+    "album": "HIStory: Past, Present and Future, Book I"
+  },
+  {
+    "id": 42,
+    "title": "Smile",
+    "artist": "Michael Jackson",
+    "year": 1995,
+    "album": "HIStory: Past, Present and Future, Book I"
+  },
+  {
+    "id": 43,
+    "title": "Unbreakable",
+    "artist": "Michael Jackson",
+    "year": 2001,
+    "album": "Invincible"
+  },
+  {
+    "id": 44,
+    "title": "You Rock My World",
+    "artist": "Michael Jackson",
+    "year": 2001,
+    "album": "Invincible"
+  },
+  {
+    "id": 45,
+    "title": "Butterflies",
+    "artist": "Michael Jackson",
+    "year": 2001,
+    "album": "Invincible"
+  },
+  {
+    "id": 46,
+    "title": "Speechless",
+    "artist": "Michael Jackson",
+    "year": 2001,
+    "album": "Invincible"
+  },
+  {
+    "id": 47,
+    "title": "Cry",
+    "artist": "Michael Jackson",
+    "year": 2001,
+    "album": "Invincible"
+  },
+  {
+    "id": 48,
+    "title": "Whatever Happens",
+    "artist": "Michael Jackson",
+    "year": 2001,
+    "album": "Invincible"
+  }
+]

@@ -1,0 +1,583 @@
+[
+  {
+    "id": 1,
+    "title": "I Saw Her Standing There",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "Please Please Me"
+  },
+  {
+    "id": 2,
+    "title": "Misery",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "Please Please Me"
+  },
+  {
+    "id": 3,
+    "title": "Please Please Me",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "Please Please Me"
+  },
+  {
+    "id": 4,
+    "title": "Love Me Do",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "Please Please Me"
+  },
+  {
+    "id": 5,
+    "title": "P.S. I Love You",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "Please Please Me"
+  },
+  {
+    "id": 6,
+    "title": "Do You Want to Know a Secret",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "Please Please Me"
+  },
+  {
+    "id": 7,
+    "title": "Twist and Shout",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "Please Please Me"
+  },
+  {
+    "id": 8,
+    "title": "It Won't Be Long",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "With the Beatles"
+  },
+  {
+    "id": 9,
+    "title": "All My Loving",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "With the Beatles"
+  },
+  {
+    "id": 10,
+    "title": "Till There Was You",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "With the Beatles"
+  },
+  {
+    "id": 11,
+    "title": "Please Mister Postman",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "With the Beatles"
+  },
+  {
+    "id": 12,
+    "title": "Roll Over Beethoven",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "With the Beatles"
+  },
+  {
+    "id": 13,
+    "title": "I Wanna Be Your Man",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "With the Beatles"
+  },
+  {
+    "id": 14,
+    "title": "Money (That's What I Want)",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": "With the Beatles"
+  },
+  {
+    "id": 15,
+    "title": "A Hard Day's Night",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "A Hard Day's Night"
+  },
+  {
+    "id": 16,
+    "title": "I Should Have Known Better",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "A Hard Day's Night"
+  },
+  {
+    "id": 17,
+    "title": "If I Fell",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "A Hard Day's Night"
+  },
+  {
+    "id": 18,
+    "title": "And I Love Her",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "A Hard Day's Night"
+  },
+  {
+    "id": 19,
+    "title": "Can't Buy Me Love",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "A Hard Day's Night"
+  },
+  {
+    "id": 20,
+    "title": "Things We Said Today",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "A Hard Day's Night"
+  },
+  {
+    "id": 21,
+    "title": "You Can't Do That",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "A Hard Day's Night"
+  },
+  {
+    "id": 22,
+    "title": "No Reply",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "Beatles for Sale"
+  },
+  {
+    "id": 23,
+    "title": "I'm a Loser",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "Beatles for Sale"
+  },
+  {
+    "id": 24,
+    "title": "Baby's in Black",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "Beatles for Sale"
+  },
+  {
+    "id": 25,
+    "title": "Rock and Roll Music",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "Beatles for Sale"
+  },
+  {
+    "id": 26,
+    "title": "I'll Follow the Sun",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "Beatles for Sale"
+  },
+  {
+    "id": 27,
+    "title": "Eight Days a Week",
+    "artist": "The Beatles",
+    "year": 1964,
+    "album": "Beatles for Sale"
+  },
+  {
+    "id": 28,
+    "title": "Help!",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Help!"
+  },
+  {
+    "id": 29,
+    "title": "You've Got to Hide Your Love Away",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Help!"
+  },
+  {
+    "id": 30,
+    "title": "Ticket to Ride",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Help!"
+  },
+  {
+    "id": 31,
+    "title": "I've Just Seen a Face",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Help!"
+  },
+  {
+    "id": 32,
+    "title": "Yesterday",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Help!"
+  },
+  {
+    "id": 33,
+    "title": "Drive My Car",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Rubber Soul"
+  },
+  {
+    "id": 34,
+    "title": "Norwegian Wood (This Bird Has Flown)",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Rubber Soul"
+  },
+  {
+    "id": 35,
+    "title": "Nowhere Man",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Rubber Soul"
+  },
+  {
+    "id": 36,
+    "title": "Michelle",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Rubber Soul"
+  },
+  {
+    "id": 37,
+    "title": "Girl",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Rubber Soul"
+  },
+  {
+    "id": 38,
+    "title": "In My Life",
+    "artist": "The Beatles",
+    "year": 1965,
+    "album": "Rubber Soul"
+  },
+  {
+    "id": 39,
+    "title": "Taxman",
+    "artist": "The Beatles",
+    "year": 1966,
+    "album": "Revolver"
+  },
+  {
+    "id": 40,
+    "title": "Eleanor Rigby",
+    "artist": "The Beatles",
+    "year": 1966,
+    "album": "Revolver"
+  },
+  {
+    "id": 41,
+    "title": "Here, There and Everywhere",
+    "artist": "The Beatles",
+    "year": 1966,
+    "album": "Revolver"
+  },
+  {
+    "id": 42,
+    "title": "Yellow Submarine",
+    "artist": "The Beatles",
+    "year": 1966,
+    "album": "Revolver"
+  },
+  {
+    "id": 43,
+    "title": "Good Day Sunshine",
+    "artist": "The Beatles",
+    "year": 1966,
+    "album": "Revolver"
+  },
+  {
+    "id": 44,
+    "title": "Got to Get You into My Life",
+    "artist": "The Beatles",
+    "year": 1966,
+    "album": "Revolver"
+  },
+  {
+    "id": 45,
+    "title": "Tomorrow Never Knows",
+    "artist": "The Beatles",
+    "year": 1966,
+    "album": "Revolver"
+  },
+  {
+    "id": 46,
+    "title": "Sgt. Pepper's Lonely Hearts Club Band",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "id": 47,
+    "title": "With a Little Help from My Friends",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "id": 48,
+    "title": "Lucy in the Sky with Diamonds",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "id": 49,
+    "title": "Getting Better",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "id": 50,
+    "title": "She's Leaving Home",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "id": 51,
+    "title": "When I'm Sixty-Four",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "id": 52,
+    "title": "Lovely Rita",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "id": 53,
+    "title": "A Day in the Life",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "id": 54,
+    "title": "Magical Mystery Tour",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Magical Mystery Tour"
+  },
+  {
+    "id": 55,
+    "title": "The Fool on the Hill",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Magical Mystery Tour"
+  },
+  {
+    "id": 56,
+    "title": "Your Mother Should Know",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Magical Mystery Tour"
+  },
+  {
+    "id": 57,
+    "title": "I Am the Walrus",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Magical Mystery Tour"
+  },
+  {
+    "id": 58,
+    "title": "Hello, Goodbye",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Magical Mystery Tour"
+  },
+  {
+    "id": 59,
+    "title": "Strawberry Fields Forever",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Magical Mystery Tour"
+  },
+  {
+    "id": 60,
+    "title": "Penny Lane",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Magical Mystery Tour"
+  },
+  {
+    "id": 61,
+    "title": "All You Need Is Love",
+    "artist": "The Beatles",
+    "year": 1967,
+    "album": "Magical Mystery Tour"
+  },
+  {
+    "id": 62,
+    "title": "Back in the U.S.S.R.",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 63,
+    "title": "Dear Prudence",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 64,
+    "title": "Ob-La-Di, Ob-La-Da",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 65,
+    "title": "While My Guitar Gently Weeps",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 66,
+    "title": "Blackbird",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 67,
+    "title": "Rocky Raccoon",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 68,
+    "title": "Julia",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 69,
+    "title": "Birthday",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 70,
+    "title": "Helter Skelter",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": "The Beatles (White Album)"
+  },
+  {
+    "id": 71,
+    "title": "Come Together",
+    "artist": "The Beatles",
+    "year": 1969,
+    "album": "Abbey Road"
+  },
+  {
+    "id": 72,
+    "title": "Something",
+    "artist": "The Beatles",
+    "year": 1969,
+    "album": "Abbey Road"
+  },
+  {
+    "id": 73,
+    "title": "Maxwell's Silver Hammer",
+    "artist": "The Beatles",
+    "year": 1969,
+    "album": "Abbey Road"
+  },
+  {
+    "id": 74,
+    "title": "Oh! Darling",
+    "artist": "The Beatles",
+    "year": 1969,
+    "album": "Abbey Road"
+  },
+  {
+    "id": 75,
+    "title": "Octopus's Garden",
+    "artist": "The Beatles",
+    "year": 1969,
+    "album": "Abbey Road"
+  },
+  {
+    "id": 76,
+    "title": "Here Comes the Sun",
+    "artist": "The Beatles",
+    "year": 1969,
+    "album": "Abbey Road"
+  },
+  {
+    "id": 77,
+    "title": "Golden Slumbers",
+    "artist": "The Beatles",
+    "year": 1969,
+    "album": "Abbey Road"
+  },
+  {
+    "id": 78,
+    "title": "Two of Us",
+    "artist": "The Beatles",
+    "year": 1970,
+    "album": "Let It Be"
+  },
+  {
+    "id": 79,
+    "title": "Across the Universe",
+    "artist": "The Beatles",
+    "year": 1970,
+    "album": "Let It Be"
+  },
+  {
+    "id": 80,
+    "title": "Let It Be",
+    "artist": "The Beatles",
+    "year": 1970,
+    "album": "Let It Be"
+  },
+  {
+    "id": 81,
+    "title": "I've Got a Feeling",
+    "artist": "The Beatles",
+    "year": 1970,
+    "album": "Let It Be"
+  },
+  {
+    "id": 82,
+    "title": "The Long and Winding Road",
+    "artist": "The Beatles",
+    "year": 1970,
+    "album": "Let It Be"
+  },
+  {
+    "id": 83,
+    "title": "Get Back",
+    "artist": "The Beatles",
+    "year": 1970,
+    "album": "Let It Be"
+  }
+]

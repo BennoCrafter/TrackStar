@@ -69,6 +69,8 @@ python generate.py build songs.json --name taylor-swift --display-name "Taylor S
 
 Optionally add `"icon"` to `info.json` by hand: an [SF Symbol](https://developer.apple.com/sf-symbols/) name (`"guitars"`) or an emoji (`"🇩🇪"`). Without one the app shows the first letter. Changing it needs no version bump; `build` keeps it.
 
+For one artist's songs add `"type": "artist"`: the app lists the pack under Artists, and the Party Game places cards by album instead of year. The album order is the order the albums first appear in `songs.json`, so list the songs album by album, oldest first (re-recordings like Taylor's Version go where the original was).
+
 Re-running `build` overwrites `info.json`, `songs.json` and `cards.pdf`; an existing `README.md` is kept.
 
 ### 3. `rebuild` – regenerate `cards.pdf`
@@ -107,7 +109,7 @@ python generate.py build ../datasets/taylor-swift/songs.json --name taylor-swift
 
 | file          | used by | content |
 |---------------|---------|---------|
-| `info.json`   | app     | `{"name": ..., "display_name": ..., "version": ..., "icon"?: ...}` |
+| `info.json`   | app     | `{"name": ..., "display_name": ..., "version": ..., "icon"?: ..., "type"?: "artist"}` |
 | `songs.json`  | app     | the song list |
 | `cards.pdf`   | app (download link), printing | the cards |
 | `README.md`   | app     | description + copyright note |

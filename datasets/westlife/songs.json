@@ -1,0 +1,226 @@
+[
+  {
+    "id": 1,
+    "title": "Swear It Again",
+    "artist": "Westlife",
+    "year": 1999,
+    "album": "Westlife"
+  },
+  {
+    "id": 2,
+    "title": "Fool Again",
+    "artist": "Westlife",
+    "year": 1999,
+    "album": "Westlife"
+  },
+  {
+    "id": 3,
+    "title": "If I Let You Go",
+    "artist": "Westlife",
+    "year": 1999,
+    "album": "Westlife"
+  },
+  {
+    "id": 4,
+    "title": "Flying Without Wings",
+    "artist": "Westlife",
+    "year": 1999,
+    "album": "Westlife"
+  },
+  {
+    "id": 5,
+    "title": "Seasons in the Sun",
+    "artist": "Westlife",
+    "year": 1999,
+    "album": "Westlife"
+  },
+  {
+    "id": 6,
+    "title": "I Have a Dream",
+    "artist": "Westlife",
+    "year": 1999,
+    "album": "Westlife"
+  },
+  {
+    "id": 7,
+    "title": "My Love",
+    "artist": "Westlife",
+    "year": 2000,
+    "album": "Coast to Coast"
+  },
+  {
+    "id": 8,
+    "title": "What Makes a Man",
+    "artist": "Westlife",
+    "year": 2000,
+    "album": "Coast to Coast"
+  },
+  {
+    "id": 9,
+    "title": "I Lay My Love on You",
+    "artist": "Westlife",
+    "year": 2000,
+    "album": "Coast to Coast"
+  },
+  {
+    "id": 10,
+    "title": "When You're Looking Like That",
+    "artist": "Westlife",
+    "year": 2000,
+    "album": "Coast to Coast"
+  },
+  {
+    "id": 11,
+    "title": "Queen of My Heart",
+    "artist": "Westlife",
+    "year": 2001,
+    "album": "World of Our Own"
+  },
+  {
+    "id": 12,
+    "title": "World of Our Own",
+    "artist": "Westlife",
+    "year": 2001,
+    "album": "World of Our Own"
+  },
+  {
+    "id": 13,
+    "title": "Bop Bop Baby",
+    "artist": "Westlife",
+    "year": 2001,
+    "album": "World of Our Own"
+  },
+  {
+    "id": 14,
+    "title": "Uptown Girl",
+    "artist": "Westlife",
+    "year": 2001,
+    "album": "World of Our Own"
+  },
+  {
+    "id": 15,
+    "title": "Mandy",
+    "artist": "Westlife",
+    "year": 2003,
+    "album": "Turnaround"
+  },
+  {
+    "id": 16,
+    "title": "Hey Whatever",
+    "artist": "Westlife",
+    "year": 2003,
+    "album": "Turnaround"
+  },
+  {
+    "id": 17,
+    "title": "Obvious",
+    "artist": "Westlife",
+    "year": 2003,
+    "album": "Turnaround"
+  },
+  {
+    "id": 18,
+    "title": "Turnaround",
+    "artist": "Westlife",
+    "year": 2003,
+    "album": "Turnaround"
+  },
+  {
+    "id": 19,
+    "title": "You Raise Me Up",
+    "artist": "Westlife",
+    "year": 2005,
+    "album": "Face to Face"
+  },
+  {
+    "id": 20,
+    "title": "When You Tell Me That You Love Me",
+    "artist": "Westlife",
+    "year": 2005,
+    "album": "Face to Face"
+  },
+  {
+    "id": 21,
+    "title": "Amazing",
+    "artist": "Westlife",
+    "year": 2005,
+    "album": "Face to Face"
+  },
+  {
+    "id": 22,
+    "title": "Home",
+    "artist": "Westlife",
+    "year": 2007,
+    "album": "Back Home"
+  },
+  {
+    "id": 23,
+    "title": "Something Right",
+    "artist": "Westlife",
+    "year": 2007,
+    "album": "Back Home"
+  },
+  {
+    "id": 24,
+    "title": "Us Against the World",
+    "artist": "Westlife",
+    "year": 2007,
+    "album": "Back Home"
+  },
+  {
+    "id": 25,
+    "title": "What About Now",
+    "artist": "Westlife",
+    "year": 2009,
+    "album": "Where We Are"
+  },
+  {
+    "id": 26,
+    "title": "Shadows",
+    "artist": "Westlife",
+    "year": 2009,
+    "album": "Where We Are"
+  },
+  {
+    "id": 27,
+    "title": "Safe",
+    "artist": "Westlife",
+    "year": 2010,
+    "album": "Gravity"
+  },
+  {
+    "id": 28,
+    "title": "Hello My Love",
+    "artist": "Westlife",
+    "year": 2019,
+    "album": "Spectrum"
+  },
+  {
+    "id": 29,
+    "title": "Better Man",
+    "artist": "Westlife",
+    "year": 2019,
+    "album": "Spectrum"
+  },
+  {
+    "id": 30,
+    "title": "Dynamite",
+    "artist": "Westlife",
+    "year": 2019,
+    "album": "Spectrum"
+  },
+  {
+    "id": 31,
+    "title": "My Blood",
+    "artist": "Westlife",
+    "year": 2019,
+    "album": "Spectrum"
+  },
+  {
+    "id": 32,
+    "title": "Starlight",
+    "artist": "Westlife",
+    "year": 2021,
+    "album": "Wild Dreams"
+  }
+]

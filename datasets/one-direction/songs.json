@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1,
+    "title": "What Makes You Beautiful",
+    "artist": "One Direction",
+    "year": 2011,
+    "album": "Up All Night"
+  },
+  {
+    "id": 2,
+    "title": "Gotta Be You",
+    "artist": "One Direction",
+    "year": 2011,
+    "album": "Up All Night"
+  },
+  {
+    "id": 3,
+    "title": "One Thing",
+    "artist": "One Direction",
+    "year": 2011,
+    "album": "Up All Night"
+  },
+  {
+    "id": 4,
+    "title": "More Than This",
+    "artist": "One Direction",
+    "year": 2011,
+    "album": "Up All Night"
+  },
+  {
+    "id": 5,
+    "title": "Up All Night",
+    "artist": "One Direction",
+    "year": 2011,
+    "album": "Up All Night"
+  },
+  {
+    "id": 6,
+    "title": "Tell Me a Lie",
+    "artist": "One Direction",
+    "year": 2011,
+    "album": "Up All Night"
+  },
+  {
+    "id": 7,
+    "title": "Everything About You",
+    "artist": "One Direction",
+    "year": 2011,
+    "album": "Up All Night"
+  },
+  {
+    "id": 8,
+    "title": "Stole My Heart",
+    "artist": "One Direction",
+    "year": 2011,
+    "album": "Up All Night"
+  },
+  {
+    "id": 9,
+    "title": "Live While We're Young",
+    "artist": "One Direction",
+    "year": 2012,
+    "album": "Take Me Home"
+  },
+  {
+    "id": 10,
+    "title": "Kiss You",
+    "artist": "One Direction",
+    "year": 2012,
+    "album": "Take Me Home"
+  },
+  {
+    "id": 11,
+    "title": "Little Things",
+    "artist": "One Direction",
+    "year": 2012,
+    "album": "Take Me Home"
+  },
+  {
+    "id": 12,
+    "title": "C'mon, C'mon",
+    "artist": "One Direction",
+    "year": 2012,
+    "album": "Take Me Home"
+  },
+  {
+    "id": 13,
+    "title": "Heart Attack",
+    "artist": "One Direction",
+    "year": 2012,
+    "album": "Take Me Home"
+  },
+  {
+    "id": 14,
+    "title": "Rock Me",
+    "artist": "One Direction",
+    "year": 2012,
+    "album": "Take Me Home"
+  },
+  {
+    "id": 15,
+    "title": "Change My Mind",
+    "artist": "One Direction",
+    "year": 2012,
+    "album": "Take Me Home"
+  },
+  {
+    "id": 16,
+    "title": "They Don't Know About Us",
+    "artist": "One Direction",
+    "year": 2012,
+    "album": "Take Me Home"
+  },
+  {
+    "id": 17,
+    "title": "Best Song Ever",
+    "artist": "One Direction",
+    "year": 2013,
+    "album": "Midnight Memories"
+  },
+  {
+    "id": 18,
+    "title": "Story of My Life",
+    "artist": "One Direction",
+    "year": 2013,
+    "album": "Midnight Memories"
+  },
+  {
+    "id": 19,
+    "title": "Diana",
+    "artist": "One Direction",
+    "year": 2013,
+    "album": "Midnight Memories"
+  },
+  {
+    "id": 20,
+    "title": "Midnight Memories",
+    "artist": "One Direction",
+    "year": 2013,
+    "album": "Midnight Memories"
+  },
+  {
+    "id": 21,
+    "title": "You & I",
+    "artist": "One Direction",
+    "year": 2013,
+    "album": "Midnight Memories"
+  },
+  {
+    "id": 22,
+    "title": "Strong",
+    "artist": "One Direction",
+    "year": 2013,
+    "album": "Midnight Memories"
+  },
+  {
+    "id": 23,
+    "title": "Happily",
+    "artist": "One Direction",
+    "year": 2013,
+    "album": "Midnight Memories"
+  },
+  {
+    "id": 24,
+    "title": "Little Black Dress",
+    "artist": "One Direction",
+    "year": 2013,
+    "album": "Midnight Memories"
+  },
+  {
+    "id": 25,
+    "title": "Steal My Girl",
+    "artist": "One Direction",
+    "year": 2014,
+    "album": "Four"
+  },
+  {
+    "id": 26,
+    "title": "Ready to Run",
+    "artist": "One Direction",
+    "year": 2014,
+    "album": "Four"
+  },
+  {
+    "id": 27,
+    "title": "Where Do Broken Hearts Go",
+    "artist": "One Direction",
+    "year": 2014,
+    "album": "Four"
+  },
+  {
+    "id": 28,
+    "title": "18",
+    "artist": "One Direction",
+    "year": 2014,
+    "album": "Four"
+  },
+  {
+    "id": 29,
+    "title": "Night Changes",
+    "artist": "One Direction",
+    "year": 2014,
+    "album": "Four"
+  },
+  {
+    "id": 30,
+    "title": "No Control",
+    "artist": "One Direction",
+    "year": 2014,
+    "album": "Four"
+  },
+  {
+    "id": 31,
+    "title": "Fireproof",
+    "artist": "One Direction",
+    "year": 2014,
+    "album": "Four"
+  },
+  {
+    "id": 32,
+    "title": "Clouds",
+    "artist": "One Direction",
+    "year": 2014,
+    "album": "Four"
+  },
+  {
+    "id": 33,
+    "title": "Drag Me Down",
+    "artist": "One Direction",
+    "year": 2015,
+    "album": "Made in the A.M."
+  },
+  {
+    "id": 34,
+    "title": "Perfect",
+    "artist": "One Direction",
+    "year": 2015,
+    "album": "Made in the A.M."
+  },
+  {
+    "id": 35,
+    "title": "Infinity",
+    "artist": "One Direction",
+    "year": 2015,
+    "album": "Made in the A.M."
+  },
+  {
+    "id": 36,
+    "title": "End of the Day",
+    "artist": "One Direction",
+    "year": 2015,
+    "album": "Made in the A.M."
+  },
+  {
+    "id": 37,
+    "title": "If I Could Fly",
+    "artist": "One Direction",
+    "year": 2015,
+    "album": "Made in the A.M."
+  },
+  {
+    "id": 38,
+    "title": "Olivia",
+    "artist": "One Direction",
+    "year": 2015,
+    "album": "Made in the A.M."
+  },
+  {
+    "id": 39,
+    "title": "What a Feeling",
+    "artist": "One Direction",
+    "year": 2015,
+    "album": "Made in the A.M."
+  },
+  {
+    "id": 40,
+    "title": "History",
+    "artist": "One Direction",
+    "year": 2015,
+    "album": "Made in the A.M."
+  }
+]
