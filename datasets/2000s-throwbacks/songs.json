@@ -1,0 +1,506 @@
+[
+  {
+    "id": 1,
+    "title": "Oops!... I Did It Again",
+    "artist": "Britney Spears",
+    "year": 2000,
+    "album": null
+  },
+  {
+    "id": 2,
+    "title": "Toxic",
+    "artist": "Britney Spears",
+    "year": 2004,
+    "album": null
+  },
+  {
+    "id": 3,
+    "title": "Bye Bye Bye",
+    "artist": "*NSYNC",
+    "year": 2000,
+    "album": null
+  },
+  {
+    "id": 4,
+    "title": "It Wasn't Me",
+    "artist": "Shaggy feat. Rikrok",
+    "year": 2000,
+    "album": null
+  },
+  {
+    "id": 5,
+    "title": "Ms. Jackson",
+    "artist": "OutKast",
+    "year": 2000,
+    "album": null
+  },
+  {
+    "id": 6,
+    "title": "Hey Ya!",
+    "artist": "OutKast",
+    "year": 2003,
+    "album": null
+  },
+  {
+    "id": 7,
+    "title": "Beautiful Day",
+    "artist": "U2",
+    "year": 2000,
+    "album": null
+  },
+  {
+    "id": 8,
+    "title": "Independent Women Part I",
+    "artist": "Destiny's Child",
+    "year": 2000,
+    "album": null
+  },
+  {
+    "id": 9,
+    "title": "Survivor",
+    "artist": "Destiny's Child",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 10,
+    "title": "Lady Marmalade",
+    "artist": "Christina Aguilera, Lil' Kim, Mýa & P!nk",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 11,
+    "title": "In the End",
+    "artist": "Linkin Park",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 12,
+    "title": "Numb",
+    "artist": "Linkin Park",
+    "year": 2003,
+    "album": null
+  },
+  {
+    "id": 13,
+    "title": "Can't Get You Out of My Head",
+    "artist": "Kylie Minogue",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 14,
+    "title": "Get the Party Started",
+    "artist": "P!nk",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 15,
+    "title": "Hey Baby",
+    "artist": "No Doubt feat. Bounty Killer",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 16,
+    "title": "How You Remind Me",
+    "artist": "Nickelback",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 17,
+    "title": "Hero",
+    "artist": "Enrique Iglesias",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 18,
+    "title": "Whenever, Wherever",
+    "artist": "Shakira",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 19,
+    "title": "Chop Suey!",
+    "artist": "System of a Down",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 20,
+    "title": "The Middle",
+    "artist": "Jimmy Eat World",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 21,
+    "title": "Complicated",
+    "artist": "Avril Lavigne",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 22,
+    "title": "Sk8er Boi",
+    "artist": "Avril Lavigne",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 23,
+    "title": "Lose Yourself",
+    "artist": "Eminem",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 24,
+    "title": "Without Me",
+    "artist": "Eminem",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 25,
+    "title": "Hot in Herre",
+    "artist": "Nelly",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 26,
+    "title": "Dilemma",
+    "artist": "Nelly feat. Kelly Rowland",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 27,
+    "title": "Cry Me a River",
+    "artist": "Justin Timberlake",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 28,
+    "title": "Clocks",
+    "artist": "Coldplay",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 29,
+    "title": "Crazy in Love",
+    "artist": "Beyoncé feat. Jay-Z",
+    "year": 2003,
+    "album": null
+  },
+  {
+    "id": 30,
+    "title": "In da Club",
+    "artist": "50 Cent",
+    "year": 2003,
+    "album": null
+  },
+  {
+    "id": 31,
+    "title": "Seven Nation Army",
+    "artist": "The White Stripes",
+    "year": 2003,
+    "album": null
+  },
+  {
+    "id": 32,
+    "title": "Dragostea din tei",
+    "artist": "O-Zone",
+    "year": 2003,
+    "album": null
+  },
+  {
+    "id": 33,
+    "title": "Mr. Brightside",
+    "artist": "The Killers",
+    "year": 2004,
+    "album": null
+  },
+  {
+    "id": 34,
+    "title": "Yeah!",
+    "artist": "Usher feat. Lil Jon & Ludacris",
+    "year": 2004,
+    "album": null
+  },
+  {
+    "id": 35,
+    "title": "Since U Been Gone",
+    "artist": "Kelly Clarkson",
+    "year": 2004,
+    "album": null
+  },
+  {
+    "id": 36,
+    "title": "Boulevard of Broken Dreams",
+    "artist": "Green Day",
+    "year": 2004,
+    "album": null
+  },
+  {
+    "id": 37,
+    "title": "Let Me Love You",
+    "artist": "Mario",
+    "year": 2004,
+    "album": null
+  },
+  {
+    "id": 38,
+    "title": "Hollaback Girl",
+    "artist": "Gwen Stefani",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 39,
+    "title": "Gold Digger",
+    "artist": "Kanye West feat. Jamie Foxx",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 40,
+    "title": "Feel Good Inc.",
+    "artist": "Gorillaz",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 41,
+    "title": "Hung Up",
+    "artist": "Madonna",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 42,
+    "title": "Bad Day",
+    "artist": "Daniel Powter",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 43,
+    "title": "You're Beautiful",
+    "artist": "James Blunt",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 44,
+    "title": "Pon de Replay",
+    "artist": "Rihanna",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 45,
+    "title": "Hips Don't Lie",
+    "artist": "Shakira feat. Wyclef Jean",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 46,
+    "title": "SexyBack",
+    "artist": "Justin Timberlake",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 47,
+    "title": "Crazy",
+    "artist": "Gnarls Barkley",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 48,
+    "title": "Promiscuous",
+    "artist": "Nelly Furtado feat. Timbaland",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 49,
+    "title": "Maneater",
+    "artist": "Nelly Furtado",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 50,
+    "title": "Irreplaceable",
+    "artist": "Beyoncé",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 51,
+    "title": "Hey There Delilah",
+    "artist": "Plain White T's",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 52,
+    "title": "Rehab",
+    "artist": "Amy Winehouse",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 53,
+    "title": "Chasing Cars",
+    "artist": "Snow Patrol",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 54,
+    "title": "Umbrella",
+    "artist": "Rihanna feat. Jay-Z",
+    "year": 2007,
+    "album": null
+  },
+  {
+    "id": 55,
+    "title": "Valerie",
+    "artist": "Mark Ronson feat. Amy Winehouse",
+    "year": 2007,
+    "album": null
+  },
+  {
+    "id": 56,
+    "title": "Stronger",
+    "artist": "Kanye West",
+    "year": 2007,
+    "album": null
+  },
+  {
+    "id": 57,
+    "title": "Low",
+    "artist": "Flo Rida feat. T-Pain",
+    "year": 2007,
+    "album": null
+  },
+  {
+    "id": 58,
+    "title": "Apologize",
+    "artist": "Timbaland feat. OneRepublic",
+    "year": 2007,
+    "album": null
+  },
+  {
+    "id": 59,
+    "title": "Bleeding Love",
+    "artist": "Leona Lewis",
+    "year": 2007,
+    "album": null
+  },
+  {
+    "id": 60,
+    "title": "Poker Face",
+    "artist": "Lady Gaga",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 61,
+    "title": "Just Dance",
+    "artist": "Lady Gaga feat. Colby O'Donis",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 62,
+    "title": "Viva la Vida",
+    "artist": "Coldplay",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 63,
+    "title": "I Kissed a Girl",
+    "artist": "Katy Perry",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 64,
+    "title": "Hot n Cold",
+    "artist": "Katy Perry",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 65,
+    "title": "Single Ladies (Put a Ring on It)",
+    "artist": "Beyoncé",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 66,
+    "title": "Love Story",
+    "artist": "Taylor Swift",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 67,
+    "title": "Disturbia",
+    "artist": "Rihanna",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 68,
+    "title": "Use Somebody",
+    "artist": "Kings of Leon",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 69,
+    "title": "I Gotta Feeling",
+    "artist": "The Black Eyed Peas",
+    "year": 2009,
+    "album": null
+  },
+  {
+    "id": 70,
+    "title": "Party in the U.S.A.",
+    "artist": "Miley Cyrus",
+    "year": 2009,
+    "album": null
+  },
+  {
+    "id": 71,
+    "title": "TiK ToK",
+    "artist": "Kesha",
+    "year": 2009,
+    "album": null
+  },
+  {
+    "id": 72,
+    "title": "Fireflies",
+    "artist": "Owl City",
+    "year": 2009,
+    "album": null
+  }
+]
