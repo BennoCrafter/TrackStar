@@ -64,363 +64,398 @@
   },
   {
     "id": 10,
+    "title": "Into the Groove",
+    "artist": "Madonna",
+    "year": 1984,
+    "album": "Like a Virgin"
+  },
+  {
+    "id": 11,
     "title": "Papa Don't Preach",
     "artist": "Madonna",
     "year": 1986,
     "album": "True Blue"
   },
   {
-    "id": 11,
+    "id": 12,
     "title": "Open Your Heart",
     "artist": "Madonna",
     "year": 1986,
     "album": "True Blue"
   },
   {
-    "id": 12,
+    "id": 13,
     "title": "Live to Tell",
     "artist": "Madonna",
     "year": 1986,
     "album": "True Blue"
   },
   {
-    "id": 13,
+    "id": 14,
     "title": "True Blue",
     "artist": "Madonna",
     "year": 1986,
     "album": "True Blue"
   },
   {
-    "id": 14,
+    "id": 15,
     "title": "La Isla Bonita",
     "artist": "Madonna",
     "year": 1986,
     "album": "True Blue"
   },
   {
-    "id": 15,
+    "id": 16,
     "title": "Like a Prayer",
     "artist": "Madonna",
     "year": 1989,
     "album": "Like a Prayer"
   },
   {
-    "id": 16,
+    "id": 17,
     "title": "Express Yourself",
     "artist": "Madonna",
     "year": 1989,
     "album": "Like a Prayer"
   },
   {
-    "id": 17,
+    "id": 18,
     "title": "Cherish",
     "artist": "Madonna",
     "year": 1989,
     "album": "Like a Prayer"
   },
   {
-    "id": 18,
+    "id": 19,
     "title": "Dear Jessie",
     "artist": "Madonna",
     "year": 1989,
     "album": "Like a Prayer"
   },
   {
-    "id": 19,
+    "id": 20,
     "title": "Oh Father",
     "artist": "Madonna",
     "year": 1989,
     "album": "Like a Prayer"
   },
   {
-    "id": 20,
+    "id": 21,
     "title": "Keep It Together",
     "artist": "Madonna",
     "year": 1989,
     "album": "Like a Prayer"
   },
   {
-    "id": 21,
+    "id": 22,
+    "title": "Vogue",
+    "artist": "Madonna",
+    "year": 1990,
+    "album": "I'm Breathless"
+  },
+  {
+    "id": 23,
+    "title": "Hanky Panky",
+    "artist": "Madonna",
+    "year": 1990,
+    "album": "I'm Breathless"
+  },
+  {
+    "id": 24,
     "title": "Erotica",
     "artist": "Madonna",
     "year": 1992,
     "album": "Erotica"
   },
   {
-    "id": 22,
+    "id": 25,
     "title": "Fever",
     "artist": "Madonna",
     "year": 1992,
     "album": "Erotica"
   },
   {
-    "id": 23,
+    "id": 26,
     "title": "Bye Bye Baby",
     "artist": "Madonna",
     "year": 1992,
     "album": "Erotica"
   },
   {
-    "id": 24,
+    "id": 27,
     "title": "Deeper and Deeper",
     "artist": "Madonna",
     "year": 1992,
     "album": "Erotica"
   },
   {
-    "id": 25,
+    "id": 28,
     "title": "Bad Girl",
     "artist": "Madonna",
     "year": 1992,
     "album": "Erotica"
   },
   {
-    "id": 26,
+    "id": 29,
     "title": "Rain",
     "artist": "Madonna",
     "year": 1992,
     "album": "Erotica"
   },
   {
-    "id": 27,
+    "id": 30,
     "title": "Secret",
     "artist": "Madonna",
     "year": 1994,
     "album": "Bedtime Stories"
   },
   {
-    "id": 28,
+    "id": 31,
     "title": "Human Nature",
     "artist": "Madonna",
     "year": 1994,
     "album": "Bedtime Stories"
   },
   {
-    "id": 29,
+    "id": 32,
     "title": "Bedtime Story",
     "artist": "Madonna",
     "year": 1994,
     "album": "Bedtime Stories"
   },
   {
-    "id": 30,
+    "id": 33,
     "title": "Take a Bow",
     "artist": "Madonna",
     "year": 1994,
     "album": "Bedtime Stories"
   },
   {
-    "id": 31,
+    "id": 34,
     "title": "Drowned World/Substitute for Love",
     "artist": "Madonna",
     "year": 1998,
     "album": "Ray of Light"
   },
   {
-    "id": 32,
+    "id": 35,
     "title": "Ray of Light",
     "artist": "Madonna",
     "year": 1998,
     "album": "Ray of Light"
   },
   {
-    "id": 33,
+    "id": 36,
     "title": "Nothing Really Matters",
     "artist": "Madonna",
     "year": 1998,
     "album": "Ray of Light"
   },
   {
-    "id": 34,
+    "id": 37,
     "title": "Frozen",
     "artist": "Madonna",
     "year": 1998,
     "album": "Ray of Light"
   },
   {
-    "id": 35,
+    "id": 38,
     "title": "The Power of Good-Bye",
     "artist": "Madonna",
     "year": 1998,
     "album": "Ray of Light"
   },
   {
-    "id": 36,
+    "id": 39,
     "title": "Music",
     "artist": "Madonna",
     "year": 2000,
     "album": "Music"
   },
   {
-    "id": 37,
+    "id": 40,
     "title": "Amazing",
     "artist": "Madonna",
     "year": 2000,
     "album": "Music"
   },
   {
-    "id": 38,
+    "id": 41,
     "title": "Don't Tell Me",
     "artist": "Madonna",
     "year": 2000,
     "album": "Music"
   },
   {
-    "id": 39,
+    "id": 42,
     "title": "What It Feels Like for a Girl",
     "artist": "Madonna",
     "year": 2000,
     "album": "Music"
   },
   {
-    "id": 40,
+    "id": 43,
+    "title": "American Pie",
+    "artist": "Madonna",
+    "year": 2000,
+    "album": "Music"
+  },
+  {
+    "id": 44,
     "title": "American Life",
     "artist": "Madonna",
     "year": 2003,
     "album": "American Life"
   },
   {
-    "id": 41,
+    "id": 45,
     "title": "Hollywood",
     "artist": "Madonna",
     "year": 2003,
     "album": "American Life"
   },
   {
-    "id": 42,
+    "id": 46,
     "title": "Love Profusion",
     "artist": "Madonna",
     "year": 2003,
     "album": "American Life"
   },
   {
-    "id": 43,
+    "id": 47,
     "title": "Nothing Fails",
     "artist": "Madonna",
     "year": 2003,
     "album": "American Life"
   },
   {
-    "id": 44,
+    "id": 48,
     "title": "Die Another Day",
     "artist": "Madonna",
     "year": 2003,
     "album": "American Life"
   },
   {
-    "id": 45,
+    "id": 49,
     "title": "Hung Up",
     "artist": "Madonna",
     "year": 2005,
     "album": "Confessions on a Dance Floor"
   },
   {
-    "id": 46,
+    "id": 50,
     "title": "Get Together",
     "artist": "Madonna",
     "year": 2005,
     "album": "Confessions on a Dance Floor"
   },
   {
-    "id": 47,
+    "id": 51,
     "title": "Sorry",
     "artist": "Madonna",
     "year": 2005,
     "album": "Confessions on a Dance Floor"
   },
   {
-    "id": 48,
+    "id": 52,
     "title": "Jump",
     "artist": "Madonna",
     "year": 2005,
     "album": "Confessions on a Dance Floor"
   },
   {
-    "id": 49,
+    "id": 53,
     "title": "Candy Shop",
     "artist": "Madonna",
     "year": 2008,
     "album": "Hard Candy"
   },
   {
-    "id": 50,
+    "id": 54,
     "title": "4 Minutes",
     "artist": "Madonna",
     "year": 2008,
     "album": "Hard Candy"
   },
   {
-    "id": 51,
+    "id": 55,
     "title": "Give It 2 Me",
     "artist": "Madonna",
     "year": 2008,
     "album": "Hard Candy"
   },
   {
-    "id": 52,
+    "id": 56,
     "title": "Miles Away",
     "artist": "Madonna",
     "year": 2008,
     "album": "Hard Candy"
   },
   {
-    "id": 53,
+    "id": 57,
     "title": "Girl Gone Wild",
     "artist": "Madonna",
     "year": 2012,
     "album": "MDNA"
   },
   {
-    "id": 54,
+    "id": 58,
     "title": "Turn Up the Radio",
     "artist": "Madonna",
     "year": 2012,
     "album": "MDNA"
   },
   {
-    "id": 55,
+    "id": 59,
     "title": "Give Me All Your Luvin'",
     "artist": "Madonna",
     "year": 2012,
     "album": "MDNA"
   },
   {
-    "id": 56,
+    "id": 60,
+    "title": "Masterpiece",
+    "artist": "Madonna",
+    "year": 2012,
+    "album": "MDNA"
+  },
+  {
+    "id": 61,
     "title": "Living for Love",
     "artist": "Madonna",
     "year": 2015,
     "album": "Rebel Heart"
   },
   {
-    "id": 57,
+    "id": 62,
     "title": "Ghosttown",
     "artist": "Madonna",
     "year": 2015,
     "album": "Rebel Heart"
   },
   {
-    "id": 58,
+    "id": 63,
     "title": "Bitch I'm Madonna",
     "artist": "Madonna",
     "year": 2015,
     "album": "Rebel Heart"
   },
   {
-    "id": 59,
+    "id": 64,
     "title": "Medellín",
     "artist": "Madonna",
     "year": 2019,
     "album": "Madame X"
   },
   {
-    "id": 60,
+    "id": 65,
     "title": "Crave",
     "artist": "Madonna",
     "year": 2019,
     "album": "Madame X"
   },
   {
-    "id": 61,
+    "id": 66,
     "title": "I Rise",
     "artist": "Madonna",
     "year": 2019,
