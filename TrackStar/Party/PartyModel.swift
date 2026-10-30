@@ -16,6 +16,8 @@ struct PartySave: Codable {
     var players: [PartyPlayer] = []
     /// Card numbers already drawn, so no song comes twice.
     var played: Set<Int> = []
+    /// Card number → its track number on the album, from Apple Music. Optional: saves from before it decode.
+    var trackNumbers: [Int: Int]?
 }
 
 struct NotEnoughSongs: LocalizedError {
@@ -170,6 +172,7 @@ final class PartyModel {
         guard case let .placing(player) = phase, let card, let cardPosition = position(card),
               slot <= game.players[player].timeline.count else { return }
         let correct = Self.fits(cardPosition, at: slot, in: game.players[player].timeline.compactMap(position))
+        rememberTrackNumber(of: card)
         if correct {
             game.players[player].timeline.insert(card, at: slot)
             game.players[player].score += 1
@@ -178,6 +181,16 @@ final class PartyModel {
         }
         phase = .revealed(player: player, slot: slot, correct: correct)
         persist()
+    }
+
+    /// Only from the card's album: a compilation's track number would mislead.
+    private func rememberTrackNumber(of card: Track) {
+        guard let song = music.song, music.track?.number == card.number, let number = song.trackNumber,
+              let album = card.album, song.albumTitle?.localizedCaseInsensitiveContains(album) == true
+        else { return }
+        var numbers = game.trackNumbers ?? [:]
+        numbers[card.number] = number
+        game.trackNumbers = numbers
     }
 
     /// Equal years (or albums) fit on either side.

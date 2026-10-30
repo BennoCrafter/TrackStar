@@ -225,15 +225,18 @@ final class GameModel {
         return latest > 10 ? .random(in: 10 ... latest) : 0
     }
 
-    /// The catalog search ranks by popularity, so prefer a result by the card's artist.
+    /// The catalog search ranks by popularity, so prefer a result by the card's artist, on the card's album.
     private static func find(_ track: Track) async -> Song? {
         var request = MusicCatalogSearchRequest(term: "\(track.title) \(track.artist)", types: [Song.self])
         request.limit = 5
         guard let songs = try? await request.response().songs else { return nil }
         let artist = track.artist.lowercased()
-        return songs.first { song in
+        let byArtist = songs.filter { song in
             let name = song.artistName.lowercased()
             return name.contains(artist) || artist.contains(name)
-        } ?? songs.first
+        }
+        return byArtist.first { song in
+            track.album.map { song.albumTitle?.localizedCaseInsensitiveContains($0) == true } ?? false
+        } ?? byArtist.first ?? songs.first
     }
 }

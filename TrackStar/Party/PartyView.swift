@@ -98,6 +98,7 @@ struct PartyTableView: View {
             }
         }
         .environment(\.albumOrder, party.albumOrder)
+        .environment(\.trackNumbers, party.game.trackNumbers ?? [:])
         .onAppear { AppDelegate.lockLandscape(true) }
         .onDisappear { AppDelegate.lockLandscape(false) }
         .sensoryFeedback(trigger: party.phase) { _, phase in
@@ -534,6 +535,8 @@ struct TimelineRow: View {
 extension EnvironmentValues {
     /// Artist packs: each album's place in the discography. Cards show and are placed by album.
     @Entry var albumOrder: [String: Int]?
+    /// Card number → track number on its album.
+    @Entry var trackNumbers: [Int: Int] = [:]
 }
 
 /// A song card in the timeline: artist, year, title on its period's gradient.
@@ -542,9 +545,17 @@ struct MiniCard: View {
     let track: Track
     let width: CGFloat
     @Environment(\.albumOrder) private var albumOrder
+    @Environment(\.trackNumbers) private var trackNumbers
 
     private var byAlbum: Bool { albumOrder != nil }
     private var albumIndex: Int? { track.album.flatMap { albumOrder?[$0] } }
+
+    /// "1963 · Track 2"; the track number once Apple Music found the song on this album.
+    private var albumDetail: String {
+        [track.year.map(String.init), trackNumbers[track.number].map { "Track \($0)" }]
+            .compactMap { $0 }
+            .joined(separator: " · ")
+    }
 
     /// A period's colors per album: the first album gets the 1950s', the next the late 50s' and so on.
     private var colorYear: Int? {
@@ -553,7 +564,7 @@ struct MiniCard: View {
 
     var body: some View {
         VStack(spacing: width * 0.04) {
-            Text(byAlbum ? track.year.map(String.init) ?? "" : track.artist)
+            Text(byAlbum ? albumDetail : track.artist)
                 .font(.system(size: width * 0.1, weight: .semibold))
                 .lineLimit(2)
             Spacer(minLength: 0)
