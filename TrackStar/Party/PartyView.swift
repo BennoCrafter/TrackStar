@@ -97,7 +97,7 @@ struct PartyTableView: View {
                 showingWinner = party.winner != nil
             }
         }
-        .environment(\.cardsByAlbum, party.byAlbum)
+        .environment(\.albumOrder, party.albumOrder)
         .onAppear { AppDelegate.lockLandscape(true) }
         .onDisappear { AppDelegate.lockLandscape(false) }
         .sensoryFeedback(trigger: party.phase) { _, phase in
@@ -532,16 +532,24 @@ struct TimelineRow: View {
 }
 
 extension EnvironmentValues {
-    /// Artist packs: cards show and are placed by album.
-    @Entry var cardsByAlbum = false
+    /// Artist packs: each album's place in the discography. Cards show and are placed by album.
+    @Entry var albumOrder: [String: Int]?
 }
 
 /// A song card in the timeline: artist, year, title on its period's gradient.
-/// In an artist pack: year, album, title.
+/// In an artist pack: year, album, title, and dots for where the album is in the discography, in a color per album.
 struct MiniCard: View {
     let track: Track
     let width: CGFloat
-    @Environment(\.cardsByAlbum) private var byAlbum
+    @Environment(\.albumOrder) private var albumOrder
+
+    private var byAlbum: Bool { albumOrder != nil }
+    private var albumIndex: Int? { track.album.flatMap { albumOrder?[$0] } }
+
+    /// A period's colors per album: the first album gets the 1950s', the next the late 50s' and so on.
+    private var colorYear: Int? {
+        albumIndex.map { 1950 + $0 * 5 } ?? track.year
+    }
 
     var body: some View {
         VStack(spacing: width * 0.04) {
@@ -562,13 +570,25 @@ struct MiniCard: View {
             Text(track.title)
                 .font(.system(size: width * 0.1, weight: .bold))
                 .lineLimit(2)
+            if let albumOrder, let albumIndex {
+                // Shrinks to fit 15+ albums in the card.
+                let dot = width * min(0.045, 0.55 / CGFloat(albumOrder.count))
+                HStack(spacing: dot / 2) {
+                    ForEach(0 ..< albumOrder.count, id: \.self) { index in
+                        Circle()
+                            .fill(.white.opacity(index == albumIndex ? 1 : 0.3))
+                            .frame(width: dot)
+                    }
+                }
+                .accessibilityLabel("Album \(albumIndex + 1) of \(albumOrder.count)")
+            }
         }
         .minimumScaleFactor(0.6)
         .multilineTextAlignment(.center)
         .foregroundStyle(.white)
         .padding(width * 0.08)
         .frame(width: width, height: width)
-        .background(PeriodGradient.gradient(for: track.year), in: RoundedRectangle(cornerRadius: width * 0.12, style: .continuous))
+        .background(PeriodGradient.gradient(for: colorYear), in: RoundedRectangle(cornerRadius: width * 0.12, style: .continuous))
         .accessibilityElement(children: .combine)
     }
 }

@@ -58,10 +58,8 @@ final class PartyModel {
     let music = GameModel()
     @ObservationIgnored private let deck: [Track]
     /// Artist packs: each album's place in the discography, from the order of the song list.
-    @ObservationIgnored private let albumOrder: [String: Int]?
-
-    /// Cards are placed by album instead of year.
-    var byAlbum: Bool { albumOrder != nil }
+    /// Nil: cards are placed by year.
+    @ObservationIgnored let albumOrder: [String: Int]?
 
     var winner: PartyPlayer? {
         game.players.first { $0.score >= Self.winningScore }
