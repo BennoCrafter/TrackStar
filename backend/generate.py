@@ -58,14 +58,22 @@ def build(songs_json: Path, display_name: str, name: str, output: Path, increase
 
 
 @cli.command()
+@click.argument("names", nargs=-1)
 @click.option("--datasets", type=Path, default=DATASETS_DIR, show_default=True, help="Directory containing the datasets.")
-def rebuild(datasets: Path):
-    """Regenerate cards.pdf of every dataset (e.g. after a card design change). Versions stay the same."""
-    for out in sorted(d for d in datasets.iterdir() if (d / "info.json").exists() and (d / "songs.json").exists()):
+@click.option("--increase", is_flag=True, help="Also raise the version, e.g. after editing songs.json by hand.")
+def rebuild(names: tuple[str, ...], datasets: Path, increase: bool):
+    """Regenerate cards.pdf of the NAMES datasets, or of every dataset if none are given (e.g. after a card design change). Versions stay the same unless --increase."""
+    found = {d.name: d for d in datasets.iterdir() if (d / "info.json").exists() and (d / "songs.json").exists()}
+    if missing := set(names) - found.keys():
+        raise click.BadParameter(f"no dataset {', '.join(sorted(missing))} in {datasets}", param_hint="NAMES")
+    for out in sorted(found[n] for n in names) if names else sorted(found.values()):
         info = json.loads((out / "info.json").read_text())
         songs = load_songs(out / "songs.json")
+        if increase:
+            info["version"] = info.get("version", 0) + 1
+            (out / "info.json").write_text(json.dumps(info, indent=2) + "\n")
         write_cards(out, songs, info["name"], info.get("display_name") or info["name"])
-        click.secho(f"✓ {out.name}: {len(songs)} cards", fg="green")
+        click.secho(f"✓ {out.name}: {len(songs)} cards, version {info.get('version')}", fg="green")
 
 
 def write_cards(out: Path, songs, name: str, display_name: str):

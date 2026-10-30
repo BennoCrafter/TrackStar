@@ -69,13 +69,19 @@ python generate.py build songs.json --name taylor-swift --display-name "Taylor S
 
 Re-running `build` overwrites `info.json`, `songs.json` and `cards.pdf`; an existing `README.md` is kept.
 
-### 3. `rebuild` – regenerate all `cards.pdf`
+### 3. `rebuild` – regenerate `cards.pdf`
 
 ```bash
-python generate.py rebuild [--datasets ../datasets]
+python generate.py rebuild [NAME ...] [--increase] [--datasets ../datasets]
 ```
 
-Re-renders the cards of every existing dataset with the current card design (`card-design.json`). Use it after changing the layout, colours or fonts, so every dataset's PDF uses the new design.
+Re-renders the cards of the named datasets (e.g. `rebuild 90s-hits`), or of every existing dataset if no name is given, with the current card design (`card-design.json`). Use it after changing the layout, colours or fonts, so every dataset's PDF uses the new design.
+
+After editing a dataset's `songs.json` in place, add `--increase` so the version goes up and the app downloads the change:
+
+```bash
+python generate.py rebuild 2000s-throwbacks --increase
+```
 
 ## Versioning
 
