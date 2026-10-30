@@ -8,12 +8,14 @@ struct RemoteDataset: Identifiable, Hashable, Decodable, Sendable {
     let version: Int
     /// An SF Symbol name or an emoji.
     let icon: String?
+    /// `"type": "artist"`: one artist's songs, placed by album.
+    let isArtist: Bool
 
     var id: String { name }
     var title: String { displayName ?? name }
 
     enum CodingKeys: String, CodingKey {
-        case name, version, icon
+        case name, version, icon, type
         case displayName = "display_name"
     }
 
@@ -23,6 +25,7 @@ struct RemoteDataset: Identifiable, Hashable, Decodable, Sendable {
         displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
         version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 0
         icon = try container.decodeIfPresent(String.self, forKey: .icon)
+        isArtist = try container.decodeIfPresent(String.self, forKey: .type) == "artist"
     }
 }
 
@@ -80,7 +83,7 @@ enum Library {
 
     static func install(_ remote: RemoteDataset) async throws {
         let songs = try await JSONDecoder().decode([SongEntry].self, from: data(fileURL(remote.name, "songs.json")))
-        try save(id: remote.name, displayName: remote.title, version: remote.version, isRemote: true, icon: remote.icon, songs: songs)
+        try save(id: remote.name, displayName: remote.title, version: remote.version, isRemote: true, icon: remote.icon, isArtist: remote.isArtist, songs: songs)
     }
 
     /// Re-downloads every remote dataset whose `info.json` has a higher version.
@@ -89,8 +92,13 @@ enum Library {
         let installed = (try? await database.read { try Dataset.where(\.isRemote).fetchAll($0) }) ?? []
         for dataset in installed {
             guard let remote = try? await info(dataset.id) else { continue }
-            if remote.icon != dataset.icon {
-                try? await database.write { try Dataset.find(dataset.id).update { $0.icon = remote.icon }.execute($0) }
+            if remote.icon != dataset.icon || remote.isArtist != dataset.isArtist {
+                try? await database.write {
+                    try Dataset.find(dataset.id).update {
+                        $0.icon = remote.icon
+                        $0.isArtist = remote.isArtist
+                    }.execute($0)
+                }
             }
             guard remote.version > dataset.version else { continue }
             do {
@@ -149,7 +157,7 @@ enum Library {
     // MARK: - Database
 
     /// Replaces the dataset and its tracks. The first dataset becomes the active one.
-    static func save(id: String, displayName: String, version: Int, isRemote: Bool, icon: String? = nil, songs: [SongEntry]) throws {
+    static func save(id: String, displayName: String, version: Int, isRemote: Bool, icon: String? = nil, isArtist: Bool = false, songs: [SongEntry]) throws {
         @Dependency(\.defaultDatabase) var database
         try database.write { db in
             let wasActive = try Dataset.find(id).fetchOne(db)?.isActive
@@ -157,7 +165,7 @@ enum Library {
             // Cascades to the old tracks.
             try Dataset.find(id).delete().execute(db)
             try Dataset.insert {
-                Dataset(id: id, displayName: displayName, version: version, songCount: songs.count, isRemote: isRemote, isActive: wasActive ?? !hasActive, icon: icon)
+                Dataset(id: id, displayName: displayName, version: version, songCount: songs.count, isRemote: isRemote, isActive: wasActive ?? !hasActive, icon: icon, isArtist: isArtist)
             }.execute(db)
             try Track.insert {
                 for song in songs {

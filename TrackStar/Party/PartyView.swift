@@ -97,6 +97,7 @@ struct PartyTableView: View {
                 showingWinner = party.winner != nil
             }
         }
+        .environment(\.cardsByAlbum, party.byAlbum)
         .onAppear { AppDelegate.lockLandscape(true) }
         .onDisappear { AppDelegate.lockLandscape(false) }
         .sensoryFeedback(trigger: party.phase) { _, phase in
@@ -530,20 +531,33 @@ struct TimelineRow: View {
     }
 }
 
+extension EnvironmentValues {
+    /// Artist packs: cards show and are placed by album.
+    @Entry var cardsByAlbum = false
+}
+
 /// A song card in the timeline: artist, year, title on its period's gradient.
+/// In an artist pack: year, album, title.
 struct MiniCard: View {
     let track: Track
     let width: CGFloat
+    @Environment(\.cardsByAlbum) private var byAlbum
 
     var body: some View {
         VStack(spacing: width * 0.04) {
-            Text(track.artist)
+            Text(byAlbum ? track.year.map(String.init) ?? "" : track.artist)
                 .font(.system(size: width * 0.1, weight: .semibold))
                 .lineLimit(2)
             Spacer(minLength: 0)
-            Text(track.year.map(String.init) ?? "?")
-                .font(.system(size: width * 0.3, weight: .black, design: .rounded))
-                .lineLimit(1)
+            if byAlbum {
+                Text(track.album ?? "?")
+                    .font(.system(size: width * 0.15, weight: .black, design: .rounded))
+                    .lineLimit(3)
+            } else {
+                Text(track.year.map(String.init) ?? "?")
+                    .font(.system(size: width * 0.3, weight: .black, design: .rounded))
+                    .lineLimit(1)
+            }
             Spacer(minLength: 0)
             Text(track.title)
                 .font(.system(size: width * 0.1, weight: .bold))

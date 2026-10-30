@@ -4,7 +4,7 @@ import SwiftUI
 struct PartyPlayer: Codable, Hashable, Identifiable {
     var name: String
     var score = 0
-    /// Sorted by year. Starts with one card, which scores nothing.
+    /// Sorted by year (by album in an artist pack). Starts with one card, which scores nothing.
     var timeline: [Track]
 
     var id: String { name }
@@ -57,14 +57,20 @@ final class PartyModel {
     /// Playback, as in the game with cards.
     let music = GameModel()
     @ObservationIgnored private let deck: [Track]
+    /// Artist packs: each album's place in the discography, from the order of the song list.
+    @ObservationIgnored private let albumOrder: [String: Int]?
+
+    /// Cards are placed by album instead of year.
+    var byAlbum: Bool { albumOrder != nil }
 
     var winner: PartyPlayer? {
         game.players.first { $0.score >= Self.winningScore }
     }
 
-    private init(game: PartySave, deck: [Track]) {
+    private init(game: PartySave, deck: (cards: [Track], albumOrder: [String: Int]?)) {
         self.game = game
-        self.deck = deck
+        self.deck = deck.cards
+        albumOrder = deck.albumOrder
     }
 
     /// Deals every player a first card.
@@ -83,18 +89,31 @@ final class PartyModel {
     static func resume() -> PartyModel? {
         guard let data = UserDefaults.standard.data(forKey: saveKey),
               let game = try? JSONDecoder().decode(PartySave.self, from: data),
-              let deck = try? deck(game.datasetID), !deck.isEmpty
+              let deck = try? deck(game.datasetID), !deck.cards.isEmpty
         else { return nil }
         return PartyModel(game: game, deck: deck)
     }
 
-    /// Songs without a year can't be placed.
-    private static func deck(_ datasetID: String) throws -> [Track] {
+    /// Songs without a year (an album in artist packs) can't be placed.
+    private static func deck(_ datasetID: String) throws -> (cards: [Track], albumOrder: [String: Int]?) {
         @Dependency(\.defaultDatabase) var database
-        return try database.read { db in
-            try Track.where { $0.datasetID.eq(datasetID) }.fetchAll(db)
+        let (tracks, isArtist) = try database.read { db in
+            try (Track.where { $0.datasetID.eq(datasetID) }.order(by: \.number).fetchAll(db),
+                 Dataset.find(datasetID).fetchOne(db)?.isArtist ?? false)
         }
-        .filter { $0.year != nil }
+        guard isArtist else { return (tracks.filter { $0.year != nil }, nil) }
+        // Not the year: re-recordings (Taylor's Version) came out later but belong to their era.
+        var order: [String: Int] = [:]
+        for album in tracks.compactMap(\.album) where order[album] == nil {
+            order[album] = order.count
+        }
+        return (tracks.filter { $0.album != nil }, order)
+    }
+
+    /// Where a card goes in a timeline: its year, or its album's place in an artist pack.
+    private func position(_ track: Track) -> Int? {
+        guard let albumOrder else { return track.year }
+        return track.album.flatMap { albumOrder[$0] }
     }
 
     // MARK: - Turn
@@ -150,9 +169,9 @@ final class PartyModel {
 
     /// `slot`: the gap in the player's timeline, 0 = before the first card.
     func place(at slot: Int) {
-        guard case let .placing(player) = phase, let card, let year = card.year,
+        guard case let .placing(player) = phase, let card, let cardPosition = position(card),
               slot <= game.players[player].timeline.count else { return }
-        let correct = Self.fits(year, at: slot, in: game.players[player].timeline.compactMap(\.year))
+        let correct = Self.fits(cardPosition, at: slot, in: game.players[player].timeline.compactMap(position))
         if correct {
             game.players[player].timeline.insert(card, at: slot)
             game.players[player].score += 1
@@ -163,7 +182,7 @@ final class PartyModel {
         persist()
     }
 
-    /// Equal years fit on either side.
+    /// Equal years (or albums) fit on either side.
     nonisolated static func fits(_ year: Int, at slot: Int, in years: [Int]) -> Bool {
         (slot == 0 || years[slot - 1] <= year) && (slot == years.count || year <= years[slot])
     }

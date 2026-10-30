@@ -62,22 +62,21 @@ struct DatasetLibraryView: View {
                     Text("You've got every song pack.")
                         .foregroundStyle(.secondary)
                 }
-                ForEach(available) { remote in
-                    NavigationLink {
-                        DatasetDetailView(id: remote.id, remote: remote)
-                    } label: {
-                        HStack {
-                            DatasetIcon(name: remote.title, icon: remote.icon)
-                            Text(remote.title)
-                            Spacer()
-                            DownloadButton(remote: remote)
-                        }
-                    }
-                }
+                availableRows(available.filter { !$0.isArtist })
             } header: {
                 Text("Available")
             } footer: {
                 Text("Song Packs come from the TrackStar repository on GitHub. Each one has printable cards.")
+            }
+
+            if available.contains(where: \.isArtist) {
+                Section {
+                    availableRows(available.filter(\.isArtist))
+                } header: {
+                    Text("Artists")
+                } footer: {
+                    Text("One artist's songs. In the Party Game you place them by album instead of year.")
+                }
             }
 
             Section {
@@ -121,6 +120,21 @@ struct DatasetLibraryView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(error ?? "")
+        }
+    }
+
+    private func availableRows(_ datasets: [RemoteDataset]) -> some View {
+        ForEach(datasets) { remote in
+            NavigationLink {
+                DatasetDetailView(id: remote.id, remote: remote)
+            } label: {
+                HStack {
+                    DatasetIcon(name: remote.title, icon: remote.icon)
+                    Text(remote.title)
+                    Spacer()
+                    DownloadButton(remote: remote)
+                }
+            }
         }
     }
 

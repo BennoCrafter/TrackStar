@@ -19,6 +19,8 @@ struct Dataset: Identifiable, Hashable, Sendable {
     var isActive: Bool = false
     /// `info.json`'s icon: an SF Symbol name or an emoji.
     var icon: String?
+    /// `info.json`'s `"type": "artist"`: one artist's songs, placed by album instead of year.
+    var isArtist: Bool = false
 }
 
 /// One card of a dataset. `number` is the id printed on the card and encoded in its QR code.
@@ -91,6 +93,9 @@ enum Schema {
         }
         migrator.registerMigration("Add dataset icon") { db in
             try #sql(#"ALTER TABLE "datasets" ADD COLUMN "icon" TEXT"#).execute(db)
+        }
+        migrator.registerMigration("Add dataset isArtist") { db in
+            try #sql(#"ALTER TABLE "datasets" ADD COLUMN "isArtist" INTEGER NOT NULL DEFAULT 0"#).execute(db)
         }
         return migrator
     }
