@@ -7,6 +7,13 @@
     "album": null
   },
   {
+    "id": 2,
+    "title": "Toxic",
+    "artist": "Britney Spears",
+    "year": 2004,
+    "album": null
+  },
+  {
     "id": 3,
     "title": "Bye Bye Bye",
     "artist": "*NSYNC",
