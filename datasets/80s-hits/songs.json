@@ -1,0 +1,415 @@
+[
+  {
+    "id": 1,
+    "title": "Another One Bites the Dust",
+    "artist": "Queen",
+    "year": 1980,
+    "album": null
+  },
+  {
+    "id": 2,
+    "title": "Under Pressure",
+    "artist": "Queen & David Bowie",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 3,
+    "title": "Tainted Love",
+    "artist": "Soft Cell",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 4,
+    "title": "Don't Stop Believin'",
+    "artist": "Journey",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 5,
+    "title": "Kids in America",
+    "artist": "Kim Wilde",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 6,
+    "title": "Physical",
+    "artist": "Olivia Newton-John",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 7,
+    "title": "In the Air Tonight",
+    "artist": "Phil Collins",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 8,
+    "title": "Africa",
+    "artist": "Toto",
+    "year": 1982,
+    "album": null
+  },
+  {
+    "id": 9,
+    "title": "Eye of the Tiger",
+    "artist": "Survivor",
+    "year": 1982,
+    "album": null
+  },
+  {
+    "id": 10,
+    "title": "Hungry Like the Wolf",
+    "artist": "Duran Duran",
+    "year": 1982,
+    "album": null
+  },
+  {
+    "id": 11,
+    "title": "Billie Jean",
+    "artist": "Michael Jackson",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 12,
+    "title": "Beat It",
+    "artist": "Michael Jackson",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 13,
+    "title": "Girls Just Want to Have Fun",
+    "artist": "Cyndi Lauper",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 14,
+    "title": "Sweet Dreams (Are Made of This)",
+    "artist": "Eurythmics",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 15,
+    "title": "Every Breath You Take",
+    "artist": "The Police",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 16,
+    "title": "Let's Dance",
+    "artist": "David Bowie",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 17,
+    "title": "99 Luftballons",
+    "artist": "Nena",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 18,
+    "title": "Total Eclipse of the Heart",
+    "artist": "Bonnie Tyler",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 19,
+    "title": "Relax",
+    "artist": "Frankie Goes to Hollywood",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 20,
+    "title": "Uptown Girl",
+    "artist": "Billy Joel",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 21,
+    "title": "Maniac",
+    "artist": "Michael Sembello",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 22,
+    "title": "Flashdance... What a Feeling",
+    "artist": "Irene Cara",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 23,
+    "title": "Like a Virgin",
+    "artist": "Madonna",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 24,
+    "title": "Wake Me Up Before You Go-Go",
+    "artist": "Wham!",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 25,
+    "title": "Last Christmas",
+    "artist": "Wham!",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 26,
+    "title": "Careless Whisper",
+    "artist": "George Michael",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 27,
+    "title": "Footloose",
+    "artist": "Kenny Loggins",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 28,
+    "title": "Ghostbusters",
+    "artist": "Ray Parker Jr.",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 29,
+    "title": "Purple Rain",
+    "artist": "Prince",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 30,
+    "title": "When Doves Cry",
+    "artist": "Prince",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 31,
+    "title": "Self Control",
+    "artist": "Laura Branigan",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 32,
+    "title": "Time After Time",
+    "artist": "Cyndi Lauper",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 33,
+    "title": "Smalltown Boy",
+    "artist": "Bronski Beat",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 34,
+    "title": "Holding Out for a Hero",
+    "artist": "Bonnie Tyler",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 35,
+    "title": "Forever Young",
+    "artist": "Alphaville",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 36,
+    "title": "Big in Japan",
+    "artist": "Alphaville",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 37,
+    "title": "You're My Heart, You're My Soul",
+    "artist": "Modern Talking",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 38,
+    "title": "Take On Me",
+    "artist": "a-ha",
+    "year": 1985,
+    "album": null
+  },
+  {
+    "id": 39,
+    "title": "Don't You (Forget About Me)",
+    "artist": "Simple Minds",
+    "year": 1985,
+    "album": null
+  },
+  {
+    "id": 40,
+    "title": "Material Girl",
+    "artist": "Madonna",
+    "year": 1985,
+    "album": null
+  },
+  {
+    "id": 41,
+    "title": "Rock Me Amadeus",
+    "artist": "Falco",
+    "year": 1985,
+    "album": null
+  },
+  {
+    "id": 42,
+    "title": "Everybody Wants to Rule the World",
+    "artist": "Tears for Fears",
+    "year": 1985,
+    "album": null
+  },
+  {
+    "id": 43,
+    "title": "Money for Nothing",
+    "artist": "Dire Straits",
+    "year": 1985,
+    "album": null
+  },
+  {
+    "id": 44,
+    "title": "Tarzan Boy",
+    "artist": "Baltimora",
+    "year": 1985,
+    "album": null
+  },
+  {
+    "id": 45,
+    "title": "Livin' on a Prayer",
+    "artist": "Bon Jovi",
+    "year": 1986,
+    "album": null
+  },
+  {
+    "id": 46,
+    "title": "Walk Like an Egyptian",
+    "artist": "The Bangles",
+    "year": 1986,
+    "album": null
+  },
+  {
+    "id": 47,
+    "title": "The Final Countdown",
+    "artist": "Europe",
+    "year": 1986,
+    "album": null
+  },
+  {
+    "id": 48,
+    "title": "Walk This Way",
+    "artist": "Run-D.M.C. feat. Aerosmith",
+    "year": 1986,
+    "album": null
+  },
+  {
+    "id": 49,
+    "title": "Brother Louie",
+    "artist": "Modern Talking",
+    "year": 1986,
+    "album": null
+  },
+  {
+    "id": 50,
+    "title": "I Wanna Dance with Somebody (Who Loves Me)",
+    "artist": "Whitney Houston",
+    "year": 1987,
+    "album": null
+  },
+  {
+    "id": 51,
+    "title": "Never Gonna Give You Up",
+    "artist": "Rick Astley",
+    "year": 1987,
+    "album": null
+  },
+  {
+    "id": 52,
+    "title": "Here I Go Again",
+    "artist": "Whitesnake",
+    "year": 1987,
+    "album": null
+  },
+  {
+    "id": 53,
+    "title": "Pour Some Sugar on Me",
+    "artist": "Def Leppard",
+    "year": 1987,
+    "album": null
+  },
+  {
+    "id": 54,
+    "title": "(I've Had) The Time of My Life",
+    "artist": "Bill Medley & Jennifer Warnes",
+    "year": 1987,
+    "album": null
+  },
+  {
+    "id": 55,
+    "title": "Faith",
+    "artist": "George Michael",
+    "year": 1987,
+    "album": null
+  },
+  {
+    "id": 56,
+    "title": "Push It",
+    "artist": "Salt-N-Pepa",
+    "year": 1987,
+    "album": null
+  },
+  {
+    "id": 57,
+    "title": "Bad",
+    "artist": "Michael Jackson",
+    "year": 1987,
+    "album": null
+  },
+  {
+    "id": 58,
+    "title": "Sweet Child o' Mine",
+    "artist": "Guns N' Roses",
+    "year": 1988,
+    "album": null
+  },
+  {
+    "id": 59,
+    "title": "Like a Prayer",
+    "artist": "Madonna",
+    "year": 1989,
+    "album": null
+  }
+]
