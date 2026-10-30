@@ -1,0 +1,429 @@
+[
+  {
+    "id": 1,
+    "title": "Stand by Me",
+    "artist": "Ben E. King",
+    "year": 1961,
+    "album": null
+  },
+  {
+    "id": 2,
+    "title": "Can't Help Falling in Love",
+    "artist": "Elvis Presley",
+    "year": 1961,
+    "album": null
+  },
+  {
+    "id": 3,
+    "title": "Hit the Road Jack",
+    "artist": "Ray Charles",
+    "year": 1961,
+    "album": null
+  },
+  {
+    "id": 4,
+    "title": "I Want to Hold Your Hand",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": null
+  },
+  {
+    "id": 5,
+    "title": "She Loves You",
+    "artist": "The Beatles",
+    "year": 1963,
+    "album": null
+  },
+  {
+    "id": 6,
+    "title": "My Girl",
+    "artist": "The Temptations",
+    "year": 1964,
+    "album": null
+  },
+  {
+    "id": 7,
+    "title": "House of the Rising Sun",
+    "artist": "The Animals",
+    "year": 1964,
+    "album": null
+  },
+  {
+    "id": 8,
+    "title": "Oh, Pretty Woman",
+    "artist": "Roy Orbison",
+    "year": 1964,
+    "album": null
+  },
+  {
+    "id": 9,
+    "title": "(I Can't Get No) Satisfaction",
+    "artist": "The Rolling Stones",
+    "year": 1965,
+    "album": null
+  },
+  {
+    "id": 10,
+    "title": "Like a Rolling Stone",
+    "artist": "Bob Dylan",
+    "year": 1965,
+    "album": null
+  },
+  {
+    "id": 11,
+    "title": "The Sound of Silence",
+    "artist": "Simon & Garfunkel",
+    "year": 1965,
+    "album": null
+  },
+  {
+    "id": 12,
+    "title": "California Dreamin'",
+    "artist": "The Mamas & the Papas",
+    "year": 1965,
+    "album": null
+  },
+  {
+    "id": 13,
+    "title": "Paint It Black",
+    "artist": "The Rolling Stones",
+    "year": 1966,
+    "album": null
+  },
+  {
+    "id": 14,
+    "title": "Good Vibrations",
+    "artist": "The Beach Boys",
+    "year": 1966,
+    "album": null
+  },
+  {
+    "id": 15,
+    "title": "Wild Thing",
+    "artist": "The Troggs",
+    "year": 1966,
+    "album": null
+  },
+  {
+    "id": 16,
+    "title": "Reach Out I'll Be There",
+    "artist": "Four Tops",
+    "year": 1966,
+    "album": null
+  },
+  {
+    "id": 17,
+    "title": "Respect",
+    "artist": "Aretha Franklin",
+    "year": 1967,
+    "album": null
+  },
+  {
+    "id": 18,
+    "title": "Light My Fire",
+    "artist": "The Doors",
+    "year": 1967,
+    "album": null
+  },
+  {
+    "id": 19,
+    "title": "Purple Haze",
+    "artist": "The Jimi Hendrix Experience",
+    "year": 1967,
+    "album": null
+  },
+  {
+    "id": 20,
+    "title": "Ain't No Mountain High Enough",
+    "artist": "Marvin Gaye & Tammi Terrell",
+    "year": 1967,
+    "album": null
+  },
+  {
+    "id": 21,
+    "title": "What a Wonderful World",
+    "artist": "Louis Armstrong",
+    "year": 1967,
+    "album": null
+  },
+  {
+    "id": 22,
+    "title": "Brown Eyed Girl",
+    "artist": "Van Morrison",
+    "year": 1967,
+    "album": null
+  },
+  {
+    "id": 23,
+    "title": "Hey Jude",
+    "artist": "The Beatles",
+    "year": 1968,
+    "album": null
+  },
+  {
+    "id": 24,
+    "title": "Mrs. Robinson",
+    "artist": "Simon & Garfunkel",
+    "year": 1968,
+    "album": null
+  },
+  {
+    "id": 25,
+    "title": "Born to Be Wild",
+    "artist": "Steppenwolf",
+    "year": 1968,
+    "album": null
+  },
+  {
+    "id": 26,
+    "title": "(Sittin' On) The Dock of the Bay",
+    "artist": "Otis Redding",
+    "year": 1968,
+    "album": null
+  },
+  {
+    "id": 27,
+    "title": "Here Comes the Sun",
+    "artist": "The Beatles",
+    "year": 1969,
+    "album": null
+  },
+  {
+    "id": 28,
+    "title": "Suspicious Minds",
+    "artist": "Elvis Presley",
+    "year": 1969,
+    "album": null
+  },
+  {
+    "id": 29,
+    "title": "Space Oddity",
+    "artist": "David Bowie",
+    "year": 1969,
+    "album": null
+  },
+  {
+    "id": 30,
+    "title": "Let It Be",
+    "artist": "The Beatles",
+    "year": 1970,
+    "album": null
+  },
+  {
+    "id": 31,
+    "title": "Bridge over Troubled Water",
+    "artist": "Simon & Garfunkel",
+    "year": 1970,
+    "album": null
+  },
+  {
+    "id": 32,
+    "title": "Your Song",
+    "artist": "Elton John",
+    "year": 1970,
+    "album": null
+  },
+  {
+    "id": 33,
+    "title": "Lola",
+    "artist": "The Kinks",
+    "year": 1970,
+    "album": null
+  },
+  {
+    "id": 34,
+    "title": "Imagine",
+    "artist": "John Lennon",
+    "year": 1971,
+    "album": null
+  },
+  {
+    "id": 35,
+    "title": "Let's Stay Together",
+    "artist": "Al Green",
+    "year": 1971,
+    "album": null
+  },
+  {
+    "id": 36,
+    "title": "Superstition",
+    "artist": "Stevie Wonder",
+    "year": 1972,
+    "album": null
+  },
+  {
+    "id": 37,
+    "title": "Rocket Man",
+    "artist": "Elton John",
+    "year": 1972,
+    "album": null
+  },
+  {
+    "id": 38,
+    "title": "Smoke on the Water",
+    "artist": "Deep Purple",
+    "year": 1972,
+    "album": null
+  },
+  {
+    "id": 39,
+    "title": "Waterloo",
+    "artist": "ABBA",
+    "year": 1974,
+    "album": null
+  },
+  {
+    "id": 40,
+    "title": "Sweet Home Alabama",
+    "artist": "Lynyrd Skynyrd",
+    "year": 1974,
+    "album": null
+  },
+  {
+    "id": 41,
+    "title": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "year": 1975,
+    "album": null
+  },
+  {
+    "id": 42,
+    "title": "Mamma Mia",
+    "artist": "ABBA",
+    "year": 1975,
+    "album": null
+  },
+  {
+    "id": 43,
+    "title": "Born to Run",
+    "artist": "Bruce Springsteen",
+    "year": 1975,
+    "album": null
+  },
+  {
+    "id": 44,
+    "title": "Dancing Queen",
+    "artist": "ABBA",
+    "year": 1976,
+    "album": null
+  },
+  {
+    "id": 45,
+    "title": "Hotel California",
+    "artist": "Eagles",
+    "year": 1976,
+    "album": null
+  },
+  {
+    "id": 46,
+    "title": "Daddy Cool",
+    "artist": "Boney M.",
+    "year": 1976,
+    "album": null
+  },
+  {
+    "id": 47,
+    "title": "Go Your Own Way",
+    "artist": "Fleetwood Mac",
+    "year": 1976,
+    "album": null
+  },
+  {
+    "id": 48,
+    "title": "Stayin' Alive",
+    "artist": "Bee Gees",
+    "year": 1977,
+    "album": null
+  },
+  {
+    "id": 49,
+    "title": "We Will Rock You",
+    "artist": "Queen",
+    "year": 1977,
+    "album": null
+  },
+  {
+    "id": 50,
+    "title": "Heroes",
+    "artist": "David Bowie",
+    "year": 1977,
+    "album": null
+  },
+  {
+    "id": 51,
+    "title": "I Feel Love",
+    "artist": "Donna Summer",
+    "year": 1977,
+    "album": null
+  },
+  {
+    "id": 52,
+    "title": "I Will Survive",
+    "artist": "Gloria Gaynor",
+    "year": 1978,
+    "album": null
+  },
+  {
+    "id": 53,
+    "title": "Le Freak",
+    "artist": "Chic",
+    "year": 1978,
+    "album": null
+  },
+  {
+    "id": 54,
+    "title": "Y.M.C.A.",
+    "artist": "Village People",
+    "year": 1978,
+    "album": null
+  },
+  {
+    "id": 55,
+    "title": "September",
+    "artist": "Earth, Wind & Fire",
+    "year": 1978,
+    "album": null
+  },
+  {
+    "id": 56,
+    "title": "Rivers of Babylon",
+    "artist": "Boney M.",
+    "year": 1978,
+    "album": null
+  },
+  {
+    "id": 57,
+    "title": "Heart of Glass",
+    "artist": "Blondie",
+    "year": 1979,
+    "album": null
+  },
+  {
+    "id": 58,
+    "title": "Don't Stop Me Now",
+    "artist": "Queen",
+    "year": 1979,
+    "album": null
+  },
+  {
+    "id": 59,
+    "title": "Highway to Hell",
+    "artist": "AC/DC",
+    "year": 1979,
+    "album": null
+  },
+  {
+    "id": 60,
+    "title": "Video Killed the Radio Star",
+    "artist": "The Buggles",
+    "year": 1979,
+    "album": null
+  },
+  {
+    "id": 61,
+    "title": "Another Brick in the Wall (Part 2)",
+    "artist": "Pink Floyd",
+    "year": 1979,
+    "album": null
+  }
+]
