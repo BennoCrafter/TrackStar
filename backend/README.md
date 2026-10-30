@@ -67,6 +67,8 @@ python generate.py build songs.json --name taylor-swift --display-name "Taylor S
 - `--output`: parent directory, defaults to `../datasets`.
 - `--increase`: raise the version even if nothing changed, so every app downloads the dataset again (see [Versioning](#versioning)).
 
+Optionally add `"icon"` to `info.json` by hand: an [SF Symbol](https://developer.apple.com/sf-symbols/) name (`"guitars"`) or an emoji (`"🇩🇪"`). Without one the app shows the first letter. Changing it needs no version bump; `build` keeps it.
+
 Re-running `build` overwrites `info.json`, `songs.json` and `cards.pdf`; an existing `README.md` is kept.
 
 ### 3. `rebuild` – regenerate `cards.pdf`
@@ -105,7 +107,7 @@ python generate.py build ../datasets/taylor-swift/songs.json --name taylor-swift
 
 | file          | used by | content |
 |---------------|---------|---------|
-| `info.json`   | app     | `{"name": ..., "display_name": ..., "version": ...}` |
+| `info.json`   | app     | `{"name": ..., "display_name": ..., "version": ..., "icon"?: ...}` |
 | `songs.json`  | app     | the song list |
 | `cards.pdf`   | app (download link), printing | the cards |
 | `README.md`   | app     | description + copyright note |

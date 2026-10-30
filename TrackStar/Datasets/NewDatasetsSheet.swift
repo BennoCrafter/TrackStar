@@ -84,7 +84,7 @@ private struct NewDatasetRow: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
-            DatasetIcon(name: remote.title, size: 52)
+            DatasetIcon(name: remote.title, icon: remote.icon, size: 52)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(remote.title)

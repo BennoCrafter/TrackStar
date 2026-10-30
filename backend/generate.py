@@ -47,7 +47,7 @@ def build(songs_json: Path, display_name: str, name: str, output: Path, increase
     if increase or "version" not in old_info or songs_path.read_text() != old_songs or old_info.get("display_name") != display_name:
         version += 1
         click.secho(f"ℹ version {version}", fg="blue")
-    info = {"name": name, "display_name": display_name, "version": version}
+    info = {**old_info, "name": name, "display_name": display_name, "version": version}
     info_path.write_text(json.dumps(info, indent=2) + "\n")
     readme = out / "README.md"
     if not readme.exists():

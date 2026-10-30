@@ -1,5 +1,6 @@
 {
   "name": "social-media-hits",
   "display_name": "Social Media Hits",
-  "version": 1
+  "version": 1,
+  "icon": "iphone"
 }

@@ -67,7 +67,7 @@ struct DatasetLibraryView: View {
                         DatasetDetailView(id: remote.id, remote: remote)
                     } label: {
                         HStack {
-                            DatasetIcon(name: remote.title)
+                            DatasetIcon(name: remote.title, icon: remote.icon)
                             Text(remote.title)
                             Spacer()
                             DownloadButton(remote: remote)
@@ -212,7 +212,7 @@ struct InstalledRow: View {
 
     var body: some View {
         HStack {
-            DatasetIcon(name: dataset.displayName)
+            DatasetIcon(name: dataset.displayName, icon: dataset.icon)
             VStack(alignment: .leading, spacing: 2) {
                 Text(dataset.displayName)
                 Text(dataset.isRemote ? "\(dataset.songCount) songs" : "\(dataset.songCount) songs · imported")
@@ -235,11 +235,19 @@ struct InstalledRow: View {
 /// A rounded square with the dataset's initial, colored by its name so it stays the same.
 struct DatasetIcon: View {
     let name: String
+    /// An SF Symbol name or an emoji; the first letter of the name without one.
+    var icon: String?
     var size: CGFloat = 36
 
     var body: some View {
         let hash = name.unicodeScalars.reduce(0) { $0 &+ Int($1.value) }
-        Text(name.prefix(1).uppercased())
+        Group {
+            if let icon, UIImage(systemName: icon) != nil {
+                Image(systemName: icon)
+            } else {
+                Text(icon ?? name.prefix(1).uppercased())
+            }
+        }
             .font(.system(size: size * 0.45, weight: .bold, design: .rounded))
             .foregroundStyle(.white)
             .frame(width: size, height: size)

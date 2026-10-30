@@ -109,7 +109,7 @@ struct DatasetDetailView: View {
 
     private var header: some View {
         VStack(spacing: 12) {
-            DatasetIcon(name: title, size: 80)
+            DatasetIcon(name: title, icon: dataset?.icon ?? remote?.icon, size: 80)
             Text(title)
                 .font(.title.bold())
             if let dataset {

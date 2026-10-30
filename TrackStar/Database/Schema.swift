@@ -17,6 +17,8 @@ struct Dataset: Identifiable, Hashable, Sendable {
     /// Imported from a file: no cards, README or updates.
     var isRemote: Bool = true
     var isActive: Bool = false
+    /// `info.json`'s icon: an SF Symbol name or an emoji.
+    var icon: String?
 }
 
 /// One card of a dataset. `number` is the id printed on the card and encoded in its QR code.
@@ -86,6 +88,9 @@ enum Schema {
                 ) STRICT
                 """
             ).execute(db)
+        }
+        migrator.registerMigration("Add dataset icon") { db in
+            try #sql(#"ALTER TABLE "datasets" ADD COLUMN "icon" TEXT"#).execute(db)
         }
         return migrator
     }
