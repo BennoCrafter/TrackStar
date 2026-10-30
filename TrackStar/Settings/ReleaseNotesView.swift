@@ -34,7 +34,7 @@ enum ReleaseNotes {
     }
 
     static let releases: [Release] = [
-        Release(version: "2.0", items: [
+        Release(version: "1.0.0", items: [
             Item(
                 systemImage: "sparkles",
                 color: .purple,
