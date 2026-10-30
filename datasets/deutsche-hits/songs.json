@@ -1,0 +1,359 @@
+[
+  {
+    "id": 1,
+    "title": "Marmor, Stein und Eisen bricht",
+    "artist": "Drafi Deutscher",
+    "year": 1965,
+    "album": null
+  },
+  {
+    "id": 2,
+    "title": "Griechischer Wein",
+    "artist": "Udo Jürgens",
+    "year": 1974,
+    "album": null
+  },
+  {
+    "id": 3,
+    "title": "Er gehört zu mir",
+    "artist": "Marianne Rosenberg",
+    "year": 1975,
+    "album": null
+  },
+  {
+    "id": 4,
+    "title": "Ein Bett im Kornfeld",
+    "artist": "Jürgen Drews",
+    "year": 1976,
+    "album": null
+  },
+  {
+    "id": 5,
+    "title": "Alt wie ein Baum",
+    "artist": "Puhdys",
+    "year": 1976,
+    "album": null
+  },
+  {
+    "id": 6,
+    "title": "Über sieben Brücken musst du gehn",
+    "artist": "Karat",
+    "year": 1978,
+    "album": null
+  },
+  {
+    "id": 7,
+    "title": "Am Fenster",
+    "artist": "City",
+    "year": 1978,
+    "album": null
+  },
+  {
+    "id": 8,
+    "title": "Dschinghis Khan",
+    "artist": "Dschinghis Khan",
+    "year": 1979,
+    "album": null
+  },
+  {
+    "id": 9,
+    "title": "Moskau",
+    "artist": "Dschinghis Khan",
+    "year": 1979,
+    "album": null
+  },
+  {
+    "id": 10,
+    "title": "Skandal im Sperrbezirk",
+    "artist": "Spider Murphy Gang",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 11,
+    "title": "Der Kommissar",
+    "artist": "Falco",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 12,
+    "title": "Da Da Da",
+    "artist": "Trio",
+    "year": 1982,
+    "album": null
+  },
+  {
+    "id": 13,
+    "title": "Ein bißchen Frieden",
+    "artist": "Nicole",
+    "year": 1982,
+    "album": null
+  },
+  {
+    "id": 14,
+    "title": "Ich war noch niemals in New York",
+    "artist": "Udo Jürgens",
+    "year": 1982,
+    "album": null
+  },
+  {
+    "id": 15,
+    "title": "Major Tom (Völlig losgelöst)",
+    "artist": "Peter Schilling",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 16,
+    "title": "Sonderzug nach Pankow",
+    "artist": "Udo Lindenberg",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 17,
+    "title": "Wahnsinn",
+    "artist": "Wolfgang Petry",
+    "year": 1983,
+    "album": null
+  },
+  {
+    "id": 18,
+    "title": "Männer",
+    "artist": "Herbert Grönemeyer",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 19,
+    "title": "1000 und 1 Nacht (Zoom!)",
+    "artist": "Klaus Lage",
+    "year": 1984,
+    "album": null
+  },
+  {
+    "id": 20,
+    "title": "Ohne dich (schlaf' ich heut' Nacht nicht ein)",
+    "artist": "Münchener Freiheit",
+    "year": 1986,
+    "album": null
+  },
+  {
+    "id": 21,
+    "title": "Hier kommt Alex",
+    "artist": "Die Toten Hosen",
+    "year": 1988,
+    "album": null
+  },
+  {
+    "id": 22,
+    "title": "Verdammt, ich lieb' dich",
+    "artist": "Matthias Reim",
+    "year": 1990,
+    "album": null
+  },
+  {
+    "id": 23,
+    "title": "Schrei nach Liebe",
+    "artist": "Die Ärzte",
+    "year": 1993,
+    "album": null
+  },
+  {
+    "id": 24,
+    "title": "Du hast",
+    "artist": "Rammstein",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 25,
+    "title": "Sonne",
+    "artist": "Rammstein",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 26,
+    "title": "Dickes B",
+    "artist": "Seeed",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 27,
+    "title": "Mensch",
+    "artist": "Herbert Grönemeyer",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 28,
+    "title": "Ein Kompliment",
+    "artist": "Sportfreunde Stiller",
+    "year": 2002,
+    "album": null
+  },
+  {
+    "id": 29,
+    "title": "Perfekte Welle",
+    "artist": "Juli",
+    "year": 2004,
+    "album": null
+  },
+  {
+    "id": 30,
+    "title": "Durch den Monsun",
+    "artist": "Tokio Hotel",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 31,
+    "title": "Nur ein Wort",
+    "artist": "Wir sind Helden",
+    "year": 2005,
+    "album": null
+  },
+  {
+    "id": 32,
+    "title": "Ding",
+    "artist": "Seeed",
+    "year": 2006,
+    "album": null
+  },
+  {
+    "id": 33,
+    "title": "Junge",
+    "artist": "Die Ärzte",
+    "year": 2007,
+    "album": null
+  },
+  {
+    "id": 34,
+    "title": "Haus am See",
+    "artist": "Peter Fox",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 35,
+    "title": "Alles neu",
+    "artist": "Peter Fox",
+    "year": 2008,
+    "album": null
+  },
+  {
+    "id": 36,
+    "title": "Stadt",
+    "artist": "Cassandra Steen feat. Adel Tawil",
+    "year": 2009,
+    "album": null
+  },
+  {
+    "id": 37,
+    "title": "Tage wie diese",
+    "artist": "Die Toten Hosen",
+    "year": 2012,
+    "album": null
+  },
+  {
+    "id": 38,
+    "title": "Atemlos durch die Nacht",
+    "artist": "Helene Fischer",
+    "year": 2013,
+    "album": null
+  },
+  {
+    "id": 39,
+    "title": "Lieder",
+    "artist": "Adel Tawil",
+    "year": 2013,
+    "album": null
+  },
+  {
+    "id": 40,
+    "title": "Applaus, Applaus",
+    "artist": "Sportfreunde Stiller",
+    "year": 2013,
+    "album": null
+  },
+  {
+    "id": 41,
+    "title": "Auf uns",
+    "artist": "Andreas Bourani",
+    "year": 2014,
+    "album": null
+  },
+  {
+    "id": 42,
+    "title": "Ein Hoch auf uns",
+    "artist": "Andreas Bourani",
+    "year": 2014,
+    "album": null
+  },
+  {
+    "id": 43,
+    "title": "Bauch und Kopf",
+    "artist": "Mark Forster",
+    "year": 2014,
+    "album": null
+  },
+  {
+    "id": 44,
+    "title": "Astronaut",
+    "artist": "Sido feat. Andreas Bourani",
+    "year": 2015,
+    "album": null
+  },
+  {
+    "id": 45,
+    "title": "Chöre",
+    "artist": "Mark Forster",
+    "year": 2016,
+    "album": null
+  },
+  {
+    "id": 46,
+    "title": "80 Millionen",
+    "artist": "Max Giesinger",
+    "year": 2016,
+    "album": null
+  },
+  {
+    "id": 47,
+    "title": "Cordula Grün",
+    "artist": "Josh.",
+    "year": 2018,
+    "album": null
+  },
+  {
+    "id": 48,
+    "title": "Roller",
+    "artist": "Apache 207",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 49,
+    "title": "Layla",
+    "artist": "DJ Robin & Schürze",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 50,
+    "title": "Komet",
+    "artist": "Udo Lindenberg & Apache 207",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 51,
+    "title": "Mädchen auf dem Pferd",
+    "artist": "Luca-Dante Spadafora & Niklas Dee",
+    "year": 2023,
+    "album": null
+  }
+]
