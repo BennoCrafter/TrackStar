@@ -1,0 +1,401 @@
+[
+  {
+    "id": 1,
+    "title": "Vogue",
+    "artist": "Madonna",
+    "year": 1990,
+    "album": null
+  },
+  {
+    "id": 2,
+    "title": "Ice Ice Baby",
+    "artist": "Vanilla Ice",
+    "year": 1990,
+    "album": null
+  },
+  {
+    "id": 3,
+    "title": "U Can't Touch This",
+    "artist": "MC Hammer",
+    "year": 1990,
+    "album": null
+  },
+  {
+    "id": 4,
+    "title": "Nothing Compares 2 U",
+    "artist": "Sinéad O'Connor",
+    "year": 1990,
+    "album": null
+  },
+  {
+    "id": 5,
+    "title": "Smells Like Teen Spirit",
+    "artist": "Nirvana",
+    "year": 1991,
+    "album": null
+  },
+  {
+    "id": 6,
+    "title": "Losing My Religion",
+    "artist": "R.E.M.",
+    "year": 1991,
+    "album": null
+  },
+  {
+    "id": 7,
+    "title": "Black or White",
+    "artist": "Michael Jackson",
+    "year": 1991,
+    "album": null
+  },
+  {
+    "id": 8,
+    "title": "Enter Sandman",
+    "artist": "Metallica",
+    "year": 1991,
+    "album": null
+  },
+  {
+    "id": 9,
+    "title": "I Will Always Love You",
+    "artist": "Whitney Houston",
+    "year": 1992,
+    "album": null
+  },
+  {
+    "id": 10,
+    "title": "Rhythm Is a Dancer",
+    "artist": "Snap!",
+    "year": 1992,
+    "album": null
+  },
+  {
+    "id": 11,
+    "title": "Creep",
+    "artist": "Radiohead",
+    "year": 1992,
+    "album": null
+  },
+  {
+    "id": 12,
+    "title": "Under the Bridge",
+    "artist": "Red Hot Chili Peppers",
+    "year": 1992,
+    "album": null
+  },
+  {
+    "id": 13,
+    "title": "November Rain",
+    "artist": "Guns N' Roses",
+    "year": 1992,
+    "album": null
+  },
+  {
+    "id": 14,
+    "title": "All That She Wants",
+    "artist": "Ace of Base",
+    "year": 1992,
+    "album": null
+  },
+  {
+    "id": 15,
+    "title": "What Is Love",
+    "artist": "Haddaway",
+    "year": 1993,
+    "album": null
+  },
+  {
+    "id": 16,
+    "title": "Mr. Vain",
+    "artist": "Culture Beat",
+    "year": 1993,
+    "album": null
+  },
+  {
+    "id": 17,
+    "title": "The Sign",
+    "artist": "Ace of Base",
+    "year": 1993,
+    "album": null
+  },
+  {
+    "id": 18,
+    "title": "Rhythm of the Night",
+    "artist": "Corona",
+    "year": 1993,
+    "album": null
+  },
+  {
+    "id": 19,
+    "title": "Zombie",
+    "artist": "The Cranberries",
+    "year": 1994,
+    "album": null
+  },
+  {
+    "id": 20,
+    "title": "Basket Case",
+    "artist": "Green Day",
+    "year": 1994,
+    "album": null
+  },
+  {
+    "id": 21,
+    "title": "Kiss from a Rose",
+    "artist": "Seal",
+    "year": 1994,
+    "album": null
+  },
+  {
+    "id": 22,
+    "title": "Scatman (Ski-Ba-Bop-Ba-Dop-Bop)",
+    "artist": "Scatman John",
+    "year": 1994,
+    "album": null
+  },
+  {
+    "id": 23,
+    "title": "All I Want for Christmas Is You",
+    "artist": "Mariah Carey",
+    "year": 1994,
+    "album": null
+  },
+  {
+    "id": 24,
+    "title": "Wonderwall",
+    "artist": "Oasis",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 25,
+    "title": "Gangsta's Paradise",
+    "artist": "Coolio feat. L.V.",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 26,
+    "title": "Waterfalls",
+    "artist": "TLC",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 27,
+    "title": "You Oughta Know",
+    "artist": "Alanis Morissette",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 28,
+    "title": "Fantasy",
+    "artist": "Mariah Carey",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 29,
+    "title": "Children",
+    "artist": "Robert Miles",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 30,
+    "title": "Insomnia",
+    "artist": "Faithless",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 31,
+    "title": "Be My Lover",
+    "artist": "La Bouche",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 32,
+    "title": "California Love",
+    "artist": "2Pac feat. Dr. Dre",
+    "year": 1995,
+    "album": null
+  },
+  {
+    "id": 33,
+    "title": "Wannabe",
+    "artist": "Spice Girls",
+    "year": 1996,
+    "album": null
+  },
+  {
+    "id": 34,
+    "title": "Killing Me Softly",
+    "artist": "Fugees",
+    "year": 1996,
+    "album": null
+  },
+  {
+    "id": 35,
+    "title": "No Diggity",
+    "artist": "Blackstreet feat. Dr. Dre",
+    "year": 1996,
+    "album": null
+  },
+  {
+    "id": 36,
+    "title": "Don't Speak",
+    "artist": "No Doubt",
+    "year": 1996,
+    "album": null
+  },
+  {
+    "id": 37,
+    "title": "Freed from Desire",
+    "artist": "Gala",
+    "year": 1996,
+    "album": null
+  },
+  {
+    "id": 38,
+    "title": "Return of the Mack",
+    "artist": "Mark Morrison",
+    "year": 1996,
+    "album": null
+  },
+  {
+    "id": 39,
+    "title": "Coco Jamboo",
+    "artist": "Mr. President",
+    "year": 1996,
+    "album": null
+  },
+  {
+    "id": 40,
+    "title": "Torn",
+    "artist": "Natalie Imbruglia",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 41,
+    "title": "Bitter Sweet Symphony",
+    "artist": "The Verve",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 42,
+    "title": "Barbie Girl",
+    "artist": "Aqua",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 43,
+    "title": "My Heart Will Go On",
+    "artist": "Céline Dion",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 44,
+    "title": "Everybody (Backstreet's Back)",
+    "artist": "Backstreet Boys",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 45,
+    "title": "Tubthumping",
+    "artist": "Chumbawamba",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 46,
+    "title": "Men in Black",
+    "artist": "Will Smith",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 47,
+    "title": "Truly Madly Deeply",
+    "artist": "Savage Garden",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 48,
+    "title": "MMMBop",
+    "artist": "Hanson",
+    "year": 1997,
+    "album": null
+  },
+  {
+    "id": 49,
+    "title": "...Baby One More Time",
+    "artist": "Britney Spears",
+    "year": 1998,
+    "album": null
+  },
+  {
+    "id": 50,
+    "title": "Believe",
+    "artist": "Cher",
+    "year": 1998,
+    "album": null
+  },
+  {
+    "id": 51,
+    "title": "Blue (Da Ba Dee)",
+    "artist": "Eiffel 65",
+    "year": 1998,
+    "album": null
+  },
+  {
+    "id": 52,
+    "title": "I Want It That Way",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "album": null
+  },
+  {
+    "id": 53,
+    "title": "No Scrubs",
+    "artist": "TLC",
+    "year": 1999,
+    "album": null
+  },
+  {
+    "id": 54,
+    "title": "Livin' la Vida Loca",
+    "artist": "Ricky Martin",
+    "year": 1999,
+    "album": null
+  },
+  {
+    "id": 55,
+    "title": "Genie in a Bottle",
+    "artist": "Christina Aguilera",
+    "year": 1999,
+    "album": null
+  },
+  {
+    "id": 56,
+    "title": "Mambo No. 5 (A Little Bit of...)",
+    "artist": "Lou Bega",
+    "year": 1999,
+    "album": null
+  },
+  {
+    "id": 57,
+    "title": "Sandstorm",
+    "artist": "Darude",
+    "year": 1999,
+    "album": null
+  }
+]
