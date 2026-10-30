@@ -56,7 +56,7 @@ struct DatasetDetailView: View {
                 if isRemote {
                     Text("Print the cards double-sided, flipping on the long edge, then cut along the marks.")
                 } else {
-                    Text("Print the cards double-sided, flipping on the long edge, then cut along the marks. They only play on this device: the dataset isn't in the repository.")
+                    Text("Print the cards double-sided, flipping on the long edge, then cut along the marks. They only play on this device: the song pack isn't in the repository.")
                 }
             }
 
@@ -73,7 +73,7 @@ struct DatasetDetailView: View {
 
             if let dataset {
                 Section {
-                    Button("Delete Dataset", role: .destructive) { confirmingDelete = true }
+                    Button("Delete Song Pack", role: .destructive) { confirmingDelete = true }
                 } footer: {
                     if dataset.isRemote, dataset.version > 0 {
                         Text("Version \(dataset.version). Updates download automatically.")
@@ -128,7 +128,7 @@ struct DatasetDetailView: View {
             Button {
                 do { try Library.activate(dataset.id) } catch { self.error = error.localizedDescription }
             } label: {
-                Label(dataset.isActive ? "Playing" : "Play This Dataset", systemImage: dataset.isActive ? "checkmark" : "play.fill")
+                Label(dataset.isActive ? "Playing" : "Play This Song Pack", systemImage: dataset.isActive ? "checkmark" : "play.fill")
                     .labelStyle(.titleAndIcon)
                     .frame(minWidth: 200)
             }

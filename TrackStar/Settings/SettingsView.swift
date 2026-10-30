@@ -8,19 +8,20 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.playbackDuration) private var playbackDuration: Double = 30
     @AppStorage(SettingsKey.randomStart) private var randomStart = false
     @AppStorage(SettingsKey.devMode) private var devMode = false
+    @AppStorage(SettingsKey.winningScore) private var winningScore = PartyModel.defaultWinningScore
+    @AppStorage(SettingsKey.wrongCostsPoint) private var wrongCostsPoint = true
+    @AppStorage(SettingsKey.nameTheSong) private var nameTheSong = true
 
     @FetchOne(Dataset.where(\.isActive)) private var activeDataset: Dataset?
-    @FetchAll(Dataset.order(by: \.displayName)) private var installed: [Dataset]
     @State private var showingReleaseNotes = false
 
     var body: some View {
         NavigationStack {
             Form {
                 gameSection
+                partyRulesSection
                 developerSection
                 datasetSection
-                onDeviceSection(public: true)
-                onDeviceSection(public: false)
                 helpSection
                 aboutSection
             }
@@ -58,6 +59,30 @@ struct SettingsView: View {
         }
     }
 
+    private var partyRulesSection: some View {
+        Section {
+            Stepper(value: $winningScore, in: 3 ... 30) {
+                LabeledContent {
+                    Text("\(winningScore)").monospacedDigit()
+                } label: {
+                    Label("Points to Win", systemImage: "trophy")
+                }
+            }
+
+            Toggle(isOn: $wrongCostsPoint) {
+                Label("Lose a Point When Wrong", systemImage: "minus.circle")
+            }
+
+            Toggle(isOn: $nameTheSong) {
+                Label("Name the Song First", systemImage: "checklist")
+            }
+        } header: {
+            Text("Party Rules")
+        } footer: {
+            Text("For the Party Game. With “Name the Song First”, a player picks the right title and artist out of three before placing the card.")
+        }
+    }
+
     private var developerSection: some View {
         Section {
             Toggle(isOn: $devMode) {
@@ -74,34 +99,11 @@ struct SettingsView: View {
                 LabeledContent {
                     Text(activeDataset?.displayName ?? "None")
                 } label: {
-                    Label("Datasets", systemImage: "square.stack")
+                    Label("Song Packs", systemImage: "square.stack")
                 }
             }
         } footer: {
-            Text("German Hitster cards play with the Hitster dataset.")
-        }
-    }
-
-    /// The downloaded repo datasets, or the user's own (imported or made in the app). Hidden when empty.
-    @ViewBuilder
-    private func onDeviceSection(public isRemote: Bool) -> some View {
-        let datasets = installed.filter { $0.isRemote == isRemote }
-        if !datasets.isEmpty {
-            Section {
-                ForEach(datasets) { dataset in
-                    NavigationLink {
-                        DatasetDetailView(id: dataset.id, remote: nil)
-                    } label: {
-                        InstalledRow(dataset: dataset)
-                    }
-                }
-            } header: {
-                Text(isRemote ? "On This Device · Public" : "On This Device · My Datasets")
-            } footer: {
-                if !isRemote {
-                    Text("Imported from a file or made from Apple Music. They only exist on this device.")
-                }
-            }
+            Text("German Hitster cards play with the Hitster song pack.")
         }
     }
 

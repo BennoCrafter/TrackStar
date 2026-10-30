@@ -66,10 +66,10 @@ struct PartySetupView: View {
                     .foregroundStyle(.primary)
                 }
             } footer: {
-                if datasets.isEmpty { Text("Download a dataset to play.") }
+                if datasets.isEmpty { Text("Download a song pack to play.") }
             }
             Section {
-                Button("Get Datasets") { showingLibrary = true }
+                Button("Get Song Packs") { showingLibrary = true }
             }
         }
         .navigationTitle("Which Songs?")

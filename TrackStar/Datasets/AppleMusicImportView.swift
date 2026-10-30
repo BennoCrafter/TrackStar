@@ -146,7 +146,7 @@ private struct SongPickerView: View {
                     .disabled(selected.isEmpty)
             }
         }
-        .alert("Name the Dataset", isPresented: $isNaming) {
+        .alert("Name the Song Pack", isPresented: $isNaming) {
             TextField("Name", text: $name)
             Button("Create", action: create)
             Button("Cancel", role: .cancel) {}

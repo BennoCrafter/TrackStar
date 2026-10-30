@@ -99,7 +99,7 @@ struct ContentView: View {
                 Text("Scan a card")
                     .font(.title2.bold())
                 Text(activeDataset == nil
-                    ? "Point the camera at a card's QR code. Its dataset is picked automatically."
+                    ? "Point the camera at a card's QR code. Its song pack is picked automatically."
                     : "Point the camera at the QR code of a card.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
@@ -177,7 +177,7 @@ struct ContentView: View {
             Button { showingLibrary = true } label: {
                 HStack(spacing: 6) {
                     Image(systemName: "square.stack.fill")
-                    Text(activeDataset?.displayName ?? "Choose Dataset")
+                    Text(activeDataset?.displayName ?? "Choose Song Pack")
                 }
                 .font(.subheadline.weight(.semibold))
                 .padding(.horizontal, 4)
@@ -194,7 +194,7 @@ struct ContentView: View {
     private var problemTitle: LocalizedStringKey {
         switch game.problem {
         case .unknownCode: "Not a TrackStar Card"
-        case .missingDataset: "Dataset Not Downloaded"
+        case .missingDataset: "Song Pack Not Downloaded"
         case .missingCard: "Card Not Found"
         case .notFound: "Song Not on Apple Music"
         case .message, nil: "Something Went Wrong"
@@ -206,9 +206,9 @@ struct ContentView: View {
         case .unknownCode:
             "This QR code doesn't belong to a TrackStar or German Hitster card."
         case let .missingDataset(name):
-            "This card belongs to the dataset “\(name)”. Download it to play the card."
+            "This card belongs to the song pack “\(name)”. Download it to play the card."
         case let .missingCard(number):
-            "\(activeDataset?.displayName ?? "The dataset") has no card number \(number)."
+            "\(activeDataset?.displayName ?? "The song pack") has no card number \(number)."
         case let .notFound(track):
             "“\(track.title)” by \(track.artist) couldn't be found. Here's the card anyway."
         case let .message(text):

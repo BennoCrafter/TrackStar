@@ -20,22 +20,35 @@ struct PartySave: Codable {
 
 struct NotEnoughSongs: LocalizedError {
     var errorDescription: String? {
-        "This dataset has too few songs with a release year to play without cards."
+        "This song pack has too few songs with a release year for the Party Game."
     }
 }
 
 /// The game without cards: the phone draws the songs, players build their timelines on screen.
-/// Whoever recognizes a song places it: +1 if it fits the timeline, -1 and discarded if not.
+/// Whoever recognizes a song names it out of three (if that rule is on), then places it:
+/// +1 if it fits the timeline, -1 (if that rule is on) and discarded if not. Rules are in Settings.
 @MainActor @Observable
 final class PartyModel {
     static let saveKey = "partyGame"
-    static let winningScore = 10
+    static let defaultWinningScore = 10
+
+    // ponytail: rules are read live, so changing them mid-game applies at once; store them in PartySave if that bites.
+    static var winningScore: Int {
+        let score = UserDefaults.standard.integer(forKey: SettingsKey.winningScore)
+        return score > 0 ? score : defaultWinningScore
+    }
+
+    private static func rule(_ key: String) -> Bool {
+        UserDefaults.standard.object(forKey: key) as? Bool ?? true
+    }
 
     enum Phase: Hashable {
         case ready, listening, choosing
+        /// The song and two others; the player picks which one is playing.
+        case naming(player: Int, options: [Track])
         case placing(player: Int)
-        /// `player` nil: nobody recognized the song.
-        case revealed(player: Int?, slot: Int, correct: Bool)
+        /// `player` nil: nobody recognized the song. `slot` nil: the card wasn't placed.
+        case revealed(player: Int?, slot: Int?, correct: Bool)
     }
 
     private(set) var game: PartySave
@@ -103,10 +116,35 @@ final class PartyModel {
     }
 
     func recognized(by player: Int?) {
-        if let player {
+        guard let player else {
+            phase = .revealed(player: nil, slot: nil, correct: false)
+            return
+        }
+        // Two other titles, not two versions of one song.
+        var titles: Set<String> = [card?.title.lowercased() ?? ""]
+        let others = deck.shuffled().filter { titles.insert($0.title.lowercased()).inserted }.prefix(2)
+        if Self.rule(SettingsKey.nameTheSong), let card, others.count == 2 {
+            phase = .naming(player: player, options: ([card] + others).shuffled())
+        } else {
+            phase = .placing(player: player)
+        }
+    }
+
+    /// The right song goes on to placing; a wrong one ends the turn like a wrong placement.
+    func name(_ track: Track) {
+        guard case let .naming(player, _) = phase else { return }
+        if track.number == card?.number {
             phase = .placing(player: player)
         } else {
-            phase = .revealed(player: nil, slot: 0, correct: false)
+            penalize(player)
+            phase = .revealed(player: player, slot: nil, correct: false)
+            persist()
+        }
+    }
+
+    private func penalize(_ player: Int) {
+        if Self.rule(SettingsKey.wrongCostsPoint) {
+            game.players[player].score = max(0, game.players[player].score - 1)
         }
     }
 
@@ -119,7 +157,7 @@ final class PartyModel {
             game.players[player].timeline.insert(card, at: slot)
             game.players[player].score += 1
         } else {
-            game.players[player].score = max(0, game.players[player].score - 1)
+            penalize(player)
         }
         phase = .revealed(player: player, slot: slot, correct: correct)
         persist()

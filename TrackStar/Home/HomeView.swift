@@ -68,8 +68,8 @@ struct HomeView: View {
                         Text("New Game")
                             .font(.largeTitle.bold())
                             .padding(.bottom, 8)
-                        modeButton("With Cards", detail: "Scan the QR codes of printed cards.", systemImage: "qrcode.viewfinder", mode: .classic)
-                        modeButton("No Cards", detail: "The phone picks the songs and keeps everyone's timeline and points.", systemImage: "person.3.fill", mode: .newParty)
+                        modeButton("Card Game", detail: "Play with printed cards: scan one, hear the song, place it.", systemImage: "qrcode.viewfinder", mode: .classic)
+                        modeButton("Party Game", detail: "No cards needed: the phone picks the songs and keeps everyone's timeline and points.", systemImage: "person.3.fill", mode: .newParty)
                         if savedGame != nil {
                             Button { mode = .resumeParty } label: {
                                 Label("Continue Game", systemImage: "play.fill")

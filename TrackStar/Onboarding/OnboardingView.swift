@@ -16,7 +16,7 @@ struct OnboardingView: View {
         case welcome, howToPlay, music, datasets, done
 
         var title: LocalizedStringKey {
-            self == .datasets ? "Get a Dataset" : ""
+            self == .datasets ? "Get a Song Pack" : ""
         }
 
         var continueTitle: LocalizedStringKey {
@@ -124,7 +124,7 @@ struct OnboardingView: View {
         case .datasets:
             DatasetLibraryView()
                 .navigationTitle("")
-                .onboardingHint("A dataset is a set of cards. Download one, then print its cards or use the original German Hitster cards.")
+                .onboardingHint("A song pack is a set of cards. Download one, then print its cards or use the original German Hitster cards.")
 
         case .done:
             OnboardingPageView(

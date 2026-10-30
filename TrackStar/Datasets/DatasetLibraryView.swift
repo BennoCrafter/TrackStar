@@ -37,36 +37,16 @@ struct DatasetLibraryView: View {
 
     var body: some View {
         List {
-            Section {
-                if installed.isEmpty {
-                    Text("No datasets yet. Download one below.")
+            if installed.isEmpty {
+                Section("On This Device") {
+                    Text("No song packs yet. Download one below.")
                         .foregroundStyle(.secondary)
                 }
-                ForEach(installed) { dataset in
-                    NavigationLink {
-                        DatasetDetailView(id: dataset.id, remote: catalog.first { $0.id == dataset.id })
-                    } label: {
-                        InstalledRow(dataset: dataset)
-                    }
-                    .swipeActions(edge: .leading) {
-                        if !dataset.isActive {
-                            Button("Play") { run { try Library.activate(dataset.id) } }
-                                .tint(.accentColor)
-                        }
-                    }
-                }
-                .onDelete { offsets in
-                    for index in offsets {
-                        run { try Library.delete(installed[index].id) }
-                    }
-                }
-            } header: {
-                Text("On This Device")
-            } footer: {
-                if !installed.isEmpty {
-                    Text("Swipe right to play a dataset. Scanning a card switches to its dataset too.")
-                }
             }
+            installedSection("On This Device · Public", installed.filter(\.isRemote),
+                             footer: "Swipe right to play a song pack. Scanning a card switches to its song pack too.")
+            installedSection("On This Device · My Song Packs", installed.filter { !$0.isRemote },
+                             footer: "Imported from a file or made from Apple Music. They only exist on this device.")
 
             Section {
                 if isLoading, catalog.isEmpty {
@@ -79,7 +59,7 @@ struct DatasetLibraryView: View {
                     Label(catalogError, systemImage: "wifi.exclamationmark")
                         .foregroundStyle(.secondary)
                 } else if available.isEmpty {
-                    Text("You've got every dataset.")
+                    Text("You've got every song pack.")
                         .foregroundStyle(.secondary)
                 }
                 ForEach(available) { remote in
@@ -97,7 +77,7 @@ struct DatasetLibraryView: View {
             } header: {
                 Text("Available")
             } footer: {
-                Text("Datasets come from the TrackStar repository on GitHub. Each one has printable cards.")
+                Text("Song Packs come from the TrackStar repository on GitHub. Each one has printable cards.")
             }
 
             Section {
@@ -112,15 +92,15 @@ struct DatasetLibraryView: View {
                     Label("Import songs.json", systemImage: "square.and.arrow.down")
                 }
                 Link(destination: Library.repositoryURL.appending(path: "tree/main/backend")) {
-                    Label("Create Your Own Dataset", systemImage: "hammer")
+                    Label("Create Your Own Song Pack", systemImage: "hammer")
                 }
             } header: {
                 Text("Your Own")
             } footer: {
-                Text("TrackStar makes printable cards for your own datasets. A songs.json is a list of {\"id\", \"title\", \"artist\", \"year\"} entries.")
+                Text("TrackStar makes printable cards for your own song packs. A songs.json is a list of {\"id\", \"title\", \"artist\", \"year\"} entries.")
             }
         }
-        .navigationTitle("Datasets")
+        .navigationTitle("Song Packs")
         .refreshable { await loadCatalog() }
         .task { if catalog.isEmpty { await loadCatalog() } }
         .fileImporter(isPresented: $showingImporter, allowedContentTypes: [.json]) { result in
@@ -129,7 +109,7 @@ struct DatasetLibraryView: View {
                 importURL = url
             }
         }
-        .alert("Name the Dataset", isPresented: Binding(get: { importURL != nil }, set: { if !$0 { importURL = nil } })) {
+        .alert("Name the Song Pack", isPresented: Binding(get: { importURL != nil }, set: { if !$0 { importURL = nil } })) {
             TextField("Name", text: $importName)
             Button("Import") {
                 guard let url = importURL else { return }
@@ -144,13 +124,44 @@ struct DatasetLibraryView: View {
         }
     }
 
+    /// Hidden when empty.
+    @ViewBuilder
+    private func installedSection(_ title: LocalizedStringKey, _ datasets: [Dataset], footer: LocalizedStringKey) -> some View {
+        if !datasets.isEmpty {
+            Section {
+                ForEach(datasets) { dataset in
+                    NavigationLink {
+                        DatasetDetailView(id: dataset.id, remote: catalog.first { $0.id == dataset.id })
+                    } label: {
+                        InstalledRow(dataset: dataset)
+                    }
+                    .swipeActions(edge: .leading) {
+                        if !dataset.isActive {
+                            Button("Play") { run { try Library.activate(dataset.id) } }
+                                .tint(.accentColor)
+                        }
+                    }
+                }
+                .onDelete { offsets in
+                    for index in offsets {
+                        run { try Library.delete(datasets[index].id) }
+                    }
+                }
+            } header: {
+                Text(title)
+            } footer: {
+                Text(footer)
+            }
+        }
+    }
+
     private func loadCatalog() async {
         isLoading = true
         do {
             catalog = try await Library.catalog()
             catalogError = nil
         } catch {
-            catalogError = "Couldn't load the datasets. Check your connection and pull to refresh."
+            catalogError = "Couldn't load the song packs. Check your connection and pull to refresh."
         }
         // Launch isn't the only time to update: pull to refresh should pick up a version pushed since.
         await Library.updateAll()

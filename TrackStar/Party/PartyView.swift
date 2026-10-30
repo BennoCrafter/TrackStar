@@ -32,6 +32,10 @@ struct PartyTableView: View {
     @State private var target: Int?
     @State private var timelineFrame: CGRect = .zero
     @State private var showingWinner = false
+    /// The card bursting out big after a right placement.
+    @State private var showingLootbox = false
+    /// The song picked while naming, shown right or wrong before the turn goes on.
+    @State private var named: Track?
 
     private static let table = "table"
 
@@ -41,6 +45,7 @@ struct PartyTableView: View {
 
     private var activePlayer: Int? {
         switch party.phase {
+        case let .naming(player, _): player
         case let .placing(player): player
         case let .revealed(player, _, _): player
         default: nil
@@ -63,16 +68,34 @@ struct PartyTableView: View {
         .safeAreaInset(edge: .top) { scoreBar }
         .foregroundStyle(.white)
         .overlay {
+            if showingLootbox, let card = party.card {
+                LootboxReveal(track: card)
+                    .onTapGesture {
+                        withAnimation(.easeOut(duration: 0.4)) {
+                            showingLootbox = false
+                            showingWinner = party.winner != nil
+                        }
+                    }
+                    .transition(.opacity)
+            }
+        }
+        .overlay {
             if showingWinner, let winner = party.winner {
                 WinnerView(winner: winner, players: party.game.players, finish: close)
                     .transition(.opacity)
             }
         }
         .task(id: party.phase) {
-            // First the winning card flips, then the party.
-            guard party.winner != nil else { return }
-            try? await Task.sleep(for: .seconds(1.5))
-            withAnimation(.easeOut(duration: 0.4)) { showingWinner = true }
+            named = nil
+            // A right card bursts out, then the table, or straight the party for the winning card.
+            // Everything else flips open on the table.
+            guard case let .revealed(_, slot, correct) = party.phase, slot != nil, correct else { return }
+            showingLootbox = true
+            try? await Task.sleep(for: .seconds(3.5))
+            withAnimation(.easeOut(duration: 0.4)) {
+                showingLootbox = false
+                showingWinner = party.winner != nil
+            }
         }
         .onAppear { AppDelegate.lockLandscape(true) }
         .onDisappear { AppDelegate.lockLandscape(false) }
@@ -109,12 +132,19 @@ struct PartyTableView: View {
         case .ready:
             VStack(spacing: 24) {
                 Text("First to \(PartyModel.winningScore) points wins").font(titleFont)
-                bigButton("Start", systemImage: "play.fill", action: party.draw)
+                // More songs drawn than the first cards dealt: a saved game going on.
+                if party.game.played.count > party.game.players.count {
+                    bigButton("Continue", systemImage: "play.fill", action: party.draw)
+                } else {
+                    bigButton("Start", systemImage: "play.fill", action: party.draw)
+                }
             }
         case .listening:
             listening(cardWidth: unit * 0.65, titleFont: titleFont)
         case .choosing:
             chooser(size, titleFont: titleFont)
+        case let .naming(player, options):
+            naming(player, options: options, titleFont: titleFont)
         case let .placing(player):
             placing(player, unit: unit, titleFont: titleFont)
         case let .revealed(player, slot, correct):
@@ -151,7 +181,18 @@ struct PartyTableView: View {
         let available = size.height - 140
         let height = min(max((available - spacing * CGFloat(rows - 1)) / CGFloat(rows), 72), 260)
         return VStack(spacing: spacing) {
-            Text("Who knows it?").font(titleFont)
+            HStack {
+                Button(action: party.keepListening) {
+                    Label("Keep Listening", systemImage: "chevron.backward")
+                        .font(.headline)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 8)
+                        .background(.white.opacity(0.12), in: Capsule())
+                }
+                .buttonStyle(.plain)
+                Spacer()
+            }
+            .overlay { Text("Who knows it?").font(titleFont) }
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: spacing), count: columns), spacing: spacing) {
                     ForEach(Array(party.game.players.enumerated()), id: \.offset) { index, player in
@@ -173,16 +214,59 @@ struct PartyTableView: View {
                 .frame(maxWidth: .infinity)
             }
             .scrollBounceBehavior(.basedOnSize)
-            HStack(spacing: spacing) {
-                Button("Keep Listening", action: party.keepListening)
-                    .buttonStyle(.bordered)
-                Button("Nobody") { party.recognized(by: nil) }
-                    .buttonStyle(.borderedProminent)
+            Button { party.recognized(by: nil) } label: {
+                Label("Nobody Knows It – Reveal", systemImage: "eye.fill")
+                    .font(.headline)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
             }
+            .buttonStyle(.borderedProminent)
             .buttonBorderShape(.capsule)
-            .controlSize(.large)
-            .tint(.white.opacity(0.3))
+            .tint(.orange)
         }
+    }
+
+    /// The player says their guess out loud, then taps it here: a green tick or a red cross right away.
+    private func naming(_ player: Int, options: [Track], titleFont: Font) -> some View {
+        VStack(spacing: 16) {
+            Text("\(party.game.players[player].name), what did you guess?").font(titleFont)
+            ForEach(options, id: \.number) { option in
+                let isPicked = named?.number == option.number
+                let isRight = option.number == party.card?.number
+                let color: Color = named == nil ? .white.opacity(0.15) : isPicked ? .white.opacity(0.4) : .white.opacity(0.08)
+                Button {
+                    guard named == nil else { return }
+                    named = option
+                    Task {
+                        try? await Task.sleep(for: .seconds(0.5))
+                        party.name(option)
+                    }
+                } label: {
+                    HStack(spacing: 16) {
+                        Image(systemName: !isPicked ? "circle" : isRight ? "checkmark.circle.fill" : "xmark.circle.fill")
+                            .font(.title)
+                            .foregroundStyle(!isPicked ? .white : isRight ? .green : .red)
+                            .contentTransition(.symbolEffect(.replace))
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(option.title).font(.title3.bold())
+                            Text(option.artist).font(.body).foregroundStyle(.secondary)
+                        }
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                        Spacer(minLength: 0)
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                    .frame(maxWidth: 700)
+                    .background(color, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                }
+                .buttonStyle(.plain)
+                .animation(.spring(response: 0.3), value: named)
+            }
+        }
+        .frame(maxHeight: .infinity)
+        .sensoryFeedback(.selection, trigger: named)
     }
 
     private func placing(_ player: Int, unit: CGFloat, titleFont: Font) -> some View {
@@ -234,13 +318,18 @@ struct PartyTableView: View {
     }
 
     @ViewBuilder
-    private func revealed(player: Int?, slot: Int, correct: Bool, unit: CGFloat, titleFont: Font) -> some View {
+    private func revealed(player: Int?, slot: Int?, correct: Bool, unit: CGFloat, titleFont: Font) -> some View {
         if let card = party.card {
             VStack(spacing: 16) {
                 HStack(spacing: 24) {
-                    FlipCard(track: card, width: unit * (player == nil ? 0.6 : 0.4))
+                    // A wrong guess just shows the song: no flip, no timeline.
+                    if player != nil, slot == nil {
+                        MiniCard(track: card, width: unit * 0.6)
+                    } else {
+                        FlipCard(track: card, width: unit * (player == nil ? 0.6 : 0.4))
+                    }
                     VStack(alignment: .leading, spacing: 12) {
-                        result(player: player, correct: correct, font: titleFont)
+                        result(player: player, correct: correct, wasPlaced: slot != nil, font: titleFont)
                         if let winner = party.winner {
                             Label("\(winner.name) wins!", systemImage: "trophy.fill")
                                 .font(.largeTitle.bold())
@@ -253,7 +342,7 @@ struct PartyTableView: View {
                     .frame(maxWidth: 480, alignment: .leading)
                 }
                 .frame(maxHeight: .infinity)
-                if let player {
+                if let player, let slot {
                     // A wrong card is shown where it was put, then gone with the next song.
                     let timeline = party.game.players[player].timeline
                     TimelineRow(
@@ -266,14 +355,18 @@ struct PartyTableView: View {
     }
 
     @ViewBuilder
-    private func result(player: Int?, correct: Bool, font: Font) -> some View {
+    private func result(player: Int?, correct: Bool, wasPlaced: Bool, font: Font) -> some View {
         if let player {
             let name = party.game.players[player].name
+            let wrong: LocalizedStringKey = wasPlaced ? "Wrong spot" : "Wrong song"
             if correct {
                 Label("Right! +1 for \(name)", systemImage: "checkmark.circle.fill")
                     .font(font).foregroundStyle(.green)
+            } else if UserDefaults.standard.object(forKey: SettingsKey.wrongCostsPoint) as? Bool ?? true {
+                Label("\(Text(wrong)). −1 for \(name)", systemImage: "xmark.circle.fill")
+                    .font(font).foregroundStyle(.red)
             } else {
-                Label("Wrong. −1 for \(name)", systemImage: "xmark.circle.fill")
+                Label("\(Text(wrong)), \(name)", systemImage: "xmark.circle.fill")
                     .font(font).foregroundStyle(.red)
             }
         } else {
@@ -533,5 +626,65 @@ private extension Array {
         var copy = self
         copy.insert(element, at: index)
         return copy
+    }
+}
+
+/// A right card bursts out like a loot box: light rays in its period color, a spin from face down to the song, big.
+struct LootboxReveal: View {
+    let track: Track
+
+    @State private var isOpen = false
+    @State private var raysTurn = false
+
+    private var glow: Color { PeriodGradient.colors(for: track.year).0 }
+
+    var body: some View {
+        GeometryReader { geometry in
+            let width = min(geometry.size.width, geometry.size.height) * 0.6
+            ZStack {
+                Color.black.opacity(0.7)
+                AngularGradient(colors: Array(repeating: [glow.opacity(0.7), .clear], count: 8).flatMap { $0 }, center: .center)
+                    .frame(width: width * 3, height: width * 3)
+                    .mask(RadialGradient(colors: [.white, .clear], center: .center, startRadius: 0, endRadius: width * 1.5))
+                    .rotationEffect(.degrees(raysTurn ? 360 : 0))
+                    .scaleEffect(isOpen ? 1 : 0.2)
+                    .opacity(isOpen ? 1 : 0)
+                SpinningCard(track: track, width: width, angle: isOpen ? 0 : -720)
+                    .scaleEffect(isOpen ? 1 : 0.1)
+                    .shadow(color: glow.opacity(0.8), radius: isOpen ? 40 : 0)
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+        }
+        .ignoresSafeArea()
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(track.title) by \(track.artist), \(track.year.map(String.init) ?? "")")
+        .onAppear {
+            withAnimation(.spring(response: 2.2, dampingFraction: 0.85)) { isOpen = true }
+            withAnimation(.linear(duration: 12).repeatForever(autoreverses: false)) { raysTurn = true }
+        }
+    }
+}
+
+/// Face down while its back points at the viewer, the song once it turns around.
+private struct SpinningCard: View, Animatable {
+    let track: Track
+    let width: CGFloat
+    var angle: Double
+
+    nonisolated var animatableData: Double {
+        get { angle }
+        set { angle = newValue }
+    }
+
+    var body: some View {
+        Group {
+            if cos(angle * .pi / 180) >= 0 {
+                MiniCard(track: track, width: width)
+            } else {
+                MysteryCard(width: width).scaleEffect(x: -1) // unmirror the back
+            }
+        }
+        .rotation3DEffect(.degrees(angle), axis: (0, 1, 0), perspective: 0.4)
     }
 }

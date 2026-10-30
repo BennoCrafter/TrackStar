@@ -8,6 +8,10 @@ enum SettingsKey {
     static let randomStart = "randomStart"
     /// No playback, and the hidden card shows its song.
     static let devMode = "devMode"
+    /// Party rules.
+    static let winningScore = "winningScore"
+    static let wrongCostsPoint = "wrongCostsPoint"
+    static let nameTheSong = "nameTheSong"
 }
 
 /// One round: scan a card → listen → reveal → next card.
@@ -71,7 +75,7 @@ final class GameModel {
         @Dependency(\.defaultDatabase) var database
         let active = try? await database.read { try Dataset.where(\.isActive).fetchOne($0) }
         guard let datasetID = code.dataset ?? active?.id else {
-            problem = .message("Choose a dataset first.")
+            problem = .message("Choose a song pack first.")
             return
         }
         guard let dataset = try? await database.read({ try Dataset.find(datasetID).fetchOne($0) }) else {

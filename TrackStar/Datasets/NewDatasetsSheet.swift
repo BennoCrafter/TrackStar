@@ -16,24 +16,6 @@ struct NewDatasetsSheet: View {
         NavigationStack {
             List {
                 Section {
-                    VStack(spacing: 10) {
-                        Image(systemName: "sparkles")
-                            .font(.system(size: 44))
-                            .foregroundStyle(.yellow.gradient)
-                            .symbolEffect(.bounce, options: .nonRepeating)
-                        Text(datasets.count == 1 ? "New Dataset" : "\(datasets.count) New Datasets")
-                            .font(.title.bold())
-                        Text("Fresh songs just landed in TrackStar. Get them to play or print their cards.")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
-                }
-                .listRowBackground(Color.clear)
-
-                Section {
                     ForEach(datasets) { remote in
                         NavigationLink {
                             DatasetDetailView(id: remote.id, remote: remote)
@@ -41,8 +23,11 @@ struct NewDatasetsSheet: View {
                             NewDatasetRow(remote: remote, isInstalled: installed.contains { $0.id == remote.id })
                         }
                     }
+                } header: {
+                    header
                 }
             }
+            .listStyle(.insetGrouped)
             .navigationTitle("What's New")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -51,6 +36,27 @@ struct NewDatasetsSheet: View {
                 }
             }
         }
+    }
+
+    private var header: some View {
+        VStack(spacing: 8) {
+            Image(systemName: "sparkles")
+                .font(.largeTitle)
+                .imageScale(.large)
+                .foregroundStyle(.yellow.gradient)
+                .symbolEffect(.bounce, options: .nonRepeating)
+            Text(datasets.count == 1 ? "New Song Pack" : "\(datasets.count) New Song Packs")
+                .font(.title2.bold())
+                .foregroundStyle(.primary)
+            Text("Download a pack to play it or print its cards.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+        .multilineTextAlignment(.center)
+        .textCase(nil)
+        .frame(maxWidth: .infinity)
+        .padding(.top, 8)
+        .padding(.bottom, 16)
     }
 
     /// The datasets added to the repo since the last check, minus downloaded ones. Records the
@@ -73,41 +79,78 @@ private struct NewDatasetRow: View {
     let remote: RemoteDataset
     let isInstalled: Bool
 
+    /// `nil` while loading, empty when the README has nothing usable.
     @State private var summary: String?
 
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            DatasetIcon(name: remote.title, size: 48)
-            VStack(alignment: .leading, spacing: 6) {
+        HStack(alignment: .top, spacing: 14) {
+            DatasetIcon(name: remote.title, size: 52)
+
+            VStack(alignment: .leading, spacing: 4) {
                 Text(remote.title)
                     .font(.headline)
-                if let summary {
-                    Text(summary)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(3)
-                } else {
-                    Text("Loading…")
-                        .font(.subheadline)
-                        .redacted(reason: .placeholder)
+
+                summaryView
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(3)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Group {
+                    if isInstalled {
+                        Label("Downloaded", systemImage: "checkmark.circle.fill")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.tint)
+                    } else {
+                        DownloadButton(remote: remote)
+                            // Keeps the tap on the button instead of triggering the row's navigation.
+                            .buttonStyle(.borderless)
+                    }
                 }
-                if isInstalled {
-                    Label("Downloaded", systemImage: "checkmark.circle.fill")
-                        .font(.subheadline.bold())
-                        .foregroundStyle(Color.accentColor)
-                } else {
-                    DownloadButton(remote: remote)
-                }
+                .padding(.top, 6)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.vertical, 6)
-        .task {
+        .padding(.vertical, 8)
+        .task(id: remote.id) {
             let readme = (try? await Library.readme(remote.id)) ?? ""
-            // First paragraph that isn't a heading; Markdown emphasis stripped for plain text.
-            let paragraph = readme.components(separatedBy: "\n\n")
-                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-                .first { !$0.isEmpty && !$0.hasPrefix("#") }
-            summary = paragraph?.replacingOccurrences(of: "**", with: "") ?? ""
+            summary = Self.teaser(from: readme)
         }
+    }
+
+    @ViewBuilder private var summaryView: some View {
+        switch summary {
+        case nil:
+            Text("Placeholder summary text for this song pack that spans two lines")
+                .redacted(reason: .placeholder)
+        case let text? where !text.isEmpty:
+            Text(text)
+        default:
+            EmptyView()
+        }
+    }
+
+    /// The first prose paragraph of a README as plain text: skips headings, images, badges,
+    /// HTML and code, and renders inline Markdown so no `**`, `_` or `[link](url)` shows through.
+    static func teaser(from readme: String) -> String {
+        let paragraph = readme
+            .replacingOccurrences(of: "\r\n", with: "\n")
+            .components(separatedBy: "\n\n")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .first { block in
+                guard let first = block.first else { return false }
+                return !"#!<[`>|-".contains(first) || block.hasPrefix("[") && !block.hasPrefix("[![")
+            }
+        guard let paragraph else { return "" }
+
+        let joined = paragraph
+            .split(whereSeparator: \.isNewline)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .joined(separator: " ")
+        let options = AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace)
+        if let attributed = try? AttributedString(markdown: joined, options: options) {
+            return String(attributed.characters)
+        }
+        return joined
     }
 }
