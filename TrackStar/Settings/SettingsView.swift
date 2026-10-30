@@ -10,6 +10,7 @@ struct SettingsView: View {
     @AppStorage(SettingsKey.devMode) private var devMode = false
 
     @FetchOne(Dataset.where(\.isActive)) private var activeDataset: Dataset?
+    @FetchAll(Dataset.order(by: \.displayName)) private var installed: [Dataset]
     @State private var showingReleaseNotes = false
 
     var body: some View {
@@ -18,6 +19,8 @@ struct SettingsView: View {
                 gameSection
                 developerSection
                 datasetSection
+                onDeviceSection(public: true)
+                onDeviceSection(public: false)
                 helpSection
                 aboutSection
             }
@@ -76,6 +79,29 @@ struct SettingsView: View {
             }
         } footer: {
             Text("German Hitster cards play with the Hitster dataset.")
+        }
+    }
+
+    /// The downloaded repo datasets, or the user's own (imported or made in the app). Hidden when empty.
+    @ViewBuilder
+    private func onDeviceSection(public isRemote: Bool) -> some View {
+        let datasets = installed.filter { $0.isRemote == isRemote }
+        if !datasets.isEmpty {
+            Section {
+                ForEach(datasets) { dataset in
+                    NavigationLink {
+                        DatasetDetailView(id: dataset.id, remote: nil)
+                    } label: {
+                        InstalledRow(dataset: dataset)
+                    }
+                }
+            } header: {
+                Text(isRemote ? "On This Device · Public" : "On This Device · My Datasets")
+            } footer: {
+                if !isRemote {
+                    Text("Imported from a file or made from Apple Music. They only exist on this device.")
+                }
+            }
         }
     }
 

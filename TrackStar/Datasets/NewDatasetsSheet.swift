@@ -16,31 +16,34 @@ struct NewDatasetsSheet: View {
         NavigationStack {
             List {
                 Section {
+                    VStack(spacing: 10) {
+                        Image(systemName: "sparkles")
+                            .font(.system(size: 44))
+                            .foregroundStyle(.yellow.gradient)
+                            .symbolEffect(.bounce, options: .nonRepeating)
+                        Text(datasets.count == 1 ? "New Dataset" : "\(datasets.count) New Datasets")
+                            .font(.title.bold())
+                        Text("Fresh songs just landed in TrackStar. Get them to play or print their cards.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                }
+                .listRowBackground(Color.clear)
+
+                Section {
                     ForEach(datasets) { remote in
                         NavigationLink {
                             DatasetDetailView(id: remote.id, remote: remote)
                         } label: {
-                            HStack {
-                                DatasetIcon(name: remote.title)
-                                Text(remote.title)
-                                Spacer()
-                                if installed.contains(where: { $0.id == remote.id }) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundStyle(Color.accentColor)
-                                        .accessibilityLabel("Downloaded")
-                                } else {
-                                    DownloadButton(remote: remote)
-                                }
-                            }
+                            NewDatasetRow(remote: remote, isInstalled: installed.contains { $0.id == remote.id })
                         }
                     }
-                } header: {
-                    Text(datasets.count == 1 ? "A new dataset is available." : "\(datasets.count) new datasets are available.")
-                        .font(.body)
-                        .textCase(nil)
                 }
             }
-            .navigationTitle("New Datasets")
+            .navigationTitle("What's New")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -62,5 +65,49 @@ struct NewDatasetsSheet: View {
         @Dependency(\.defaultDatabase) var database
         let installed = Set((try? await database.read { try Dataset.select(\.id).fetchAll($0) }) ?? [])
         return catalog.filter { !seen.contains($0.id) && !installed.contains($0.id) }
+    }
+}
+
+/// A new dataset with the first paragraph of its README as a teaser.
+private struct NewDatasetRow: View {
+    let remote: RemoteDataset
+    let isInstalled: Bool
+
+    @State private var summary: String?
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            DatasetIcon(name: remote.title, size: 48)
+            VStack(alignment: .leading, spacing: 6) {
+                Text(remote.title)
+                    .font(.headline)
+                if let summary {
+                    Text(summary)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(3)
+                } else {
+                    Text("Loading…")
+                        .font(.subheadline)
+                        .redacted(reason: .placeholder)
+                }
+                if isInstalled {
+                    Label("Downloaded", systemImage: "checkmark.circle.fill")
+                        .font(.subheadline.bold())
+                        .foregroundStyle(Color.accentColor)
+                } else {
+                    DownloadButton(remote: remote)
+                }
+            }
+        }
+        .padding(.vertical, 6)
+        .task {
+            let readme = (try? await Library.readme(remote.id)) ?? ""
+            // First paragraph that isn't a heading; Markdown emphasis stripped for plain text.
+            let paragraph = readme.components(separatedBy: "\n\n")
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .first { !$0.isEmpty && !$0.hasPrefix("#") }
+            summary = paragraph?.replacingOccurrences(of: "**", with: "") ?? ""
+        }
     }
 }

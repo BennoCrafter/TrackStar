@@ -152,6 +152,8 @@ struct DatasetLibraryView: View {
         } catch {
             catalogError = "Couldn't load the datasets. Check your connection and pull to refresh."
         }
+        // Launch isn't the only time to update: pull to refresh should pick up a version pushed since.
+        await Library.updateAll()
         isLoading = false
     }
 
@@ -194,7 +196,7 @@ struct DownloadButton: View {
     }
 }
 
-private struct InstalledRow: View {
+struct InstalledRow: View {
     let dataset: Dataset
 
     var body: some View {
