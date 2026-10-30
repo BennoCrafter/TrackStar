@@ -31,7 +31,8 @@ struct RootView: View {
         }
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showingReleaseNotes, onDismiss: showNewDatasetsIfNeeded) { ReleaseNotesSheet() }
-        .sheet(isPresented: $showingNewDatasets) { NewDatasetsSheet(datasets: newDatasets) }
+        // The capture list reads newDatasets in body; without it the sheet keeps the initial empty array.
+        .sheet(isPresented: $showingNewDatasets) { [newDatasets] in NewDatasetsSheet(datasets: newDatasets) }
         .task {
             showReleaseNotesIfNeeded()
             newDatasets = await NewDatasetsSheet.check()
