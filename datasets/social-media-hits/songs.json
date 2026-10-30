@@ -1,0 +1,674 @@
+[
+  {
+    "id": 1,
+    "title": "Old Town Road (Remix)",
+    "artist": "Lil Nas X feat. Billy Ray Cyrus",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 2,
+    "title": "Say So",
+    "artist": "Doja Cat",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 3,
+    "title": "Savage",
+    "artist": "Megan Thee Stallion",
+    "year": 2020,
+    "album": null
+  },
+  {
+    "id": 4,
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 5,
+    "title": "Roxanne",
+    "artist": "Arizona Zervas",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 6,
+    "title": "Lottery (Renegade)",
+    "artist": "K CAMP",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 7,
+    "title": "Laxed (Siren Beat)",
+    "artist": "Jawsh 685",
+    "year": 2020,
+    "album": null
+  },
+  {
+    "id": 8,
+    "title": "Savage Love (Laxed – Siren Beat)",
+    "artist": "Jawsh 685 & Jason Derulo",
+    "year": 2020,
+    "album": null
+  },
+  {
+    "id": 9,
+    "title": "Mood",
+    "artist": "24kGoldn feat. iann dior",
+    "year": 2020,
+    "album": null
+  },
+  {
+    "id": 10,
+    "title": "Supalonely",
+    "artist": "BENEE feat. Gus Dapperton",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 11,
+    "title": "Dance Monkey",
+    "artist": "Tones and I",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 12,
+    "title": "Death Bed (Coffee for Your Head)",
+    "artist": "Powfu feat. beabadoobee",
+    "year": 2020,
+    "album": null
+  },
+  {
+    "id": 13,
+    "title": "Banana",
+    "artist": "Conkarah feat. Shaggy",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 14,
+    "title": "Heather",
+    "artist": "Conan Gray",
+    "year": 2020,
+    "album": null
+  },
+  {
+    "id": 15,
+    "title": "Ride It",
+    "artist": "Regard",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 16,
+    "title": "drivers license",
+    "artist": "Olivia Rodrigo",
+    "year": 2021,
+    "album": null
+  },
+  {
+    "id": 17,
+    "title": "good 4 u",
+    "artist": "Olivia Rodrigo",
+    "year": 2021,
+    "album": null
+  },
+  {
+    "id": 18,
+    "title": "vampire",
+    "artist": "Olivia Rodrigo",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 19,
+    "title": "MONTERO (Call Me By Your Name)",
+    "artist": "Lil Nas X",
+    "year": 2021,
+    "album": null
+  },
+  {
+    "id": 20,
+    "title": "Industry Baby",
+    "artist": "Lil Nas X & Jack Harlow",
+    "year": 2021,
+    "album": null
+  },
+  {
+    "id": 21,
+    "title": "Kiss Me More",
+    "artist": "Doja Cat feat. SZA",
+    "year": 2021,
+    "album": null
+  },
+  {
+    "id": 22,
+    "title": "Levitating",
+    "artist": "Dua Lipa",
+    "year": 2020,
+    "album": null
+  },
+  {
+    "id": 23,
+    "title": "Heat Waves",
+    "artist": "Glass Animals",
+    "year": 2020,
+    "album": null
+  },
+  {
+    "id": 24,
+    "title": "Wellerman (Sea Shanty)",
+    "artist": "Nathan Evans",
+    "year": 2021,
+    "album": null
+  },
+  {
+    "id": 25,
+    "title": "Stay",
+    "artist": "The Kid LAROI & Justin Bieber",
+    "year": 2021,
+    "album": null
+  },
+  {
+    "id": 26,
+    "title": "Astronaut in the Ocean",
+    "artist": "Masked Wolf",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 27,
+    "title": "Sunroof",
+    "artist": "Nicky Youre & dazy",
+    "year": 2021,
+    "album": null
+  },
+  {
+    "id": 28,
+    "title": "Jiggle Jiggle",
+    "artist": "Duke & Jones & Louis Theroux",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 29,
+    "title": "As It Was",
+    "artist": "Harry Styles",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 30,
+    "title": "About Damn Time",
+    "artist": "Lizzo",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 31,
+    "title": "Unholy",
+    "artist": "Sam Smith & Kim Petras",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 32,
+    "title": "Anti-Hero",
+    "artist": "Taylor Swift",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 33,
+    "title": "Bad Habit",
+    "artist": "Steve Lacy",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 34,
+    "title": "Glimpse of Us",
+    "artist": "Joji",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 35,
+    "title": "Tití Me Preguntó",
+    "artist": "Bad Bunny",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 36,
+    "title": "Calm Down",
+    "artist": "Rema & Selena Gomez",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 37,
+    "title": "Made You Look",
+    "artist": "Meghan Trainor",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 38,
+    "title": "Kill Bill",
+    "artist": "SZA",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 39,
+    "title": "Snooze",
+    "artist": "SZA",
+    "year": 2022,
+    "album": null
+  },
+  {
+    "id": 40,
+    "title": "Flowers",
+    "artist": "Miley Cyrus",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 41,
+    "title": "Boy's a Liar Pt. 2",
+    "artist": "PinkPantheress & Ice Spice",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 42,
+    "title": "Cupid (Twin Ver.)",
+    "artist": "FIFTY FIFTY",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 43,
+    "title": "Paint the Town Red",
+    "artist": "Doja Cat",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 44,
+    "title": "Lovin on Me",
+    "artist": "Jack Harlow",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 45,
+    "title": "Greedy",
+    "artist": "Tate McRae",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 46,
+    "title": "Water",
+    "artist": "Tyla",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 47,
+    "title": "Daylight",
+    "artist": "David Kushner",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 48,
+    "title": "What Was I Made For?",
+    "artist": "Billie Eilish",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 49,
+    "title": "FE!N",
+    "artist": "Travis Scott feat. Playboi Carti",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 50,
+    "title": "My Love Mine All Mine",
+    "artist": "Mitski",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 51,
+    "title": "Lose Control",
+    "artist": "Teddy Swims",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 52,
+    "title": "Hot To Go!",
+    "artist": "Chappell Roan",
+    "year": 2023,
+    "album": null
+  },
+  {
+    "id": 53,
+    "title": "Espresso",
+    "artist": "Sabrina Carpenter",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 54,
+    "title": "Please Please Please",
+    "artist": "Sabrina Carpenter",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 55,
+    "title": "Taste",
+    "artist": "Sabrina Carpenter",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 56,
+    "title": "Not Like Us",
+    "artist": "Kendrick Lamar",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 57,
+    "title": "Million Dollar Baby",
+    "artist": "Tommy Richman",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 58,
+    "title": "Beautiful Things",
+    "artist": "Benson Boone",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 59,
+    "title": "Good Luck, Babe!",
+    "artist": "Chappell Roan",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 60,
+    "title": "Birds of a Feather",
+    "artist": "Billie Eilish",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 61,
+    "title": "Lunch",
+    "artist": "Billie Eilish",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 62,
+    "title": "Apple",
+    "artist": "Charli XCX",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 63,
+    "title": "360",
+    "artist": "Charli XCX",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 64,
+    "title": "APT.",
+    "artist": "ROSÉ & Bruno Mars",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 65,
+    "title": "Die With a Smile",
+    "artist": "Lady Gaga & Bruno Mars",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 66,
+    "title": "Too Sweet",
+    "artist": "Hozier",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 67,
+    "title": "A Bar Song (Tipsy)",
+    "artist": "Shaboozey",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 68,
+    "title": "Messy",
+    "artist": "Lola Young",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 69,
+    "title": "That's So True",
+    "artist": "Gracie Abrams",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 70,
+    "title": "Pedro",
+    "artist": "Jaxomy, Agatino Romero & Raffaella Carrà",
+    "year": 2024,
+    "album": null
+  },
+  {
+    "id": 71,
+    "title": "Abracadabra",
+    "artist": "Lady Gaga",
+    "year": 2025,
+    "album": null
+  },
+  {
+    "id": 72,
+    "title": "Ordinary",
+    "artist": "Alex Warren",
+    "year": 2025,
+    "album": null
+  },
+  {
+    "id": 73,
+    "title": "Manchild",
+    "artist": "Sabrina Carpenter",
+    "year": 2025,
+    "album": null
+  },
+  {
+    "id": 74,
+    "title": "DtMF",
+    "artist": "Bad Bunny",
+    "year": 2025,
+    "album": null
+  },
+  {
+    "id": 75,
+    "title": "Golden",
+    "artist": "HUNTR/X",
+    "year": 2025,
+    "album": null
+  },
+  {
+    "id": 76,
+    "title": "Soda Pop",
+    "artist": "Saja Boys",
+    "year": 2025,
+    "album": null
+  },
+  {
+    "id": 77,
+    "title": "Gabriela",
+    "artist": "KATSEYE",
+    "year": 2025,
+    "album": null
+  },
+  {
+    "id": 78,
+    "title": "The Fate of Ophelia",
+    "artist": "Taylor Swift",
+    "year": 2025,
+    "album": null
+  },
+  {
+    "id": 79,
+    "title": "Dreams",
+    "artist": "Fleetwood Mac",
+    "year": 1977,
+    "album": null
+  },
+  {
+    "id": 80,
+    "title": "Rasputin",
+    "artist": "Boney M.",
+    "year": 1978,
+    "album": null
+  },
+  {
+    "id": 81,
+    "title": "Goo Goo Muck",
+    "artist": "The Cramps",
+    "year": 1981,
+    "album": null
+  },
+  {
+    "id": 82,
+    "title": "Running Up That Hill",
+    "artist": "Kate Bush",
+    "year": 1985,
+    "album": null
+  },
+  {
+    "id": 83,
+    "title": "Where Is My Mind?",
+    "artist": "Pixies",
+    "year": 1988,
+    "album": null
+  },
+  {
+    "id": 84,
+    "title": "Linger",
+    "artist": "The Cranberries",
+    "year": 1993,
+    "album": null
+  },
+  {
+    "id": 85,
+    "title": "Murder on the Dancefloor",
+    "artist": "Sophie Ellis-Bextor",
+    "year": 2001,
+    "album": null
+  },
+  {
+    "id": 86,
+    "title": "Mockingbird",
+    "artist": "Eminem",
+    "year": 2004,
+    "album": null
+  },
+  {
+    "id": 87,
+    "title": "Bloody Mary",
+    "artist": "Lady Gaga",
+    "year": 2011,
+    "album": null
+  },
+  {
+    "id": 88,
+    "title": "Sweater Weather",
+    "artist": "The Neighbourhood",
+    "year": 2012,
+    "album": null
+  },
+  {
+    "id": 89,
+    "title": "Another Love",
+    "artist": "Tom Odell",
+    "year": 2012,
+    "album": null
+  },
+  {
+    "id": 90,
+    "title": "Not Allowed",
+    "artist": "TV Girl",
+    "year": 2014,
+    "album": null
+  },
+  {
+    "id": 91,
+    "title": "Little Dark Age",
+    "artist": "MGMT",
+    "year": 2017,
+    "album": null
+  },
+  {
+    "id": 92,
+    "title": "Washing Machine Heart",
+    "artist": "Mitski",
+    "year": 2018,
+    "album": null
+  },
+  {
+    "id": 93,
+    "title": "lovely",
+    "artist": "Billie Eilish & Khalid",
+    "year": 2018,
+    "album": null
+  },
+  {
+    "id": 94,
+    "title": "Mary on a Cross",
+    "artist": "Ghost",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 95,
+    "title": "Cruel Summer",
+    "artist": "Taylor Swift",
+    "year": 2019,
+    "album": null
+  },
+  {
+    "id": 96,
+    "title": "Pink Pony Club",
+    "artist": "Chappell Roan",
+    "year": 2020,
+    "album": null
+  }
+]
