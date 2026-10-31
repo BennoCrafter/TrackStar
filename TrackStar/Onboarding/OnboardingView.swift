@@ -44,7 +44,8 @@ struct OnboardingView: View {
                         colors: [Color.accentColor.opacity(0.3), .clear],
                         center: .top,
                         startRadius: 0,
-                        endRadius: 700)
+                        endRadius: 700
+                    )
                 }
                 .ignoresSafeArea()
 
@@ -77,7 +78,8 @@ struct OnboardingView: View {
                         // The dataset list scrolls and swipes its rows itself.
                         guard step != .datasets else { return }
                         handleSwipe(value)
-                    })
+                    }
+                )
                 .navigationTitle(step.title)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -105,21 +107,27 @@ struct OnboardingView: View {
                 page: OnboardingPage(
                     imageName: "music.quarternote.3",
                     title: "Welcome to TrackStar!",
-                    description: "The music game where you guess when a song came out."))
+                    description: "The music game where you guess when a song came out."
+                )
+            )
 
         case .howToPlay:
             OnboardingPageView(
                 page: OnboardingPage(
                     imageName: "qrcode.viewfinder",
                     title: "Scan, Listen, Guess",
-                    description: "Scan a card and the song plays. Guess its year, place it on your timeline, then reveal the card to check."))
+                    description: "Scan a card and the song plays. Guess its year, place it on your timeline, then reveal the card to check."
+                )
+            )
 
         case .music:
             OnboardingPageView(
                 page: OnboardingPage(
                     imageName: "applelogo",
                     title: "Apple Music",
-                    description: "The songs play through Apple Music, so TrackStar needs access. Playing full songs needs a subscription."))
+                    description: "The songs play through Apple Music, so TrackStar needs access. Playing full songs needs a subscription."
+                )
+            )
 
         case .datasets:
             DatasetLibraryView()
@@ -132,7 +140,9 @@ struct OnboardingView: View {
                     imageName: "checkmark.seal",
                     title: "You're all set!",
                     description: "Grab your cards and let the music play.",
-                    style: .celebration))
+                    style: .celebration
+                )
+            )
         }
     }
 
@@ -214,8 +224,9 @@ struct OnboardingView: View {
     private var pageTransition: AnyTransition {
         .asymmetric(
             insertion: .move(edge: isMovingForward ? .trailing : .leading),
-            removal: .move(edge: isMovingForward ? .leading : .trailing))
-            .combined(with: .opacity)
+            removal: .move(edge: isMovingForward ? .leading : .trailing)
+        )
+        .combined(with: .opacity)
     }
 
     /// On `.music` the button asks for access first; the answer doesn't block moving on.

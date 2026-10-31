@@ -74,10 +74,12 @@ struct TintedBackground: View {
             Color.black
             RadialGradient(
                 colors: [(year == nil ? Color.accentColor : start).opacity(0.45), .clear],
-                center: .top, startRadius: 0, endRadius: 600)
+                center: .top, startRadius: 0, endRadius: 600
+            )
             RadialGradient(
                 colors: [(year == nil ? Color.accentColor : end).opacity(0.25), .clear],
-                center: .bottomTrailing, startRadius: 0, endRadius: 500)
+                center: .bottomTrailing, startRadius: 0, endRadius: 500
+            )
         }
         .ignoresSafeArea()
         .animation(.easeInOut(duration: 0.8), value: year)

@@ -51,7 +51,11 @@ struct AppleMusicImportView: View {
             }
         }
         .navigationTitle("From Apple Music")
-        .alert("Something Went Wrong", isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+        .alert("Something Went Wrong", isPresented: Binding(get: { error != nil }, set: {
+            if !$0 {
+                error = nil
+            }
+        })) {
             Button("OK", role: .cancel) {}
         } message: {
             Text(error ?? "")
@@ -153,7 +157,11 @@ private struct SongPickerView: View {
         } message: {
             Text(yearNote)
         }
-        .alert("Something Went Wrong", isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+        .alert("Something Went Wrong", isPresented: Binding(get: { error != nil }, set: {
+            if !$0 {
+                error = nil
+            }
+        })) {
             Button("OK", role: .cancel) {}
         } message: {
             Text(error ?? "")

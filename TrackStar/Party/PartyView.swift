@@ -40,7 +40,11 @@ struct PartyTableView: View {
     private static let table = "table"
 
     private var revealedYear: Int? {
-        if case .revealed = party.phase { party.card?.year } else { nil }
+        if case .revealed = party.phase {
+            party.card?.year
+        } else {
+            nil
+        }
     }
 
     private var activePlayer: Int? {
@@ -102,13 +106,17 @@ struct PartyTableView: View {
         .onAppear { AppDelegate.lockLandscape(true) }
         .onDisappear { AppDelegate.lockLandscape(false) }
         .sensoryFeedback(trigger: party.phase) { _, phase in
-            if case let .revealed(player, _, correct) = phase, player != nil { return correct ? .success : .error }
+            if case let .revealed(player, _, correct) = phase, player != nil {
+                return correct ? .success : .error
+            }
             return .impact(weight: .medium)
         }
         .sensoryFeedback(.selection, trigger: target)
         .alert("Can't Play This Song", isPresented: problemBinding, presenting: party.music.problem) { problem in
             Button("OK", role: .cancel) {
-                if case .notFound = problem { party.draw() }
+                if case .notFound = problem {
+                    party.draw()
+                }
             }
         } message: { problem in
             switch problem {
@@ -120,7 +128,11 @@ struct PartyTableView: View {
     }
 
     private var problemBinding: Binding<Bool> {
-        Binding(get: { party.music.problem != nil }, set: { if !$0 { party.music.problem = nil } })
+        Binding(get: { party.music.problem != nil }, set: {
+            if !$0 {
+                party.music.problem = nil
+            }
+        })
     }
 
     // MARK: - Phases
@@ -154,7 +166,7 @@ struct PartyTableView: View {
         }
     }
 
-    private func listening(cardWidth: CGFloat, titleFont: Font) -> some View {
+    private func listening(cardWidth: CGFloat, titleFont _: Font) -> some View {
         VStack(spacing: 16) {
             HStack(spacing: 40) {
                 roundButton("gobackward", label: "Replay", action: party.music.replay)
@@ -291,7 +303,7 @@ struct PartyTableView: View {
             .frame(maxHeight: .infinity)
             .zIndex(1) // the dragged card above the timeline
             TimelineRow(cards: timeline, cardWidth: unit * 0.32, target: target, onPlace: party.place)
-            .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.table)) } action: { timelineFrame = $0 }
+                .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Self.table)) } action: { timelineFrame = $0 }
         }
         .coordinateSpace(.named(Self.table))
     }
@@ -307,7 +319,9 @@ struct PartyTableView: View {
                 let slot = slot(at: value.location, cards: slots, cardWidth: cardWidth)
                 target = nil
                 withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) { dragOffset = .zero }
-                if let slot { party.place(at: slot) }
+                if let slot {
+                    party.place(at: slot)
+                }
             }
     }
 
@@ -350,7 +364,8 @@ struct PartyTableView: View {
                     TimelineRow(
                         cards: correct ? timeline : timeline.inserting(card, at: slot),
                         cardWidth: unit * 0.32,
-                        placed: (card.number, correct))
+                        placed: (card.number, correct)
+                    )
                 }
             }
         }
@@ -547,8 +562,13 @@ struct MiniCard: View {
     @Environment(\.albumOrder) private var albumOrder
     @Environment(\.trackNumbers) private var trackNumbers
 
-    private var byAlbum: Bool { albumOrder != nil }
-    private var albumIndex: Int? { track.album.flatMap { albumOrder?[$0] } }
+    private var byAlbum: Bool {
+        albumOrder != nil
+    }
+
+    private var albumIndex: Int? {
+        track.album.flatMap { albumOrder?[$0] }
+    }
 
     /// "1963 · Track 2"; the track number once Apple Music found the song on this album.
     private var albumDetail: String {
@@ -619,7 +639,8 @@ struct MysteryCard: View {
             .frame(width: width, height: width)
             .background(
                 LinearGradient(colors: [.accentColor, .accentColor.opacity(0.45)], startPoint: .topLeading, endPoint: .bottomTrailing),
-                in: RoundedRectangle(cornerRadius: width * 0.12, style: .continuous))
+                in: RoundedRectangle(cornerRadius: width * 0.12, style: .continuous)
+            )
             .overlay {
                 RoundedRectangle(cornerRadius: width * 0.12, style: .continuous)
                     .strokeBorder(.white.opacity(0.3), lineWidth: 1)
@@ -681,7 +702,9 @@ struct LootboxReveal: View {
     @State private var isOpen = false
     @State private var raysTurn = false
 
-    private var glow: Color { PeriodGradient.colors(for: track.year).0 }
+    private var glow: Color {
+        PeriodGradient.colors(for: track.year).0
+    }
 
     var body: some View {
         GeometryReader { geometry in

@@ -4,7 +4,7 @@ import SwiftUI
 struct ConfettiBurst: View {
     let trigger: Int
 
-    @State private var pieces = (0..<40).map { _ in ConfettiPiece.random() }
+    @State private var pieces = (0 ..< 40).map { _ in ConfettiPiece.random() }
 
     var body: some View {
         ZStack {
@@ -72,22 +72,23 @@ struct ConfettiPiece: Identifiable {
     private static let palette: [Color] = [.accentColor, .pink, .orange, .yellow, .mint, .purple, .cyan]
 
     static func random() -> ConfettiPiece {
-        let angle = Double.random(in: 0..<2 * .pi)
-        let distance = Double.random(in: 80...170)
-        let isDot = Int.random(in: 0..<4) == 0
+        let angle = Double.random(in: 0 ..< 2 * .pi)
+        let distance = Double.random(in: 80 ... 170)
+        let isDot = Int.random(in: 0 ..< 4) == 0
         let size = isDot
             ? CGSize(width: 7, height: 7)
-            : CGSize(width: .random(in: 5...8), height: .random(in: 9...14))
+            : CGSize(width: .random(in: 5 ... 8), height: .random(in: 9 ... 14))
 
         return ConfettiPiece(
             burst: CGSize(width: cos(angle) * distance, height: sin(angle) * distance * 0.8 - 40),
-            drift: .random(in: -30...30),
-            fallDistance: .random(in: 120...220),
-            fallDuration: .random(in: 0.9...1.4),
-            spin: .random(in: -540...540),
-            axis: (x: .random(in: 0...1), y: .random(in: 0...1), z: 1),
+            drift: .random(in: -30 ... 30),
+            fallDistance: .random(in: 120 ... 220),
+            fallDuration: .random(in: 0.9 ... 1.4),
+            spin: .random(in: -540 ... 540),
+            axis: (x: .random(in: 0 ... 1), y: .random(in: 0 ... 1), z: 1),
             color: palette.randomElement() ?? .accentColor,
             size: size,
-            cornerRadius: isDot ? 3.5 : 1.5)
+            cornerRadius: isDot ? 3.5 : 1.5
+        )
     }
 }

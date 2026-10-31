@@ -63,28 +63,32 @@ extension LicenseInfo {
             licenseType: "MIT",
             copyrightHolder: "Point-Free, Inc.",
             repositoryURL: URL(string: "https://github.com/pointfreeco/sqlite-data")!,
-            bundledLicenseFile: "LICENSE-sqlite-data.txt"),
+            bundledLicenseFile: "LICENSE-sqlite-data.txt"
+        ),
         LicenseInfo(
             name: "CodeScanner",
             author: "twostraws",
             licenseType: "MIT",
             copyrightHolder: "2019 Paul Hudson",
             repositoryURL: URL(string: "https://github.com/twostraws/CodeScanner")!,
-            bundledLicenseFile: "LICENSE-CodeScanner.txt"),
+            bundledLicenseFile: "LICENSE-CodeScanner.txt"
+        ),
         LicenseInfo(
             name: "swift-markdown-ui",
             author: "gonzalezreal",
             licenseType: "MIT",
             copyrightHolder: "2020 Guillermo Gonzalez",
             repositoryURL: URL(string: "https://github.com/gonzalezreal/swift-markdown-ui")!,
-            bundledLicenseFile: "LICENSE-swift-markdown-ui.txt"),
+            bundledLicenseFile: "LICENSE-swift-markdown-ui.txt"
+        ),
         LicenseInfo(
             name: "Liberation Fonts",
             author: "liberationfonts",
             licenseType: "OFL-1.1",
             copyrightHolder: "2012 Red Hat, Inc.",
             repositoryURL: URL(string: "https://github.com/liberationfonts/liberation-fonts")!,
-            bundledLicenseFile: "LICENSE-liberation-fonts.txt"),
+            bundledLicenseFile: "LICENSE-liberation-fonts.txt"
+        ),
     ].sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
 }
 

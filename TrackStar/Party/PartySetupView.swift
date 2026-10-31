@@ -66,7 +66,9 @@ struct PartySetupView: View {
                     .foregroundStyle(.primary)
                 }
             } footer: {
-                if datasets.isEmpty { Text("Download a song pack to play.") }
+                if datasets.isEmpty {
+                    Text("Download a song pack to play.")
+                }
             }
             Section {
                 Button("Get Song Packs") { showingLibrary = true }
@@ -75,7 +77,11 @@ struct PartySetupView: View {
         .navigationTitle("Which Songs?")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showingLibrary) { DatasetLibrarySheet() }
-        .alert("Can't Start", isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+        .alert("Can't Start", isPresented: Binding(get: { error != nil }, set: {
+            if !$0 {
+                error = nil
+            }
+        })) {
             Button("OK", role: .cancel) {}
         } message: {
             Text(error ?? "")
@@ -88,7 +94,9 @@ struct PartySetupView: View {
         guard !name.isEmpty else { return }
         // The names are unique ignoring case, like in the database.
         if let existing = saved.first(where: { $0.name.caseInsensitiveCompare(name) == .orderedSame }) {
-            if !selected.contains(existing.name) { selected.append(existing.name) }
+            if !selected.contains(existing.name) {
+                selected.append(existing.name)
+            }
         } else {
             @Dependency(\.defaultDatabase) var database
             do {

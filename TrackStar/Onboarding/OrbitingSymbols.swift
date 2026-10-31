@@ -29,7 +29,8 @@ struct OrbitingSymbols: View {
                         .shadow(color: .black.opacity(0.08), radius: 6, y: 3)
                         .offset(
                             x: cos(angle) * radius,
-                            y: sin(angle) * radius * 0.85 + bob)
+                            y: sin(angle) * radius * 0.85 + bob
+                        )
                 }
             }
         }

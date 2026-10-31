@@ -165,7 +165,9 @@ enum CardPrinter {
 
         /// `origin`: the card's top-left corner. Element coordinates are mm from there, y down.
         func drawCard(_ elements: [CardDesign.Element], at origin: CGPoint, track: Track) {
-            func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: origin.x + x * mm, y: origin.y - y * mm) }
+            func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint {
+                CGPoint(x: origin.x + x * mm, y: origin.y - y * mm)
+            }
             let fields = [
                 "dataset": track.datasetID, "id": String(track.number), "title": track.title, "artist": track.artist,
                 "year": track.year.map(String.init) ?? "", "album": track.album ?? "",
@@ -175,8 +177,12 @@ enum CardPrinter {
             }
             func holds(_ condition: String) -> Bool {
                 let parts = condition.components(separatedBy: "!=").map { $0.trimmingCharacters(in: .whitespaces) }
-                if parts.count == 2 { return fields[parts[0]] != fields[parts[1]] }
-                if condition.hasPrefix("!") { return fields[String(condition.dropFirst())]!.isEmpty }
+                if parts.count == 2 {
+                    return fields[parts[0]] != fields[parts[1]]
+                }
+                if condition.hasPrefix("!") {
+                    return fields[String(condition.dropFirst())]!.isEmpty
+                }
                 return !fields[condition]!.isEmpty
             }
 
@@ -263,7 +269,9 @@ enum CardPrinter {
 
         private func clean(_ text: String) -> String {
             let scalars = text.unicodeScalars.compactMap { scalar -> Unicode.Scalar? in
-                if "\t\n\r".unicodeScalars.contains(scalar) { return " " }
+                if "\t\n\r".unicodeScalars.contains(scalar) {
+                    return " "
+                }
                 return scalar.properties.generalCategory == .format ? nil : scalar
             }
             return String(String.UnicodeScalarView(scalars)).trimmingCharacters(in: CharacterSet(charactersIn: " "))
@@ -287,14 +295,20 @@ enum CardPrinter {
                         lines.append(word)
                     }
                 }
-                if lines.count <= maxLines || size - 0.5 < minSize { break }
+                if lines.count <= maxLines || size - 0.5 < minSize {
+                    break
+                }
                 size -= 0.5
             }
             if lines.count > maxLines {
                 lines = Array(lines.prefix(maxLines))
                 var last = lines[maxLines - 1].unicodeScalars
-                while !last.isEmpty, measure(String(last) + "…") > width { last.removeLast() }
-                while last.last == " " { last.removeLast() }
+                while !last.isEmpty, measure(String(last) + "…") > width {
+                    last.removeLast()
+                }
+                while last.last == " " {
+                    last.removeLast()
+                }
                 lines[maxLines - 1] = String(last) + "…"
             }
             return (size, lines)

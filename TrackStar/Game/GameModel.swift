@@ -58,7 +58,9 @@ final class GameModel {
 
     /// A card scanned with the Camera app (`trackstar://…`) replaces the current round.
     func open(_ url: URL) {
-        if phase != .scanning { next() }
+        if phase != .scanning {
+            next()
+        }
         scanned(url.absoluteString)
     }
 
@@ -129,7 +131,9 @@ final class GameModel {
             try await Library.install(Library.info(datasetID))
             try Library.activate(datasetID)
             phase = .scanning
-            if let pendingCode { await start(pendingCode) }
+            if let pendingCode {
+                await start(pendingCode)
+            }
         } catch {
             phase = .scanning
             problem = .message(String(localized: "Couldn't download “\(datasetID)”: \(error.localizedDescription)"))
@@ -206,7 +210,9 @@ final class GameModel {
                 if self.elapsed >= self.duration {
                     self.elapsed = self.duration
                     // The guessing is over; on the revealed card the song may keep playing.
-                    if self.phase == .listening { self.pause() }
+                    if self.phase == .listening {
+                        self.pause()
+                    }
                 }
             }
         }

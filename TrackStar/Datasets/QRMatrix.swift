@@ -1,7 +1,7 @@
 /// The QR code of a card, module for module what backend/cards.py draws (CoreImage picks other segments and masks):
 /// byte mode, error correction M, smallest version, the mask with the lowest penalty (first on ties), no quiet zone.
 enum QRMatrix {
-    // Error correction level M, indexed by version.
+    /// Error correction level M, indexed by version.
     private static let eccPerBlock = [0, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26, 30, 22, 22, 24, 24, 28, 28, 26, 26, 26,
                                       26, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28]
     private static let blockCount = [0, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 5, 8, 9, 9, 10, 10, 11, 13, 14, 16,
@@ -13,7 +13,9 @@ enum QRMatrix {
         let version = (1 ... 40).first { 4 + ($0 < 10 ? 8 : 16) + bytes.count * 8 <= dataCodewords($0) * 8 }!
         var bits: [Bool] = []
         func put(_ value: Int, _ count: Int) {
-            for i in (0 ..< count).reversed() { bits.append(value >> i & 1 == 1) }
+            for i in (0 ..< count).reversed() {
+                bits.append(value >> i & 1 == 1)
+            }
         }
         put(0b0100, 4)
         put(bytes.count, version < 10 ? 8 : 16)
@@ -21,7 +23,9 @@ enum QRMatrix {
         let capacity = dataCodewords(version) * 8
         put(0, min(4, capacity - bits.count))
         put(0, (8 - bits.count % 8) % 8)
-        for pad in [0xEC, 0x11].cycled(until: (capacity - bits.count) / 8) { put(pad, 8) }
+        for pad in [0xEC, 0x11].cycled(until: (capacity - bits.count) / 8) {
+            put(pad, 8)
+        }
         let data = stride(from: 0, to: bits.count, by: 8).map { bits[$0 ..< $0 + 8].reduce(0) { $0 << 1 | ($1 ? 1 : 0) } }
 
         var grid = Grid(size: version * 4 + 17)
@@ -40,7 +44,9 @@ enum QRMatrix {
         if version >= 2 {
             let align = version / 7 + 2
             result -= (25 * align - 10) * align - 55
-            if version >= 7 { result -= 36 }
+            if version >= 7 {
+                result -= 36
+            }
         }
         return result
     }
@@ -74,7 +80,9 @@ enum QRMatrix {
         for _ in 0 ..< degree {
             for j in 0 ..< degree {
                 result[j] = multiply(result[j], root)
-                if j + 1 < degree { result[j] ^= result[j + 1] }
+                if j + 1 < degree {
+                    result[j] ^= result[j + 1]
+                }
             }
             root = multiply(root, 2)
         }
@@ -86,7 +94,9 @@ enum QRMatrix {
         for byte in data {
             let factor = byte ^ result.removeFirst()
             result.append(0)
-            for i in result.indices { result[i] ^= multiply(divisor[i], factor) }
+            for i in result.indices {
+                result[i] ^= multiply(divisor[i], factor)
+            }
         }
         return result
     }
@@ -135,14 +145,18 @@ enum QRMatrix {
             for (i, cx) in positions.enumerated() {
                 for (j, cy) in positions.enumerated() where !(i == 0 && j == 0 || i == 0 && j == last || i == last && j == 0) {
                     for dy in -2 ... 2 {
-                        for dx in -2 ... 2 { set(cx + dx, cy + dy, max(abs(dx), abs(dy)) != 1) }
+                        for dx in -2 ... 2 {
+                            set(cx + dx, cy + dy, max(abs(dx), abs(dy)) != 1)
+                        }
                     }
                 }
             }
             drawFormatBits(mask: 0) // reserves the area; redrawn per mask
             if version >= 7 {
                 var remainder = version
-                for _ in 0 ..< 12 { remainder = (remainder << 1) ^ ((remainder >> 11) * 0x1F25) }
+                for _ in 0 ..< 12 {
+                    remainder = (remainder << 1) ^ ((remainder >> 11) * 0x1F25)
+                }
                 let bits = version << 12 | remainder
                 for i in 0 ..< 18 {
                     let dark = bits >> i & 1 == 1, a = size - 11 + i % 3, b = i / 3
@@ -162,16 +176,28 @@ enum QRMatrix {
         mutating func drawFormatBits(mask: Int) {
             let data = 0b00 << 3 | mask // level M
             var remainder = data
-            for _ in 0 ..< 10 { remainder = (remainder << 1) ^ ((remainder >> 9) * 0x537) }
+            for _ in 0 ..< 10 {
+                remainder = (remainder << 1) ^ ((remainder >> 9) * 0x537)
+            }
             let bits = (data << 10 | remainder) ^ 0x5412
-            func bit(_ i: Int) -> Bool { bits >> i & 1 == 1 }
-            for i in 0 ... 5 { set(8, i, bit(i)) }
+            func bit(_ i: Int) -> Bool {
+                bits >> i & 1 == 1
+            }
+            for i in 0 ... 5 {
+                set(8, i, bit(i))
+            }
             set(8, 7, bit(6))
             set(8, 8, bit(7))
             set(7, 8, bit(8))
-            for i in 9 ..< 15 { set(14 - i, 8, bit(i)) }
-            for i in 0 ..< 8 { set(size - 1 - i, 8, bit(i)) }
-            for i in 8 ..< 15 { set(8, size - 15 + i, bit(i)) }
+            for i in 9 ..< 15 {
+                set(14 - i, 8, bit(i))
+            }
+            for i in 0 ..< 8 {
+                set(size - 1 - i, 8, bit(i))
+            }
+            for i in 8 ..< 15 {
+                set(8, size - 15 + i, bit(i))
+            }
             set(8, size - 8, true)
         }
 
@@ -179,7 +205,9 @@ enum QRMatrix {
             var i = 0
             var right = size - 1
             while right >= 1 {
-                if right == 6 { right = 5 }
+                if right == 6 {
+                    right = 5
+                }
                 for vertical in 0 ..< size {
                     for j in 0 ..< 2 {
                         let x = right - j
@@ -207,7 +235,9 @@ enum QRMatrix {
                     case 6: (x * y % 2 + x * y % 3) % 2 == 0
                     default: ((x + y) % 2 + x * y % 3) % 2 == 0
                     }
-                    if invert { modules[y][x].toggle() }
+                    if invert {
+                        modules[y][x].toggle()
+                    }
                 }
             }
         }
@@ -223,7 +253,9 @@ enum QRMatrix {
                         run += 1
                         continue
                     }
-                    if run >= 5 { score += run - 2 }
+                    if run >= 5 {
+                        score += run - 2
+                    }
                     run = 1
                 }
                 for pattern in [[1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1]] {
@@ -237,7 +269,9 @@ enum QRMatrix {
             for y in 0 ..< size - 1 {
                 for x in 0 ..< size - 1 {
                     let m = modules[y][x]
-                    if modules[y][x + 1] == m, modules[y + 1][x] == m, modules[y + 1][x + 1] == m { score += 3 }
+                    if modules[y][x + 1] == m, modules[y + 1][x] == m, modules[y + 1][x + 1] == m {
+                        score += 3
+                    }
                 }
             }
             let dark = modules.joined().filter { $0 }.count, total = size * size

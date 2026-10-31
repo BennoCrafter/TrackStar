@@ -85,15 +85,18 @@ struct ContentView: View {
                 showViewfinder: true,
                 simulatedData: "trackstar://hitster/?id=2",
                 completion: { result in
-                    if case let .success(scan) = result { game.scanned(scan.string) }
-                })
-                .aspectRatio(1, contentMode: .fit)
-                .frame(maxWidth: 360)
-                .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 32, style: .continuous)
-                        .strokeBorder(.white.opacity(0.2), lineWidth: 1)
+                    if case let .success(scan) = result {
+                        game.scanned(scan.string)
+                    }
                 }
+            )
+            .aspectRatio(1, contentMode: .fit)
+            .frame(maxWidth: 360)
+            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: 32, style: .continuous)
+                    .strokeBorder(.white.opacity(0.2), lineWidth: 1)
+            }
 
             VStack(spacing: 6) {
                 Text("Scan a card")
@@ -172,7 +175,6 @@ struct ContentView: View {
             }
         }
 
-
         ToolbarItem(placement: .topBarTrailing) {
             Button { showingLibrary = true } label: {
                 HStack(spacing: 6) {
@@ -188,7 +190,11 @@ struct ContentView: View {
     // MARK: - Problems
 
     private var problemBinding: Binding<Bool> {
-        Binding(get: { game.problem != nil }, set: { if !$0 { game.problem = nil } })
+        Binding(get: { game.problem != nil }, set: {
+            if !$0 {
+                game.problem = nil
+            }
+        })
     }
 
     private var problemTitle: LocalizedStringKey {

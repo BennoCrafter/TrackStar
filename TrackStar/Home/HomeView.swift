@@ -129,7 +129,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     static var landscapeOnly = false
 
     func application(_: UIApplication, supportedInterfaceOrientationsFor _: UIWindow?) -> UIInterfaceOrientationMask {
-        if Self.landscapeOnly { return .landscape }
+        if Self.landscapeOnly {
+            return .landscape
+        }
         return UIDevice.current.userInterfaceIdiom == .pad ? .all : .allButUpsideDown
     }
 

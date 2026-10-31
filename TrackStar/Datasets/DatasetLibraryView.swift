@@ -101,14 +101,22 @@ struct DatasetLibraryView: View {
         }
         .navigationTitle("Song Packs")
         .refreshable { await loadCatalog() }
-        .task { if catalog.isEmpty { await loadCatalog() } }
+        .task {
+            if catalog.isEmpty {
+                await loadCatalog()
+            }
+        }
         .fileImporter(isPresented: $showingImporter, allowedContentTypes: [.json]) { result in
             if case let .success(url) = result {
                 importName = url.deletingPathExtension().lastPathComponent
                 importURL = url
             }
         }
-        .alert("Name the Song Pack", isPresented: Binding(get: { importURL != nil }, set: { if !$0 { importURL = nil } })) {
+        .alert("Name the Song Pack", isPresented: Binding(get: { importURL != nil }, set: {
+            if !$0 {
+                importURL = nil
+            }
+        })) {
             TextField("Name", text: $importName)
             Button("Import") {
                 guard let url = importURL else { return }
@@ -116,7 +124,11 @@ struct DatasetLibraryView: View {
             }
             Button("Cancel", role: .cancel) {}
         }
-        .alert("Something Went Wrong", isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+        .alert("Something Went Wrong", isPresented: Binding(get: { error != nil }, set: {
+            if !$0 {
+                error = nil
+            }
+        })) {
             Button("OK", role: .cancel) {}
         } message: {
             Text(error ?? "")
@@ -213,7 +225,11 @@ struct DownloadButton: View {
         .buttonStyle(.bordered)
         .buttonBorderShape(.capsule)
         .disabled(isDownloading)
-        .alert("Couldn't Download \(remote.title)", isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+        .alert("Couldn't Download \(remote.title)", isPresented: Binding(get: { error != nil }, set: {
+            if !$0 {
+                error = nil
+            }
+        })) {
             Button("OK", role: .cancel) {}
         } message: {
             Text(error ?? "")
@@ -262,13 +278,14 @@ struct DatasetIcon: View {
                 Text(icon ?? name.prefix(1).uppercased())
             }
         }
-            .font(.system(size: size * 0.45, weight: .bold, design: .rounded))
-            .foregroundStyle(.white)
-            .frame(width: size, height: size)
-            .background(
-                PeriodGradient.gradient(for: 1950 + hash % 16 * 5),
-                in: RoundedRectangle(cornerRadius: size * 0.25, style: .continuous))
-            .accessibilityHidden(true)
+        .font(.system(size: size * 0.45, weight: .bold, design: .rounded))
+        .foregroundStyle(.white)
+        .frame(width: size, height: size)
+        .background(
+            PeriodGradient.gradient(for: 1950 + hash % 16 * 5),
+            in: RoundedRectangle(cornerRadius: size * 0.25, style: .continuous)
+        )
+        .accessibilityHidden(true)
     }
 }
 

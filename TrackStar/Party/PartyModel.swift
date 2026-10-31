@@ -7,7 +7,9 @@ struct PartyPlayer: Codable, Hashable, Identifiable {
     /// Sorted by year (by album in an artist pack). Starts with one card, which scores nothing.
     var timeline: [Track]
 
-    var id: String { name }
+    var id: String {
+        name
+    }
 }
 
 /// A game in progress, saved after every turn so it survives closing the app.

@@ -96,7 +96,11 @@ struct DatasetDetailView: View {
                 }
             }
         }
-        .alert("Something Went Wrong", isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+        .alert("Something Went Wrong", isPresented: Binding(get: { error != nil }, set: {
+            if !$0 {
+                error = nil
+            }
+        })) {
             Button("OK", role: .cancel) {}
         } message: {
             Text(error ?? "")
@@ -120,7 +124,7 @@ struct DatasetDetailView: View {
                 .padding(.top, 4)
         }
         .frame(maxWidth: .infinity)
-    }   
+    }
 
     @ViewBuilder
     private var primaryButton: some View {
@@ -160,7 +164,11 @@ struct DatasetDetailView: View {
     private func download() async {
         isDownloading = true
         do {
-            let info = if let remote { remote } else { try await Library.info(id) }
+            let info = if let remote {
+                remote
+            } else {
+                try await Library.info(id)
+            }
             try await Library.install(info)
         } catch {
             self.error = error.localizedDescription

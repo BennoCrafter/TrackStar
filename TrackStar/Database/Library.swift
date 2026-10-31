@@ -11,8 +11,13 @@ struct RemoteDataset: Identifiable, Hashable, Decodable, Sendable {
     /// `"type": "artist"`: one artist's songs, placed by album.
     let isArtist: Bool
 
-    var id: String { name }
-    var title: String { displayName ?? name }
+    var id: String {
+        name
+    }
+
+    var title: String {
+        displayName ?? name
+    }
 
     enum CodingKeys: String, CodingKey {
         case name, version, icon, type
@@ -59,7 +64,11 @@ enum Library {
 
     /// One GitHub API call for the folder list (60/hour without a token), then raw files.
     static func catalog() async throws -> [RemoteDataset] {
-        struct Entry: Decodable { let name: String; let type: String }
+        struct Entry: Decodable {
+            let name: String
+            let type: String
+        }
+
         let entries: [Entry] = try JSONDecoder().decode([Entry].self, from: await data(listURL))
         return await withTaskGroup(of: RemoteDataset?.self) { group in
             for entry in entries where entry.type == "dir" {
@@ -67,7 +76,9 @@ enum Library {
             }
             var result: [RemoteDataset] = []
             for await dataset in group {
-                if let dataset { result.append(dataset) }
+                if let dataset {
+                    result.append(dataset)
+                }
             }
             return result.sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }
         }
@@ -143,7 +154,11 @@ enum Library {
     /// Imports a `songs.json` picked in Files.
     static func importFile(_ url: URL, displayName: String) throws {
         let accessing = url.startAccessingSecurityScopedResource()
-        defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+        defer {
+            if accessing {
+                url.stopAccessingSecurityScopedResource()
+            }
+        }
         let songs = try JSONDecoder().decode([SongEntry].self, from: Data(contentsOf: url))
         try createLocal(displayName: displayName, songs: songs)
     }

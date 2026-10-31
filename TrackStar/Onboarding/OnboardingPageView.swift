@@ -139,10 +139,12 @@ struct StaggeredEntrance: ViewModifier {
 
 #Preview("Welcome page") {
     OnboardingPageView(
-        page: OnboardingPage(imageName: "music.quarternote.3", title: "Welcome to TrackStar!", description: "Guess the year of the song."))
+        page: OnboardingPage(imageName: "music.quarternote.3", title: "Welcome to TrackStar!", description: "Guess the year of the song.")
+    )
 }
 
 #Preview("Done page") {
     OnboardingPageView(
-        page: OnboardingPage(imageName: "checkmark.seal", title: "You're all set!", description: "Let the music play.", style: .celebration))
+        page: OnboardingPage(imageName: "checkmark.seal", title: "You're all set!", description: "Let the music play.", style: .celebration)
+    )
 }

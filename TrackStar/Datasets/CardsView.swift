@@ -59,7 +59,7 @@ struct CardsView: View {
 private struct PDFKitView: UIViewRepresentable {
     let url: URL
 
-    func makeUIView(context: Context) -> PDFView {
+    func makeUIView(context _: Context) -> PDFView {
         let view = PDFView()
         view.autoScales = true
         view.displayMode = .singlePageContinuous
@@ -68,7 +68,7 @@ private struct PDFKitView: UIViewRepresentable {
         return view
     }
 
-    func updateUIView(_ view: PDFView, context: Context) {
+    func updateUIView(_ view: PDFView, context _: Context) {
         if view.document?.documentURL != url {
             view.document = PDFDocument(url: url)
         }

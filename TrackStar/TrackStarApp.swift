@@ -28,7 +28,8 @@ struct TrackStarApp: App {
                 ContentUnavailableView(
                     "TrackStar Couldn't Start",
                     systemImage: "exclamationmark.triangle",
-                    description: Text(databaseError))
+                    description: Text(databaseError)
+                )
             } else if hasSeenOnboarding {
                 RootView()
             } else {
