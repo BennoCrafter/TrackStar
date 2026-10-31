@@ -175,7 +175,7 @@ struct DatasetLibraryView: View {
             catalog = try await Library.catalog()
             catalogError = nil
         } catch {
-            catalogError = "Couldn't load the song packs. Check your connection and pull to refresh."
+            catalogError = String(localized: "Couldn't load the song packs. Check your connection and pull to refresh.")
         }
         // Launch isn't the only time to update: pull to refresh should pick up a version pushed since.
         await Library.updateAll()

@@ -1,0 +1,1898 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "“%@” by %@ couldn't be found. Here's the card anyway." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%1$@“ von %2$@ wurde nicht gefunden. Hier ist trotzdem die Karte."
+          }
+        }
+      }
+    },
+    "“%@” by %@ isn't on Apple Music. Here comes another song." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%1$@“ von %2$@ ist nicht auf Apple Music. Hier kommt ein anderer Song."
+          }
+        }
+      }
+    },
+    "“%@” has no songs." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ enthält keine Songs."
+          }
+        }
+      }
+    },
+    "%@ – %@ · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ – %2$@ · %3$@"
+          }
+        }
+      }
+    },
+    "%@ (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "%@ by %@, %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ von %2$@, %3$@"
+          }
+        }
+      }
+    },
+    "%@ Cards" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@-Karten"
+          }
+        }
+      }
+    },
+    "%@ has no card number %lld." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ hat keine Karte mit der Nummer %2$lld."
+          }
+        }
+      }
+    },
+    "%@ wins!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ gewinnt!"
+          }
+        }
+      }
+    },
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "%@, by %@, %@ license" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, von %2$@, %3$@-Lizenz"
+          }
+        }
+      }
+    },
+    "%@, what did you guess?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, was hast du getippt?"
+          }
+        }
+      }
+    },
+    "%@, where does it go?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, wo gehört er hin?"
+          }
+        }
+      }
+    },
+    "%@. −1 for %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@. −1 für %2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "%lld New Song Packs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld neue Song-Pakete"
+          }
+        }
+      }
+    },
+    "%lld points · %lld cards in the timeline" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld Punkte · %2$lld Karten in der Zeitleiste"
+          }
+        }
+      }
+    },
+    "%lld s" : {
+
+    },
+    "%lld songs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Songs"
+          }
+        }
+      }
+    },
+    "%lld songs · imported" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Songs · importiert"
+          }
+        }
+      }
+    },
+    "%lld." : {
+
+    },
+    "🥇" : {
+
+    },
+    "🥈" : {
+
+    },
+    "🥉" : {
+
+    },
+    "A song pack is a set of cards. Download one, then print its cards or use the original German Hitster cards." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Song-Paket ist ein Kartenset. Lade eins herunter und drucke dann die Karten aus oder nutze die originalen deutschen Hitster-Karten."
+          }
+        }
+      }
+    },
+    "About" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
+          }
+        }
+      }
+    },
+    "Add a player" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spieler hinzufügen"
+          }
+        }
+      }
+    },
+    "Album %lld of %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Album %1$lld von %2$lld"
+          }
+        }
+      }
+    },
+    "Allow Apple Music" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Music erlauben"
+          }
+        }
+      }
+    },
+    "Allow TrackStar to access Apple Music in the Settings app." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erlaube TrackStar in der Einstellungen-App den Zugriff auf Apple Music."
+          }
+        }
+      }
+    },
+    "Apple Music" : {
+
+    },
+    "Artists" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Künstler"
+          }
+        }
+      }
+    },
+    "Attributions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Danksagungen"
+          }
+        }
+      }
+    },
+    "Author" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autor"
+          }
+        }
+      }
+    },
+    "Available" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verfügbar"
+          }
+        }
+      }
+    },
+    "Back" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
+          }
+        }
+      }
+    },
+    "by %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "von %@"
+          }
+        }
+      }
+    },
+    "Can't Play This Song" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song kann nicht abgespielt werden"
+          }
+        }
+      }
+    },
+    "Can't Start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start nicht möglich"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        }
+      }
+    },
+    "Card Game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kartenspiel"
+          }
+        }
+      }
+    },
+    "Card Not Found" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karte nicht gefunden"
+          }
+        }
+      }
+    },
+    "Choose a song pack first." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle zuerst ein Song-Paket aus."
+          }
+        }
+      }
+    },
+    "Choose Songs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Songs auswählen"
+          }
+        }
+      }
+    },
+    "Continue" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter"
+          }
+        }
+      }
+    },
+    "Continue Game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiel fortsetzen"
+          }
+        }
+      }
+    },
+    "Copy Link" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link kopieren"
+          }
+        }
+      }
+    },
+    "Couldn't download “%@”: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%1$@“ konnte nicht geladen werden: %2$@"
+          }
+        }
+      }
+    },
+    "Couldn't Download %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ konnte nicht geladen werden"
+          }
+        }
+      }
+    },
+    "Couldn't Load the Cards" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karten konnten nicht geladen werden"
+          }
+        }
+      }
+    },
+    "Couldn't load the song packs. Check your connection and pull to refresh." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Song-Pakete konnten nicht geladen werden. Prüfe deine Verbindung und zieh zum Aktualisieren nach unten."
+          }
+        }
+      }
+    },
+    "Couldn't play the song. Playing needs an Apple Music subscription. (%@)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Song konnte nicht abgespielt werden. Zum Abspielen brauchst du ein Apple-Music-Abo. (%@)"
+          }
+        }
+      }
+    },
+    "Create" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellen"
+          }
+        }
+      }
+    },
+    "Create from Apple Music Playlist" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus Apple-Music-Playlist erstellen"
+          }
+        }
+      }
+    },
+    "Create Your Own Song Pack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigenes Song-Paket erstellen"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        }
+      }
+    },
+    "Delete %@?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ löschen?"
+          }
+        }
+      }
+    },
+    "Delete Song Pack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song-Paket löschen"
+          }
+        }
+      }
+    },
+    "Developer Mode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entwicklermodus"
+          }
+        }
+      }
+    },
+    "Discord" : {
+
+    },
+    "Done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fertig"
+          }
+        }
+      }
+    },
+    "Download" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laden"
+          }
+        }
+      }
+    },
+    "Download a pack to play it or print its cards." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lade ein Paket, um es zu spielen oder seine Karten zu drucken."
+          }
+        }
+      }
+    },
+    "Download a song pack to play." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lade ein Song-Paket, um zu spielen."
+          }
+        }
+      }
+    },
+    "Downloaded" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geladen"
+          }
+        }
+      }
+    },
+    "Downloading cards…" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karten werden geladen …"
+          }
+        }
+      }
+    },
+    "Drag into a gap in your timeline." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In eine Lücke deiner Zeitleiste ziehen."
+          }
+        }
+      }
+    },
+    "Drag the card into a gap in your timeline." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zieh die Karte in eine Lücke deiner Zeitleiste."
+          }
+        }
+      }
+    },
+    "Each song becomes a card. The year comes from Apple Music, which sometimes has the date of a remaster or compilation, so check the songs before printing." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeder Song wird zu einer Karte. Das Jahr kommt von Apple Music, wo manchmal das Datum eines Remasters oder einer Compilation steht. Prüfe die Songs also vor dem Drucken."
+          }
+        }
+      }
+    },
+    "Finding the song…" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song wird gesucht …"
+          }
+        }
+      }
+    },
+    "Finish" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beenden"
+          }
+        }
+      }
+    },
+    "First to %lld points wins" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer zuerst %lld Punkte hat, gewinnt"
+          }
+        }
+      }
+    },
+    "For the Party Game. With “Name the Song First”, a player picks the right title and artist out of three before placing the card." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für das Partyspiel. Mit „Zuerst den Song nennen“ wählt man vor dem Platzieren der Karte den richtigen Titel und Künstler aus drei Optionen."
+          }
+        }
+      }
+    },
+    "From Apple Music" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus Apple Music"
+          }
+        }
+      }
+    },
+    "Game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiel"
+          }
+        }
+      }
+    },
+    "German Hitster cards play with the Hitster song pack." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deutsche Hitster-Karten werden mit dem Hitster-Song-Paket gespielt."
+          }
+        }
+      }
+    },
+    "Get" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laden"
+          }
+        }
+      }
+    },
+    "Get a Song Pack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song-Paket laden"
+          }
+        }
+      }
+    },
+    "Get Song Packs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song-Pakete laden"
+          }
+        }
+      }
+    },
+    "GitHub" : {
+
+    },
+    "Grab your cards and let the music play." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnapp dir deine Karten und lass die Musik spielen."
+          }
+        }
+      }
+    },
+    "Guess the year of the song." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Errate das Jahr des Songs."
+          }
+        }
+      }
+    },
+    "Help & Feedback" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfe & Feedback"
+          }
+        }
+      }
+    },
+    "Home" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        }
+      }
+    },
+    "How long a song plays before it pauses, and whether it starts somewhere in the middle instead of the beginning." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie lange ein Song läuft, bevor er pausiert, und ob er irgendwo in der Mitte statt am Anfang beginnt."
+          }
+        }
+      }
+    },
+    "Import" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importieren"
+          }
+        }
+      }
+    },
+    "Import songs.json" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "songs.json importieren"
+          }
+        }
+      }
+    },
+    "Imported from a file or made from Apple Music. They only exist on this device." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus einer Datei importiert oder aus Apple Music erstellt. Sie gibt es nur auf diesem Gerät."
+          }
+        }
+      }
+    },
+    "Keep Listening" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiterhören"
+          }
+        }
+      }
+    },
+    "Leave game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiel verlassen"
+          }
+        }
+      }
+    },
+    "Let the music play." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass die Musik spielen."
+          }
+        }
+      }
+    },
+    "Library" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mediathek"
+          }
+        }
+      }
+    },
+    "License" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lizenz"
+          }
+        }
+      }
+    },
+    "License text" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lizenztext"
+          }
+        }
+      }
+    },
+    "Lose a Point When Wrong" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punktabzug bei Fehlern"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        }
+      }
+    },
+    "Name the Song First" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuerst den Song nennen"
+          }
+        }
+      }
+    },
+    "Name the Song Pack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song-Paket benennen"
+          }
+        }
+      }
+    },
+    "New Game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neues Spiel"
+          }
+        }
+      }
+    },
+    "New Song Pack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neues Song-Paket"
+          }
+        }
+      }
+    },
+    "Next" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter"
+          }
+        }
+      }
+    },
+    "Next Card" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächste Karte"
+          }
+        }
+      }
+    },
+    "Next Song" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächster Song"
+          }
+        }
+      }
+    },
+    "No cards needed: the phone picks the songs and keeps everyone's timeline and points." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Karten nötig: Das Handy wählt die Songs und merkt sich Zeitleisten und Punkte aller Spieler."
+          }
+        }
+      }
+    },
+    "No song packs yet. Download one below." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Song-Pakete. Lade unten eins herunter."
+          }
+        }
+      }
+    },
+    "Nobody knew it" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keiner wusste es"
+          }
+        }
+      }
+    },
+    "Nobody Knows It – Reveal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keiner weiß es – Aufdecken"
+          }
+        }
+      }
+    },
+    "Not a TrackStar Card" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine TrackStar-Karte"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "On This Device" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf diesem Gerät"
+          }
+        }
+      }
+    },
+    "On This Device · My Song Packs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf diesem Gerät · Meine Song-Pakete"
+          }
+        }
+      }
+    },
+    "On This Device · Public" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf diesem Gerät · Öffentlich"
+          }
+        }
+      }
+    },
+    "One artist's songs. In the Party Game you place them by album instead of year." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Songs eines Künstlers. Im Partyspiel ordnest du sie nach Album statt nach Jahr."
+          }
+        }
+      }
+    },
+    "Open in Apple Music" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Apple Music öffnen"
+          }
+        }
+      }
+    },
+    "Open in Safari" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Safari öffnen"
+          }
+        }
+      }
+    },
+    "Open-source libraries" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open-Source-Bibliotheken"
+          }
+        }
+      }
+    },
+    "Opens in Safari" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnet in Safari"
+          }
+        }
+      }
+    },
+    "Party Game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partyspiel"
+          }
+        }
+      }
+    },
+    "Party Rules" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partyregeln"
+          }
+        }
+      }
+    },
+    "Pause" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause"
+          }
+        }
+      }
+    },
+    "Pick songs one by one from your library or all of Apple Music." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle Songs einzeln aus deiner Mediathek oder ganz Apple Music."
+          }
+        }
+      }
+    },
+    "Place after %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach %@ platzieren"
+          }
+        }
+      }
+    },
+    "Place before %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vor %@ platzieren"
+          }
+        }
+      }
+    },
+    "Placeholder summary text for this song pack that spans two lines" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platzhaltertext für die Beschreibung dieses Song-Pakets über zwei Zeilen"
+          }
+        }
+      }
+    },
+    "Play" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abspielen"
+          }
+        }
+      }
+    },
+    "Play This Song Pack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Song-Paket spielen"
+          }
+        }
+      }
+    },
+    "Play with printed cards: scan one, hear the song, place it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiel mit gedruckten Karten: Scannen, Song hören, platzieren."
+          }
+        }
+      }
+    },
+    "Players" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spieler"
+          }
+        }
+      }
+    },
+    "Players are remembered for the next game. Swipe left to forget one." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spieler werden fürs nächste Spiel gespeichert. Zum Entfernen nach links wischen."
+          }
+        }
+      }
+    },
+    "Playing" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird gespielt"
+          }
+        }
+      }
+    },
+    "Playlists" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Playlists"
+          }
+        }
+      }
+    },
+    "Point the camera at a card's QR code. Its song pack is picked automatically." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richte die Kamera auf den QR-Code einer Karte. Ihr Song-Paket wird automatisch ausgewählt."
+          }
+        }
+      }
+    },
+    "Point the camera at the QR code of a card." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richte die Kamera auf den QR-Code einer Karte."
+          }
+        }
+      }
+    },
+    "Points to Win" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punkte zum Sieg"
+          }
+        }
+      }
+    },
+    "Print the cards double-sided, flipping on the long edge, then cut along the marks." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drucke die Karten doppelseitig (Wenden an der langen Kante) und schneide sie an den Markierungen aus."
+          }
+        }
+      }
+    },
+    "Print the cards double-sided, flipping on the long edge, then cut along the marks. They only play on this device: the song pack isn't in the repository." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drucke die Karten doppelseitig (Wenden an der langen Kante) und schneide sie an den Markierungen aus. Sie funktionieren nur auf diesem Gerät, da das Song-Paket nicht im Repository ist."
+          }
+        }
+      }
+    },
+    "Printable Cards" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druckbare Karten"
+          }
+        }
+      }
+    },
+    "Random Start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zufälliger Start"
+          }
+        }
+      }
+    },
+    "Recently Added" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuletzt hinzugefügt"
+          }
+        }
+      }
+    },
+    "Replay" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiederholen"
+          }
+        }
+      }
+    },
+    "Report a Problem" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problem melden"
+          }
+        }
+      }
+    },
+    "Results" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ergebnisse"
+          }
+        }
+      }
+    },
+    "Reveal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufdecken"
+          }
+        }
+      }
+    },
+    "Right! +1 for %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richtig! +1 für %@"
+          }
+        }
+      }
+    },
+    "Scan a card" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karte scannen"
+          }
+        }
+      }
+    },
+    "Scan a card and the song plays. Guess its year, place it on your timeline, then reveal the card to check." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scanne eine Karte und der Song läuft. Errate das Jahr, platziere sie in deiner Zeitleiste und deck die Karte dann zur Kontrolle auf."
+          }
+        }
+      }
+    },
+    "Scan, Listen, Guess" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scannen, Hören, Raten"
+          }
+        }
+      }
+    },
+    "Selected (%lld)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählt (%lld)"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        }
+      }
+    },
+    "Share" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen"
+          }
+        }
+      }
+    },
+    "Show Onboarding" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einführung zeigen"
+          }
+        }
+      }
+    },
+    "Shows the full license" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt die vollständige Lizenz"
+          }
+        }
+      }
+    },
+    "Skip" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Überspringen"
+          }
+        }
+      }
+    },
+    "Snippet Length" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausschnittlänge"
+          }
+        }
+      }
+    },
+    "Someone knows the song" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jemand kennt den Song"
+          }
+        }
+      }
+    },
+    "Something Went Wrong" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etwas ist schiefgelaufen"
+          }
+        }
+      }
+    },
+    "Something went wrong." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etwas ist schiefgelaufen."
+          }
+        }
+      }
+    },
+    "Song Not on Apple Music" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song nicht auf Apple Music"
+          }
+        }
+      }
+    },
+    "Song Pack Not Downloaded" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song-Paket nicht geladen"
+          }
+        }
+      }
+    },
+    "Song Packs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song-Pakete"
+          }
+        }
+      }
+    },
+    "Song Packs come from the TrackStar repository on GitHub. Each one has printable cards." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song-Pakete kommen aus dem TrackStar-Repository auf GitHub. Jedes hat druckbare Karten."
+          }
+        }
+      }
+    },
+    "Songs" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Songs"
+          }
+        }
+      }
+    },
+    "Songs don't play, and the question mark card shows the song it hides." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Songs werden nicht abgespielt und die Fragezeichen-Karte zeigt den versteckten Song."
+          }
+        }
+      }
+    },
+    "Songs or artists" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Songs oder Künstler"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starten"
+          }
+        }
+      }
+    },
+    "Start Playing" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los geht's"
+          }
+        }
+      }
+    },
+    "Step %lld of %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schritt %1$lld von %2$lld"
+          }
+        }
+      }
+    },
+    "Swipe right to play a song pack. Scanning a card switches to its song pack too." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach rechts wischen, um ein Song-Paket zu spielen. Auch das Scannen einer Karte wechselt zu ihrem Song-Paket."
+          }
+        }
+      }
+    },
+    "Switched to %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zu %@ gewechselt"
+          }
+        }
+      }
+    },
+    "Tap the card when someone knows the song" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe auf die Karte, wenn jemand den Song kennt"
+          }
+        }
+      }
+    },
+    "The music game where you guess when a song came out." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Musikspiel, bei dem du errätst, wann ein Song erschienen ist."
+          }
+        }
+      }
+    },
+    "The song pack" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Song-Paket"
+          }
+        }
+      }
+    },
+    "The songs play through Apple Music, so TrackStar needs access. Playing full songs needs a subscription." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Songs laufen über Apple Music, daher braucht TrackStar Zugriff. Für ganze Songs brauchst du ein Abo."
+          }
+        }
+      }
+    },
+    "This app is built with the help of these open-source projects. Thank you to their authors and contributors." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese App basiert auf diesen Open-Source-Projekten. Danke an ihre Autoren und Mitwirkenden."
+          }
+        }
+      }
+    },
+    "This card belongs to the song pack “%@”. Download it to play the card." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Karte gehört zum Song-Paket „%@“. Lade es herunter, um die Karte zu spielen."
+          }
+        }
+      }
+    },
+    "This QR code doesn't belong to a TrackStar or German Hitster card." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser QR-Code gehört zu keiner TrackStar- oder deutschen Hitster-Karte."
+          }
+        }
+      }
+    },
+    "Title, artist, year or number" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel, Künstler, Jahr oder Nummer"
+          }
+        }
+      }
+    },
+    "TrackStar Couldn't Start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrackStar konnte nicht starten"
+          }
+        }
+      }
+    },
+    "TrackStar makes printable cards for your own song packs. A songs.json is a list of {\"id\", \"title\", \"artist\", \"year\"} entries." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrackStar erstellt druckbare Karten für deine eigenen Song-Pakete. Eine songs.json ist eine Liste von {\"id\", \"title\", \"artist\", \"year\"}-Einträgen."
+          }
+        }
+      }
+    },
+    "TrackStar needs access to Apple Music to play songs. Allow it in the Settings app." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrackStar braucht Zugriff auf Apple Music, um Songs abzuspielen. Erlaube ihn in der Einstellungen-App."
+          }
+        }
+      }
+    },
+    "Try Again" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erneut versuchen"
+          }
+        }
+      }
+    },
+    "Version" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        }
+      }
+    },
+    "Version %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@"
+          }
+        }
+      }
+    },
+    "Version %lld. Updates download automatically." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %lld. Updates werden automatisch geladen."
+          }
+        }
+      }
+    },
+    "View on GitHub" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf GitHub ansehen"
+          }
+        }
+      }
+    },
+    "Welcome to TrackStar!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Willkommen bei TrackStar!"
+          }
+        }
+      }
+    },
+    "What's New" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuigkeiten"
+          }
+        }
+      }
+    },
+    "Which Songs?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welche Songs?"
+          }
+        }
+      }
+    },
+    "Who knows it?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer weiß es?"
+          }
+        }
+      }
+    },
+    "Who Plays?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer spielt?"
+          }
+        }
+      }
+    },
+    "Wrong song" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falscher Song"
+          }
+        }
+      }
+    },
+    "Wrong spot" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falsche Stelle"
+          }
+        }
+      }
+    },
+    "You're all set!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles bereit!"
+          }
+        }
+      }
+    },
+    "You've got every song pack." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast alle Song-Pakete."
+          }
+        }
+      }
+    },
+    "Your Own" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

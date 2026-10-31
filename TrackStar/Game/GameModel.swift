@@ -75,7 +75,7 @@ final class GameModel {
         @Dependency(\.defaultDatabase) var database
         let active = try? await database.read { try Dataset.where(\.isActive).fetchOne($0) }
         guard let datasetID = code.dataset ?? active?.id else {
-            problem = .message("Choose a song pack first.")
+            problem = .message(String(localized: "Choose a song pack first."))
             return
         }
         guard let dataset = try? await database.read({ try Dataset.find(datasetID).fetchOne($0) }) else {
@@ -108,7 +108,7 @@ final class GameModel {
         }
         guard await MusicAuthorization.request() == .authorized else {
             reset()
-            problem = .message("TrackStar needs access to Apple Music to play songs. Allow it in the Settings app.")
+            problem = .message(String(localized: "TrackStar needs access to Apple Music to play songs. Allow it in the Settings app."))
             return
         }
         guard let song = await Self.find(track) else {
@@ -132,7 +132,7 @@ final class GameModel {
             if let pendingCode { await start(pendingCode) }
         } catch {
             phase = .scanning
-            problem = .message("Couldn't download “\(datasetID)”: \(error.localizedDescription)")
+            problem = .message(String(localized: "Couldn't download “\(datasetID)”: \(error.localizedDescription)"))
         }
     }
 
@@ -191,7 +191,7 @@ final class GameModel {
             player.playbackTime = offset
             try await player.play()
         } catch {
-            problem = .message("Couldn't play the song. Playing needs an Apple Music subscription. (\(error.localizedDescription))")
+            problem = .message(String(localized: "Couldn't play the song. Playing needs an Apple Music subscription. (\(error.localizedDescription))"))
             return
         }
         isPlaying = true

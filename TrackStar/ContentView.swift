@@ -204,13 +204,13 @@ struct ContentView: View {
     private func problemMessage(_ problem: GameModel.Problem) -> String {
         switch problem {
         case .unknownCode:
-            "This QR code doesn't belong to a TrackStar or German Hitster card."
+            String(localized: "This QR code doesn't belong to a TrackStar or German Hitster card.")
         case let .missingDataset(name):
-            "This card belongs to the song pack “\(name)”. Download it to play the card."
+            String(localized: "This card belongs to the song pack “\(name)”. Download it to play the card.")
         case let .missingCard(number):
-            "\(activeDataset?.displayName ?? "The song pack") has no card number \(number)."
+            String(localized: "\(activeDataset?.displayName ?? String(localized: "The song pack")) has no card number \(number).")
         case let .notFound(track):
-            "“\(track.title)” by \(track.artist) couldn't be found. Here's the card anyway."
+            String(localized: "“\(track.title)” by \(track.artist) couldn't be found. Here's the card anyway.")
         case let .message(text):
             text
         }

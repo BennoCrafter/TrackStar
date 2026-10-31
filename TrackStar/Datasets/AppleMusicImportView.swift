@@ -61,7 +61,7 @@ struct AppleMusicImportView: View {
 
     private func load() async {
         guard await MusicAuthorization.request() == .authorized else {
-            error = "Allow TrackStar to access Apple Music in the Settings app."
+            error = String(localized: "Allow TrackStar to access Apple Music in the Settings app.")
             return
         }
         do {
@@ -82,7 +82,7 @@ struct AppleMusicImportView: View {
                 SongEntry(number: index + 1, title: track.title, artist: track.artistName, releaseDate: track.releaseDate, album: track.albumTitle)
             }
             guard !songs.isEmpty else {
-                error = "“\(playlist.name)” has no songs."
+                error = String(localized: "“\(playlist.name)” has no songs.")
                 return
             }
             try Library.createLocal(displayName: playlist.name, songs: songs)
@@ -93,7 +93,7 @@ struct AppleMusicImportView: View {
     }
 }
 
-private let yearNote = "Each song becomes a card. The year comes from Apple Music, which sometimes has the date of a remaster or compilation, so check the songs before printing."
+private let yearNote = String(localized: "Each song becomes a card. The year comes from Apple Music, which sometimes has the date of a remaster or compilation, so check the songs before printing.")
 
 private extension SongEntry {
     init(number: Int, title: String, artist: String, releaseDate: Date?, album: String?) {
@@ -199,7 +199,7 @@ private struct SongPickerView: View {
 
     private func load() async {
         guard await MusicAuthorization.request() == .authorized else {
-            error = "Allow TrackStar to access Apple Music in the Settings app."
+            error = String(localized: "Allow TrackStar to access Apple Music in the Settings app.")
             return
         }
         do {
